@@ -1,0 +1,290 @@
+<patTemplate:tmpl name="PAGE">
+	<div id="mainpage">
+		
+
+<!--
+<script type="text/javascript">
+
+/**--------------------------
+//* Validate Date Field script- By JavaScriptKit.com
+//* For this script and 100s more, visit http://www.javascriptkit.com
+//* This notice must stay intact for usage
+---------------------------**/
+
+function checkdate(input){
+var validformat=/^\d{2}\/\d{2}\/\d{4}$/ //Basic check for format validity
+var returnval=false
+
+if (!validformat.test(input.value))
+alert("Invalid Date Format.")
+else  { //Detailed check for valid date ranges
+var monthfield=input.value.split("/")[1]
+var dayfield=input.value.split("/")[0]
+var yearfield=input.value.split("/")[2]
+var dayobj = new Date(yearfield, monthfield-1, dayfield)
+if ((dayobj.getMonth()+1!=monthfield)||(dayobj.getDate()!=dayfield)||(dayobj.getFullYear()!=yearfield))
+alert("Invalid Day, Month, or Year range detected. Please correct and submit again.")
+else
+returnval=true
+}
+if (returnval==false) input.select()
+return returnval
+}
+
+</script>
+-->
+
+
+    <patTemplate:tmpl name="view" visibility="hidden">
+    
+    
+
+		<table class="tablelist" border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+
+			
+		  <tr><td colspan='7'><table><tr><td width='30' bgcolor="#D7D7D9">&nbsp;</td><td>-Outdated</td>
+		    <td width='30' bgcolor="#FFCCCC">&nbsp;</td><td>-Multiple Dates</td><td width="30" bgcolor="#6666FF">&nbsp;</td><td>-No Deadline</td></tr></table>
+		    </td></tr>
+			<tr>
+				<td bgcolor="#000000">&nbsp;</td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Deadline Date</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Synopsis</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Approved</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Mail-E</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Mail-C</b></td>
+			</tr>
+			<patTemplate:tmpl name="viewlist" type="simpleCondition" requiredvars="BGCOLOR">
+					<tr>
+							<td bgcolor='#E09731'><a style='color:white' href='deadlines.php?section=update&id={DEADLINE_ID}'>Update</a></td>
+							<td bgcolor='{BGCOLOR}'>{TITLE}</td>
+							<td bgcolor='{MULTI}'>{D_DATE}</td>
+							<td bgcolor='{BGCOLOR}'>{SYNOPSIS}</td>
+							<td bgcolor='{BGCOLOR}'>{APPROVED}</td>
+							<td align='center' bgcolor='{BGCOLOR}'>{ECOL}</td>
+							<td align='center' bgcolor='{BGCOLOR}'>{CCOL}</td>
+						</tr>
+			</patTemplate:tmpl>
+		</table>
+
+    </patTemplate:tmpl>
+    
+    
+    
+    
+    
+    
+    
+    <patTemplate:tmpl name="add" visibility="hidden">
+    	
+    	<form method="post" name="form1" action="" onSubmit="">
+	    <input type="hidden" name="action" value="">
+
+<fieldset class="Title">
+		<div style="margin-top: 8px;">	<label for="title">Title:</label><input style="font-size: 11pt;" type="text" name="title" maxlength="255" size="80" width="80" ></div>
+
+</fieldset>
+
+	
+	<fieldset>
+	<legend>Deadlines</legend>
+	<div style="font-size: smaller; margin-top: 6px;"><input type="checkbox" name="no_deadline"  /> No Deadline <i>(warnings still issued)</i></div>
+	
+	<patTemplate:tmpl name="datelist1">
+			<input type='hidden' name='date_id{X}' value='{DATE_ID}'>
+
+			<div>
+				<div class="dategroup"><label>Deadline Date:</label>
+					<input type="text" name="d_date" id="d_date" maxlength="10" size="10" >
+					<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "d_date", "chooserSpan1", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan1' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Due</label><input type="text" name="days_in_advance" value="5" size="2"> days earlier
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+				</div>
+				
+				
+
+				<div class="dategroup">
+					<label>Close Warning Date:</label>
+				<input type="text" name="close_warning_date" id="close_warning_date" maxlength="10" size="10">
+				<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "close_warning_date", "chooserSpan2", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Early Warning Date:</label>
+				<input type="text" name="early_warning_date" id="early_warning_date" maxlength="10" size="10">
+				<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "early_warning_date", "chooserSpan3", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan3' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Expiry Date:</label><input type="text" name="expiry_date" id="expiry_date" maxlength="10" size="10" onblur="checkdate(this);">
+		      <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "expiry_date", "chooserSpan4", 2011, 2020, "Y-m-d", false);'>
+		        <div id='chooserSpan4' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				</div>
+				<div><hr></div>
+	</patTemplate:tmpl>
+			
+			
+	</fieldset>
+	
+	<fieldset>
+		<legend>Content</legend>
+		<div style="font-size: smaller; text-align: center; margin-bottom: 6px;">
+			<strong>%dd%</strong> = Deadline date, <strong>%de%</strong> = days earlier, <strong>%cde%</strong> = calculated date for RSAO deadline
+		</div>
+		<div style="font-size: 10pt;"><input type="checkbox" name="override">Do not send a warning message</div>	
+		
+		<div style="margin-top: 10px;"><label>Email Warning Message:</label>
+		<textarea name="warning_message" rows="4" cols="120"></textarea></div>
+		
+		<div style="margin-top: 10px;"><label>Synopsis:</label>
+			<textarea name="synopsis" rows="5" cols="120"></textarea>
+		</div>
+		<div style="margin-top: 10px;"><label>Description:</label>
+			<textarea name="description" rows="10" cols="120"></textarea>
+		</div>
+		<div style="font-size: smaller;">
+			<div style="background-color: #dfef95;
+						padding:0.2em;margin-top: 5px;
+						border:1px solid #ddd;
+						background:#fafafa;
+						
+						-moz-border-radius:0.4em;
+						-khtml-border-radius:0.4em;" >
+					
+					</div>
+		</div>
+		
+	</fieldset>
+
+	<fieldset>
+		<div style="margin-top: 8px;">
+			<label style="vertical-align: top;">Topics:</label>
+			{TOPIC_OPTIONS}
+		</div>
+		<div style="margin-top: 8px;">
+			<label>Approved:</label><input type="checkbox" name="approved" value="yes">&nbsp;&nbsp;&nbsp;
+			<label>Internal:</label><input type="checkbox" name="internal" value="yes">
+				<a href="#"><img src="/images/help.gif" width="25" height="16" border="0" onClick="popHelp('submit_internal'); return false;"></a>
+		</div>
+		
+		<div style="text-align: center">
+			<button type="submit" name="add" value="Add">Add</button>&nbsp;&nbsp;
+			
+			<button type="button" onClick="window.location='deadlines.php?section=view'">Back</button>
+		</div>
+	</fieldset>
+
+
+
+    
+</patTemplate:tmpl>
+        
+        
+        <patTemplate:tmpl name="update" visibility="hidden">
+    	
+    	<form method="post" name="form1" action="deadlines.php?section=update&id={ID}" onSubmit="">
+		<input type="hidden" name="dropid" value="">
+	    <input type="hidden" name="action" value="">
+
+<fieldset class="Title">
+		<div style="margin-top: 8px;">	<label for="title">Title:</label><input style="font-size: 11pt;" type="text" name="title" maxlength="255" size="80" width="80" value="{TITLE}"></div>
+
+</fieldset>
+
+	
+	<fieldset>
+	<legend>Deadlines</legend>
+	<div style="font-size: smaller; margin-top: 6px;"><input type="checkbox" name="no_deadline" {NO_DEADLINE} /> No Deadline <i>(warnings still issued)</i></div>
+	<patTemplate:tmpl name="datelist">
+			<input type='hidden' name='date_id{X}' value='{DATE_ID}'>
+
+			<div>
+				<div class="dategroup"><label>Deadline Date:</label>
+					<input type="text" name="d_date{X}" id="d_date{X}" maxlength="10" size="10" value='{D_DATE}' >
+					<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "d_date{X}", "chooserSpan1{X}", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan1{X}' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label>Due</label><input type="text" name="days_in_advance{X}" value="{DAYS_IN_ADVANCE}" size="2"> days earlier
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button name="drop" onclick="form1.dropid.value={DATE_ID};form1.action.value='drop';form1.submit();">Delete this date</button>
+				</div>
+				
+				
+
+				<div class="dategroup">
+					<label>Close Warning Date:</label>
+				<input type="text" name="close_warning_date{X}" id="close_warning_date{X}" maxlength="10" size="10" value='{CLOSE_WARNING_DATE}'>
+				<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "close_warning_date{X}", "chooserSpan2{X}", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan2{X}' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Early Warning Date:</label>
+				<input type="text" name="early_warning_date{X}" id="early_warning_date{X}" value='{EARLY_WARNING_DATE}' maxlength="10" size="10">
+				<img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "early_warning_date{X}", "chooserSpan3{X}", 2011, 2020, "Y-m-d", false);'>
+					<div id='chooserSpan3{X}' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<label>Expiry Date:</label><input type="text" name="expiry_date{X}" value='{EXPIRY_DATE}' id="expiry_date{X}" maxlength="10" size="10" onblur="checkdate(this);">
+		      <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "expiry_date{X}", "chooserSpan4{X}", 2011, 2020, "Y-m-d", false);'>
+		        <div id='chooserSpan4{X}' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				</div>
+				<div><hr></div>
+	</patTemplate:tmpl>
+			<div style="text-align: center; margin: 8px 0px 0px 0px"><button type="button" name="" value="" onClick="document.form1.action.value='add_date_update';document.form1.submit();">Add an Additional Deadline</button></div>
+			
+	</fieldset>
+	
+	<fieldset>
+		<legend>Content</legend>
+		<div style="font-size: smaller; text-align: center; margin-bottom: 6px;">
+			<strong>%dd%</strong> = Deadline date, <strong>%de%</strong> = days earlier, <strong>%cde%</strong> = calculated date for RSAO deadline
+		</div>
+		<div style="font-size: 10pt;"><input type="checkbox" name="override" {OVERRIDE}>Do not send a warning message</div>	
+		
+		<div style="margin-top: 10px;"><label>Email Warning Message:</label>
+		<textarea name="warning_message" rows="4" cols="120">{WARNING_MESSAGE}</textarea></div>
+		
+		<div style="margin-top: 10px;"><label>Synopsis:</label>
+			<textarea name="synopsis" rows="5" cols="120">{SYNOPSIS}</textarea>
+		</div>
+		<div style="margin-top: 10px;"><label>Description:</label>
+			<textarea name="description" rows="10" cols="120">{DESCRIPTION}</textarea>
+		</div>
+		<div style="font-size: smaller;">
+			<div style="background-color: #dfef95;
+						padding:0.2em;margin-top: 5px;
+						border:1px solid #ddd;
+						background:#fafafa;
+						
+						-moz-border-radius:0.4em;
+						-khtml-border-radius:0.4em;" >
+					{HTMLDESCRIPTION}
+					</div>
+		</div>
+		
+	</fieldset>
+
+	<fieldset>
+		<div style="margin-top: 8px;">
+			<label style="vertical-align: top;">Topics:</label>
+			{TOPIC_OPTIONS}
+		</div>
+		<div style="margin-top: 8px;">
+			<label>Approved:</label><input type="checkbox" name="approved" value="yes" {APPROVED}>&nbsp;&nbsp;&nbsp;
+			<label>Internal:</label><input type="checkbox" name="internal" value="yes" {INTERNAL}>
+				<a href="#"><img src="/images/help.gif" width="25" height="16" border="0" onClick="popHelp('submit_internal'); return false;"></a>
+		</div>
+		
+		<div style="text-align: center">
+			<button type="submit" name="update" value="Update">Update</button>&nbsp;&nbsp;
+			<button type="button" onClick="window.location='deadlines.php?section=view&amp;delete=y&amp;id={ID}'">Delete</button> &nbsp;&nbsp;
+			<button type="button" onClick="window.location='deadlines.php?section=view'">Back</button>&nbsp;&nbsp;{PICTURE_BUTTON}
+		</div>
+	</fieldset>
+
+
+
+    
+    </patTemplate:tmpl>
+    
+  </div>  
+</patTemplate:tmpl>

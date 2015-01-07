@@ -1,0 +1,196 @@
+/***************************************
+All Copyright (C) Reserved
+Department of Communications & Public Relations, Vancouver Island University
+Date: 11th July, 2006
+****************************************/
+/*auto nav______________________________*/
+div#navcontainer {
+	float:left;
+	width:190px;
+	font-size:100%;
+	margin-bottom:100px;
+	border-bottom:3px solid #27415a;
+   }
+   
+/*---------------------------------------*/
+div#navcontainer p{
+padding:0;
+margin:0;
+}
+
+
+
+	div#navcontainer p a{
+	background:#27415a;
+	color:#bfe5f6;
+	border:none;
+	padding:9px 6px 9px 13px;
+	}
+	
+	
+	
+		div#navcontainer p a:hover{
+		color:#ffffff;
+		background:#2a89bf;
+		text-decoration:none;
+		}
+
+
+
+/* ----------- Unlinked headings in the navigation - Use with H4 tag in the nav file -----------------*/
+div#navcontainer .nav_heading {
+		color:#ebb000;
+		background:#27415a;
+		padding:9px 6px 9px 13px;
+	}
+/* ----------------------------------------------------*/
+	
+	div#navcontainer ul {
+	  margin:0;
+	  list-style:none;
+	  }
+	  
+		div#navcontainer li {
+		  display:inline;
+		  }
+	
+			div#navcontainer a {
+				float:left;
+				color:#ffffff;
+				line-height:1.1em;
+				background:#456f98;
+				font-weight:bold;
+			  }
+			  
+				div#navcontainer a{
+					float:left;
+					display:block;
+					letter-spacing:0.7px;
+					padding:9px 6px 9px 26px;
+					border-left:6px solid #27415a;
+				  }
+				  
+				div#navcontainer a{
+					float:none;
+				}
+
+			div#navcontainer ul li a {
+
+			}
+			
+				div#navcontainer ul ul li{
+				border:0;
+				}
+
+					div#navcontainer ul ul li a {
+						margin: 0 0 0 6px;     /* indent level 1 */
+						color:#0f5576;
+						font-weight: normal;
+						margin-bottom:1px;
+					}
+					
+						div#navcontainer ul ul li a{
+							background-color:#ecf5f9; /* was a lighter colour: f6f8f9 */
+							}
+					
+						div#navcontainer ul ul ul li{
+						border:0;
+						}
+
+							div#navcontainer ul ul ul li a{
+							  margin: 0 0 0 12px;     /* indent level 2 */
+							}
+							
+								div#navcontainer ul ul ul li a{
+								background:#f6f8f9;
+								margin-bottom:1px;
+								}
+
+							div#navcontainer li ul, div#navcontainer li.open li.closed ul {
+							display: none;           /*collapse */
+							}
+
+					div#navcontainer li.open ul{
+					  display: block;        /* expand */
+					}
+
+						div#navcontainer ul li.open a{
+						  background-image:url("/_global/images/nav_list_style_minor.gif");
+						  background-repeat:no-repeat;
+						  background-position:9px 11px !important;
+						  background-position:10px 11px;
+						  font-weight:bold;
+						}
+
+						div#navcontainer ul li.closed a{
+						  background-image:url("/_global/images/nav_list_style_plus.gif");
+						  background-repeat:no-repeat;
+						  background-position:9px 11px !important;
+						  background-position:10px 11px;
+						}
+						
+						div#navcontainer ul li.leaf a{
+						  background-image:url("/_global/images/nav_list_style_2nd.gif");
+						  background-repeat:no-repeat;
+						  background-position:9px 11px !important;
+						  background-position:10px 11px;
+
+						}
+						
+						div#navcontainer ul li a:hover {
+						  background-color: #2a89bf; /* rollover effect */
+						  text-decoration:none;
+						  border-left:6px solid #bfe5f6;
+						}
+						
+/* ----------------------------------------------------*/
+						div#navcontainer li.active a{
+						color: #486694;
+						font-weight:bold;
+						/*
+						background-image:url("/_global/images/nav_list_style_active.gif");
+						background-repeat:no-repeat;
+						background-position:9px 11px !important;
+						background-position:10px 11px;
+						*/
+						background:#ffffff;
+						border-right:0;
+						}
+
+ 
+
+						div#navcontainer li.active li a {
+						  color:#0f5576;       /* fix lower levels */
+						  /*background-color: #FFFFFF;*/
+						  background-color:#ecf5f9; /* colour was e6e3e3 */
+						}
+
+						div#navcontainer .dark {
+						  color: #003366;
+						}
+						
+						div#navcontainer li.active li a:hover{
+						  color:#ffffff;       /* fix lower levels */
+						  background-color:#2a89bf;
+						}
+
+div#navcontainer form input.topsearch {
+    background:#FFFFFF url(/_global/images/top_search-white.png) no-repeat scroll 100% 50%;
+    border:1px solid #CCCCCC;
+    color:#456F98;
+    height:17px;
+    padding:0pt 4px;
+    width:144px;
+}
+
+div#navcontainer form input.topsubmit {
+    background:#27415A none repeat scroll 0%;
+    border:1px solid #666666;
+    color:white;
+    cursor:pointer;
+    font-family:"Courier New",Courier,monospace;
+    font-size:100%;
+    font-weight:bold;
+    height:19px;
+    width:32px;
+}

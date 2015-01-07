@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="HEADER">
+<patTemplate:comment>
+
+</patTemplate:comment>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>{TITLE}</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/style_front.css" type="text/css" media="screen,projection" />
+    <link rel="stylesheet" href="http://mtroyal.ca/wcm/fragments/mr_tertiary_nav/mr_tertiary_nav.css" type="text/css" media="screen,projection" />
+
+    <!--[if IE 6]>
+        <link rel="stylesheet" href="css/ie6specific.css" type="text/css" />
+    <![endif]-->
+	<script type="text/javascript" src="js/mootools.js"></script>
+	<script type="text/javascript" src="js/mootools-more.js"></script>
+	<script type="text/javascript" src="js/moodalbox.js"></script>
+	
+	<script type="text/javascript" src="js/MRCfunctions.js"></script> 
+	<script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/ajax-dynamic-content.js"></script>
+    <script type="text/javascript" src="js/ajax-tooltip.js"></script>
+        <!-- Added by TD to get the non-jquery ajax help working again   -->
+    <script type='text/javascript' src='http://dound.com/wp/wp-includes/js/tw-sack.js'></script>
+    
+    <link href="includes/datechooser.css" rel="stylesheet">
+    <script type="text/javascript" src="includes/datechooser.js"></script>
+    <script type="text/javascript" src="includes/date-functions.js"></script>
+
+    {ADDITIONAL_HEADER_ITEMS}
+	<!--
+	<script type="text/javascript" src="js/prototype-1.6.0.3.js"></script>
+	-->
+	<link rel="stylesheet" href="css/moodalbox.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-370886-13']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39751447-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+
+  // Login box
+  jQuery(document).ready(function() {
+      jQuery('a.login-window').click(function() {
+
+          var loginBox = jQuery('#login-box');
+          var loginText = jQuery('.login-window').text();
+
+          var isLogin = (loginText == 'Sign in');  // true if logging in, false otherwise
+
+          //Fade in the Popup
+          jQuery(loginBox).fadeIn(300);
+
+          //Set the center alignment padding + border see css style
+          var popMargTop = (jQuery(loginBox).height() + 24) / 2;
+          var popMargLeft = (jQuery(loginBox).width() + 24) / 2;
+
+          jQuery(loginBox).css({
+              'margin-top' : -popMargTop,
+              'margin-left' : -popMargLeft
+          });
+
+          // Add the mask to body
+          jQuery('body').append('<div id="mask"></div>');
+          jQuery('#mask').fadeIn(300);
+
+          // display either the login or logout form
+          if(isLogin) {
+              jQuery('#loginform').css('display', 'inline-block');
+          } else {
+              jQuery('#logoutform').css('display', 'inline-block');
+          }
+
+          return false;
+      });
+
+      // When clicking on the button close or the mask layer the popup closed
+      jQuery('a.close, #mask').live('click', function() {
+          jQuery('#mask , .login-popup').fadeOut(300 , function() {
+              jQuery('#mask').remove();
+          });
+          return false;
+      });
+  });
+</script>
+</head>
+<body>
+
+
+
+
+    <div id="main_content">
+        <div id="main_content_top"></div>
+</patTemplate:tmpl>

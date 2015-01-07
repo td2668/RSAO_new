@@ -1,0 +1,117 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+    <div id="internal_home_tbls">
+    <table width="100%" align="center" cellpadding="0">
+    <tr ><td><h2>VIU Scholarship & Community Engagement Office</h2></td><td></td><td class="user" align="right">Logged in as: {USERNAME}</td></tr>
+        <tr>
+        
+         <td valign="top" width="60%">
+                <!-- left column -->
+               
+                <div class="contents">
+                <table width="100%">
+				
+                    <patTemplate:tmpl name="role" visibility="hidden">
+                    <tr><td colspan='4'><div class='h2rev'>My Role</div></td></tr>
+                    <tr><td colspan="4" class="indinfo"><b>Role{PLURAL}:</b>&nbsp;&nbsp;{ROLES}</td></tr>
+                </patTemplate:tmpl>
+                
+                
+                <patTemplate:tmpl name="signatures" visibility="hidden">
+                <tr><td colspan='4'><div class="h2rev"><a style="color: white" href="{URL}">Form Approvals</a></div></td></tr>
+                <tr><td  colspan='2'></td><td class="indinfo">To Sign</td><td class="indinfo">To View</td></tr>
+                <tr><td colspan="2" class="indinfo">Annual Reports</td><td class="indinfo" align="center">{NUM_NOT_SIGNED}</td><td class="indinfo" align="center">{AR_VIEW}</td></tr>
+                
+                <tr><td colspan="2" class="indinfo">Tracking Forms</td><td class="indinfo" align="center">{TF_SIGN}</td><td class="indinfo" align="center">{TF_VIEW}</td></tr>
+                </patTemplate:tmpl>
+
+                <tr><td>&nbsp;</td></tr>
+
+               <tr><td colspan='4'><div class='h2rev'>Tracking/Sig Forms</div></td></tr>
+
+                <patTemplate:tmpl name="tf_section" visibility="hidden">
+                    <tr><td colspan="2" class="indinfo">{TITLE}</td><td class="indinfo" colspan="2" align="right" nowrap="nowrap">
+                   {STATUS}</td></tr>
+                </patTemplate:tmpl>
+                <patTemplate:tmpl name="tf_count" visibility="hidden">
+                    <tr><td colspan='4' align="right" class="indinfo"><a href="/my_tracking.php"><b>... See All ({COUNT}) Tracking Forms</b></a></td></tr>
+                </patTemplate:tmpl>
+
+
+                <tr><td>&nbsp;</td></tr>
+                <tr><td colspan='4'><div class='h2rev'>Internal Grant Forms</div></td></tr>
+
+                <patTemplate:tmpl name="irgf_section" visibility="hidden">
+                    <tr><td colspan="2" class="indinfo">{TITLE}</td><td colspan="2" align="right" nowrap="nowrap" class="indinfo">
+                   {STATUS}</td></tr>
+                </patTemplate:tmpl>
+                <patTemplate:tmpl name="ig_count" visibility="hidden">
+                <tr><td colspan='4' align="right" class="indinfo"><a href="/my_irgf.php"><b>... See All ({COUNT}) Internal Grant Forms</b></a></td></tr>
+                </patTemplate:tmpl>
+                
+                <tr><td>&nbsp;</td></tr>
+                <tr><td colspan='4'><div class='h2rev'>CREATE Registrations</div></td></tr>
+
+                <patTemplate:tmpl name="cr_section" visibility="hidden">
+                    <tr><td colspan="2" class="indinfo">{TITLE}</td><td colspan="2" align="right" nowrap="nowrap" class="indinfo">
+                   {STATUS}</td></tr>
+                </patTemplate:tmpl>
+                <patTemplate:tmpl name="cr_count" visibility="hidden">
+                <tr><td colspan='4' align="right" class="indinfo"><a href="/my_create.php"><b>... See All ({COUNT}) Registrations</b></a></td></tr>
+                </patTemplate:tmpl>
+
+                
+                </table>
+                <br/> <br/> <br/>
+                <div >
+                
+                <patTemplate:tmpl name="BLOG" visibility="hidden">
+                    <div class="h2rev">News</div>
+                <div style="clear:left; padding:5px 0px;">
+                        
+                    <div style="margin-left:0px;">
+                    <b>{TITLE}</b><br>
+                    <patTemplate:var name="DESCRIPTION" /><br>
+                    <div style="text-align:left; margin-left:250px;"><a href="{LINK}">read full article</a></div>
+                    
+                   </div>
+                </div>
+                    
+                   
+             </patTemplate:tmpl>   
+                
+            </td>
+           <td width='3%'>
+           &nbsp;
+           </td>
+            
+            
+            <td width="39%" valign="top">
+                 <div class="h2rev">Deadlines</div> 
+                <div class="contents">                  
+                    <table>
+                    <patTemplate:tmpl name="deadlines" limit="5">
+                        <tr>
+                        <td nowrap valign="top" class="deadline_date">{DATE}</td>
+                        <td class="deadline_title"><a href="opportunities.php?section=deadlines&deadline_id={DEADLINE_ID}&date_id={DATE_ID}">{TITLE}</a></td>
+                        </tr>
+                    </patTemplate:tmpl>
+                    </table>
+                </div>
+                <div class="foot">
+                    <a href="opportunities.php?section=deadlines">Go to Deadlines</a>  | <a href="myactivities.php?section=my_profile#modify_filters">Change filters</a>
+                    <patTemplate:tmpl name='FILTERS' type="simpleCondition" requiredVars="FILTER">
+                    {FILTER}
+                    </patTemplate:tmpl>
+                </div> 
+                
+               
+            </td>
+
+           
+        </tr>
+    </table>
+    </div>
+    <div style="clear:both"></div>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

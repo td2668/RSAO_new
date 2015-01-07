@@ -1,0 +1,113 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a Title."]], // Title
+	[["required","Please enter a VALID Date."],["date"]], // Start Date 
+	[["required","Please enter a VALID Date."],["date"]], // Start Date 
+	[], // Start Time 
+	[], // Start Time 
+	[], // End Time
+	[], // Start Time 
+	[],// End Date 
+	[],// Location
+	[],// Address
+	[],// Contact
+	[["required","Please enter a Synopsis"]],// Location
+	[]// Description
+	]; 
+//-->
+</script>
+
+<form method="post" name="form1" action="events.php?section=view&id=~!id~" onSubmit="return validateForm(this,arrValidationDesc)">
+<table>
+	<tr>
+		<td colspan="2"  class="successhead">Update: Event</td>
+	</tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+	<tr>
+		<td>Title:</td>
+		<td><input type="text" name="title" maxlength="255" size="80" value="~!title~"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><i>note: date format is day/mon/year e.g. today is: 
+		<script language="JavaScript">
+		var now = new Date();
+		var year = now.getFullYear()-2000;
+		document.write(now.getDate() + '/' + (now.getMonth()+1) + '/0' + (now.getFullYear()-2000));
+		</script></i><br>
+						<i>note: time format is hh:mm</i></td>
+	</tr>
+	<tr>
+		<td>Post Date:</td>
+		<td><input type="text" name="post_date" maxlength="10" size="10" value="~!post_date~"></td>
+	</tr>
+	<tr>
+		<td>Start Date:</td>
+		<td><input type="text" name="start_date" maxlength="10" size="10" value="~!start_date~"></td>
+	</tr>
+	<tr>
+		<td>Start Time:</td>
+		<td><input type="text" name="start_time" maxlength="5" size="5" value="~!start_time~">
+			<select name="start_ampm">
+				<option value="">am</option>
+				<option ~!start_ampm_a~ value="12">pm</option>
+			</select></td>
+	</tr>
+	<tr>
+		<td>End Time:</td>
+		<td><input type="text" name="end_time" maxlength="5" size="5" value="~!end_time~">
+			<select name="end_ampm">
+				<option value="">am</option>
+				<option ~!end_ampm_a~ value="12">pm</option>
+			</select></td>
+	</tr>
+	<tr>
+		<td>Expiry Date:</td>
+		<td><input type="text" name="expiry_date" maxlength="10" size="10" value="~!expiry_date~"></td>
+	</tr>
+	<tr>
+		<td valign="top">Location:</td>
+		<td><input type="text" name="location" maxlength="255" size="80" value="~!location~"></td>
+	</tr>
+	<tr>
+		<td valign="top">Address:</td>
+		<td><input type="text" name="address" maxlength="255" size="80" value="~!address~"></td>
+	</tr>
+	<tr>
+		<td valign="top">Contact:</td>
+		<td><textarea name="contact" rows="1" cols="80">~!contact~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Synopsis:</td>
+		<td><textarea name="synopsis" rows="10" cols="80">~!synopsis~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Description:</td>
+		<td><textarea name="description" rows="10" cols="80">~!description~</textarea></td>
+	</tr>
+	<tr>
+		<td>Approved:</td>
+		<td><input type="checkbox" name="approved" value="yes" ~!approved_a~></td>
+	</tr>
+		<tr>
+		<td>Reminders Sent:</td>
+		<td><input type="checkbox" name="reminders_sent" value="yes" ~!reminders_sent_a~></td>
+	</tr>
+		<tr>
+		<td>Internal:</td>
+		<td><input type="checkbox" name="internal" value="yes" ~!internal_a~></td>
+	</tr>
+    <tr><td colspan="2"><b>NOTE: Changes or Deletions MUST be done manually in the Calendar. Be sure to also make your changes there</b></tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" name="update" value="Update">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='events.php?section=view&delete=y&id=~!id~'">Delete</button>&nbsp;&nbsp;
+			<button type="button" onClick="window.location='events.php?section=view'">Back</button>
+			~!picture_button~</td>
+	</tr>
+</form>
+</table>

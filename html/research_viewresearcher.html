@@ -1,0 +1,181 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+		
+		<div class="research_main">
+        <patTemplate:tmpl src="research_controls.tpl" />
+		<div id="viewresearcher">
+			<h1>Faculty profile</h1><br />
+			<patTemplate:tmpl name="RESEARCHER" type="condition" conditionVar="USER_ID">
+				<patTemplate:sub condition="__empty">
+					<b>Researcher not found.</b>
+				</patTemplate:sub>    
+
+				<patTemplate:sub condition="__default">
+					<patTemplate:tmpl name="maindiv_floater" type="condition" conditionVar="IMG_URL" varscope="RESEARCHER">
+					  <patTemplate:sub condition="__empty">
+						<div class="withoutimage">
+                            <table width="500" cellpadding="0" cellspacing="0" >
+                            <tr><td width="250" valign="top"> 
+                            <b style='font-size:14px;'>{FIRST_NAME} {LAST_NAME}</b>
+                            <br />  
+                            <patTemplate:link src="title_" />
+                            <patTemplate:link src="secondary_title_" />
+                            <br />
+                            <patTemplate:link src="department_title" /><patTemplate:link src="department_title2" />
+                            <patTemplate:link src="department_" />
+                            <patTemplate:link src="secondary_department_" />
+                            </td>
+                            <td width="10">&nbsp;</td>
+                            <td width="250" valign="top">
+                                <table cellpadding="0" cellspacing="0">
+                                <patTemplate:link src="office_" />                                                                         
+                                <patTemplate:link src="phone_" />                     
+                                <patTemplate:link src="fax_" />
+                                </table>
+                                <patTemplate:link src="email_" />
+                                <patTemplate:link src="homepage_" />
+                                                                                           
+                            </td></tr><tr><td>&nbsp;</td></tr></table>
+                            <div style='text-align:justify;'>
+                            
+                            <patTemplate:var name="PROFILE_EXT" modifier="nl2br"  />
+                            </div>
+                               
+                                   <patTemplate:link src="PROJECT_TITLE" />
+                               
+                            
+                            <patTemplate:link src="educ_title" />
+                            <patTemplate:link src="awards_title" />
+                            <div class='secondsection'>
+                            <patTemplate:link src="pubs_title" />
+                            <patTemplate:link src="else" />
+                            </div>
+                        </div>
+					  </patTemplate:sub>
+
+					  <patTemplate:sub condition="__default">
+						<div class="withimage" >  
+                          <table><tr><td valign="top">
+                        <patTemplate:tmpl name="img_" type="simplecondition" requiredvars="img_url" varscope="RESEARCHER">
+                            <img src="{IMG_URL}"  /><br />
+                        </patTemplate:tmpl>
+                        <b style='font-size:14px;'>{FIRST_NAME} {LAST_NAME}</b>
+                        <br />
+                        <patTemplate:tmpl name="title_" type="simplecondition" requiredvars="title" varscope="RESEARCHER">
+                            {TITLE}<br />
+                        </patTemplate:tmpl>
+                        
+                        <patTemplate:tmpl name="secondary_title_" type="simplecondition" requiredvars="secondary_title"  varscope="RESEARCHER">
+                                {SECONDARY_TITLE}<br />
+                        </patTemplate:tmpl>
+                        <br />
+                            
+                        <patTemplate:tmpl name="department_title" type="simplecondition" requiredvars="department"  varscope="RESEARCHER">
+                            <b>Department</b></patTemplate:tmpl><patTemplate:tmpl name="department_title2" type="simplecondition" requiredvars="department,secondary_department"  varscope="RESEARCHER"><b>s</b></patTemplate:tmpl>
+                            
+                        <patTemplate:tmpl name="department_" type="simplecondition" requiredvars="department"  varscope="RESEARCHER">
+                            <br />{DEPARTMENT}<br />
+                        </patTemplate:tmpl>
+                        
+                        <patTemplate:tmpl name="secondary_department_" type="simplecondition" requiredvars="secondary_department"  varscope="RESEARCHER">
+                                {SECONDARY_DEPARTMENT}<br />
+                        </patTemplate:tmpl>
+                        <br />
+                        <table cellpadding="0" cellspacing="0">
+                        <patTemplate:tmpl name="office_" type="simplecondition" requiredvars="office" varscope="RESEARCHER">
+                                <tr><td style="width:50px;margin:3px 0px;font-size:12px;">office:</td><td>{OFFICE}</td></tr>
+                        </patTemplate:tmpl>
+
+                        <patTemplate:tmpl name="phone_" type="simplecondition" requiredvars="phone" varscope="RESEARCHER">
+                                <tr><td  style="width:50px;margin:3px 0px;">phone:</td><td>{PHONE}</td></tr>
+                        </patTemplate:tmpl>
+
+                        <patTemplate:tmpl name="fax_" type="simplecondition" requiredvars="fax" varscope="RESEARCHER">
+                                <tr><td>fax:</td><td>{FAX}</td></tr>
+                        </patTemplate:tmpl>
+                        </table>
+                        <patTemplate:tmpl name="email_" type="simplecondition" requiredvars="email" varscope="RESEARCHER">
+                            <span class='codedirection'>{EMAIL}</span> <br />
+                            <br />
+                        </patTemplate:tmpl>
+
+                        <patTemplate:tmpl name="homepage_" type="simplecondition" requiredvars="homepage" varscope="RESEARCHER">
+                                <a href="{HOMEPAGE}">Personal Homepage</a><br />
+                        </patTemplate:tmpl>
+                       <br />
+                    </td><td width="10">&nbsp;</td> 
+                    <td valign="top">
+                        <h2 style="display:none">{FIRST_NAME} {LAST_NAME}</h2>
+                        <div style='text-align:justify;'><patTemplate:var name="PROFILE_EXT" modifier="nl2br"  /></div>
+                        
+
+                    
+                     
+                    </td></tr></table>    
+                    
+                        <patTemplate:tmpl name="PROJECT_TITLE" varscope="PROJECTS_LIST" type="simpleCondition" requiredVars="PROJECT_ID" >
+                            <div class='cv_title'>Projects</div>
+                                <ul>                                             
+                            <patTemplate:tmpl name="PROJECTS_LIST" type="condition" conditionVar="PROJECT_ID">
+                                <patTemplate:sub condition="__empty">                                        
+                                </patTemplate:sub>
+                                
+                                <patTemplate:sub condition="__default">                                         
+                                    <li><a href="research.php?action=view&type=project&pid={PROJECT_ID}" title="{PROJECT_NAME}">{PROJECT_NAME}</a></li>                                        
+                                </patTemplate:sub>
+                            </patTemplate:tmpl>
+                            </ul>
+                        </patTemplate:tmpl>
+                            
+                        <patTemplate:tmpl name="educ_title" type="simplecondition" requiredvars="DEGREES" varscope="educ_list">
+                            <div class='cv_title'>Education</div>
+                            <patTemplate:tmpl name="educ_list" type="simplecondition" requiredvars="DEGREES">
+                                <div class="cv_entries">{DEGREES}</div>                  
+                            </patTemplate:tmpl>
+                            
+                         </patTemplate:tmpl>
+                
+                         <patTemplate:tmpl name="awards_title" type="simplecondition" requiredvars="AWARDS" varscope="awards_list">
+                            <div class='cv_title'>Awards and Distinctions</div>
+                            <patTemplate:tmpl name="awards_list" type="simplecondition" requiredvars="AWARDS">
+                                <div class="cv_entries">{AWARDS}</div>                  
+                            </patTemplate:tmpl>
+                            
+                         </patTemplate:tmpl>  
+                         <div class="secondsection">
+                        <patTemplate:tmpl name="pubs_title" type="simplecondition" requiredvars="PUBS" varscope="pubs_list">
+                            <div class='cv_title'>Recent Publications</div>
+                            <patTemplate:tmpl name="pubs_list" type="simplecondition" requiredvars="PUBS">
+                                <div class="cv_entries">{PUBS}</div>                   
+                            </patTemplate:tmpl>
+                            
+                         </patTemplate:tmpl>   
+                             
+                         <patTemplate:tmpl name="proc_title" type="simplecondition" requiredvars="PROC" varscope="proc_list">
+                            <div class='cv_title'>Conference Presentations</div>
+                            <patTemplate:tmpl name="proc_list" type="simplecondition" requiredvars="PROC">
+                                <div class="cv_entries">{PROC}</div>                    
+                            </patTemplate:tmpl>
+                            
+                         </patTemplate:tmpl>    
+                             
+                            <patTemplate:tmpl name="else" type="simplecondition" requiredvars="else_list">
+                                <div class="cv_entries">{ELSE_LIST}</div>                   
+                            </patTemplate:tmpl>
+                            <br>                      
+                        </div>  
+                       
+                            
+                        </div>
+					  </patTemplate:sub>
+					</patTemplate:tmpl>
+
+                    
+				</patTemplate:sub>   
+			</patTemplate:tmpl>  
+		</div>   
+		</div>       
+
+   <patTemplate:tmpl src="footer.html" />
+   
+</patTemplate:tmpl>

@@ -1,0 +1,51 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+    <form name="review_form" id="review_form" action="" method="post" title="Annual Report Review and Submission">
+        <div style="float:right;width:250px">
+            <patTemplate:tmpl name="tools_box" type="simpleCondition" requiredVars="ENABLED">
+
+                <span class="toolsHeader">Tools</span>
+                <hr style="height:1px">
+                <input type="submit" name="mr_action" value="Export My CV"><span class='enfasis'> (in development)</span><br />
+                <input type="submit" name="mr_action" value="Export My CAQC" disabled="true"><br />
+
+
+                <!--{ADMIN_TOOLS} -->
+
+        </patTemplate:tmpl>
+
+
+    <patTemplate:tmpl name="survey_box" >
+    {SURVEY_TOOLS}
+    </br></br>
+    </patTemplate:tmpl>
+</div>
+    </form>
+
+    <h1>Curriculum Vitae - Review & Print</h1>
+
+    <br />
+    
+    <form>
+    Citation Style: APA <input type='radio' name='citation_style' id='citation_syle_apa' value='apa' {APA_CHECKED}>
+    
+    </form>
+    <table>
+    	<tr><td>&nbsp;&nbsp;</td></tr>
+        <tr><td>&nbsp;&nbsp;</td><td><a class='pdfprint' href="#" onclick="DoPrint('everything')"><img src="images/pdf_icon.gif" border="0"/></a>&nbsp;Everything</td></tr>
+        
+        <tr><td>&nbsp;&nbsp;</td><td><a class='pdfprint' href="#" onclick="DoPrint('web_show')"><img src="images/pdf_icon.gif" border="0"/></a>&nbsp;MRU Website Set</td></tr>
+        <tr><td>&nbsp;&nbsp;</td><td><a class='pdfprint' href="#" onclick="DoPrint('mycv1')" ><img src="images/pdf_icon.gif" border="0"/></a>&nbsp;My CV 1</td></tr>
+        <tr><td>&nbsp;&nbsp;</td><td><a class='pdfprint' href="#" onclick="DoPrint('mycv2')" ><img src="images/pdf_icon.gif" border="0"/></a>&nbsp;My CV 2</td></tr>
+    </table>
+
+    <patTemplate:tmpl src="footer.html" />
+    <script>
+        function DoPrint(generateWhat){
+            var style = $('input[name=citation_style]:checked').val();
+            var url = "cv_review_print.php?generate=" + generateWhat + "&report_user_id={USER_ID}&style=" + style;
+
+            window.open(url);
+            }
+    </script>
+</patTemplate:tmpl>

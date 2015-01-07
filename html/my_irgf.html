@@ -1,0 +1,421 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL" >
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+<script src="/js/jquery-ui-1.7.2.custom.min.js"></script>
+
+
+<script type="text/javascript">
+
+    jQuery( document ).ready(function() {
+
+        /** Show and hide help text when an input is clicked **/
+
+        jQuery('input').focus(function() {
+            nextElement = jQuery(this).nextAll('.field-help');
+            nextElement.slideToggle('fast');
+        });
+
+        jQuery('input').blur(function() {
+            nextElement = jQuery(this).nextAll('.field-help');
+            nextElement.slideUp('fast');
+        });
+
+    });
+
+function submitform()
+{
+  document.form1.submit();
+}
+
+
+function CalculateTotal(frm) {
+    var c_total = 0
+    var i_total = 0
+    for (var i=0; i < frm.elements.length; ++i) {
+        form_field = frm.elements[i]
+        form_name = form_field.name
+        // Is it a C field?
+        if (form_name.substring(0,2) == "c_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 c_total += parseFloat(form_field.value)  
+            }         
+        }
+        if (form_name.substring(0,2) == "i_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 i_total += parseFloat(form_field.value )    
+            }      
+        }
+    }
+    frm.TOTALC.value = c_total
+    frm.TOTALI.value = i_total
+}
+
+function round_decimals(original_number, decimals) {
+    var result1 = original_number * Math.pow(10, decimals)
+    var result2 = Math.round(result1)
+    var result3 = result2 / Math.pow(10, decimals)
+    return pad_with_zeros(result3, decimals)
+}
+function pad_with_zeros(rounded_value, decimal_places) {
+    var value_string = rounded_value.toString()
+    var decimal_location = value_string.indexOf(".")
+    if (decimal_location == -1) {     
+        // If no, then all decimal places will be padded with 0s
+        decimal_part_length = 0
+        // If decimal_places is greater than zero, tack on a decimal point
+        value_string += decimal_places > 0 ? "." : ""
+    }
+    else {
+        // If yes, then only the extra decimal places will be padded with 0s
+        decimal_part_length = value_string.length - decimal_location - 1
+    }    
+    // Calculate the number of decimal places that need to be padded with 0s
+    var pad_total = decimal_places - decimal_part_length   
+    if (pad_total > 0) {       
+        // Pad the string with 0s
+        for (var counter = 1; counter <= pad_total; counter++) 
+            value_string += "0"
+        }
+    return value_string
+}
+
+
+</script> 
+
+<script type="text/javascript" src="js/ajax-dynamic-content.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/ajax-tooltip.js"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+<!-- Dynamic Version by: Nannette Thacker -->
+<!-- http://www.shiningstar.net -->
+<!-- Original by :  Ronnie T. Moore -->
+<!-- Web Site:  The JavaScript Source -->
+<!-- Use one function for multiple text areas on a page -->
+<!-- Limit the number of characters per textarea -->
+<!-- Begin
+function textCounter(field,cntfield,maxlimit) {
+if (field.value.length > maxlimit) // if too long...trim it!
+field.value = field.value.substring(0, maxlimit);
+
+// otherwise, update 'characters left' counter
+else
+cntfield.value = maxlimit - field.value.length;
+}
+//  End -->
+</script>
+    
+<link rel="stylesheet" href="css/forms.css" media="screen" type="text/css">
+<link rel="stylesheet" href="css/ajax-tooltip.css" media="screen" type="text/css">
+
+<form method="post" action="my_irgf.php" name="form1" enctype="multipart/form-data">
+<input type="hidden" name="section" value="{SECTION}" />
+<input type="hidden" name="gotosection" value="" />
+<input type="hidden" name="newname" value="" />
+<input type="hidden" name="saveme" value="false" /> 
+<input type="hidden" name="locksubmit" value="false" /> 
+
+
+
+
+<div style="float: right;" >
+<patTemplate:tmpl name="savecontrol" >  
+    <button type="submit" name="save" value="save" onClick="javascript:document.form1.saveme.value='true';" {DISABLED}>Save</button><br><br>
+</patTemplate:tmpl> 
+<a href="javascript: submitform()" title="Back to the list" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='list';">My Applications</a><br><br>
+<a href="javascript: submitform()" title="Create a new form" onClick="javascript: document.form1.saveme.value='true'; document.form1.section.value='new';">New Form</a><br> 
+</div>
+
+<div name="formchooser">
+<patTemplate:tmpl name="chooser" visibility="visible">
+<b>
+<a  href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='info';"><span class='{HILITE_INFO}'>Info</span></a>&nbsp;&nbsp;|&nbsp;
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='summary';"><span class='{HILITE_SUMMARY}'>Summary</span></a>&nbsp;&nbsp;|&nbsp;
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='dissemination';"><span class='{HILITE_DISSEMINATION}'>Dissemination</span></a>&nbsp;&nbsp;|&nbsp; 
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='funding';"><span class='{HILITE_FUNDING}'>Budget</span></a>&nbsp;&nbsp;|&nbsp;
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='submit';"><span class='{HILITE_SUBMIT}'>Submit</span></a>
+&nbsp;&nbsp; <br><br>
+</b>
+</patTemplate:tmpl>
+</div>
+
+
+
+<patTemplate:tmpl name="section" type="condition" conditionvar="section">
+    <patTemplate:sub condition="list">
+    <h3>Internal Research Grant Applications</h3>
+    <p class="enfasis">The MRU Internal Research Grants fund a range of activities at the institution. Each application requires a tracking form, where additional details are entered. <br />(When and Why <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_intro.html',this);return false" />) (Help with this page <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_intro2.html',this);return false" />)</p>
+        <p align='center'>HELP: <a href="/documents/forms/irgf_notes_2012.pdf" target="_blank">Guidance Notes</a> | <a href="documents/forms/how_to_research_asst.doc" target="_blank">Hiring an R.A.</a></p>
+           <patTemplate:tmpl name="list"> 
+           <div id="forms_list"> 
+           <br/>
+                <table width='700' cellpadding="3">
+                
+                {OUTPUT}
+                </table>
+            </div>
+            </patTemplate:tmpl>  
+    </patTemplate:sub>
+
+
+    
+    <patTemplate:sub condition="info">
+        <patTemplate:tmpl name="info">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+            
+            <table class='formtable' cellpadding="5">
+                <tr><td colspan="2"><h3>Internal Research Grants Fund Application: General Information</h3></td></tr>
+
+                <tr><td colspan="2"><p>The Internal Research Grants Fund (IRGF) is the main source of internal research funding available to faculty at Mount Royal University. You can find more information on this fund and tips to strengthen your application <a href="">here</a>.</p>
+
+                                    <p>You may start this application at any time, and return to modify it as required until you click "Submit". Save regularly: while the form will automatically save content as you move between the pages of your application, it will not save if you leave this page for another page or website.</p>
+                </td></tr>
+            	<tr><td colspan="2"><hr/></td></tr>
+                <tr><td colspan="2"><p>This application must be accompanied by a MRU Research Tracking Form.  <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_intro.html',this);return false" /></p>
+                                    <p>Have you started your tracking form yet? If so, please select its name from the drop-down list below. </p>
+                </td> </tr>
+
+                    <tr><td>Tracking form:</td><td><select name="form_tracking_id" onchange="javascript: document.form1.saveme.value='true'; document.form1.section.value='info'; submitform();" {DISABLED}><option value="0"></option>
+                    {FORMS_TRACKING_OPTIONS}</select> </td></tr>
+                    <patTemplate:tmpl name="newtf" visibility="visible">
+                    <tr><td colspan="2">OR check here <input type='checkbox' name='newtf' onchange="javascript: document.form1.saveme.value='true'; document.form1.section.value='info'; submitform();" \> if you'd like a new one to be created for you to fill out at your leisure.</td></tr>
+                    </patTemplate:tmpl>
+
+
+                <tr><td valign="top">Descriptive Name:</td>
+                    <td><input type="text" size="70" name="irgf_name" value="{IRGF_NAME}" />
+                    <div class="field-help" style="height: auto; display:none;"> You may use the title of your project, or leave this at its default.
+                        <br> </div>
+                </td></tr>
+
+                <tr>
+                    <td>Created:</td>
+                    <td>{CREATED}</td>
+                </tr>
+                <tr>
+                    <td>Modified:</td>
+                    <td>{MODIFIED}</td>
+                </tr>
+                <tr>
+                    <td>Proposed Start Date:</td>
+                    <td><input type="text" name="start_date" id="start_date" size="10" value="{START_DATE}"/> <img
+                            src='/includes/calendar.gif' align='absmiddle'
+                            onclick='showChooser(this, "start_date", "chooserSpan", 2010, 2020, "Y-m-d", false);'>
+
+                        <div id='chooserSpan' class='dateChooser select-free'
+                             style='display: none; visibility: hidden; width: 166px;'>
+                        </div>
+                        <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                             onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_start_date.html',this);return false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Proposed End Date:</td>
+                    <td><input type="text" name="end_date" size="10" value="{END_DATE}" id="end_date"/> <img
+                            src='/includes/calendar.gif' align='absmiddle'
+                            onclick='showChooser(this, "end_date", "chooserSpan2", 2010, 2020, "Y-m-d", false);'>
+
+                        <div id='chooserSpan2' class='dateChooser select-free'
+                             style='display: none; visibility: hidden; width: 166px; z-index: 100;'>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td colspan="2"><p>The Internal Research Grants Fund has two separate opportunities available to applicants. Which opportunity do you wish to apply to?</p></td>
+                </tr>
+				<tr><td>Which Fund:</td><td>
+					<select name='which_fund'>
+						<option value='regular_faculty' {REGULAR_FACULTY}>Regular Faculty</option>
+						<option value='new_applicant' {NEW_APPLICANT}>New Applicant</option>
+					</select> <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_which.html',this);return false" /></td></tr>
+                
+            </table>
+        </patTemplate:tmpl>
+    </patTemplate:sub>
+ 
+ 
+ 	<patTemplate:sub condition="summary">
+        <patTemplate:tmpl name="summary">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+            
+            <table class='formtable' cellpadding="5">
+            
+            
+            	<tr><td colspan="2">Summarize your project for a general audience.<img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_summarize.html',this);return false" /></td></tr>
+                    <tr><td><textarea wrap="physical" cols="80" rows="20" name="summary"
+                    
+                    onKeyDown="textCounter(document.form1.summary,document.form1.remLen1,500)"
+					onKeyUp="textCounter(document.form1.summary,document.form1.remLen1,500)">{SUMMARY}</textarea>
+                    <br>
+                    <input readonly type="text" name="remLen1" size="3" maxlength="3">
+					characters left
+					<br></td></tr>
+                    <tr><td>
+                
+            </table>
+            <script language="Javascript">textCounter(document.form1.summary,document.form1.remLen1,500)</script>
+        </patTemplate:tmpl>
+    </patTemplate:sub>
+    
+    
+    <patTemplate:sub condition="dissemination">
+        <patTemplate:tmpl name="dissemination">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+            
+            <table class='formtable' cellpadding="5">
+            
+            	<tr><td colspan="2">Describe your dissemination plans in as much detail as possible. For guidelines and tips, review the <a href="">Application Guide</a>. <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_dissemination.html',this);return false" /></td></tr>
+                    <tr><td><textarea wrap="physical" cols="80" rows="20" name="dissemination"
+                    
+                    onKeyDown="textCounter(document.form1.dissemination,document.form1.remLen2,2000)"
+					onKeyUp="textCounter(document.form1.dissemination,document.form1.remLen2,2000)">{DISSEMINATION}</textarea>
+                    <br>
+                    <input readonly type="text" name="remLen2" size="3" maxlength="3">
+					characters left
+					<br></td></tr>
+                    
+                
+            </table>
+            <script language="Javascript">textCounter(document.form1.dissemination,document.form1.remLen2,2000)</script>
+        </patTemplate:tmpl>
+    </patTemplate:sub>
+
+
+    <patTemplate:sub condition="funding">
+        <patTemplate:tmpl name="funding">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+
+                <patTemplate:tmpl name="funding_details" varscope="funding">
+               <table cellpadding="5" class='formtable'>
+
+                <tr><td colspan="3"><b>Budget Summary:</b> <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_budget.html',this);return false" /></td></tr>
+                <tr><td colspan="3">Provide budget details for your project. Please provide details for both years if you are applying for a two year project. </td></tr>
+               <tr><td colspan="3" class="enfasis">(This is a standard chart used for all grant applications. Not all categories will apply)</td></tr>
+               <tr><td colspan="3">
+                <table border="0"><tr><th width='10'>&nbsp;</th><th>&nbsp;</th><th>Year 1</th><th>Year 2</th><th>&nbsp;</th><th>&nbsp;</th><th>Year 1</th><th>Year 2</th></tr>
+                <tr><td colspan="2" class="budget-text">1.Stipends to Investigators</td><td ><input  class="budgetamount" type="text" name="c_stipends" size="8" value="{C_STIPENDS}" onChange="CalculateTotal(this.form)" tabindex="5" class="budgetamount"/></td><td><input class="budgetamount" type="text" name="i_stipends" size="8" tabindex="6" value="{I_STIPENDS}" onChange="CalculateTotal(this.form)"/></td><td width='40'>&nbsp;</td>
+                <td class="budget-text">7.Benefits</td><td class="budget-amount"><input  class="budgetamount" class="budgetamount" type="text" tabindex="18" name="c_benefits" size="8" value="{C_BENEFITS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="19" name="i_benefits" size="8" value="{I_BENEFITS}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td colspan="2" class="budget-text">2.Secretarial/technical personnel</td><td class="budget-amount"><input  class="budgetamount" type="text" name="c_persons" size="8" tabindex="7" value="{C_PERSONS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" name="i_persons" tabindex="8" size="8" value="{I_PERSONS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">8.Equipment</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="20" name="c_equipment" size="8" value="{C_EQUIPMENT}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="21" name="i_equipment" size="8" value="{I_EQUIPMENT}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td colspan="2" class="budget-text">Assistantships</td><td colspan="2" class="budget-amount"></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">9.Supplies</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="22" name="c_supplies" size="8" value="{C_SUPPLIES}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="23" name="i_supplies" size="8" value="{I_SUPPLIES}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td>&nbsp;</td><td class="budget-text">3.Undergrad Students</td><td class="budget-amount"><input  class="budgetamount" type="text" name="c_ustudents" tabindex="9" size="8" value="{C_USTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" name="i_ustudents" tabindex="10" size="8" value="{I_USTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">10.Travel</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="24" name="c_travel" size="8" value="{C_TRAVEL}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="25" name="i_travel" size="8" value="{I_TRAVEL}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td>&nbsp;</td><td class="budget-text">4.Grad Students/Post-Docs</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="11" name="c_gstudents" size="8" value="{C_GSTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="12" name="i_gstudents" size="8" value="{I_GSTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">11.IT Services</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="26" name="c_comp" size="8" value="{C_COMP}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="27" name="i_comp" size="8" value="{I_COMP}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td>&nbsp;</td><td class="budget-text">5.Other Research Assistants</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="13" name="c_ras" size="8" value="{C_RAS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="14" name="i_ras" size="8" value="{I_RAS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">12.Overhead/Indirect<br>Costs Recovery</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="28" name="c_oh" size="8" value="{C_OH}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="29" name="i_oh" size="8" value="{I_OH}" onChange="CalculateTotal(this.form)"/></td></tr>
+
+                <tr><td colspan="2" class="budget-text">6.Other (note below)</td><td class="budget-amount"><input  class="budgetamount" type="text" name="c_others" tabindex="15" size="8" value="{C_OTHERS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="16" name="i_others" size="8" value="{I_OTHERS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">13.Space or Facilities</td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="30" name="c_space" size="8" value="{C_SPACE}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input  class="budgetamount" type="text" tabindex="31" name="i_space" size="8" value="{I_SPACE}" onChange="CalculateTotal(this.form)"/></td></tr>
+                <tr><td>&nbsp;</td></tr>
+                <tr><td colspan="6" class="budget-text">Provide details on any special expenses and costs listed "other" :</td>
+                <tr><td colspan="8" class="budget-amount"><textarea wrap="physical" cols="80" rows="5" tabindex="17" name="others_text"">{OTHERS_TEXT}</textarea></td></tr>
+                </table>
+                </td></tr>
+                <tr><td>Calculated Totals</td><td>Year 1: <input  class="budgetamount" type="text" name="TOTALC" readonly="true" size="10"/> &nbsp;&nbsp;Year 2: <input  class="budgetamount" type="text" name="TOTALI" readonly="true" size="10"/></td><td>&nbsp;</td></tr>
+
+
+                <script type="text/javascript">CalculateTotal(document.form1)</script>
+                </patTemplate:tmpl>
+
+            </table>
+
+            <table cellpadding="5" class='formtable'>
+                <tr><td colspan="2">If you have received previous funding for this project, or are seeking additional funding from other sources, please provide details here: <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_funding.html',this);return false" /></td></tr>
+                <tr><td><textarea wrap="physical" cols="80" rows="10" name="funding">{FUNDING}</textarea>
+                </td></tr>
+            </table>
+        </patTemplate:tmpl>
+     </patTemplate:sub>
+
+
+      <patTemplate:sub condition="submit">
+         <patTemplate:tmpl name="submit">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" /> 
+            <table cellpadding="5" class='formtable'>
+             
+            <tr><td>&nbsp;</td></tr>
+            
+                           
+            
+            <tr><td colspan="2">The Scholarship Review Committee requests that you provide the name of a colleague who is able, and has agreed, to provide the committee with further details should they require. Please select that individual's name from the list below.</td></tr>
+            <tr><td colspan="2"><select name='reviewer_id'><option value="0"></option>
+            {REVIEWER_ID_OPTIONS}
+             </select></td></tr>
+            <tr><td colspan='2'><br />Would you like to attached your CV from the FAIR system?: <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_cv.html',this);return false" /><br>
+            <input type="checkbox" name="cv" value="1" {CV1} />Attach My MRU CV <a href="#" onclick="DoPrint('mycv1')" >(Preview)</a> <br>
+            <patTemplate:tmpl name="cos" visibility="hidden">
+            <tr><td colspan='2'>If desired, select the CV to include for the following {PLURAL}:</td></tr>
+            <tr><td colspan="2"><table>
+            <patTemplate:tmpl name="cos_list">
+            	<tr><td>{NAME}</td>
+            	<td><input type='radio' name='cv_{USER_ID}' value='0' {CV0}> None</td>
+            	<td><input type='radio' name='cv_{USER_ID}' value='1' {CV1}> MyCV 1 <a href="#" onclick="DoOtherPrint('mycv1','{USER_ID}')" >(Preview)</a></td>
+            	<td><input type='radio' name='cv_{USER_ID}' value='2' {CV2}> MyCV 2 <a href="#" onclick="DoOtherPrint('mycv2','{USER_ID}')" >(Preview)</a></td></tr>
+            </patTemplate:tmpl>
+            </table></td></tr>
+            </patTemplate:tmpl>
+            
+            <tr><td colspan="2"><br />Attach your main document: <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_attach.html',this);return false" /></td></tr>
+            <tr><td colspan="2"><input type="file" name="file1" size='50' /> </td></tr>
+            <patTemplate:tmpl name="submit_file" visibiity="hidden" varscope="submit">
+            {RESPONSE}
+            <tr><td colspan="2">Click to view the file: <a target="_blank" href='{FILEPATH}/{FILENAME}'>{FILENAME}</a></td></tr>
+            </patTemplate:tmpl>
+            
+             <tr><td><input type="checkbox" name="iagree" {CHECKAGREE}  onclick="javascript: document.form1.saveme.value='true';  document.form1.section.value='submit'; document.form1.gotosection.value='submit';submitform(); "></td><td>If the agreement/funding is awarded, I undertake to administer the funds in accordance with the policies of the external agency or the University as applicable.</td></tr>
+
+            
+               <tr><td colspan="2"><button type="button" name="justsave" onclick="javascript: document.form1.saveme.value='true'; document.form1.section.value='submit'; submitform();">Just Save</button></td></tr>
+               <tr><td colspan="2"><font color='red'><b>A late-breaking update: Once you submit the IRGF Application using the button below you do NOT have to do anything else with these forms. The ORS will obtain any required tracking form approvals and will package your CV, application and attachment for the  internal reviewer and the review committee. (If you need ethics approval that's still your responsibility)</b></font></td></tr>
+               <tr><td colspan="2"><button type="button" name="submitme" id="submitme" {DISABLED} onclick="javascript: document.form1.saveme.value='true'; document.form1.locksubmit.value='true'; document.form1.section.value='submit'; document.form1.gotosection.value='list';submitform();">Lock and Submit</button></td></tr>
+               <patTemplate:tmpl name="checks" visibility="hidden" varscope="submit">
+               <tr><td colspan="2" style="color:red;">
+               Complete the following before submitting:
+               <ul style="color:red;">
+               {CHECKTEXT}
+               </ul>
+               </td></tr>
+               		
+               </patTemplate:tmpl>
+     
+
+            </table>
+            <script>
+        	function DoPrint(generateWhat){
+            	var url = "cv_review_print.php?generate=" + generateWhat + "&report_user_id={USER_ID}&style=apa";
+				window.open(url);
+            }
+            function DoOtherPrint(generateWhat,user_id){
+            	var url = "cv_review_print.php?generate=" + generateWhat + "&report_user_id=" + user_id + "&style=apa";
+				window.open(url);
+            }
+   			</script>
+         </patTemplate:tmpl>
+    </patTemplate:sub>
+          
+    <patTemplate:sub condition="__default">
+            unknown page
+    </patTemplate:sub>
+
+</patTemplate:tmpl>
+
+</form>
+   </patTemplate:tmpl>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>
+<patTemplate:comment>
+
+Old One
+<img class='helpimg' src='/images/helpicon.gif' alt='?' onmouseover="ajax_showTooltip(window.event,'help/ajax-tooltip.html',this);return false" onmouseout="ajax_hideTooltip()">
+
+
+Toggle One
+<img class='helpimg' src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_human_h.html',this);return false" />
+</patTemplate:comment>

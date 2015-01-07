@@ -1,0 +1,77 @@
+<td align="left" valign="top" bgcolor="#FFFFFF" width="20"></td>
+<td align="left" valign="top" width="100%">
+<br><form name="form1" action="" method="post">
+<input type="hidden" name="id" value="~!id~" />
+
+<table border="0">
+	<tr>
+		<td colspan="3"  class="successhead">CV Type: Update</td>
+	</tr>
+	<tr height="10"><td colspan='3' height="14" class="success"> ~!success~</td></tr>
+
+    <tr><td> &nbsp;</td></tr>
+    <tr><td>Title:</td><td><input type="text" name="title" size="30" value="~!title~" /></td></tr>
+    <tr><td>Title Plural:</td><td><input type="text" name="title_plural" size="30" value="~!title_plural~" /></td></tr>
+    <tr><td>Rank:</td><td><input type="text" name="rank" size='8' value="~!rank~"> &nbsp; 
+    Existing Values: <select name="rank_options" > ~!rank_options~ </select> <i>For reference</i></td></tr>
+    <tr><td>Header:</td><td><select name="cv_item_header_id"> ~!header_options~ </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Examples</b></td></tr>
+    <tr><td>F1:</td><td><input type="text" name="f1_name" size="30"  value="~!f1_name~" />
+    <select name='f1_type'> ~!f1_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f1_eg" size="60" value="~!f1_eg~" /> <i>Author or main object</i></td></tr>
+    <tr><td>F2:</td><td><input type="text" name="f2_name" size="30"  value="~!f2_name~" /> 
+    <select name='f2_type'> ~!f2_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f2_eg" size="60" value="~!f2_eg~" /> <i>Date field - normally the 'from' date</i></td></tr>
+    <tr><td>F3:</td><td><input type="text" name="f3_name" size="30"  value="~!f3_name~" />
+    <select name='f3_type'> ~!f3_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f3_eg" size="60" value="~!f3_eg~" /> <i>Date field - normally the 'to' date</i></td></tr>
+    <tr><td>F4:</td><td><input type="text" name="f4_name" size="30"  value="~!f4_name~" />
+    <select name='f4_type'> ~!f4_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f4_eg" size="60" value="~!f4_eg~" /> <i>Title</i></td> </tr>
+    <tr><td>F5:</td><td><input type="text" name="f5_name" size="30"  value="~!f5_name~" />
+    <select name='f5_type'> ~!f5_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f5_eg" size="60" value="~!f5_eg~" /> <i>Location, Main Work</i></td></tr>
+    <tr><td>F6:</td><td><input type="text" name="f6_name" size="30"  value="~!f6_name~" />
+    <select name='f6_type'> ~!f6_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f6_eg" size="60" value="~!f6_eg~" /> <i>Publisher</i></td> </tr>
+    <tr><td>F7:</td><td><input type="text" name="f7_name" size="30"  value="~!f7_name~" />
+    <select name='f7_type'> ~!f7_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f7_eg" size="60" value="~!f7_eg~" /> <i>URL</i></td></tr>
+    <tr><td>F8:</td><td><input type="text" name="f8_name" size="30"  value="~!f8_name~" />
+    <select name='f8_type'> ~!f8_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f8_eg" size="60" value="~!f8_eg~" /> <i>Keywords</i></td> </tr>
+    <tr><td>F9:</td><td><input type="text" name="f9_name" size="30"  value="~!f9_name~" />
+    <select name='f9_type'> ~!f9_type_options~ </select>
+    &nbsp;&nbsp;
+        <input type="text" name="f9_eg" size="60" value="~!f9_eg~" /> <i>Abstract or Description</i></td></tr>
+    <tr><td>F10:</td><td><input type="text" name="f10_name" size="30"  value="~!f10_name~" />
+    
+    &nbsp;&nbsp;
+        <input type="text" name="f10_eg" size="60" value="~!f10_eg~" /> <i> Checkbox - normally 'submitted'</i></td></tr>
+    <tr><td>F11:</td><td><input type="text" name="f11_name" size="30"  value="~!f11_name~" />&nbsp;&nbsp;
+        <input type="text" name="f11_eg" size="60" value="~!f11_eg~" /> <i>Checkbox - normally 'forthcoming'</i></td></tr>
+    <tr><td>Default Web:</td><td><input type="checkbox" name="default_web" ~!default_web~ /></td></tr>   
+    <tr><td>Show URL:</td><td><input type="text" name="show_url" size="30"  value="~!show_url~" /> <i>Phrase for URL link (Blank=Don't Show)</i></td></tr>
+    <tr><td>URL Type:</td><td><input type="text" name="url_type" size="30"  value="~!url_type~" /> <i>Term to classify item (text, video, etc)</i></td></tr> 
+    <tr><td>Show Abstract:</td><td><input type="text" name="show_abstract" size="30"  value="~!show_abstract~" /> <i>Phrase to use when linking to abstract</i></td></tr>
+        
+    <tr><td valign="top">Code:</td><td><textarea style="font-family: 'courier new', monospace;" name="display_code" cols="90" rows="20">~!display_code~</textarea></td></tr>
+    <tr><td>&nbsp;</td><td style='border-width:1px; border-color:black;' colspan="">~!eval_code~</td></tr>
+
+
+ <tr><td>&nbsp;</td></tr>
+    <tr>
+		<td>&nbsp;</td>
+        <td colspan="2">&nbsp;&nbsp;&nbsp;<input type="submit" name="update" value="Update" tabindex="13">&nbsp;&nbsp;
+		<input type="submit" name="delete" value="Delete" tabindex="14">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='cv_types.php?section=view'" tabindex="14">Back to List</button></td>
+	</tr>
+</table></form>
+</td>

@@ -1,0 +1,47 @@
+<style type="text/css">
+<!--
+.val {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	border: 1px solid;
+}
+-->
+</style>
+<td valign='top'>
+
+<form action="?section=members&update" method="post" name="form1">
+<input type='hidden' name='chairflag' value='0'/>
+<input type='hidden' name='user_id2' value='0'/>
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+	<tr>
+	 <td colspan='6' class="successhead">Committee Membership</td>
+	  </tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+      <tr><td colspan="2"><select name='committee_id' onChange='document.form1.user_id.value=0;document.form1.submit()'>
+      <option value=0>&nbsp;</option>
+      ~!commlist~
+      </select>
+      </td></tr>
+	<tr>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px"></b></td>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Name</b></td>
+        <td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Chair</b></td>
+
+</tr>
+	~!output~
+</table>
+<table>
+<tr><td>&nbsp;</td></tr>
+<tr><td>Add Member:</td><td><select name="user_id" onChange="document.form1.submit()">
+<option value="0">&nbsp;</option>
+ ~!userlist~
+</select></td></tr>
+
+</table>
+</form>
+</td>

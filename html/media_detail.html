@@ -1,0 +1,54 @@
+<script type="text/javascript" src="/includes/mediaplayer/swfobject.js"></script>
+<script type="text/javascript" src="/js/playback.js"></script>
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+    <h1>{MAIN_HEADING}</h1>
+    {STATUS}
+    <patTemplate:tmpl name="MEDIA_DETAIL" type="simpleCondition" requiredVars="DISPLAY">
+    <div id="media_markup">
+        {MEDIA_MARKUP}
+    </div>
+    <h2>Media Details</h2>
+    <table id="media_details">
+        <tr>
+            <td class="column0">Title:</td>
+            <td class="column1">{TITLE}</td>
+        </tr>
+        <tr>
+            <td class="column0">Date:</td>
+            <td class="column1">{DATE}</td>
+        </tr>
+<!--
+        <tr>
+            <td class="column0">Date Added:</td>
+            <td class="column1">{DATE_ADDED}</td>
+        </tr>
+        <tr>
+            <td class="column0">Contributor:</td>
+            <td class="column1">{}</td>
+        </tr>
+        <tr>
+            <td class="column0">Department:</td>
+            <td class="column1">{}</td>
+        </tr>
+        <tr>
+            <td class="column0">Project:</td>
+            <td class="column1">{}</td>
+        </tr>
+-->
+        <tr>
+            <td class="column0">Soundtrack:</td>
+            <td class="column1">{SOUNDTRACK_MARKUP}</td>
+        </tr>
+        <tr>
+            <td class="column0">Synopsis:</td>
+            <td class="column1">{SYNOPSIS}</td>
+        </tr>
+        <tr>
+            <td class="column0">Full Description:</td>
+            <td class="column1">{DESCRIPTION}</td>
+        </tr>
+    </table>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

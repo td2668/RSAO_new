@@ -1,0 +1,67 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+    <td width='10'>&nbsp;</td>
+    <td>
+    <form name='form1' action='cas_fix.php?action=choose'>
+    <table>
+    	<tr><td colspan="4" bgcolor="#CCCCCC"><b>Fix up user generated lists. Records using the term chosen in the left list will be updated to the term chosen on the right. Then the term is removed. Operates on live data and the archive list. Be sure to backup data before you start.</b> </td></tr>
+    	<tr><td>&nbsp;</td></tr>
+		<tr><td>
+			Fix List:
+			</td>
+			<td>	
+				<patTemplate:tmpl name="choose_list" visibility="visible">
+				<select name='cas_list' onchange="document.forms.form1.submit()">
+				<option value=""></option>
+				{CAS_LIST_OPTIONS}
+				</select>
+				</patTemplate:tmpl>
+			</td>
+		</tr>
+<patTemplate:tmpl name="fromto_list" visibility="hidden">
+		<tr>
+			<td>From:</td>
+			<td>
+				<select name='from_list'>
+				<option value=""></option>
+				{FROM_LIST_OPTIONS}
+				</select>
+			</td>
+			<td>To:</td>
+			<td>
+				<select name='to_list'>
+				<option value=""></option>
+				{TO_LIST_OPTIONS}
+				</select>
+			</td>
+		</tr>
+		<tr><td></td></tr>
+		<tr><td></td><td colspan="2"><button type="submit" value="showresults" name="showresults">Preview Results</button>&nbsp;&nbsp;&nbsp;
+			<button type="submit" value="doit" name="doit">Do It</button></td>
+		</tr>
+
+</patTemplate:tmpl>
+		<tr><td>&nbsp;</td></tr>
+<patTemplate:tmpl name="count" visibility="hidden">	
+		<tr><td colspan="4"><b>Reassigned {ITEMS} from cv_items and {ARCHIVEITEMS} from cv_items_archive</b></td></tr>	
+		<tr><td></td></tr>	
+</patTemplate:tmpl>
+		
+<patTemplate:tmpl name="outlist" visibility="hidden">	
+
+<tr><td colspan='4'>
+{OUTLIST}
+</td></tr>
+</patTemplate:tmpl>	
+		
+	</td>
+	</tr>
+	</table>
+</form>
+
+<patTemplate:tmpl name="edit" visibility="hidden">
+
+</patTemplate:tmpl>
+</table>
+</td></tr>
+</patTemplate:tmpl>

@@ -1,0 +1,50 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_research_addnew_item">
+		<div style="float:right;width:150px">
+			<span style="color:#AF3F36;font:bold 14px georgia,times,serif;padding:7px 0;">Tools</span>
+			<hr style="height:1px">
+			<a href="myactivities.php?section=my_research&subsection=edititem&action=addnew_research_item">Add a new item</a><br />
+			<a href="#">Generate CV</a><br />
+			<a href="#" onClick="document.forms['research_item_form'].formSubmit();">Save Changes</a>
+		</div>
+
+
+		<div style="width:550px">
+			<form name="research_item_form" id="research_item_form" action="myactivities.php?section=my_research&subsection=addnew"
+					method="post" title="My research">
+				<input type="hidden" name="action" value="addnew_research_item">
+				<input type="hidden" name="subsection" value="addnew">
+
+
+				<h1>Research</h1>
+				<p class="enfasis">(Add New) Only those entries marked with a &radic; will appear in your annual report
+                 and/or profile. All entries will appear in your full cv. You can add a new item or
+						click on an item to modify or remove it.</p>
+
+				<b>Activity type:</b>
+				<select class="item_type" name="type_id" onchange="document.forms['research_item_form'].formSubmit();"
+					onblur="document.forms['research_item_form'].formSubmit();">
+				<patTemplate:tmpl name="research_item_types">
+					<option value="{CV_ITEM_TYPE_ID}">{TITLE}</option>
+				</patTemplate:tmpl>
+				</select>
+
+				<patTemplate:comment>
+					<input type="checkbox" name="web_show" value="checked" {WEB_SHOW_CHECK} /> CV
+					<input type="checkbox" name="current_par" value="checked" {CURRENT_PAR_CHECK} /> Profile
+				</patTemplate:comment>
+				<br /><br />
+
+
+			</form>
+		</div>
+
+	</div>
+	<div style="clear:both"></div>
+
+	<patTemplate:tmpl src="footer.html" />
+	<script type="text/javascript" >
+		formFX("research_item_form");
+	</script>
+</patTemplate:tmpl>

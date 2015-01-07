@@ -1,0 +1,52 @@
+<patTemplate:tmpl name="PAGE">
+  <patTemplate:tmpl src="header.html" />
+  <patTemplate:tmpl name="PAGE_ALL">
+    <h3>Funding Opportunities</h3>
+    <span style='font-size:9px'>Topic Filter: {VIEW_FLAG}</span>
+    <table width="*" cellpadding = "2" cellspacing="0">
+      <patTemplate:tmpl name="OPPORTUNITIES">
+      <tr bgcolor="{COLOR}">
+         <td><b style="font-size:16px">{TITLE}</b></td>
+      </tr>
+      <tr bgcolor="{COLOR}">
+         <td><span style="font-size:10px">Due: {DATE}</span></td>
+      </tr>
+      <tr bgcolor="{COLOR}">
+         <td>{SYNOPSIS}</td>
+      </tr>
+      <tr bgcolor="{COLOR}" height='30'>
+         <td >
+          <a href="opportunities.php?section=single&id={OPPO_ID}">
+          More Info...
+          </a>
+         </td>
+      </tr>
+      </patTemplate:tmpl>
+    </table>
+  </patTemplate:tmpl>
+  <patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+    <b style="font-size:18px">{TITLE}</b>
+    <br />{AGENCY}
+    <patTemplate:tmpl name="DATE_SECTION" type="condition" conditionvar="NO_DEADLINE" varscope="PAGE_SINGLE">
+        <patTemplate:sub condition="0">
+          <span style="font-size:10px"><br>Due:&nbsp;&nbsp;{DATE}<br /><br /></span>
+        </patTemplate:sub>
+        <patTemplate:sub condition="1">
+            <span style="font-size:10px"><br>Open Due Date<br /><br /></span>
+        </patTemplate:sub>
+    </patTemplate:tmpl>
+    <table align="right">
+      <patTemplate:tmpl name="PIX">
+      <tr>
+        <td align="center">
+          <img src="./pictures/{FILE_NAME}" bordercolor='black' border='0'>
+          <br />
+          <i>{CAPTION}</i>
+        </td>
+      </tr>
+      </patTemplate:tmpl>
+    </table>
+    {DESCRIPTION}
+  </patTemplate:tmpl>
+  <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

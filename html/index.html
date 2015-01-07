@@ -1,0 +1,99 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+
+    <link rel="stylesheet" href="css/anythingslider.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.anythingslider.js" type="text/javascript"></script>
+
+    <!-- AnythingSlider initialization -->
+    <script>
+        // DOM Ready
+        $(function(){
+            $('#slider').anythingSlider({
+                autoPlay        : true,
+                pauseOnHover    : true,
+                delay           : 5000,
+                easing          : "linear"
+            });
+        });
+    </script>
+
+    <div id="wrapper_extras">
+
+       
+ <ul id="slider">
+            <patTemplate:tmpl name="SLIDERS">
+            	<img src="/images/slider/cover_1a.jpg">
+            	<img src="/images/slider/cover_1b.jpg">
+            	<img src="/images/slider/cover_1c.jpg">
+            	<img src="/images/slider/cover_1d.jpg">
+            	<img src="/images/slider/cover_1e.jpg">
+            	<img src="/images/slider/cover_1f.jpg">
+            	<img src="/images/slider/cover_1g.jpg">
+            	<img src="/images/slider/cover_1h.jpg">
+            		
+            </patTemplate:tmpl>
+        </ul>
+
+        
+        
+        
+        
+                <!--
+           <div id="mrc_extra2">
+            <h3 style="padding:0 0 0 0">Deadlines</h3>
+             
+                    
+<div class="contents">                  
+                    <table>
+                    <patTemplate:tmpl name="deadlines" limit="6">
+                        <tr>
+                        <td nowrap valign="top" class="deadline_date">{DATE}</td>
+                        <td class="deadline_title"><a href="opportunities.php?section=deadlines&deadline_id={DEADLINE_ID}&date_id={DATE_ID}">{TITLE}</a></td>
+                        </tr>
+                        <tr><td>&nbsp;</td>
+                        <td>{SYNOPSIS}</td></tr>
+                    </patTemplate:tmpl>
+                    </table>
+                    <br>
+                </div>
+-->
+                
+                
+                
+               <!--
+ <div class="foot">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="opportunities.php?section=deadlines">Go to Deadlines</a>  | <a href="myactivities.php?section=my_profile#modify_filters">Change filters</a>
+                    <patTemplate:tmpl name='FILTERS' type="simpleCondition" requiredVars="FILTER">
+                    {FILTER}
+                    </patTemplate:tmpl>
+                </div> 
+-->
+                    
+           
+            </div>
+            <div id="mrc_extra">
+            <h3 style="padding:0 0 0 0">News and Announcements</h3>
+             <patTemplate:tmpl name="BLOG" visibility="hidden">                    
+                <div style="padding:5px 0px;">
+                        
+                    <div style="margin-left:0px;">
+                    <b>{TITLE}</b><br>
+                    <patTemplate:var name="DESCRIPTION" /><br>
+                    <div style="text-align:left; margin-left:250px;"><a href="{LINK}">read full article</a></div>
+                    
+                   </div>
+                </div>
+                    
+                   
+             </patTemplate:tmpl>
+             
+             <div style="text-align:left; margin-left:230px;">
+             <b><a href="http://blogs.mtroyal.ca/orsnewsletter/">Browse All >></a></b>
+             </div>
+            </div>
+        
+
+   <patTemplate:tmpl src="footer.html" /> 
+</patTemplate:tmpl>

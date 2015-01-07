@@ -1,0 +1,109 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_research_item">
+		<div style="float:right;width:150px">
+			<span style="color:#AF3F36;font:bold 14px georgia,times,serif;padding:7px 0;">Tools</span>
+			<hr style="height:1px">
+            <button type='button'  
+                onClick="document.forms['research_item_form'].action.value='saveandadd';document.forms['research_item_form'].submit();">
+                Save &amp; New</button><br /><br /> 
+			
+
+			<button type='button' onClick="document.forms['research_item_form'].submit();">Save Changes</button>
+			<br />
+			<br />
+			<form name="delete_research_item_form" id="delete_research_item_form" action="myactivities.php?section=my_research&subsection=edititem" onsubmit="return confirm('Are you sure you want to delete this CV item?')"
+					method="post" title="My research">
+				<input type="hidden" name="action" value="delete_research_item">
+				<input type="hidden" name="subsection" value="edititem">
+				<input type="hidden" name="cv_item_id" value="{CV_ITEM_ID}">
+				<input type="hidden" name="delete_cv_item_id" value="{CV_ITEM_ID}">
+				<button type="submit" value="Delete Item">Delete Item</button>
+			</form>
+		</div>
+
+
+		<div style="width:550px">
+			<form name="research_item_form" id="research_item_form" action="myactivities.php?section=my_research&subsection=edititem"
+					method="post" title="My research">
+				<input type="hidden" name="action" value="update_research_item">
+				<input type="hidden" name="subsection" value="edititem">
+				<input type="hidden" name="cv_item_id" value="{CV_ITEM_ID}">
+				<input type="hidden" name="update_cv_item_id" value="{CV_ITEM_ID}">
+
+				<h1>Scholarship</h1>
+				<p class="enfasis">Only those entries marked with a &radic; will appear in your annual report
+                 and/or profile. All entries will appear in your full cv. You can add a new item or
+						click on an item to modify or remove it. Run your mouse over a box for an example.</p>
+
+
+			
+				<b>Activity type:</b>
+				<select class="item_type" name="type_id" onchange="document.forms['research_item_form'].submit();">
+				<patTemplate:tmpl name="research_item_types">
+					<option value="{CV_ITEM_TYPE_ID}" {CV_ITEM_TYPE_ID_SELECTED}>{TITLE}</option>
+				</patTemplate:tmpl>
+				</select>
+
+				
+			
+				<br />
+				<input type="hidden" name="current_par"  {CURRENT_PAR_CHECK} /> 
+				<input type="checkbox" name="web_show" value="checked" {WEB_SHOW_CHECK} /> Show on your Web Profile
+
+				<br /><br />
+
+				<patTemplate:tmpl name="research_item_fields" type="condition" conditionvar="ftype">
+
+					<patTemplate:sub condition="simple">
+						<p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+						<input type="text" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" title="{FEXAMPLE}" class="simple" />
+                         
+						</p>
+					</patTemplate:sub>
+
+					<patTemplate:sub condition="year">
+						<p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+						<input type="text" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" title="{FEXAMPLE}"  class="year"/> (year only)
+                        
+						</p>
+					</patTemplate:sub>
+
+					<patTemplate:sub condition="month">
+						<p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+						<input type="text" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" title="{FEXAMPLE}"  class="month"/> (year OR month/year)
+                        
+						</p>
+					</patTemplate:sub>
+
+					<patTemplate:sub condition="textarea">
+						<p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+						<textarea name="{F_FORMNAME}" id="{F_FORMNAME}" title="{FEXAMPLE}">{FVALUE}</textarea>
+                        
+						</p>
+					</patTemplate:sub>
+
+					<patTemplate:sub condition="checkbox">
+						<p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+						<input type="checkbox" name="{F_FORMNAME}" id="{F_FORMNAME}"  value="1" {F_CHECK} /><i>{FEXAMPLE}</i>
+						</p>
+
+					</patTemplate:sub>
+
+					<patTemplate:sub condition="__default">
+						<p><h3>Please select an Activity/Document Type above.</h3></p>
+					</patTemplate:sub>
+
+				</patTemplate:tmpl>
+				<br />
+				<button type='button' name="savebutton" value="Save Changes" onClick="document.forms['research_item_form'].submit();">Save Changes</button>
+				<button type="button" name="backtolist" value="Back to list" onClick="window.location.href='myactivities.php?section=my_research'">Back to list</button>
+			</form>
+		</div>
+
+	</div>
+	<div style="clear:both"></div>
+
+	<patTemplate:tmpl src="footer.html" />
+	
+</patTemplate:tmpl>

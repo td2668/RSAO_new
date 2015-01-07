@@ -1,0 +1,51 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+
+    <script type="text/javascript">
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById("message").innerHTML='';
+            }, 2000);
+        }
+    </script>
+
+    <h1>My Contact Preferences</h1>
+
+    <p id='message' style="color:red; font:bold 12px georgia,times,serif;padding:7px 0 0 0; float:right">{MESSAGE}</p>
+
+    <h2 style="color:#AF3F36;font:bold 12px georgia,times,serif;padding:7px 0 0 0;">Contact Preferences for {DISPLAYNAME}:</h2>
+
+    <h3 style="color:#AF3F36;font:bold 12px georgia,times,serif;padding:7px 0 0 0;">Please Send Me : </h3>
+
+    <form name="contactprefs_form" id="contactprefs_form" action="contactpreferences.php?userid={USERID}&update=true" method="post" >
+
+        <div id="emailpref" style="margin-left:20px">
+            <input type="checkbox" name='mail_events' id='events_checkbox' onClick="document.forms['contactprefs_form'].submit();"
+                   title='Enable or disable the automatic emailing of new and event notifications' {MAIL_EVENTS}/>
+            <label for="events_checkbox" title="Enable or disable the automatic emailing of event notifications">
+                Newsletter
+            </label><br/>
+            <input type="checkbox" name='mail_deadlines' id='deadlines_checkbox' onClick="document.forms['contactprefs_form'].submit();"
+                   title='Enable or disable the automatic emailing of grant deadline notifications' {MAIL_DEADLINES}/>
+            <label title="Enable or disable the automatic emailing of grant deadline notifications" for="deadlines_checkbox">
+                Deadline Notifications
+            </label><br/>
+        </div>
+
+        <div id="filters">
+            <a name="modify_filters"></a>
+            <h3 style="color:#AF3F36;font:bold 12px georgia,times,serif;padding:7px 0 0 0;">Deadline Notification Topics</h3>
+            <i>Select which deadline topics you are interested in. This determines which deadlines you will see.</i>
+            <div id="filterpref" style="margin-left:20px">
+                <table>
+                    <patTemplate:tmpl name="FILTERLIST">
+                        <tr><td><input type="checkbox" name="filters[]" onClick="document.forms['contactprefs_form'].submit();" value="{TOPIC_ID}"  title="{NAME}" {FILTER_CHECKED}></td><td>{NAME}</td></tr>
+                    </patTemplate:tmpl>
+                </table>
+            </div>
+        </div>
+    </form>
+
+    <patTemplate:tmpl src="footer.html" />
+
+</patTemplate:tmpl>

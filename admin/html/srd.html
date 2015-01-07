@@ -1,0 +1,234 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div id="mainpage">
+
+<patTemplate:tmpl name="view" visibility="hidden">
+<!--
+<div id="legend" style='float:right; letter-spacing: 2pt;'>
+        <span style="background-color:{YESCOLOR}; padding: 2px">Yes</span>
+        <span style="background-color:{NOCOLOR}; padding: 2px">No</span>
+        <span style="background-color:{MAYBECOLOR}; padding: 2px">Not Sure</span>
+    </div>
+-->
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+
+    <tr>
+    <td colspan='3' style="font-weight: bold">Total Registrations: {COUNT}</td>
+    <td colspan="4">Range: {RANGE}</td>
+    <td colspan="8">Acad. Yr.:<select name="range" onchange="javascript: window.location='srd.php?year='+this.value">
+	    {YEAR_OPTIONS}
+    </select></td>
+    <td colspan="3"><button type='button' onClick='window.location="srd.php?moveall";'>Move All</button>
+    <button type='button' onClick='window.location="srd.php?extractall";'>Extract All</button></td>
+    </tr>
+    <tr bgcolor="#000000">
+    <td><b style="color:#E1E1E1;font-size:10px">ID</b></td>
+    <td>
+        <b style="color:#E1E1E1;font-size:10px">
+        <a href='srd.php?sort=name' title='sort by name' style='color:white'>Name</a></b>
+        <div {NAMESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+<!--
+    <td><b style="color:#E1E1E1;font-size:10px">Main</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">S+T</b></td>
+-->
+    <td><b style="color:#E1E1E1;font-size:10px">ID#</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Department</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">
+        <a href='srd.php?sort=date' title='sort by date' style='color:white'>Date In</a></b>
+        <div {DATESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+    <td><b style="color:#E1E1E1;font-size:10px"># Co-Res</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">HREB</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">HREB-OK</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">FOIP</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Status</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Mode</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Posters</b></td>
+    <td>&nsbp;</td>
+    <td>&nsbp;</td>
+    <td>&nsbp;</td>
+</tr>
+    <patTemplate:tmpl name="mainlist" type="OddEven">
+        <patTemplate:sub condition="odd">
+            <tr bgcolor='#CCCCCC'>
+            	<td>{SRD_REG_ID}</td>
+                <td>{LASTNAME}, {FIRSTNAME}</td>
+<!--
+                <td><input type="checkbox" {MAIN} readonly="readonly"></td>
+                <td><input type="checkbox" {ST} readonly="readonly"></td>
+-->
+                <td>{STUDENTID}</td>
+                <td>{DEPARTMENTNAME}</td>
+                <td>{TITLE}</td>
+                <td>{SUBMIT_DATE}</td>
+                <td>{CORESEARCHERS}</td>
+                <td style='background-color:{HREB}'>&nbsp;</td>
+                <td style='background-color:{HREB2}'>&nbsp;</td>
+                <td style='background-color:{FOIP}'>&nbsp;</td>
+                <td>{STATUS}</td>
+                <td>{MODE}</td>
+
+                <td>{POSTERS}</td>
+                <td>
+                <button type='button' onClick='window.location="srd.php?section=edit&id={SRD_REG_ID}&year={YEAR}";'>Edit</button>
+                </td>
+                <td>
+                <button type='button' {DIS} style="background-color:{MCOLOUR};" onClick='window.location="srd.php?move&id={SRD_REG_ID}&year={YEAR}";'>{MNAME}</button>
+                </td>
+                <td>
+                <button type='button' style="" onClick='window.location="srd.php?extract&id={SRD_REG_ID}&year={YEAR}";'>Extract</button>
+                </td>
+            </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr bgcolor="#CCFFFF">
+                    	<td>{SRD_REG_ID}</td>
+                        <td>{LASTNAME}, {FIRSTNAME}</td>
+<!--
+                        <td><input type="checkbox" {MAIN} readonly="readonly"></td>
+                		<td><input type="checkbox" {ST} readonly="readonly"></td>
+-->
+                        <td>{STUDENTID}</td>
+                        <td>{DEPARTMENTNAME}</td>
+                        <td>{TITLE}</td>
+                        <td>{SUBMIT_DATE}</td>
+                        <td>{CORESEARCHERS}</td>
+                        <td style='background-color:{HREB}'>&nbsp;</td>
+                        <td style='background-color:{HREB2}'>&nbsp;</td>
+                        <td style='background-color:{FOIP}'>&nbsp;</td>
+                        <td>{STATUS}</td>
+                        <td>{MODE}</td>
+                        <td>{POSTERS}</td>
+                        <td>
+                        	<button type='button'  onClick='window.location="srd.php?section=edit&id={SRD_REG_ID}&year={YEAR}";'>Edit</button>
+                        </td>
+                        <td>
+                			<button type='button' {DIS} style="background-color:{MCOLOUR};" onClick='window.location="srd.php?move&id={SRD_REG_ID}&year={YEAR}";'>{MNAME}</button>
+                		</td>
+                		<td>
+                <button type='button' onClick='window.location="srd.php?extract&id={SRD_REG_ID}&year={YEAR}";'>Extract</button>
+                </td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        <form name="edit" action="srd.php?update">
+            <input type="hidden" name="id" value="{SRD_REG_ID}">
+            <input type="hidden" name="year" value="{YEAR}"/>
+            <input type="hidden" name="deleteid" />
+            <input type="hidden" name="addid" />
+            <fieldset >
+                <div class="users"><label class="users">Last Name</label>
+                    <input type="text" value="{LASTNAME}" size="60" name="lastName"
+                                           title="The name of the lead student" \>
+                </div>
+                
+                <div class="users"><label class="users">First Name</label>
+                    <input type="text" value="{FIRSTNAME}" size="60" name="firstName"
+                                           title="The name of the lead student" \>
+                </div>
+                <div class="users"><label class="users">Co-researchers</label>
+	                <table cellpadding="0" cellspacing="0">
+                   <patTemplate:tmpl name="coresearchers" visibility="hidden">
+                   		<tr><td><input type="text" name="cores" value="{CORESEARCHER}"/> <button type="submit" onclick="document.edit.deleteid.value={ID}">Delete</button></td></tr>
+                   </patTemplate:tmpl>
+                   	<tr><td><input type="text" name="newcores_first" title="First"  /><input type="text" name="newcores_last" title="Last"/>  <button type="submit" name="addcores">Add</button></td></tr>
+	                </table>
+                </div>
+                <div class="users"><label class="users">Student ID#</label>
+                    <input type="text" size="10" value="{STUDENTID}" name="studentid"
+                                           title="We need at least one ID# if it's a group registering" \>
+                </div>
+                <div class="users"><label class="users">Contact Email</label>
+                    <input type="text" size="40" value="{EMAIL}" name="email"
+                                           title="This will be our main way of contacting you" \>
+                </div>
+                <div class="users"><label class="users">Program</label>
+                    <input type="text" size="40" value="{PROGRAM}" name="program"
+                                           title="e.g. Bach of Science, Bach of Arts Honours, etc." \>
+                </div>
+                <div class="users"><label class="users">Department</label>
+                    {DEPT_OPTIONS}
+                </div>
+                <div class="users"><label class="users">Related Course (if any)</label>
+                    <input type="text" size="40" name="course" value="{COURSE}"
+                                           title="If your project is part of or linked to a course, provide the course number"
+                        \>
+                </div>
+                <div class="users"><label class="users">Faculty Supervisor (if any)</label>
+	                {SUPERVISOR_OPTIONS} or 
+                    <input type="text" size="40" name="supervisor" value="{SUPERVISOR}"/>
+                </div>
+                <div class="users"><label class="usersnobox">Presentation Preference:</label> 
+	                {CAT_OPTIONS}
+	                
+                </div>
+                <div class="users"><label class="users">URL</label>
+                    <input type="text" size="40" value="{URL}" name="url"
+                                           title="Multimedia URL option" \>
+                </div>
+                <div class="users"><label class="usersnobox">Which Times?: </label>
+                    {TIME_OPTIONS}
+                </div>
+                <div class="users"><label class="usersnobox">Human participants?</label>
+                                                    &nbsp;&nbsp;Yes<input type="radio" name="hreb" value="yes"
+                                                    {HREBNEED1} \>
+                                                    &nbsp;&nbsp;No<input type="radio" name="hreb" value="no" {HREBNEED2}
+                                                    \>
+                                                    &nbsp;&nbsp;Not Sure<input type="radio" name="hreb" value="notsure"
+                                                    {HREBNEED3} \>
+                </div>
+                <div class="users"><label class="usersnobox">Ethics approval?</label>
+                                                                 &nbsp;&nbsp;Yes<input type="radio" name="hreb2"
+                                                                                       value="yes" {HREBDONE1} \>
+                                                                 &nbsp;&nbsp;No<input type="radio" name="hreb2"
+                                                                                      value="no" {HREBDONE2} \>
+                                                                 &nbsp;&nbsp;Not Sure<input type="radio" name="hreb2"
+                                                                                            value="notsure" {HREBDONE3}
+                                                                 \>
+                        <br><br>
+                </div>
+                <div class="users"><label class="usersnobox">Agree to FOIP?</label>
+                        &nbsp;&nbsp;Yes<input type="radio" name="foip"
+                                              value="1" {FOIPYES} \>
+                        &nbsp;&nbsp;No<input type="radio" name="foip"
+                                             value="0" {FOIPNO} \>
+                        <br><br>
+                </div>
+                <div class="users"><label class="users">Status:</label>
+                    <select name='status'>
+                        <patTemplate:tmpl name="status_options">
+                            <option value="{VALUE}"
+                            {SEL}>{TEXT}</option>
+                        </patTemplate:tmpl>
+                    </select>
+                </div>
+                <div class="users"><label class="users">Title of the presentation:</label>
+                        <textarea cols="70" rows="2" name="title">{TITLE}</textarea>
+                </div>
+                <div class="users"><label class="users">Project Description:</label>
+                        <textarea cols="70" rows="10" name="descrip">{DESCRIP}</textarea>
+                </div>
+                <br/>
+                <div style="text-align: center">
+                        <button type="submit" name="update" value="update">Update</button>
+                        &nbsp;&nbsp;
+                        <button style='background-color: red;' type="button" name="Delete" value="delete"
+                                onClick="javascript: if(confirm('Really Delete?')) window.location='srd.php?delete&id={SRD_REG_ID}';">
+                            Delete
+                        </button>
+                </div>
+
+            </fieldset>
+        </form>
+
+    </patTemplate:tmpl>
+    
+    </div>
+
+</patTemplate:tmpl>

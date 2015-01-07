@@ -1,0 +1,35 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+
+
+<tr>
+    <td width='10'>&nbsp;</td>
+<td>
+<patTemplate:tmpl name="load">
+<form name='form1'>
+<input type='hidden' name='cv_item_id' value='{CV_ITEM_ID}'>
+<input type='hidden' name='delete_item' value=''>
+<input type='hidden' name='delete_table' value=''>
+<table>
+    <tr>
+        <td ><b>Original Type:</b></td><td><b>{HEAD3}</b></td><td><b>{HEAD1}</b></td><td><b>{HEAD2}</b></td>
+    </tr>
+    <tr>
+        <td nowrap>{CV_OPTIONS}</td><td>{PREFS}</td><td>{HEADING_OPTIONS}</td><td>{TYPE_CHOOSER}</td>
+    </tr>
+    <tr>
+        
+        <td valign='top' width='400'><table cellpadding='4' cellspacing='0'>
+        <tr><td colspan="2">{USERNAME}</td></tr>
+        <tr><td colspan="2">Completed {NUMDONE} with {NUMTODO} to do</td></tr>
+        {ORIG_ROWS}
+        
+        </table>{BUTTON_ROW}</td>
+        <td colspan="3" valign='top'><table cellpadding='4' cellspacing='0'>{ROWS}
+        <tr><td colspan='4'>{FORMAT}</td></tr></table></td>
+    </tr>
+</table>
+</form>
+</patTemplate:tmpl>
+</td></tr>
+</patTemplate:tmpl>

@@ -1,0 +1,113 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[],//hidden
+	[["required","Please enter a Title."]], // Title
+	[["required","Please enter a VALID Date."],["date"]], // Post Date 
+	[["required","Please enter a VALID Date."],["date"]], // Event Date 
+	[], //Synopsis
+	[],// Description
+	[],// Synopsis
+	[],// Source
+	[],// Contacts
+	[],// Applics
+	[],// Directions
+	[],// Partners
+	[],
+	[]
+	]; 
+//-->
+</script>
+<table>
+<form method="post" name="form1" action="newsrel.php?section=view&id=~!id~" onSubmit="return validateForm(this,arrValidationDesc)">
+<input type="hidden" name="submit_id" value="~!submit_id~">
+	<tr>
+		<td colspan="2"  class="successhead">Update: News Release</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+	<tr>
+		<td>Title:</td>
+		<td><input type="text" name="title" maxlength="255" size="120" value="~!title~"></td>
+	</tr>
+	<tr>
+		<td colspan="2"><i>note: date format is day/mon/year e.g. today is: 
+		<script language="JavaScript">
+		var now = new Date();
+		var year = now.getFullYear()-2000;
+		document.write(now.getDate() + '/' + (now.getMonth()+1) + '/0' + (now.getFullYear()-2000));
+		</script></i></td>
+	</tr>
+	<tr>
+		<td>Post Date:</td>
+		<td><input type="text" name="post_date" maxlength="10" size="10" value="~!post_date~">  (wait until)</td>
+	</tr>
+	<tr>
+		<td>Event Date:</td>
+		<td><input type="text" name="event_date" maxlength="10" size="10" value="~!event_date~"></td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Synopsis:</td>
+		<td><textarea name="synopsis" rows="10" cols="120">~!synopsis~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Description:</td>
+		<td><textarea name="description" rows="20" cols="120">~!description~</textarea></td>
+	</tr>
+	<tr>
+		<td>Source: <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d1', 'Source', 'If the item is copied from somewhere, provide name of source or web address')" onMouseOut="HideHelp('d1')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d1"></div></td>
+		<td><input type="text" name="source" maxlength="255" size="120" value="~!source~"></td>
+	</tr>
+	<tr>
+		<td valign="top">Contact(s): <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d2', 'Contacts', 'Individuals or organizations for PR or the reader to contact for more information; include yourself if appropriate.')" onMouseOut="HideHelp('d2')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d2"></div></td>
+		<td><textarea name="contact" rows="5" cols="120">~!contact~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Real-World<br>Applications: <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d3', 'Applications', 'Examples of where the research described might be applied. Try to use examples relevant to a reader outside of your discipline')" onMouseOut="HideHelp('d3')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d3"></div></td>
+		<td><textarea name="applics" rows="10" cols="120">~!applics~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Future<br>Directions: <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d4', 'Future', 'Where the research or project might develop over the next few years, or provide the \'big picture\'.')" onMouseOut="HideHelp('d4')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d4"></div></td>
+		<td><textarea name="directions" rows="10" cols="120">~!directions~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Partners: <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d5', 'Partners', 'Individuals or organizations that were involved or contributed financially or academically ')" onMouseOut="HideHelp('d5')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d5"></div></td>
+		<td><textarea name="partners" rows="5" cols="120">~!partners~</textarea></td>
+	</tr>
+	<tr>
+		<td>Submitted by:</td>
+		<td><input type="text" size="120" maxlength="255" name="submitted_by" value="~!submitted_by~"</td></tr>
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+		<td>Release Date:</td>
+		<td><input type="text" name="release_date" maxlength="10" size="10" value="~!release_date~"> <i>date format is day/mon/year e.g. today is: 
+		<script language="JavaScript">
+		var now = new Date();
+		var year = now.getFullYear()-2000;
+		document.write(now.getDate() + '/' + (now.getMonth()+1) + '/0' + (now.getFullYear()-2000));
+		</script></i></td>
+	</tr>
+	<tr>
+		<td valign="top">History:</td>
+		<td><textarea name="history" rows="10" cols="120">~!history~</textarea>></td>
+	</tr>
+
+	<tr>
+	<tr><td></td></tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" name="update" value="Update Item">&nbsp;&nbsp;
+		<button onClick="window.location='newsrel.php?section=view&delete=y&id=~!id~'">Delete</button>&nbsp;&nbsp;
+			<button onClick="window.location='newsrel.php?section=view'">Back to List</button></td>
+	</tr>
+</form>
+</table>

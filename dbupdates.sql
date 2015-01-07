@@ -1,0 +1,2 @@
+ALTER TABLE divisions ADD associate_dean INT(10) UNSIGNED NOT NULL DEFAULT '0';
+ALTER TABLE departments ADD director INT(10) UNSIGNED NOT NULL DEFAULT '0';

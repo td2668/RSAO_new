@@ -1,0 +1,312 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html">
+    <patTemplate:tmpl src="header.html" />
+
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox-1.3.4.js" xmlns="http://www.w3.org/1999/html"></script>
+    <link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox-1.3.4.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" media="all" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/smoothness/jquery-ui.css"    />
+    <script type="text/javascript" src="/js/cv_item.js"></script>
+
+    <script type="text/javascript" src="js/ajax-dynamic-content.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/ajax-tooltip.js"></script>
+    
+<link rel="stylesheet" href="css/forms.css" media="screen" type="text/css">
+<link rel="stylesheet" href="css/ajax-tooltip.css" media="screen" type="text/css">
+
+
+    <!-- hidden inline form for quick add project dialogue-->
+    <div style='display: none;'>
+        <div id="inline">
+            <form name="project_item_form" id="project_item_form" action="#">
+                <h2>Quick Add Project</h2>
+                <p class="enfasis">Projects created using this form can be edited later from the main research site when logged in.</p>
+                <table>
+                    <input type='hidden' name="cvItemId" value="{CV_ITEM_ID}" />
+                    <input type="checkbox" name="approved" checked="checked" />
+                    <tr>
+                        <td>Project Name:</td>
+                        <td colspan="2"><input type="text" size="75" maxlength="255" name="name" value="{NAME}"
+                                               title="Project Name" /></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">Local Collaborators:</td>
+                        <td><select style='font-size: 11px;' name='user_options[]' multiple="multiple" size="5">
+                            <option value=0>--NONE--</option>
+                            <patTemplate:tmpl name="USER_OPTIONS">
+                                <option value='{USER_ID}'>{LAST_NAME}, {FIRST_NAME}</option>
+                            </patTemplate:tmpl>
+                            <td valign="top">
+                                <i>Hold 'Control' and click<br />
+                                   for multiple people. They<br />
+                                   will be linked and also be<br />
+                                   able to edit.</i></td></tr>
+
+                    <tr><td valign="top">Synopsis:</td><td colspan="2"><textarea name="synopsis" id="synopsis" rows="5" cols="80"   title="Synopsis - Should not be longer than this box">{SYNOPSIS}</textarea></td></tr>
+                    <tr><td valign="top">Full Story:</td><td colspan="2"><textarea name="description" id="description" rows="5" cols="80" title="Description">{DESCRIPTION}</textarea></td></tr>
+                    <tr><td>Keywords:</td><td colspan="2"><input type="text" size="75" maxlength="255" name="keywords" value="{KEYWORDS}" title="Comma separated list of phrases for search engines" /></td></tr>
+                    <tr><td>Student Project?:</td><td colspan="2"><input type="checkbox" name="studentproj" id="studentproj" {STUDENTPROJ}> <i>(i.e. student-led or significant involvement)</i></td></tr>
+                    <tr><td>Student Names:</td><td colspan="2"><input type="text" size="75" maxlength="255" name="student_names" value="{STUDENT_NAMES}" title="Comma separated list of students involved" /></td></tr>
+                    <tr><td>End Date:</td><td colspan="2"><input type="text" size="16" maxlength="255" name="end_date" id="end_date" value="{END_DATE}" title="Estimated date the project will wrap up; used to the list" /> <i>(for sorting purposes - latest date shows first)</i></td></tr>
+                    <tr><td>&nbsp;</td></tr>
+
+                    <tr>
+                        <td>Boyer's Categories :</td>
+                        <td colspan="2">
+                            <input type="radio" name="boyer" value="boyerDiscovery" {BOYERDISCOVERY}/>Discovery
+                            <input type="radio" name="boyer" value="boyerIntegration" {BOYERINTEGRATION}/>Integration
+                            <input type="radio" name="boyer" value="boyerApplication" {BOYERAPPLICATION}/>Application
+                            <input type="radio" name="boyer" value="boyerTeaching" {BOYERTEACHING}/>Teaching
+                            <input type="radio" name="boyer" value="boyerService" {BOYERSERVICE}/>Service
+                        </td>
+                    </tr>
+                </table>
+
+                <br />
+                <button type='button' name="send" id="send"  value="Save Project">Save Project
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <div id="teaching_related_form">
+        <form name="cv_item_form" id="cv_item_form" enctype="multipart/form-data" action="" onsubmit="isDirty=false;" method="post" >
+
+            <div style="float:right;width:110px;background-color: #fff;">
+                <span class="toolsHeader">Tools</span>
+                <hr style="height:1px"><input style="background-color: #CFC;" type="submit" name="mr_action" id='saveChanges' value="Save Changes"><br />
+                <input type="button" name="back_to_list" value="Back to List" onClick="document.location='?cas_heading_id={CAS_HEADING_ID}'">
+           <patTemplate:tmpl name="toolssection" visibility="hidden">
+                <input type="submit" name="mr_action" value="Save and New"><br />
+                <input style="background-color: #fcc;" type="button" name="delete_button" value="Delete" onClick="DeleteRecord()"><br />
+                
+                <patTemplate:tmpl name="flags" type="simpleCondition" requiredvars="CV_ITEM_ID">
+                <hr style="height:1px">
+                Show on my:<br/>
+                <input type="checkbox" class="chkreport_flag" title="Show this item in my current year annual report." id="report_flag{CV_ITEM_ID}" name="report_flag{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'report_flag',$(this).is(':checked'))"{REPORT_FLAG}> Annual Report<br/>
+                <input type="checkbox" class="chkweb_show" title="Display this item in my on-line cv/profile. You can activate this profile by logging in to the research website and setting a checkbox in your Profile page. Contact the ORS for help." id="web_show{CV_ITEM_ID}" name="web_show{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'web_show',$(this).is(':checked'))"{WEB_SHOW}>Web Profile<br/>
+                <input type="checkbox" class="chkmycv1" title="Display this item in custom CV #1. This CV may be printed using the Review/Print link on the left." id="my1{CV_ITEM_ID}" name="my1{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'mycv1',$(this).is(':checked'))"{MYCV1}>My CV<br />
+                <input type="checkbox" class="chkmycv2" title="Display this item in custom CV #2. This CV may be printed using the Review/Print link on the left." id="my2{CV_ITEM_ID}" name="my2{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'mycv2',$(this).is(':checked'))"{MYCV2}>CASN/CAQC
+                </patTemplate:tmpl>
+                </patTemplate:tmpl>
+            </div>
+
+            <h1>{PAGE_TITLE} {CURRENTACTION}</h1>
+            {PAGE_INTRO}
+            <patTemplate:tmpl name="status_message" type="simpleCondition" requiredVars="STATUS">
+                <div class="statusMessage">{STATUS}</div>
+            </patTemplate:tmpl>
+            <span class="enfasis">Type:</span>
+            <select class="item_type" id="cas_type_id" name="cas_type_id" onchange="ChangeType()">
+                <patTemplate:tmpl name="cas_types">
+                    <option value="{CAS_TYPE_ID}" {CAS_TYPE_ID_SELECTED}>{TYPE_NAME}</option>
+                </patTemplate:tmpl>
+            </select>
+            &nbsp;&nbsp;&nbsp;
+            <span class="enfasis">Change To:</span>
+            <select class="item_type" id="cas_type_id2" name="cas_type_id2" onchange="ChangeType()" title="Convert directly to another type. Note that some data will be lost due to changes in structure.">
+                <patTemplate:tmpl name="cas_types2">
+                    <option value="{CAS_TYPE_ID}" {CAS_TYPE_ID_SELECTED}>{TYPE_NAME}</option>
+                </patTemplate:tmpl>
+            </select>
+            <br />
+
+            <patTemplate:tmpl name="preview_area" type="simpleCondition" requiredVars="PREVIEW">
+                <div id="item_preview" class="preview">
+
+                    <em>Please save your changes to update the preview</em><br/>
+                    {PREVIEW}
+                </div>
+                <br />
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="cv_item_fields" type="condition" conditionvar="ftype">
+
+                <patTemplate:sub condition="text">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <input type="text" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" size="{FSIZE}" maxlength = "{FMAXLENGTH}" title="{FEXAMPLE}"    /> <img class='helpimg' style="{HIDEHELP}" src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="author">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        Last name:<input type="text" name="{F_FORMNAME}[lastname]" id="{F_FORMNAME}_lastname" value="{FVALUELNAME}" size="25" maxlength = "{FMAXLENGTH}" title="{FEXAMPLE}"    />&nbsp;
+                        First Name/Initial:<input type="text" name="{F_FORMNAME}[firstname]" id="{F_FORMNAME}_firstname" value="{FVALUEFNAME}" size="25" maxlength = "{FMAXLENGTH}" title="{FEXAMPLE}"    /><img class='helpimg' style="{HIDEHELP}" src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="list">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <select name="{F_FORMNAME}" id="{F_FORMNAME}">
+                            {FOPTIONS}
+                        </select><img class='helpimg' style="{HIDEHELP}" src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                        {FADDFIELD}
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="sub">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><img class='helpimg' style="{HIDEHELP}" src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" /><br />
+                        {EXTRAFIELDS}
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="num">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <input type="text" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" title="{FEXAMPLE}"  class="numField"/> (numbers only)<img class='helpimg' style="{HIDEHELP}" src src='/images/helpicon.gif'style="{HIDEHELP}" alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="date">
+
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+
+                    <select name="{F_FORMNAME}[year]">{F_YEAROPTIONS}</select> /
+                    <select name="{F_FORMNAME}[month]">{F_MONTHOPTIONS}</select> /
+                    <select name="{F_FORMNAME}[day]">{F_DAYOPTIONS}</select>
+
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="textarea">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <textarea class="fullAreaField" name="{F_FORMNAME}" id="{F_FORMNAME}" title="{FEXAMPLE}">{FVALUE}</textarea><img class='helpimg' style="{HIDEHELP}" src src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="checkbox">
+                    <p class="formrow"><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <input type="checkbox" name="{F_FORMNAME}" id="{F_FORMNAME}"  value="1" {F_CHECK} /><img class='helpimg' style="{HIDEHELP}" src src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+                    </p>
+                </patTemplate:sub>
+                <patTemplate:sub condition="file">
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+                    <p class="formrow">{FVALUE}</p>
+                    <p><label for="{F_FORMNAME}"> {FNAME}</label><br />
+                        <input name="{F_FORMNAME}" id="{F_FORMNAME}" type="file" /><img class='helpimg' src='/images/helpicon.gif' style="{HIDEHELP}" src alt='?' onClick="ajax_toggleTooltip(window.event,'/help.php?field_index_id={FIELDINDEXID}',this);return false" />
+
+                    </p>
+                </patTemplate:sub>
+
+                <patTemplate:sub condition="hidden">
+                    <input type="hidden" name="{F_FORMNAME}" id="{F_FORMNAME}" value="{FVALUE}" />
+                </patTemplate:sub>
+                <patTemplate:sub condition="__default">
+                    <p><h3>Please select an Activity/Document Type above.</h3></p>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="ASSOCIATEDPROJECTS" visibility="hidden">
+            <div id="wrapper">
+                <p class="formrow">Associated Project</p>
+                <select name='projectAssociation' id='projectAssociation'>
+                    <option value='0'>---</option>
+                    <patTemplate:tmpl name="PROJECTS">
+                        <option value='{PROJECT_ID}' {PROJECT_SELECTED}>{NAME}</option>
+                    </patTemplate:tmpl>
+                </select>
+
+                <a class="modalbox" href="#inline" style="margin-left:20px"><img src="images/plus.png" alt='create new project' style='width:20px; border:none;" '/>
+                    Associate new project</a>
+                <div id='result-message' class='enfasis'></div>
+            </div>
+                <p></p>
+        </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="boyers" visibility="hidden">
+            <p class="formrow"></p>
+            <p style="background-color: #ffffe0; width: 500px; margin-top: 10px; border-top: thin black solid; border-bottom: thin black solid" >
+                <label>Boyer's Categories: </label>
+                <input type="checkbox" name="boyerDiscovery" id="boyerDiscovery" value="1" {BOYERDISCOVERY}/><label for='boyerDiscovery'>Discovery</label>
+                <input type="checkbox" name="boyerIntegration" id="boyerIntegration" value="1"  {BOYERINTEGRATION}/><label for='boyerIntegration'>Integration</label>
+                <input type="checkbox" name="boyerApplication" id="boyerApplication" value="1"  {BOYERAPPLICATION}/><label for='boyerApplication'>Application</label>
+                <input type="checkbox" name="boyerTeaching" id="boyerTeaching" value="1"  {BOYERTEACHING}/><label for='boyerTeaching'>Teaching</label>
+                <input type="checkbox" name="boyerService" id="boyerService"  value="1" {BOYERSERVICE}/><label for='boyerService'>Service</label>
+            </p>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="realtedto" visibility="hidden">
+                    <p class='preview'><label>Activity is related to my: </label><input onclick="ToggleDetails(this,'div_teaching')" type="checkbox" name="n_teaching" id="n_teaching"  value="1" {N_TEACHING_CHECK} />Teaching
+                    <input onclick="ToggleDetails(this,'div_scholarship')" type="checkbox" name="n_scholarship" id="n_scholarship"  value="1" {N_SCHOLARSHIP_CHECK} />Scholarship
+                    <input onclick="ToggleDetails(this,'div_service')" type="checkbox" name="n_service" id="n_service"  value="1" {N_SERVICE_CHECK} />Service &nbsp;&nbsp;&nbsp;<img class='helpimg' src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'/help/details.html',this);return false"',this);return false" />
+                    </p>
+                    <div id="div_teaching" style="{DIV_TEACHING_TOGGLE}">
+                        Annual Report Details - Teaching
+                        <textarea name="details_teaching" cols="80" rows="5">{DETAILS_TEACHING}</textarea>
+                    </div>
+                    <div id="div_scholarship" style="{DIV_SCHOLARSHIP_TOGGLE}">
+                        Annual Report Details - Scholarship
+                        <textarea name="details_scholarship" cols="80" rows="5">{DETAILS_SCHOLARSHIP}</textarea>
+                    </div>
+                    <div id="div_service" style="{DIV_SERVICE_TOGGLE}">
+                        Annual Report Details - Service
+                        <textarea name="details_service" cols="80" rows="5">{DETAILS_SERVICE}</textarea>
+                    </div>
+
+            <input type="submit" name="mr_action" value="Save Changes">
+            </patTemplate:tmpl>
+            <input type="button" name="back_to_list" value="Back to List" onClick="document.location='?cas_heading_id={CAS_HEADING_ID}'">
+        </form>
+    </div>
+    <script type="text/javascript">
+
+        var isDirty = false;
+        var isReminder = false;
+        var msg = 'You haven\'t saved your changes.';
+        $(document).ready(function() {
+
+            $(':input').change(function(){
+                if(!isDirty){
+                    isDirty = true;
+                }
+                specialCharCleanup(this);
+
+
+            });
+
+
+            $(':input').keydown(function(){
+                if(!isReminder){
+                    isReminder = true;
+                    setTimeout(function(){
+                        alert('Please remember to save your changes.');
+                        isReminder = false;
+                    },1800000);
+                }
+            });
+
+            window.onunload = function(){
+                if(isDirty){
+                    return msg;
+                }
+            };
+
+
+        });
+
+
+        function DeleteRecord() {
+            var message = 'Are you sure that you want to permanently delete this item?  This action cannot be undone.';
+            var status = confirm(message);
+            if (status) {
+                document.location='?cas_heading_id={CAS_HEADING_ID}&mr_action=Delete&cv_item_id=' + $('#cv_item_id').val();
+            } else {
+                return false;
+            }
+        }
+        function ChangeType() {
+            var status = true;
+            if ('{ALERT_MESSAGE}' != 'none') {
+                //alert('{ALERT_MESSAGE}');
+                var message = '{ALERT_MESSAGE}';
+                status = confirm(message);
+            }
+            //if (status) document.location='?cv_item_id={CV_ITEM_ID}&cas_heading_id={CAS_HEADING_ID}&mr_action=change_type&cas_type_id=' + $('#cas_type_id').val();
+            if (status){
+                //$('#cv_item_form').submit();
+                $('#saveChanges').click();
+            }
+        }
+
+        function ToggleDetails(checkbox,div){
+            if ($(checkbox).attr('checked')){
+                $('#' + div).show('fast');
+            }else{
+                $('#' + div).hide('fast');
+            }
+        }
+    </script>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

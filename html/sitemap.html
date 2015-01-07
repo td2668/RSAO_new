@@ -1,0 +1,42 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+		<h2>Research Site Map</h2>
+		<ul>
+		<li><a href="index.php">Home</a></li>
+		<li><a href="myactivities.php?section=my_profile"></a>My Activities</li>
+        <ul>
+            <li><a href="myactivities.php?section=my_profile">Edit Profile</a></li>
+            <li><a href="myactivities.php?section=my_research">Research</a></li>
+               
+        </ul>
+		<li><a href="research.php">Celebrating Research</a></li>
+        <ul>
+            <li><a href="research.php">Research at MRU</a></li>
+            {PROJECTS}
+            {PEOPLE}
+            <li><a href="content.php?page=faces_of_innovation">Faces of Innovation</a></li>
+            <li><a href="content.php?page=presentations">Presentations</a></li>
+        </ul>
+        <li><a href="content.php?page=centres">Centres and Institutes</a></li>
+        <li><a href="opportunities.php?section=deadlines">Opportunities</a></li>
+        <ul>
+             <li><a href="opportunities.php?section=deadlines">Deadlines</a></li>
+             <li><a href="opportunities.php?section=events">Events</a></li>
+             <li><a href="opportunities.php?section=news">News</a></li>
+        </ul>
+        <li><a href="content.php?page=research_office">Research Services</a></li>
+        <ul>
+            <li><a href="content.php?page=research_forms">Forms</a></li>
+            <li><a href="content.php?page=research_policies">Policies</a></li>
+            <li><a href="ethics.php">Ethics</a></li>
+            <li><a href="committees.php">Other Committees</a></li>
+            <li><a href="content.php?page=research_reports">Reports/Statistics</a></li>
+            <li><a href="research.mtroyal.ca/rss.php">Blog</a></li>
+        </ul>
+        <ul>
+        <li><a href="content.php?page=contact_us">Contact Us</a></li>
+        <li><a href="#login-box" class="login-window">Login / Sign In</a></li>
+		</ul>
+
+	<patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

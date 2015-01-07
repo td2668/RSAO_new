@@ -1,0 +1,59 @@
+<?php
+
+    require_once('includes/global.inc.php');
+
+    $tmpl=loadPage("presentations_moo","Presentations");
+    if(isset($_REQUEST['title'])){
+        switch($_REQUEST['title']){
+          case 'given08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="350" id="spo_mwDcCaNTECmKVo37" data="http://farm.sproutbuilder.com/load/mwDcCaNTECmKVo37.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/mwDcCaNTECmKVo37.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_mwDcCaNTECmKVo37" src="http://farm.sproutbuilder.com/load/mwDcCaNTECmKVo37.swf" width="425" height="350" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE*NzEwNDgxNDkmcHQ9MTIzMTQ3MzMzOTc5NSZwPTEyMDc*MSZkPW13RGNDYU5URUNtS1ZvMzcmZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+           //$object='<object style="margin:0px" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=chasingcamelsposted-090319113404-phpapp01&stripped_title=chasing-camels" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=chasingcamelsposted-090319113404-phpapp01&stripped_title=chasing-camels" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object>';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'glanzman08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="340" id="spo_PQBFIdWhED3hR9oh" data="http://farm.sproutbuilder.com/load/PQBFIdWhED3hR9oh.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/PQBFIdWhED3hR9oh.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_PQBFIdWhED3hR9oh" src="http://farm.sproutbuilder.com/load/PQBFIdWhED3hR9oh.swf" width="425" height="340" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ3OTYzMDImcHQ9MTIzMTU2NDc5ODI2MSZwPTEyMDc*MSZkPVBRQkZJZFdoRUQzaFI5b2gmZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'isherwood-funders08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="340" id="spo_QgBFsdk_5fECjScB4V" data="http://farm.sproutbuilder.com/load/QgBFsdk_ECjScB4V.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/QgBFsdk_ECjScB4V.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_QgBFsdk_5fECjScB4V" src="http://farm.sproutbuilder.com/load/QgBFsdk_ECjScB4V.swf" width="425" height="340" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ4MjQwMzgmcHQ9MTIzMTU2NDgyNTYyMCZwPTEyMDc*MSZkPVFnQkZzZGslNUZFQ2pTY*I*ViZnPTEmdD*mbz1hZTg1NzE1ZjlhMDM*MWRmOGNhMzc2NjU4NTgxMDAyNQ==.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'nserc07':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="340" id="spo_8gDQkOJvEDJxifhz" data="http://farm.sproutbuilder.com/load/8gDQkOJvEDJxifhz.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/8gDQkOJvEDJxifhz.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_8gDQkOJvEDJxifhz" src="http://farm.sproutbuilder.com/load/8gDQkOJvEDJxifhz.swf" width="425" height="340" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ3MzE*NDMmcHQ9MTIzMTU2NDczMzQwNyZwPTEyMDc*MSZkPThnRFFrT*p2RURKeGlmaHomZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'elson08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="340" id="spo_GADYweKaENyW9zJL" data="http://farm.sproutbuilder.com/load/GADYweKaENyW9zJL.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/GADYweKaENyW9zJL.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_GADYweKaENyW9zJL" src="http://farm.sproutbuilder.com/load/GADYweKaENyW9zJL.swf" width="425" height="340" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ2MDk1NjAmcHQ9MTIzMTU2NDYxMjQzNiZwPTEyMDc*MSZkPUdBRFl3ZUthRU55Vzl6SkwmZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'katja08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="122" id="spo_JQD1guIkEIDp0vYS" data="http://farm.sproutbuilder.com/load/JQD1guIkEIDp0vYS.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/JQD1guIkEIDp0vYS.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_JQD1guIkEIDp0vYS" src="http://farm.sproutbuilder.com/load/JQD1guIkEIDp0vYS.swf" width="425" height="122" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ2OTIzMTAmcHQ9MTIzMTU2NDY5NDEyNCZwPTEyMDc*MSZkPUpRRDFndUlrRUlEcDB2WVMmZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+             $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'ravelli08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="340" id="spo_zwA7QOI9ECxUbI55" data="http://farm.sproutbuilder.com/load/zwA7QOI9ECxUbI55.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/zwA7QOI9ECxUbI55.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_zwA7QOI9ECxUbI55" src="http://farm.sproutbuilder.com/load/zwA7QOI9ECxUbI55.swf" width="425" height="340" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ3NjY*MDUmcHQ9MTIzMTU2NDc2ODM2NyZwPTEyMDc*MSZkPXp3QTdRT*k5RUN4VWJJNTUmZz*xJnQ9Jm89YWU4NTcxNWY5YTAzNDFkZjhjYTM3NjY1ODU4MTAwMjU=.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          case 'jeffries08':
+            $object='<object type="application/x-shockwave-flash" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="425" height="122" id="spo_hgDvW_2dLWEHuT2q7b" data="http://farm.sproutbuilder.com/load/hgDvW-LWEHuT2q7b.swf"><param name="wmode" value="transparent" /><param name="align" value="middle" /><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="quality" value="best" /><param name="movie" value="http://farm.sproutbuilder.com/load/hgDvW-LWEHuT2q7b.swf" /><embed type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" name="spe_hgDvW_2dLWEHuT2q7b" src="http://farm.sproutbuilder.com/load/hgDvW-LWEHuT2q7b.swf" width="425" height="122" wmode="transparent" align="middle" allowFullScreen="true" allowScriptAccess="always" quality="best"></embed></object><img style="visibility:hidden;width:0px;height:0px;" border=0 width=0 height=0 src="http://counters.gigya.com/wildfire/IMP/CXNID=2000002.0NXC/bT*xJmx*PTEyMzE1NjQ2NDA*MzYmcHQ9MTIzMTU2NDY*MzU4MCZwPTEyMDc*MSZkPWhnRHZXJTJETFdFSHVUMnE3YiZnPTEmdD*mbz1hZTg1NzE1ZjlhMDM*MWRmOGNhMzc2NjU4NTgxMDAyNQ==.gif" />';
+            $tmpl->addVar("page","object",$object);
+          break;
+
+          default:
+            $tmpl->addVar("page","notice","Sorry .. that presentation was not found");
+      }
+
+  }
+  else $tmpl->addVar("page","notice","Sorry .. that presentation was not found");
+
+
+  $tmpl->displayParsedTemplate('page');
+
+?>

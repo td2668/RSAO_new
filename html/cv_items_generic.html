@@ -1,0 +1,75 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+    <form name="cv_item_form" id="cv_item_form" action="" method="post" title="{PAGE_TITLE}">
+        <div style="float:right;width:170px">
+            <span class="toolsHeader">Tools</span>
+            <hr style="height:1px" />
+            <input type="button" name="add_item" value="Add an item" onClick="document.location='?cas_heading_id={CAS_HEADING_ID}&mr_action=add'" /><br/>
+            <table >
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>AR &nbsp;</th>
+                    <th>Web</th>
+                    <th>My</th>
+                    <th>CA</th>
+                </tr>
+                <tr>
+                    <td class="column0">Check All</td>
+                    <td class="column1"><input type="checkbox" id="all_show_on_report" name="all_show_on_report" onClick="AjaxHeadingToggle('cas_cv_items',{CAS_HEADING_ID},'report_flag',$(this).is(':checked'))"{ALLREPORT_FLAG}></td>
+                    <td class="column1"><input type="checkbox" id="all_show_on_web" name="all_show_on_web" onClick="AjaxHeadingToggle('cas_cv_items',{CAS_HEADING_ID},'web_show',$(this).is(':checked'))"{ALLWEB_SHOW}></td>
+                    <td class="column1"><input type="checkbox" id="all_show_on_my1" name="all_show_on_my1" onClick="AjaxHeadingToggle('cas_cv_items',{CAS_HEADING_ID},'mycv1',$(this).is(':checked'))"{ALLMYCV1}></td>
+                    <td class="column1"><input type="checkbox" id="all_show_on_my2" name="all_show_on_my2" onClick="AjaxHeadingToggle('cas_cv_items',{CAS_HEADING_ID},'mycv2',$(this).is(':checked'))"{ALLMYCV2}></td>
+                </tr>
+            </table>
+        </div>
+        <h1>{PAGE_TITLE}</h1>
+        {PAGE_INTRO}
+        <h2 style="width:550px">{CV_SECTION_TITLE}</h2>
+        {SUB_LIST}
+        <patTemplate:tmpl name="status_message" type="simpleCondition" requiredVars="STATUS">
+            <div class="statusMessage">{STATUS}</div>
+        </patTemplate:tmpl>
+        <patTemplate:tmpl name="status_message2" type="simpleCondition" requiredVars="STATUS">
+            <div class="statusMessage">{STATUS}</div>
+        </patTemplate:tmpl>
+        <table cellpadding='0' cellspacing='0' border='0' class="itemList">
+            <patTemplate:tmpl name="cv_item_list" type="condition" conditionvar="type">
+
+                <patTemplate:sub condition="header2">
+                    <tr class="header2">
+
+                        <th height="30"valign="bottom" colspan="2"><h3>{TITLE}</h3></th>
+                        <th>AR</th>
+                        <th>Web</th>
+                        <th>My</th>
+                        <th>CA</th>
+                    </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="item1">
+                    <tr class="{TR_CLASS}">
+                        <td width='30' nowrap>
+                            {SORTLINKS}
+                        </td>
+                        <td class="column0" width="100%">
+                            <a href="/cv.php?cas_heading_id={CAS_HEADING_ID}&mr_action=edit&cv_item_id={CV_ITEM_ID}" title="Edit this item">{TITLE}</a>
+                            <div id="ajaxMessage{CV_ITEM_ID}" class="smallStatus"></div>
+                        </td>
+                        <td class="column1">
+                            <input type="checkbox" class="chkreport_flag" id="report_flag{CV_ITEM_ID}" name="report_flag{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'report_flag',$(this).is(':checked'))"{REPORT_FLAG}>
+                        </td>
+                        <td class="column1">
+                            <input type="checkbox" class="chkweb_show" id="web_show{CV_ITEM_ID}" name="web_show{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'web_show',$(this).is(':checked'))"{WEB_SHOW}>
+                        </td>
+                        <td class="column1">
+                            <input type="checkbox" class="chkmycv1" id="my1{CV_ITEM_ID}" name="my1{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'mycv1',$(this).is(':checked'))"{MYCV1}>
+                        </td>
+                        <td class="column1">
+                            <input type="checkbox" class="chkmycv2" id="my2{CV_ITEM_ID}" name="my2{CV_ITEM_ID}" onClick="AjaxToggle('cas_cv_items','cv_item_id',{CV_ITEM_ID},'mycv2',$(this).is(':checked'))"{MYCV2}>
+                        </td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </form>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

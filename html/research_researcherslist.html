@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+		<patTemplate:tmpl src="research_controls.tpl" />
+		<div class="research_main">
+			<h1>Research at MRU: <b><u>People</u></b></h1>
+			<p class="enfasis"><patTemplate:var name="ENFASIS" default="Featured Faculty" /></p>
+			<div id="listresearchers">
+
+				<patTemplate:tmpl name="RESEARCHERS" type="condition" conditionVar="HAS_PROJECTS">
+                    <patTemplate:sub condition="__empty">                       
+                            <div class="researcher">                                      
+                              {IMG}                              
+                                <h3 style="display:inline"><a href="research.php?action=view&type=researchers&rid={USER_ID}" title="{FIRST_NAME} {LAST_NAME}">{FIRST_NAME} {LAST_NAME}</a></h3>
+                            {PROFILE_SHORT}
+                            <div class="keywords">{KEYWORDS}</div>
+                            {ASSOCIATED_MEDIA_HTML}
+                             </div> 
+                             
+                    </patTemplate:sub>
+                             
+
+
+                    <patTemplate:sub condition="__default">
+					<div class="researcher">
+						{IMG}<h3 style="display:inline"><a href="research.php?action=view&type=researchers&rid={USER_ID}" title="{FIRST_NAME} {LAST_NAME}">{FIRST_NAME} {LAST_NAME}</a></h3>
+                        {PROFILE_SHORT}
+						<div class="keywords">{KEYWORDS}</div>
+                        {ASSOCIATED_MEDIA_HTML}
+						<h4>Current Projects</h4>
+						<ul>
+						<patTemplate:tmpl name="PROJECTS_LIST" >
+							<li><a href="research.php?action=view&type=project&pid={PROJECT_ID}" title="{PROJECT_NAME}">{PROJECT_NAME}</a></li>
+						</patTemplate:tmpl>
+						</ul>
+					</div>
+                    
+                    <patTemplate:comment><!--div class researcher --></patTemplate:comment>
+					</patTemplate:sub>
+				</patTemplate:tmpl>
+
+			</div> <!--div listresearchers-->
+			{LISTNOTES}
+			<br />
+			{PAGES}
+		</div> <!--main div-->
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

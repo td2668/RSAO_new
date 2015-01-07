@@ -1,0 +1,118 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a Title."]], // Title
+	[["required","Please enter a VALID Date."],["date"]], // Post Date 
+	[["required","Please enter a VALID Date."],["date"]], 
+	[],// Due Date 
+	[], // Expiry Date 
+	[],// Agency
+	[],//URL
+	[["required","Please enter a Description"]],// Description
+	[["required","Please enter a Synopsis"]]// Synopsis
+	]; 
+//-->
+</script>
+<table>
+  <form method="post" name="form1" action="opportunities.php?section=view&id=~!id~" onSubmit="return validateForm(this,arrValidationDesc)">
+    <tr>
+      <td colspan="3"  class="successhead">Update: Opportunity</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan=2>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Title:</td>
+      <td colspan=2><input type="text" name="title" maxlength="255" size="80" value="~!title~">
+      </td>
+	</tr>
+    <tr>
+      <td colspan="3"><i>note: date format is day/mon/year e.g. today is:
+            <script language="JavaScript">
+		var now = new Date();
+		var year = now.getFullYear()-2000;
+		document.write(now.getDate() + '/' + (now.getMonth()+1) + '/0' + (now.getFullYear()-2000));
+		</script>
+      </i></td>
+	</tr>
+    <tr>
+      <td>Post Date:</td>
+      <td colspan=2><input type="text" name="post_date" maxlength="10" size="10" value="~!post_date~">
+      </td>
+	</tr>
+    <tr>
+      <td>Due Date:</td>
+      <td colspan=2><input type="text" name="due_date" maxlength="10" size="10" value="~!due_date~">
+&nbsp;
+        <input type="button" name="NoDate" value="No Specific Date" onClick="document.form1.due_date.value='1/1/37';">
+      </td>
+	</tr>
+    <tr>
+      <td>Expiry Date:</td>
+      <td colspan=2><input type="text" name="expiry_date" maxlength="10" size="10" value="~!expiry_date~">
+      </td>
+	</tr>
+    <tr>
+      <td>Agency:</td>
+      <td colspan=2><input type="text" name="agency" maxlength="255" size="30" value="~!agency~">
+      </td>
+	</tr>
+    <td>Agency URL:</td>
+    <td colspan=2><input type="text" name="url" maxlength="255" size="80" value="~!url~">
+    </td>
+	</tr>
+     <tr>
+      <td valign="top">Synopsis:</td>
+      <td colspan=2><textarea name="synopsis" rows="10" cols="80">~!synopsis~</textarea>
+      </td>
+	</tr>   
+    <tr>
+      <td valign="top">Description:</td>
+      <td colspan=2><textarea name="description" rows="18" cols="120">~!description~</textarea>
+      </td>
+	</tr>
+
+    <tr>
+      <td valign="top">Research Topics:</td>
+      <td><select name="topics[]" multiple size="8">
+          
+				~!topic_options~
+			
+        </select>
+      </td>
+						<td align="left">Override with:<br>			  <br>
+	  <input type="checkbox" name="health" value="health"> Health<br>
+	  <input type="checkbox" name="nserc" value="nserc"> NSERC<br>
+	  <input type="checkbox" name="sshrc" value="sshrc"> SSHRC<br>
+	  <input type="checkbox" name="indust" value="indust"> Industrial<br></td>
+	</tr>
+    <tr>
+      <td>Approved:</td>
+      <td colspan=2><input type="checkbox" checked name="approved" value="yes" ~!approved_a~>
+      </td>
+	</tr>
+    <tr>
+      <td>Annual:</td>
+      <td colspan=2><input type="checkbox" name="annual" value="yes" ~!annual_a~>
+      </td>
+	</tr>
+    <tr>
+      <td>Internal:</td>
+      <td colspan=2><input type="checkbox" name="internal" value="yes" ~!internal_a~>
+        <a href="#"><img src="/images/help.gif" width="25" height="16" border="0" onClick="popHelp('submit_internal'); return false;"></a></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan=2><input type="submit" name="update" value="Update">
+  &nbsp;&nbsp;
+        
+  <button type="button" onClick="window.location='opportunities.php?section=view&delete=y&id=~!id~'">Delete</button>
+    
+        
+  <button type="button" onClick="window.location='opportunities.php?section=view'">Back</button>
+          ~!picture_button~</td>
+	</tr>
+  </form>
+</table>

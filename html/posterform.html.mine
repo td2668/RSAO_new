@@ -1,0 +1,263 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+   <patTemplate:tmpl src="header.html" />
+
+   <script type='text/javascript'>
+    jQuery(function() {
+        var studentDiv = jQuery('#studentNames');
+        var i = jQuery('#studentNames').size();
+
+        jQuery('#addstudent').live('click', function() {
+            jQuery('<span class="researcher">' +
+                    '<label for="namesfirst_' + i + '">Given Names(s)</label>' +
+                    '<input type="text" name="namesfirst_' + i +'" value="" size="30" value="" placeholder="First Name" style=><br/>' +
+                    '<label for="nameslast_' + i + '">Surname</label>' +
+                    '<input type="text" name="nameslast_' + i +'" value="" size="30" value="" placeholder="Surname">' +
+                    '</input><br/>' +
+/*
+                    '<a href="#" id="remName" style="float:right;padding:5px" title="Remove"><img src="images/minus.png" alt="remove student" width="25px" /></a>' +
+*/
+                    '</span><br/>').appendTo(studentDiv);
+            jQuery('input[name=numResearchers]').val(i); //save the number of students added for later
+            i++;
+            return false;
+        });
+
+/*        jQuery('#remName').live('click', function() {
+            if( i > 2 ) {
+                jQuery(this).parents('p').remove();
+                i--;
+            }
+            return false;
+        });*/
+    });
+
+    function validateForm()
+    {
+        var errors = false;
+        var errorMsg = "";
+
+
+
+        var email = document.regform.email.value;
+        if (email==null || email=="")
+        {
+            errorMsg += "\nEmail must be filled out";
+            errors = true;
+        } else {
+            var atpos=email.indexOf("@");
+            var dotpos=email.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
+            {
+                errorMsg += "\nNot a valid e-mail address";
+                errors = true;
+            }
+        }
+
+    
+
+        
+
+        if(errors == true) {
+            alert(errorMsg);
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkWordLen(obj, wordLen){
+        var len = obj.value.split(/[\s]+/);
+        if(len.length > wordLen){
+            alert("You've exceeded the "+wordLen+" word limit for this description.");
+            obj.oldValue = obj.value!=obj.oldValue?obj.value:obj.oldValue;
+            obj.value = obj.oldValue?obj.oldValue:"";
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+<style type="text/css"   >
+    body{
+        font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+        font-size:12px;
+    }
+    p, h1, form, button{border:0; margin:0; padding:0;}
+    .spacer{clear:both; height:3px;}
+        /* ----------- My Form ----------- */
+    .myform{
+        margin:0 auto;
+        width:650px;
+        padding:14px;
+    }
+
+        /* ----------- stylized ----------- */
+    #stylized{
+        border:solid 2px #b7ddf2;
+        background:#ebf4fb;
+    }
+    #stylized h1 {
+        font-size:15px;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+    #stylized p{
+        font-size:11px;
+        color:#666666;
+        margin-bottom:20px;
+        /*border-bottom:solid 1px #b7ddf2; */
+        padding-bottom:10px;
+    }
+    #stylized label{
+        display:block;
+        font-weight:bold;
+        text-align:right;
+        width:140px;
+        float:left;
+        padding-top: 6px;
+    }
+    #stylized .small{
+        color:#666666;
+        display:block;
+        font-size:11px;
+        font-weight:normal;
+        text-align:right;
+        width:140px;
+    }
+    #stylized input[type=text]{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized textarea{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized select{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized button{
+        clear:both;
+        margin-left:150px;
+        width:125px;
+        height:31px;
+        background:#666666 url(img/button.png) no-repeat;
+        text-align:center;
+        line-height:31px;
+        color:#FFFFFF;
+        font-size:11px;
+        font-weight:bold;
+    }
+
+    #register-form .fieldgroup label.error {
+        color: #FB3A3A;
+        display: inline-block;
+        margin: 4px 0 5px 125px;
+        padding: 0;
+        text-align: left;
+        width: 220px;
+    }
+</style>
+
+
+   <h1>Poster Printing/Multimedia Submission</h1><br><br>
+
+   <div style="display:{SUCCESS}">
+   
+       <h3>Thank you.  Your poster printing or multimedia request has been registered. For posters, you will be notified by email when it is complete.</h3>
+       
+   </div>
+   <div style="display:{SRD}">
+   
+   <h3>{RESPONSE}<br><br><a href="{URL}">Click here</a> to finalize your Student Research Day registration</h3>
+   </div>
+<p></p>
+<div id='stylized' class="myform" style="display:{FORM}">
+
+    <p>Research Services provides printing services for student research posters as follows:<br>
+    For presentation at Student Research Day or any Faculty or Dept poster session: FREE (first printing)<br>
+    For other use (within class, printing revised posters, etc): $45.<br><br>
+    
+   ** Research Services will retain the poster file for possible future display as examples for other students (within the U wing or your own Faculty halls). The content remains your Intellectual Property.  </p>
+
+   <form name="regform" id="regform"  title="Poster Form" action="posterreg.php" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+       <div id="form-content">
+           <fieldset>
+           
+       {FORM_ERRORS}
+
+       <input type="hidden" name="_submit_check" value="1"/>
+
+       <h1>Student Researcher</h1>
+       <label for="primaryNameFirst">* First Name</label>
+       <input type='text' name='primaryNameFirst' id="primaryNameFirst" value="{PRIMARYNAMEFIRST}" placeholder="First Name" />
+
+       <label for="primaryNameLast">* Last Name</label>
+       <input type='text' name='primaryNameLast' id="primaryNameLast" value="{PRIMARYNAMELAST}" placeholder="Surname" />
+
+       <label for="studentid">* Student ID#</label>
+       <input type="text" size="10" name="studentid" value="{STUDENTID}" placeholder="e.g. 20199999" />
+
+       <label for="email">* Contact Email
+      </label>
+       <input type="text" value="{EMAIL}" name="email" title="This will be our main way of contacting you"  />
+
+       <span class='spacer'></span>
+       <h1>Venue</h1>
+            <label for="program">Where will this item be displayed?</label>
+            <input type="text"  name="where" id="where" value="{WHERE}" title="e.g. Student Research Day, H&CS Student Showcase etc"   /><br clear='left'>
+
+          <label for="department">* Department</label>
+           <select name='department' id='department'>
+           <option value="0">-- None --</option>
+               <patTemplate:tmpl name="DEPARTMENT_OPTIONS">
+                   <option value='{DEPARTMENT_ID}' {SELECTED}>{NAME}</option>
+               </patTemplate:tmpl>
+           </select>
+
+            <label for="course">Course</label>
+            <input type="text" name="course" value="{COURSE}" id="course" title="What course is this associated with?" placeholder="e.g. Biology 101"  /><br/>
+
+           <label for='supervisor'>Instructor/ Supervisor
+         </label>
+           <select name='supervisor' id='supervisor'>
+               <option value="0">-- None --</option>
+               <patTemplate:tmpl name="SUPERVISOR_OPTIONS">
+                   <option value='{USER_ID}' {SELECTED}>{NAME}</option>
+               </patTemplate:tmpl>
+           </select>
+       <div class="spacer"></div>
+
+    
+       <label for="title">* Title of item</label>
+       <input type="text" name="title" value="{TITLE}" id="title" placeholder="My Poster's Title"/>
+		
+	   <label for="filename">Select your file (Max 100M) </label>
+	   <input type="file" id="filename" value="{FILENAME}" name="filename">
+       <p></p>
+       <label for='srd'>Register me for Student Research Day</label>
+       <input type="checkbox" checked="checked" name="srd" id="srd">
+
+     
+        <p>
+            <button type='submit' name="submit">Submit</button>
+        </p>
+       </fieldset>
+       </div>
+   </form>
+</div>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

@@ -1,0 +1,57 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+
+
+<tr>
+    <td width='10'>&nbsp;</td>
+<td>
+
+<form name='form1'>
+<patTemplate:tmpl name="list" visibility="hidden">
+<table>
+<tr><td>#</td><td>Orig. Name</td><td>#</td><td>New Name</td><td>Items</td></tr>
+<patTemplate:tmpl name="mainlist">
+<tr><td>{CV_ITEM_TYPE_ID}</td><td>{TITLE} ({CATEGORY}-{HNAME})</td><td>{CAS_TYPE_ID}</td><td>{TYPE_NAME}</td><td>{COUNT}</td><td><button type='button' onClick='window.location="cas_xref.php?section=edit&id={CAS_TYPES_XREF_ID}";'>Edit</button></td></tr>
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="edit" visibility="hidden">
+<table>
+<tr><td colspan='4'><b>Editing:{CV_ITEM_TYPE_ID} {TITLE} &nbsp;&nbsp;{CAS_TYPE_ID} {TYPE_NAME}</b></td></tr>
+<tr><td colspan="4">Copy to: Old Type:<input type='text' name="old_id" size="5"> &nbsp;New Type:<input type='text' name="new_id" size="5"> <button type='submit' name='copy' value='copy'>Copy</button></td></tr>
+<input type="hidden" name="cv_item_type_id" value="{CV_ITEM_TYPE_ID}"><input type="hidden" name="cas_type_id" value="{CAS_TYPE_ID}">
+<input type="hidden" name="cas_types_xref_id" value="{CAS_TYPES_XREF_ID}">
+<tr><td></td></tr>
+<patTemplate:tmpl name="editrows" visibility="hidden">
+    <tr><td>{F}</td><td>{N}</td><td>{TYPE}</td><td><button type='button' name='delete' onClick='window.location="cas_xref.php?deletefield&f={F}&n={N}&xref_id={XREF_ID}";'>Delete</button></td></tr>
+</patTemplate:tmpl>
+<tr><td><input type="text" name="f2" size='5'></td><td><input type="text" name="n2" size="5"></td><td><select name='type'><option value=''></option>
+<patTemplate:tmpl name="options">
+<option value="{TYPE}">{TYPE}</option>
+</patTemplate:tmpl>
+</select></td><td><button type="submit" name="new" value="new">New</button></tr>
+</table>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="counts" visibility="hidden">
+<table  border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#CCCCCC" cellspacing="1">
+<tr><td>#</td><td>Orig. Name</td><td>Done</td><td>To Do</td><td >Check Missing</td></tr>
+<patTemplate:tmpl name="countlist">
+<tr><td>{CV_ITEM_TYPE_ID}</td><td>{TITLE} ({CATEGORY}-{HNAME})</td><td>{DONE}</td><td>{TODO}</td><td >{NO_N}</td></tr>
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="countsnew" visibility="hidden">
+<table  border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#CCCCCC" cellspacing="1">
+<tr><td>#</td><td>Name</td><td>Done</td><td>To Do</td><td >Check Missing</td><td>TSS No Check</td><td>TSS Active</td><td>TS Active</td></tr>
+<patTemplate:tmpl name="countnewlist">
+<tr><td>{CAS_TYPE_ID}</td><td>{TYPE_NAME} ({CATEGORY}-{HNAME})</td><td>{DONE}</td><td>{TODO}</td><td >{NO_N}</td><td>{TSS}</td><td>{TSSACTIVE}</td><td>{TSACTIVE}</td></tr>
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+</form>
+
+</td></tr>
+</patTemplate:tmpl>

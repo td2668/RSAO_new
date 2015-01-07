@@ -1,0 +1,100 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_research_item">
+		<div style="float:right;width:150px">
+			<span style="color:#AF3F36;font:bold 14px georgia,times,serif;padding:7px 0;">Tools</span>
+			<hr style="height:1px">
+			
+
+			<button type='button' onClick="document.forms['project_item_form'].submit();">Save Changes</button><br />
+            <button type="button" name="backtolist" value="Back to list" onClick="window.location.href='myactivities.php?section=my_projects'">Back to list</button><br />
+
+			<br />
+			<form name="delete_project_form" id="delete_project_form" action="myactivities.php?section=my_projects&subsection=edititem" onsubmit="return confirm('Are you sure you want to delete this project?')"
+					method="post" title="My Projects">
+				<input type="hidden" name="action" value="delete_project">
+				<input type="hidden" name="subsection" value="edititem">
+				<input type="hidden" name="project_id" value="{PROJECT_ID}">
+				<input type="hidden" name="delete_project_id" value="{PROJECT_ID}">
+				<button type="submit" value="Delete Item">Hide Item</button><br><i>(Hides from main listing)</i>
+			</form>
+		</div>
+
+
+		<div style="width:550px">
+			<form name="project_item_form" id="project_item_form" action="myactivities.php?section=my_projects&subsection=edititem"
+					method="post" title="My Projects" enctype="multipart/form-data">
+				<input type="hidden" name="action" value="update_project">
+				<input type="hidden" name="subsection" value="edititem">
+				<input type="hidden" name="project_id" value="{PROJECT_ID}">
+				<input type="hidden" name="update_project_id" value="{PROJECT_ID}">
+                <input type='hidden' name='delete_picture_id' value=''>
+
+				<h1>{NAME}</h1>
+				<p class='enfasis'>Last Modified: {MODIFIED} by {WHO_MODIFIED}</p>
+                <table>
+                <tr><td>Project Name:</td><td colspan="2"><input type="text" size="75" maxlength="255" name="name" value="{NAME}" title="Project Name" /></td></tr>
+                <tr><td><b>Hide Project:</b></td><td colspan="2"><input type="checkbox" name="approved" {APPROVED} /></td></tr>
+                    <tr>
+                        <td valign="top">Local Collaborators:</td>
+                        <td><select style='font-size: 11px;' name='user_options[]' multiple="multiple" size="5">
+                            <option value=0>--NONE--</option>
+                            {USER_OPTIONS}</select></td>
+                        <td valign="top">
+                        <i>Hold 'Control' and click<br />
+                   for multiple people. They<br />
+                   will be linked and also be<br />
+                   able to edit.</i></td></tr>
+                
+                <tr><td valign="top">Synopsis:</td><td colspan="2"><textarea name="synopsis" id="synopsis" rows="15" cols="80"   title="Synopsis - Should not be longer than this box">{SYNOPSIS}</textarea></td></tr>
+                <tr><td valign="top">Full Story:</td><td colspan="2"><textarea name="description" id="description" rows="35" cols="80" title="Description" >{DESCRIPTION}</textarea></td></tr>
+                <tr><td>Keywords:</td><td colspan="2"><input type="text" size="75" maxlength="255" name="keywords" value="{KEYWORDS}" title="Comma separated list of phrases for search engines" /></td></tr>
+                <tr><td>Student Project?:</td><td colspan="2"><input type="checkbox" name="studentproj" id="studentproj" {STUDENTPROJ}> <i>(i.e. student-led or significant involvement)</i></td></tr>
+                <tr><td>Student Names:</td><td colspan="2"><input type="text" size="75" maxlength="255" name="student_names" value="{STUDENT_NAMES}" title="Comma separated list of students involved" /></td></tr>
+                <tr><td>End Date:</td><td colspan="2"><input type="text" size="16" maxlength="255" name="end_date" id="end_date" value="{END_DATE}" title="Estimated date the project will wrap up; used to the list" /> <img src='/includes/calendar.gif' title="Click to modify date"  align='absmiddle' onclick='showChooser(this, "end_date", "chooserSpan", 2000, 2020, "d/m/Y", false);'> <i>(for sorting purposes - latest date shows first)</i><div  id='chooserSpan' class='dateChooser select-free' style='z-index: 5;display: none; visibility: hidden; width: 166px;'></div></td></tr>
+                <tr><td>&nbsp;</td></tr>
+
+                   <!-- <tr>
+                        <td>Boyer's Categories :</td>
+                        <td colspan="2">
+                            <input type="radio" name="boyer" value="boyerDiscovery" {BOYERDISCOVERY}/>Discovery
+                            <input type="radio" name="boyer" value="boyerIntegration" {BOYERINTEGRATION}/>Integration
+                            <input type="radio" name="boyer" value="boyerApplication" {BOYERAPPLICATION}/>Application
+                            <input type="radio" name="boyer" value="boyerTeaching" {BOYERTEACHING}/>Teaching
+                            <input type="radio" name="boyer" value="boyerService" {BOYERSERVICE}/>Service
+                        </td>
+                    </tr>-->
+
+                <tr><td colspan='3'><hr><h2>Images</h2>Images can be linked with a project. It only  displays one at a time, and rotates randomly.<br /></td></tr>
+                <tr><td>Upload an Image:</td><td colspan="2"><input type="file" name="uploadimage" size="60" /></td></tr>
+                <tr><td>Image Caption:</td><td colspan="2"><input type="text" name="caption" size="50" maxlength="50"></td></tr>
+                <tr><td></td></tr>
+                <patTemplate:tmpl name="image_list" type="simpleCondition" requiredVars="capnum">
+                    <tr><td colspan='3' align="center" >
+                                    <table cellpadding="5"><tr><td style="background-color: #CCC; text-align: center; border: blue solid 1px;">
+                                    <img src="{URL}"><br/>
+                                    
+                                    Caption: <input type="text" size="30" name="caption_{CAPNUM}" value="{CAPTION}"> 
+                                    <button type='button' name="save_changes" value="Save Changes" onClick="document.forms['project_item_form'].submit();">Save</button>
+                                    <button onclick="document.forms['project_item_form'].action.value='delete_picture'; document.forms['project_item_form'].delete_picture_id.value='{CAPNUM}'; document.forms['project_item_form'].submit();">Delete</button><br />  
+                                  
+                                  
+                     </td></tr></table>
+                    </td></tr>
+                </patTemplate:tmpl>
+                </table>
+				
+				<br />
+                <button type='button' name="save_changes" value="Save Changes"
+                        onClick="document.forms['project_item_form'].submit();">Save Changes
+                </button>
+            </form>
+			
+		</div>
+
+	</div>
+	<div style="clear:both"></div>
+
+	<patTemplate:tmpl src="footer.html" />
+	
+</patTemplate:tmpl>

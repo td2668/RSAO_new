@@ -1,0 +1,220 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+
+    <!-- /TinyMCE -->
+    <script type="text/javascript" src="/admin/includes/tiny_mce/tiny_mce.js"></script>
+    <script type="text/javascript">
+        tinyMCE.init({
+            mode : "textareas",
+            editor_selector : "projectDescription",
+            theme : "advanced",
+            theme_advanced_toolbar_location : "top",
+            theme_advanced_toolbar_align : "left",
+            theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,justifyleft,justifycenter,justifyright, justifyfull,bullist,numlist,undo,redo,link,unlink",
+            theme_advanced_buttons2 : "",
+            theme_advanced_buttons3 : "",
+            plugins : "autolink,paste",
+            paste_auto_cleanup_on_paste : true,
+            paste_remove_styles: true,
+            paste_remove_styles_if_webkit: true,
+            paste_strip_class_attributes: true,
+            content_css : "/admin/includes/admin-ucc.css"
+        });
+    </script>
+    <!-- /TinyMCE -->
+
+    <script>
+        // add a researcher to the page
+        function addResearcher(id) {
+            var select = document.getElementById('researcherOptions');
+            var name = select.options[select.selectedIndex].text;
+            var parent = document.getElementById('researchers');
+            var newdiv = document.createElement('div');
+            newdiv.setAttribute('id', 'researcher_' + id);
+            newdiv.innerHTML = '<input type=\'hidden\' name=\'studentResearchers[]\' value=\'' + id + '\'/>' + name + '&nbsp;&nbsp;'
+                    + "<a href=\'#\' onclick=\'removeResearcher(" + id + ");\' title=\'click to remove\'>X</a><br/>";
+            parent.appendChild(newdiv);
+
+        }
+
+        // remove a researcher from the page
+        function removeResearcher(id) {
+            document.getElementById("researchers").removeChild(document.getElementById("researcher_" + id));
+        }
+    </script>
+
+    <patTemplate:tmpl name="view" visibility="hidden">
+        <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+            <tr>
+                <td colspan="6" class="successhead">Viewing: Student Research Projects</td>
+            </tr>
+            <tr height="10"><td colspan='6' height="14" class="success">{SUCCESS}</td></tr>
+            <tr><td colspan="6">&nbsp;</td></tr>
+            <tr><td colspan="3">
+                <button type="button" name="New" value="new" onClick="javascript: window.location='student_research.php?add'" >Add New Project</button>
+            </td></tr>
+            <tr bgcolor="#000000">
+            <td><b style="color:#E1E1E1;font-size:10px">ID</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Start Date</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">End Date</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Student Researcher(s)</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Supervisor</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Department</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Type</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">Hidden</b></td>
+                <td><b style="color:#E1E1E1;font-size:10px">&nbsp;</b></td>
+            </tr>
+            <patTemplate:tmpl name="mainlist" type="OddEven">
+                <patTemplate:sub condition="odd">
+                    <tr bgcolor='#CCCCCC'>
+                        <td>{ID}</td>
+                        <td>{STARTDATE}</td>
+                        <td>{ENDDATE}</td>
+                        <td>{TITLE}</td>
+                        <td>{NAME}</td>
+                        <td>{SUPERVISOR}</td>
+                        <td>{DEPARTMENTNAME}</td><td>{PRESENTATIONTYPE}</td>
+                        <td><input type='checkbox'  {HIDDEN} ></td>
+                        <td><button type='button' onClick='window.location="student_research.php?section=edit&id={ID}";'>Edit</button></td>
+                    </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr bgcolor='#CCFFFF'>
+                        <td>{ID}</td>
+                        <td>{STARTDATE}</td>
+                        <td>{ENDDATE}</td>
+                        <td>{TITLE}</td>
+                        <td>{NAME}</td>
+                        <td>{SUPERVISOR}</td>
+                        <td>{DEPARTMENTNAME}</td><td>{PRESENTATIONTYPE}</td>
+                        <td><input type='checkbox'  {HIDDEN} ></td>
+                        <td><button type='button' onClick='window.location="student_research.php?section=edit&id={ID}";'>Edit</button></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        <form name="edit" action="student_research.php?update">
+            <input type="hidden" name="id" value="{ID}">
+            <table cellspacing="4">
+                <tr>
+                    <td colspan="6" class="successhead">Edit: Student Research Projects</td>
+                </tr>
+                <tr height="10"><td colspan='7' height="14" class="success">{SUCCESS}</td></tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr><td colspan="3" class="successhead">Details</td></tr>
+                <tr>
+                    <td valign="top">Title of the project:</td>
+                    <td colspan="2">
+                        <textarea type='text' class='title' rows='2' cols='120' name="title">{TITLE}</textarea></td>
+                </tr>
+                <tr>
+                    <td valign="top">Student Researcher(s): </td>
+                    <td colspan="2">
+                        <p>
+                            <select name='researcherOptions' id='researcherOptions' onchange="if (this.selectedIndex) addResearcher(this.value)">
+                                    {RESEARCHER_OPTIONS}
+                            </select>
+                        </p>
+                        <div id='researchers'>
+                            <patTemplate:tmpl name="researchers">
+                                <div id='researcher_{ID}'>
+                                    <input type='hidden' name="studentResearchers[]" value='{ID}' />{NAME}
+                                    <a href='#' onclick='removeResearcher({ID});' title='click to remove'>X</a><br/>
+                                </div>
+                            </patTemplate:tmpl>
+                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Department: </td>
+                    <td colspan="2"><select name='departmentID'>
+                        <patTemplate:tmpl name="department_options">
+                            <option value="{VALUE}" {SEL}>{NAME}</option>
+                        </patTemplate:tmpl>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Program</td>
+                    <td colspan="2"><input type="text" size="40" value="{PROGRAM}" name="program" title="e.g. Bach of Science, Bach of Arts Honours, etc." \></td>
+                </tr>
+                <tr>
+                    <td width='150'>Related Course (if any)</td>
+                    <td colspan="2"><input type="text" size="40" name="course" value="{COURSE}" title="If your project is part of or linked to a course, provide the course number" \></td>
+                </tr>
+                <tr>
+                    <td>Faculty Supervisor (if any):</td>
+                    <td colspan="2"><select name='supervisorID'>
+                        <patTemplate:tmpl name="supervisor_options">
+                            <option value="{VALUE}" {SEL}>{NAME}</option>
+                        </patTemplate:tmpl>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">Project description :</td>
+                    <td colspan="2"><textarea cols="120" rows="15" name="description" class="projectDescription">{DESCRIPTION}</textarea></td>
+                </tr>
+                <tr>
+                    <td valign="top">Project Dates :</td>
+                    <td>Start Date:<input type="text" name="startDate" id="ors_date" value="{STARTDATE}" size="19" />
+                                   <img src='/admin/includes/calendar.gif' onclick='showChooser(this, "ors_date", "chooserSpan", 2011, 2020, "Y-m-d", false);'>
+                        <div id='chooserSpan' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+                    </td>
+                    <td>End Date: <input type="text" name="endDate" id="ors_date2" value="{ENDDATE}" size="19" />
+                        <img src='/admin/includes/calendar.gif' onclick='showChooser(this, "ors_date2", "chooserSpan2", 2011, 2020, "Y-m-d", false);'>
+                        <div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td width='150'>Dissemination : </td>
+                    <td nowrap="nowrap" colspan="3">Poster <input type="radio" name="presentationType" value="poster" {PRESENTATIONTYPEPOSTER} \>
+                        &nbsp;&nbsp;Oral <input type="radio" name="presentationType" value="oral" {PRESENTATIONTYPEORAL}  \>
+                        &nbsp;&nbsp;Other<input type="radio" name="presentationType" value="other" {PRESENTATIONTYPEOTHER} \>
+                    </td>
+                </tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr><td colspan="3" class="successhead">Ethics</td></tr>
+                <tr>
+                    <td width='150'>Does this project involve human participants?</td>
+                    <td nowrap="nowrap" colspan='3'>
+                        &nbsp;&nbsp;Yes<input type="radio" name="hrebNeedClearance" value="1" {HREBNEEDCLEARANCEYES}  \>
+                        &nbsp;&nbsp;No<input type="radio" name="hrebNeedClearance" value="0" {HREBNEEDCLEARANCENO} \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>If yes, do you already have ethics approval?</td>
+                    <td colspan='3' nowrap="nowrap">
+                        &nbsp;&nbsp;Yes<input type="radio" name="hrebHaveClearance" value="1" {HREBHAVECLEARANCEYES}  \>
+                        &nbsp;&nbsp;No<input type="radio" name="hrebHaveClearance" value="0" {HREBHAVECLEARANCENO} \>
+                        <br><br>
+                    </td>
+                </tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr><td colspan="3" class="successhead">Website</td></tr>
+                <tr>
+                    <td width='150'>Project Link / URL (if any)</td>
+                    <td colspan="2"><textarea cols="80" rows="1" value="{PROJECTURL}" name="projectUrl">{PROJECTURL}</textarea></td>
+                </tr>
+                <tr>
+                    <td width='150'>Show this project on the web ?</td>
+                    <td nowrap="nowrap" colspan='3'>
+                        &nbsp;&nbsp;Show<input type="radio" name="hidden" value="0" {HIDDENNO}  \>
+                        &nbsp;&nbsp;Hide<input type="radio" name="hidden" value="1" {HIDDENYES} \>
+                    </td>
+                </tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr><td width='150'>
+                    <button type="submit" name="update" value="update">Update</button> &nbsp;&nbsp;<button style='background-color: red;' type="button" name="Delete" value="delete" onClick="javascript: if(confirm('Really Delete?')) window.location='student_research.php?delete&id={ID}';" >Delete</button></td></tr>
+            </table>
+        </form>
+
+
+    </patTemplate:tmpl>
+
+</patTemplate:tmpl>

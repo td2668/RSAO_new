@@ -1,0 +1,41 @@
+
+<table>
+<form method="post" name="form1" action="" onSubmit="">
+	<tr>
+		<td colspan="2"  class="successhead">Add: Administrator</td>
+	</tr>
+<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+		<td>User:</td>
+		<td><select name="user_id"><option value="0"></option>
+				~!user_list~
+			</select></td>
+	</tr>
+		<tr>
+		<td>Department:</td>
+		<td><select name="dept_id" onchange="javascript: if(document.form1.dept_id.value != '0') {document.form1.division_id.value='0';document.form1.division_id.disabled='true';} else document.form1.division_id.disabled='false';"><option value="0" selected>&nbsp;</option>
+
+				~!dept_list~
+			</select></td>
+	</tr>
+			<tr>
+		<td>Faculty:</td>
+		<td><select name="division_id"><option value="0" selected>&nbsp;</option>
+				~!division_list~
+			</select><i>Disabled if Dept is set</i></td>
+	</tr>
+	<tr>
+		<td>Title:</td>
+		<td><select name="title"> <option value="" selected>&nbsp;</option>
+		<option value="Acting Chair">Acting Chair</option>
+		<option value="Acting Dean">Acting Dean</option>
+        <option value="Associate Dean">Associate Dean</option>
+		<option value="Director">Director</option>
+		</select></td>
+	</tr>
+	<tr>
+		<td><input type="submit" name="add" value="Add">&nbsp;&nbsp;
+			<button onClick="window.location='administrators.php?section=view'">Back</button></td>
+	</tr>
+</form>
+</table>

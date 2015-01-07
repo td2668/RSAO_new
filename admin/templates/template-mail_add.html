@@ -1,0 +1,178 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+
+<script language="JavaScript" type="text/javascript">
+
+    $(function() {
+        $( "#datepicker" ).datepicker();
+    });
+
+<!--
+arrValidationDesc=
+	[]; 
+//-->
+</script>
+
+
+<form method="post" name="form1" action="mailme.php?section=add" enctype="multipart/form-data">
+<input type="hidden" name="msg_flag" value="0">
+<table>
+	<tr>
+		<td colspan="4"  class="successhead">Add: Mail</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td valign="top">Email Type :</td>
+        <td colspan='3'>
+            <input name="type" type="radio" value="news" checked='checked' onclick="$('#prepend').val('[ResearchNews]');"/> Newsletter
+            <input name="type" type="radio" value="deadline" onclick="$('#prepend').val('[ResearchDeadline]');" /> Deadline
+            <input name="type" type="radio" value="other" onclick="$('#prepend').val('[ResearchNet]');" /> Other
+
+        </td>
+    </tr>
+        <tr>
+            <td>Prepend:</td>
+            <td><input type="text" size="30" name="prepend" id='prepend' value="[ResearchNews]"/></td>
+        </tr>
+	<tr>
+		<td>Subject:</td>
+		<td colspan=2><input type="text" name="subject" maxlength="255" size="80" value='~!msg_subject~'></td>
+	</tr>
+	<tr>
+	  <td valign="top">Mail Date:</td>
+	  <td><input type="text" id='datepicker' name="s_date" maxlength="20" size="15"> <i>(dd/mm/yyy)</i></td>
+    </tr>
+	<tr>
+        <td valign="top">Body:</td>
+        <td colspan=2><textarea name="body" rows="15" cols="80">~!plug_msg~</textarea><br>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button name="TEST" onClick="javascript: document.forms[0].body.value='@firstnameASDF@:<br>\n<br>\n';">HTML Template</button> &nbsp;&nbsp;<select  name="special_msg" onChange="javascript: if(document.forms[0].special_msg.selectedIndex != 0) {document.forms[0].msg_flag.value='1'; document.forms[0].submit()}"><option value="0" selected >&nbsp;</option>
+                ~!special_msg_options~
+            </select></td>
+        <td colspan='2' width="400">
+	    <span style='font-style: italic'>Mail should be formatted using html markup. Line breaks must be made with &lt;br&gt; or &lt;p&gt;. Default font is Verdana 12, so other fonts require FONT tags. Any pictures require a fully qualified domain name. The mailing routine substitutes a short redirect link for any links in your document in order to defeat the text-wrap issue in some mailers. It helps to always put links at the start of a line. Your message will be marked-down for plain text mailers, and any HREFs will become visible.</span>
+	    </td>
+	</tr>
+    <tr>
+    	<td>Filename:</td>
+    	<td>
+            <input size="50" type="file" name="file" id="file" /> 
+		</td>
+    </tr>
+
+    <tr><td>From Email:</td>
+    <td><input type="text" size="30" name="from_email" value="research@mtroyal.ca" /></td></tr>
+    
+        <tr><td>From Name:</td>
+    <td><input type="text" size="30" name="from_name" value="Research Services" /> (<i>Avoid apostrophes please</i>)</td></tr>
+
+
+    <tr><td colspan="3">
+        &nbsp;
+    </td></tr>
+
+    <tr><td colspan="4">
+        <span style='font-weight: bold; font-size: 11pt;'>Recipients</span><hr/>
+    </td></tr>
+
+    <tr>
+        <td valign="top" style='font-weight: bold'>Override :</td>
+        <td colspan='3'>
+            <input name="override" type="checkbox" id="override" value="1" />
+            <span style='font-weight:bold; margin-left: 10px'>* Include recipients below who have indicated they do not wish to receive mail from Research Services</span>
+        </td>
+    </tr>
+
+    <tr><td colspan="4">
+        <hr/>
+    </td></tr>
+
+    <tr>
+    <td valign="top">Faculty:</td>
+        
+        <td valign="top">
+         <select name="divisions[]" multiple size="8">
+                ~!division_options~
+            </select></td>
+    </tr>
+    <tr>
+	<td valign="top">Research<br>Topics:</td>
+		
+		<td valign="top">
+ 		<select name="topics_research[]" multiple size="8">
+				~!topic_options~
+			</select></td>
+	</tr>
+	<tr><td colspan="2"></td>
+    </tr>
+	<tr>
+	  <td>Full-time Faculty </td>
+	  <td><input name="ft_faculty" type="checkbox" id="ft_faculty" value="yes"></td>
+    </tr>
+	<tr>
+	  <td>Part-time Faculty </td>
+	  <td><input name="pt_faculty" type="checkbox" id="pt_faculty" value="yes"> </td>
+    </tr>
+    <tr>
+      <td>Management </td>
+      <td><input name="management" type="checkbox" id="management" value="yes"> </td>
+    </tr>
+    <tr>
+      <td>Support Staff </td>
+      <td><input name="support" type="checkbox" id="support" value="yes"> </td>
+    </tr>
+	<tr>
+	  <td>Outside MRU </td>
+	  <td><input name="outside" type="checkbox" id="outside" value="yes"></td>
+    </tr>
+	<tr>
+	  <td>Chairs</td>
+	  <td><input name="chairs" type="checkbox" id="chairs" value="yes"></td>
+    </tr>
+	<tr>
+	  <td>Deans</td>
+	  <td><input name="deans" type="checkbox" id="deans" value="yes"></td>
+    </tr>
+    <tr>
+      <td>TSS Faculty</td>
+      <td><input name="tss" type="checkbox" id="tss" value="yes"></td>
+    </tr>
+    <tr>
+        <td style="border-top:1px solid;">Student Research Day Participants</td>
+        <td style="border-top:1px solid;"><input name="srd" type="checkbox" id="srd" value="yes"></td>
+    </tr>
+    <tr>
+        <td>Student Research Day Participants MM only</td>
+        <td><input name="strd" type="checkbox" id="strd" value="yes"></td>
+    </tr>
+    <tr>
+        <td> Those without abstracts only</td>
+        <td><input name="abstract" type="checkbox" id="abstract" value="yes"></td>
+    </tr>
+    <tr>
+	  <td valign="top">Individuals</td>
+	  <td><select name='single_user[]' multiple size="8">
+	  <option value=''></option>
+	  ~!single_user_list~
+	  </select></td>
+    </tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+
+	<tr>
+
+		<td>&nbsp;</td>
+		<td><input type="submit" name="add" value="Add">&nbsp;&nbsp;
+			<input type="submit" name="asend" value="Send Now">&nbsp;&nbsp;
+			<input type="submit" name="atestsend" value="Test Send to Admin">&nbsp;&nbsp;
+			<button type='button' onClick="window.location='mailme.php?section=view'">Back</button></td>
+	</tr>
+</form>
+</table>

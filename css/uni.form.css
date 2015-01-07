@@ -1,0 +1,33 @@
+
+/* -------------------- Form Alignment --------------------- */
+
+#form {
+	width: 580px;
+	}
+#form input, #form textarea, #form select 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #F5F7FA;
+}
+
+#form .textalign {
+	float: left;
+	width: 180px;
+	text-align: right;
+	margin-right: 10px;
+	clear: both;
+	line-height: 1em
+}
+#form .questionalign {
+	float: left;
+	width: 300px;
+	text-align: right;
+	margin-right: 10px;
+	clear: both;
+}
+
+.textfieldRequiredMsg {
+	float: left;
+	margin-left: 180px;
+	clear: both;	
+}

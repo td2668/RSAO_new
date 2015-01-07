@@ -1,0 +1,25 @@
+<form method="post" name="form1" action="" enctype="multipart/form-data">
+<input type="hidden" name="form_action" value="~!action~">
+<table>
+    <tr>
+        <td colspan="6"  class="successhead">Associate: Media</td>
+    </tr>
+    <tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+</table>
+<h3>Media</h3>
+Associate media with id of ~!media_id~ to the following:
+<h3>News</h3>
+<select name="news[]" multiple size="8">
+    ~!news~
+</select>
+<h3>Projects</h3>
+<select name="projects[]" multiple size="8">
+    ~!projects~
+</select>
+<h3>People</h3>
+<select name="users[]" multiple size="8">
+    ~!users~
+</select>
+<input type="submit" name="add" value="Associate">&nbsp;&nbsp;
+<button onClick="window.location='/media.php?section=view'">Back</button>
+</form>

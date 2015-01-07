@@ -1,0 +1,187 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type='text/javascript' src='/includes/knockout-2.3.0.js'></script>
+    <script src="includes/json2.js" type="text/javascript"></script>
+
+
+    <link href="/includes/hreb.css" rel="stylesheet" type="text/css">
+
+    <div class="hreb-wrapper" id="hreb-wrapper">
+
+    <p class="breadcrumb">
+        <a href="hreb.php" class="breadcrumb">Manage Applications</a> >> {PAGETITLE}</a>
+    </p>
+
+    <p>
+        &nbsp;{MESSAGE}
+    </p>
+
+    <patTemplate:tmpl name="NEW">
+        <div class="tracking-wrapper" id="tracking-wrapper">
+
+        <form name="hrebForm" id="hrebForm" action="hreb-modify.php?action=save" method="POST">
+
+        <div class="form-element">
+            <label for="ethicsNumber">Application Number : </label>
+            <input name="ethicsNumber" id="ethicsNumber" value="{ETHICSNUMBER}">
+        </div>
+        <div class="form-element">
+            <label for="form_tracking_id">Tracking Number : </label>
+            <input name="form_tracking_id" id="form_tracking_id" class="form_tracking_id" data-bind="value: form_tracking_id, valueUpdate: 'afterkeydown'"/>
+        </div>
+
+        <div id="trackingFormWrapper" class="trackingFormWrapper">
+            <span style="float:right">Tracking # <span data-bind="text: form_tracking_id"></span></span>
+            <h2>Associated Tracking Form</h2>
+            <div class="form-element">
+                <label>Title : </label>
+                <span data-bind="text: tracking_name"></span>
+            </div>
+            <div class="form-element">
+                <label>Synopsis: </label>
+                <span class="trackingSynopsis" data-bind="text: synopsis"></span>
+            </div>
+            <div class="form-element">
+                <label>Applicant : </label>
+                <span data-bind="text: applicant"></span>
+            </div>
+            <div class="form-element">
+                <label>Principal Investigator : </label>
+                <span data-bind="text: pi"></span>
+            </div>
+            <div class="form-element">
+                <label>Submitted: </label>
+                <span data-bind="text: submitted"></span>
+            </div>
+        </div>
+
+        <div class="form-element">
+            <label for="applicant">Applicant : </label>
+            <span id="applicant" data-bind="text: pi" />
+        </div>
+
+        <div class="form-element">
+            <label>Department: </label>
+            <span data-bind="text: department"></span>
+        </div>
+
+        <div class="form-element">
+            <label>Project: </label>
+            <span data-bind="text: tracking_name"></span>
+        </div>
+
+        <div class="form-element">
+            <label for="received">Date Received : </label>
+            <input name="received" id="received" value="{RECEIVED}" type="date" />
+        </div>
+
+        <div class="form-element">
+            <label for="expiry">Expiry Date : </label>
+            <input name="expiry" id="expiry" value="{EXPIRY}" type="date" />
+        </div>
+
+        <button type="submit" style="float:right">Save</button>
+    </form>
+    </div>
+
+</patTemplate:tmpl>
+
+    <patTemplate:tmpl name="EDIT">
+            <form name="hrebForm" id="hrebForm" action="hreb-modify.php?action=save" method="POST">
+
+                <div class="form-element">
+                    <label for="ethicsNumber">Application Number : </label>
+                    <input name="ethicsNumber" id="ethicsNumber" value="{ETHICSNUMBER}">
+                </div>
+
+                <div class="form-element">
+                    <label>Tracking ID : </label>
+                    <input type="hidden" name="form_tracking_id" value={FORM_TRACKING_ID}>
+                    {FORM_TRACKING_ID}
+                </div>
+                <div class="form-element">
+                    <label>Project : </label>
+                    {TRACKING_NAME}
+                </div>
+
+                <div class="form-element">
+                    <label for="applicant">Applicant : </label>
+                    {APPLICANT}
+                </div>
+
+                <div class="form-element">
+                    <label>Department: </label>
+                    {DEPARTMENT}
+                </div>
+
+                <div class="form-element">
+                    <label for="received">Date Received : </label>
+                    <input name="received" id="received" value="{RECEIVED}" type="date" />
+                </div>
+                    <button type="submit" style="margin-left: 400px;">Save</button>
+            </form>
+
+            <div style="clear:both"></div>
+
+        <p style="font-weight: bold">Change Log</p>
+        <hr/>
+
+        <div class="modifications-wrapper" id="modifications-wrapper">
+
+<!--
+        <button data-bind='click: addLine'>Add Modification</button>
+-->
+        <p style="float:right">
+            <input type="button" value="Add Update" data-bind="click:addMod" />
+            <button data-bind='click: save'>Save Updates</button>
+        </p>
+
+        <table class="tracking-list">
+            <thead>
+            <tr>
+                <th width='20%'>Type</th>
+                <th width='20%'>Date</th>
+                <th width='50%'>Notes</th>
+                <th width='10%'> </th>
+            </tr>
+            </thead>
+            <tbody data-bind="foreach: mods">
+            <tr>
+                <td>
+                    <select data-bind="options: sampleProductCategories, optionsText: 'name', optionsCaption: 'Select Update', optionsValue: 'id', value: category">
+                    </select>
+                </td>
+                <td>
+                    <span data-bind='visible: category, text: dateAdded' />
+                </td>
+                <td>
+                    <textarea data-bind='visible: category, value: notes' rows="2" style="width: 350px;"> </textarea>
+                </td>
+                <td>
+                </td>
+            </tr>
+            </tbody>
+
+            <tbody data-bind="foreach: existingMods">
+            <tr data-bind="css : typeId ">
+                <td data-bind="text: friendlyName"> </td>
+                <td data-bind="text: dateCreated"> </td>
+                <td data-bind="text: note"> </td>
+                <td><a href='#' data-bind='click: $parent.removeMod'>Delete</a></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        </div>
+
+    </patTemplate:tmpl>
+
+    </div>
+
+    <script lang="javascript" src="/includes/hreb.js"></script>
+    <script lang="javascript" src="/includes/hreb-mod.js"></script>
+
+</patTemplate:tmpl>

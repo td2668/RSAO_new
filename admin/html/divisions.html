@@ -1,0 +1,94 @@
+<patTemplate:tmpl name="PAGE">
+	<div id="mainpage">
+
+    <patTemplate:tmpl name="view" visibility="hidden">
+    
+    <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+
+	<tr>
+		<td bgcolor="#000000">&nbsp;</td>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Name</b></td>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Dean</b></td>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Assoc. Dean</b></td>
+       
+    </tr>
+	  <patTemplate:tmpl name="viewlist">
+	  <tr>
+		  <td bgcolor='#E09731'><a style='color:white' href='divisions.php?section=update&id={DIVISION_ID}'>Update</a></td>
+		  <td bgcolor='#D7D7D9'>{DIVNAME}</td>
+		  <td bgcolor='#D7D7D9'>{DEAN}</td>
+		  <td bgcolor='#D7D7D9'>{ASSOCIATE_DEAN}</td>
+	  </tr>
+	  </patTemplate:tmpl>
+</table>
+    
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="add" visibility="hidden">
+     <form method="post" name="form1" action="divisions.php?section=view">
+        
+        <fieldset>
+            <div class="users"><label class="users">Name:</label>
+            <input type="text" name="name" maxlength="255" size="30">
+            </div>
+
+        <div class="users"><label class="users">Dean:</label>
+	        
+            {USER_OPTIONS}
+        
+        </div>
+        <div class="users"><label class="users">Assoc. Dean:</label>
+	        
+            {AD_OPTIONS}
+        
+        </div>
+        
+        
+            <div style="text-align: center"><button type="submit" name="add" value="Add">Add</button>&nbsp;&nbsp;
+                
+                &nbsp;&nbsp;
+                <button type="button" onClick="window.location='divisions.php?section=view'">Back</button>
+            </div>
+        </fieldset>
+    </form>
+        </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="update" visibility="hidden">
+    
+         <form method="post" name="form1" action="divisions.php?section=view&id={ID}">
+        
+        <fieldset>
+            <div class="users"><label class="users">Name:</label>
+            <input type="text" name="name" maxlength="255" size="30" value="{DIVNAME}">
+        </div>
+
+        <div class="users"><label class="users">Dean:</label>
+	        
+            {USER_OPTIONS}
+        
+        </div>
+        <div class="users"><label class="users">Assoc. Dean:</label>
+	        
+            {AD_OPTIONS}
+        
+        </div>
+        
+        
+            <div style="text-align: center"><button type="submit" name="update" value="Update">Update</button>&nbsp;&nbsp;
+                <button type="button" onClick="window.location='divisions.php?section=view&delete=y&id={ID}'">
+                    Delete
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" onClick="window.location='divisions.php?section=view'">Back</button>
+            </div>
+        </fieldset>
+    </form>
+
+    
+    </patTemplate:tmpl>
+            
+
+
+
+	</div>
+</patTemplate:tmpl>

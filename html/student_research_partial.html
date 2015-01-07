@@ -1,0 +1,47 @@
+<patTemplate:tmpl name="PAGE" xmlns:patTemplate="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+
+<script type='text/javascript'>
+    /* Fancy box */
+    jQuery("a#openFancyBox").fancybox();
+    jQuery("a.clickFancyBox").live('click',function() {
+        jQuery('a#openFancyBox').trigger('click');
+    });
+
+    jQuery(".clickFancyBox").fancybox({
+        'transitionIn'	:	'elastic',
+        'transitionOut'	:	'elastic',
+        'speedIn'		:	100,
+        'speedOut'		:	100,
+        'overlayShow'	:	true
+    });
+</script>
+
+    <patTemplate:tmpl name="row">
+
+        <a class='clickFancyBox' href="#sr-{ID}">
+            <div id='project-{ID}' class="sr-project">
+                <span class='sr-hasprojectlink'>{HASPROJECTLINK}</span>
+                <p class='sr-project-title-listing'>{TITLE}</p>
+                <span class="sr-project-sub1-listing">{NAME}&nbsp;{YEAR}</span>
+                <span class="sr-project-sub2-listing">{DEPARTMENT}</span>
+            </div>
+        </a>
+        <div style="display: none;">
+            <div id='sr-{ID}' class="sr-fancybox">
+                <span class="sr-project-department">{DEPARTMENT}</span>
+                <p class="sr-project-title">{TITLE}</p>
+                <p class="sr-project-name">{NAME}</p>
+                <p class="sr-project-supervisor">{SUPERVISOR}</p>
+                <div class='sr-project-abstract'>{DESCRIPTION}</div>
+                <p>{HASPROJECTLINK}{PROJECTURL}</p>
+            </div>
+        </div>
+        <br/>
+
+    </patTemplate:tmpl>
+
+    <div id="moreDiv{P}"></div>
+    <img id="loadimg{P}" src="/images/icon-loading.gif" style="display:none"/>
+    <span id='total' class='sr-pageTotal'>{TOTAL}</span>
+
+</patTemplate:tmpl>

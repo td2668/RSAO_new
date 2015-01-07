@@ -1,0 +1,318 @@
+<patTemplate:tmpl name="PAGE">
+	<div id="mainpage">
+    <patTemplate:tmpl name="view" visibility="hidden">
+		
+    	<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">	
+		  
+		  <patTemplate:tmpl name="letter">
+		  <a class='mainbottom' style='font-size:16px' href='{LETTERURL}'>{LETTER}</a> |
+		  </patTemplate:tmpl>
+
+		  <br></td></tr>
+
+          <patTemplate:tmpl name="listtitle" type="simpleCondition" requiredvars="UPDATE" varscope="viewlist">
+		  <tr>
+			  <td colspan="13"><font size='-6'>&nbsp;</font></td>
+		  </tr>
+			<tr bgcolor="#000000">
+				<td>&nbsp;</td>
+		        <td>&nbsp;</td>
+				<td><b style="color:#E1E1E1;font-size:10px">Last Name</b></td>
+				<td><b style="color:#E1E1E1;font-size:10px">First Name</b></td>
+				<td><b style="color:#E1E1E1;font-size:10px">Email</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">TSS</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">Status</b></td> 
+		        <td><b style="color:#E1E1E1;font-size:10px">Active</b></td>
+				<td><b style="color:#E1E1E1;font-size:10px">Topics</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">Browser</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">P-Short</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">P-Long </b></td> 
+		        <td><b style="color:#E1E1E1;font-size:10px">CV#</b></td>
+		        <td><b style="color:#E1E1E1;font-size:10px">Access</b></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+			</tr>
+
+            </patTemplate:tmpl>
+
+			<patTemplate:tmpl name="viewlist" type="simpleCondition" requiredvars="UPDATE">
+				<tr>
+					<td bgcolor='#093f5b'><a style='color:white' href='{UPDATE}'><b>Update</b></a></td>
+                    <td bgcolor='#093f5b'><a style='color:white' href='{LOG}'><b>Log</b></a></td>
+					<td bgcolor='{BGCOLOR}'>{LAST_NAME}</td>
+					<td bgcolor='{BGCOLOR}'>{FIRST_NAME}</td>
+					<td bgcolor='{BGCOLOR}'><font color='{REDFLAG}'>{EMAIL}</font></td>
+	                <td bgcolor='{BGCOLOR}'>{TSS}</td>
+	                <td bgcolor='{BGCOLOR}'>{EMP_STATUS}</td>
+	                <td bgcolor='{BGCOLOR}'>{ACTIVE_STATUS}</td>
+					<td bgcolor='$app'><input type='checkbox' name='events' {EVENTS} disabled /><input type='checkbox' name='deadlines' {DEADLINES} disabled /></td>
+					<td bgcolor='{BROW}' align='center'>{PICTURE}</td>
+					<td bgcolor='{P_SHORT}'>&nbsp;</td>
+					<td bgcolor='{P_EXT}'>&nbsp;</td>
+                    <td bgcolor='{BGCOLOR}'>{CV_ITEMS}</td>
+                    <td bgcolor='{BGCOLOR}'>{ACCESS}</td>
+                    <td>{BUTTON1}</td>
+                    <td><button type="button" onClick="window.location='users.php?section=view&delete=y&id={USER_ID}&section=view{FAC_ONLY}&letter={LETTER}'">Delete</button></td></tr>
+			</patTemplate:tmpl>
+
+		</table>
+
+	</patTemplate:tmpl>
+
+    <patTemplate:tmpl name="add" visibility="hidden">
+
+        <form method="post" name="form1" action="users.php?section=add" onSubmit="">
+            <fieldset class='users'>
+				<legend>Personal Info</legend>
+                <div class="users"><label class="users">First Name:</label>
+                    <input type="text" name="first_name" maxlength="255" size="30">
+                </div>
+                <div class="users"><label class="users">Last Name:</label>
+                    <input type="text"  onBlur="javascript:document.forms[0].email.value=document.forms[0].first_name.value.substr(0,1).toLowerCase() + document.forms[0].last_name.value.toLowerCase() + '@mtroyal.ca'; document.forms[0].username.value=document.forms[0].first_name.value.substr(0,1).toLowerCase() + document.forms[0].last_name.value.toLowerCase(); " name="last_name" maxlength="255" size="30" >
+
+                </div>
+                <div class="users"><label class="users">Department:</label>
+                {DEPARTMENT_LIST}
+                </div>
+                <div class="users"><label class="users" >Secondary Department:</label>
+                {DEPARTMENT2_LIST}
+                </div>
+                <div class="users"><label class="users"> Email:</label>
+                    <input type="text" name="email" maxlength="255" size="30">
+                </div>
+                <div class="users"><label class="users">Username:</label>
+	                <input type="text" name="username" maxlength="255" size="30" >
+                </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Job Info</legend>
+                <div class="users"><label class="users">Employee Type:</label>
+                    {EMP_TYPE_OPTIONS}
+                </div>
+                <div class="users"><label class="users">Title:</label>
+                    <input type="text" name="title" maxlength="255" size="30" >
+                </div>
+			    
+			  	<div class="users"><label class="users">Secondary Title:</label>
+			        <input type="text" name="secondary_title" maxlength="255" size="30">
+			  	</div>
+			    <div class="users"><label class="users">Office Location:</label>
+			        <input type="text" name="office" maxlength="30" size="30" >
+			    </div>
+			    <div class="users"><label class="users">Phone: <i>(403)123-4567</i></label>
+			        <input type="text" name="phone" maxlength="30" size="30">
+			    </div>
+			    <div class="users"><label class="users">Fax:</label>
+			        <input type="text" name="fax" maxlength="30" size="30">
+			    </div>
+			    <div class="users"><label class="users">Homepage:</label>
+			        <input type="text" name="homepage" maxlength="100" size="30">
+			    </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Descriptions</legend>
+			    <div class="users"><label class="users">User Topics (Filter)</label>
+			        {TOPIC_OPTIONS}
+			    </div>
+			    <div class="users"><label class="users">One Line:</label>
+					<textarea name="oneline" rows="1" cols="70"  ></textarea>
+			    </div>
+			    <div class="users"><label class="users">Short Profile:</label>
+			        <textarea name="profile_short" rows='3' cols="100"></textarea>
+			    </div>
+			    <div class="users"><label class="users">Long Profile:</label>
+			        <textarea name="profile_ext" rows='12' cols="100"></textarea>
+			    </div>
+			    <div class="users"><label class="users">Keywords:</label>
+			        <input type="text" name="keywords" maxlength="255" size="80">
+			    </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Prefs and Status</legend>
+			    <div class="users"><label class="users">Mail Events?:</label>
+			        <input type="checkbox" name="mail_events" value="1">
+			    </div>
+			    <div class="users"><label class="users">Mail Deadlines?:</label>
+			        <input type="checkbox" name="mail_deadlines" value="1">
+			    </div>
+			    <div class="users"><label class="users">Feature User?:</label>
+			        <input type="checkbox" name="feature" value="1">
+			    </div>
+			    <div class="users"><label class="users">Hidden?:</label>
+			        <input type="checkbox" name="hidden" value="1">
+			    </div>
+			    <div class="users"><label class="users">Disabled?:</label>
+			        <input type="checkbox" name="disabled" value="1">
+			    </div>
+			    <div class="users"><label class="users">Status:</label>
+			        <select name="emp_status">
+			        {EMP_STATUS_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Start Date</label>
+			        <input type="text" name="start_date" size="6"> <i>YYYY</i>
+			    </div>
+			    <div class="users"><label class="users">Employee #:</label>
+			    	<input type="text" name="emp_num" size="12">
+			    </div>
+			    <div class="users"><label class="users">Active Status</label>
+			    	<input type="text" name="active_status" size=1 > <i>(A=Active, L=Leave)</i>
+			    </div>
+
+				<div style="text-align: center"><button type="submit" name="add" value="Add">Add</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='users.php?section=view&delete=y&id={ID}&section=view{FAC_ONLY}&letter={LETTER}'">Delete</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='users.php?section=view{FAC_ONLY}&letter={LETTER}'">Back</button>&nbsp;&nbsp;
+			            
+				</div>
+            </form>
+    </patTemplate:tmpl>
+
+
+    <patTemplate:tmpl name="update" visibility="hidden">
+    	<form method="post" name="form1" action="users.php?section=update&id={ID}" onSubmit="return">
+			
+			<input type="hidden" name="old_username" maxlength="255" size="30" value="{USERNAME}">
+			<input type="hidden" name="letter" value="{LETTER}">
+			<input type="hidden" name="fac_only" value="{FAC_ONLY}">
+				
+			<fieldset class='users'>
+				<legend>Personal Info</legend>
+                <div class="users"><label class="users">First Name:</label>
+                    <input type="text" name="first_name" maxlength="255" size="30" value="{FIRST_NAME}">
+                </div>
+                <div class="users"><label class="users">Last Name:</label>
+                    <input type="text"  onBlur="javascript:document.forms[0].email.value=document.forms[0].first_name.value.substr(0,1).toLowerCase() + document.forms[0].last_name.value.toLowerCase() + '@mtroyal.ca'; document.forms[0].username.value=document.forms[0].first_name.value.substr(0,1).toLowerCase() + document.forms[0].last_name.value.toLowerCase(); " name="last_name" maxlength="255" size="30" value="{LAST_NAME}" >
+
+                </div>
+                <div class="users"><label class="users">Department:</label>
+                {DEPARTMENT_LIST}
+                </div>
+                <div class="users"><label class="users" >Secondary Department:</label>
+                {DEPARTMENT2_LIST}
+                </div>
+                <div class="users"><label class="users"> Email:</label>
+                    <input type="text" name="email" maxlength="255" size="30" value="{EMAIL}">
+                </div>
+                <div class="users"><label class="users">Username:</label>
+	                <input type="text" name="username" maxlength="255" size="30" value="{USERNAME}">
+                </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Job Info</legend>
+                <div class="users"><label class="users">Employee Type:</label>
+                    {EMP_TYPE_OPTIONS}
+                </div>
+                <div class="users"><label class="users">Title:</label>
+                    <input type="text" name="title" maxlength="255" size="30" value="{TITLE}">
+                </div>
+			    
+			  	<div class="users"><label class="users">Secondary Title:</label>
+			        <input type="text" name="secondary_title" maxlength="255" size="30" value="{SECONDARY_TITLE}">
+			  	</div>
+			    <div class="users"><label class="users">Office Location:</label>
+			        <input type="text" name="office" maxlength="30" size="30" value="{OFFICE}">
+			    </div>
+			    <div class="users"><label class="users">Phone: <i>(403)123-4567</i></label>
+			        <input type="text" name="phone" maxlength="30" size="30" value="{PHONE}">
+			    </div>
+			    <div class="users"><label class="users">Fax:</label>
+			        <input type="text" name="fax" maxlength="30" size="30" value="{FAX}">
+			    </div>
+			    <div class="users"><label class="users">Homepage:</label>
+			        <input type="text" name="homepage" maxlength="100" size="30" value="{HOMEPAGE}">
+			    </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Descriptions</legend>
+			    <div class="users"><label class="users">User Topics (Filter)</label>
+			        {TOPIC_OPTIONS}
+			    </div>
+			    <div class="users"><label class="users">One Line:</label>
+					<textarea name="oneline" rows="1" cols="70"  >{ONELINE}</textarea>
+			    </div>
+			    <div class="users"><label class="users">Short Profile:</label>
+			        <textarea name="profile_short" rows='3' cols="100">{PROFILE_SHORT}</textarea>
+			    </div>
+			    <div class="users"><label class="users">Long Profile:</label>
+			        <textarea name="profile_ext" rows='12' cols="100">{PROFILE_EXT}</textarea>
+			    </div>
+			    <div class="users"><label class="users">Keywords:</label>
+			        <input type="text" name="keywords" maxlength="255" size="80" value="{KEYWORDS}">
+			    </div>
+			</fieldset>
+			<fieldset class="users">
+				<legend>Prefs and Status</legend>
+			    <div class="users"><label class="users">Mail Events?:</label>
+			        <input type="checkbox" name="mail_events" value="1" {MAIL_EVENTS}>
+			    </div>
+			    <div class="users"><label class="users">Mail Deadlines?:</label>
+			        <input type="checkbox" name="mail_deadlines" value="1" {MAIL_DEADLINES}>
+			    </div>
+			    <div class="users"><label class="users">Feature User?:</label>
+			        <input type="checkbox" name="feature" value="1" {FEATURE}>
+			    </div>
+			    <div class="users"><label class="users">Hidden?:</label>
+			        <input type="checkbox" name="hidden" value="1" {HIDDEN}>
+			    </div>
+			    <div class="users"><label class="users">Disabled?:</label>
+			        <input type="checkbox" name="disabled" value="1" {DISABLED}>
+			    </div>
+			    <div class="users"><label class="users">Status:</label>
+			        <select name="emp_status">
+			        {EMP_STATUS_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Start Date</label>
+			        <input type="text" name="start_date" size="6" value="{START_DATE}"> <i>YYYY</i>
+			    </div>
+			    <div class="users"><label class="users">Employee #:</label>
+			    	<input type="text" name="emp_num" size="12" value="{EMP_NUM}">
+			    </div>
+			    <div class="users"><label class="users">Active Status</label>
+			    	<input type="text" name="active_status" size=1 value="{ACTIVE_STATUS}"> <i>(A=Active, L=Leave)</i>
+			    </div>
+
+				<div style="text-align: center"><button type="submit" name="update" value="Update">Update</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='users.php?section=view&delete=y&id={ID}&section=view{FAC_ONLY}&letter={LETTER}'">Delete</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='users.php?section=view{FAC_ONLY}&letter={LETTER}'">Back</button>&nbsp;&nbsp;
+			            {PICTURE_BUTTON}
+				</div>
+
+                
+                 <patTemplate:tmpl name="viewcat" visibility="hidden">
+                 <table><tr>
+                    <td colspan="2"><hr>
+                    </td>
+                </tr>
+                 <tr><td colspan="2">
+                    <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+                     <tr bgcolor="#000000">
+                        <td>&nbsp;</td>
+                        <td><b><a href="{DATEURL}" style="color:#E1E1E1;font-size:10px">Date</a></b></td>
+                        <patTemplate:tmpl name="cond1" type="simplecondition" requiredvars="cat" varscope="viewcat">
+                            <td><b><b style="color:#E1E1E1;font-size:10px">Category</b></td>
+                        </patTemplate:tmpl>
+                        <td><b style="color:#E1E1E1;font-size:10px">Comment</b></td>
+                     </tr>
+                     <patTemplate:tmpl name="catlist" varscope="viewcat">
+                        <tr class='odd' onclick="javascript: window.location='userlog.php?section=edit&log_id={LOG_ID}';">
+                            <td ></td>
+                            <td >{DATE}</td>
+                        <patTemplate:tmpl name="cond2" type="simplecondition" requiredvars="cat" varscope="catlist">
+                        <td>{CATEGORY}</td>
+                        </patTemplate:tmpl>
+                        <td >{CONTENTS}</td>
+                     </tr>
+                     </td></tr>
+                    </patTemplate:tmpl>
+
+        </table>
+    </patTemplate:tmpl>
+
+			</form>
+			</table>
+    </patTemplate:tmpl>
+
+    
+ </div>
+</patTemplate:tmpl>

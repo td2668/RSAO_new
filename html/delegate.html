@@ -1,0 +1,25 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html"/>
+    <patTemplate:tmpl name="PAGE_ALL">
+
+        <h1>Assign a Delegate</h1>
+
+        <p>This page allows you to transfer your authority to another person, who will then be able to approve tracking forms or annual reports during a Dean's absence.</p>
+        <br/>
+
+        <p>After you have transferred authority, the current Dean will no longer be able to approve tracking forms or annual reports.  <b>The delegate will need to login and assign authority back to the Dean when appropriate using this page.</b>  Alternatively, you can contact the Research Office. </p>
+        <br/>
+
+    <form name="delegate_form" action="delegate.php" method="post">
+    <patTemplate:tmpl name="delegate" visibility="visible">
+        <label for='delegate'>Delegate : </label>
+        <select name='delegateId' id='delegateId' onChange="if(confirm('Are you sure you with to delegate to this person?')) { document.forms['delegate_form'].submit();; };">
+            <option value='0'>------- Select Delegate -------</option>
+            {SELECT}
+        </select>
+    </patTemplate:tmpl>
+    </form>
+
+        <patTemplate:tmpl src="footer.html"/>
+    </patTemplate:tmpl>
+</patTemplate:tmpl>

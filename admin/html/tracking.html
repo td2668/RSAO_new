@@ -1,0 +1,503 @@
+<patTemplate:tmpl name="PAGE">
+
+<script language="Javascript" type="text/javascript">
+<!--
+function nowDate()
+{
+	var now=new Date();
+	var formdate=now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate();
+	return formdate;
+}
+
+function nowDateTime()
+{
+	var now=new Date();
+	var formdate=now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+	return formdate;
+}
+
+
+function submitform()
+{
+  document.edit.submit();
+}
+
+
+function CalculateTotal(frm) {
+    var c_total = 0
+    var i_total = 0
+    for (var i=0; i < frm.elements.length; ++i) {
+        form_field = frm.elements[i]
+        form_name = form_field.name
+        // Is it a C field?
+        if (form_name.substring(0,2) == "c_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 c_total += parseFloat(form_field.value)  
+            }         
+        }
+        if (form_name.substring(0,2) == "i_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 i_total += parseFloat(form_field.value )    
+            }      
+        }
+    }
+    frm.TOTALC.value = c_total
+    frm.TOTALI.value = i_total
+}
+
+function round_decimals(original_number, decimals) {
+    var result1 = original_number * Math.pow(10, decimals)
+    var result2 = Math.round(result1)
+    var result3 = result2 / Math.pow(10, decimals)
+    return pad_with_zeros(result3, decimals)
+}
+function pad_with_zeros(rounded_value, decimal_places) {
+    var value_string = rounded_value.toString()
+    var decimal_location = value_string.indexOf(".")
+    if (decimal_location == -1) {     
+        // If no, then all decimal places will be padded with 0s
+        decimal_part_length = 0
+        // If decimal_places is greater than zero, tack on a decimal point
+        value_string += decimal_places > 0 ? "." : ""
+    }
+    else {
+        // If yes, then only the extra decimal places will be padded with 0s
+        decimal_part_length = value_string.length - decimal_location - 1
+    }    
+    // Calculate the number of decimal places that need to be padded with 0s
+    var pad_total = decimal_places - decimal_part_length   
+    if (pad_total > 0) {       
+        // Pad the string with 0s
+        for (var counter = 1; counter <= pad_total; counter++) 
+            value_string += "0"
+        }
+    return value_string
+}
+
+
+//-->
+</script>
+
+<patTemplate:tmpl name="list" visibility="hidden">
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+    <tr>
+        <td colspan="14" class="successhead">Viewing: Tracking Forms</td>
+    </tr>
+    <tr height="10"><td colspan='14' height="14" class="success">{SUCCESS}</td></tr>
+    <tr><td colspan="6">&nbsp;</td></tr>
+<tr bgcolor="#000000">
+    <td><a href='tracking.php?type={TYPE}&sort=form_tracking_id&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">ID</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=tracking_name&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Title</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=owner&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Created By</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=department_name&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Department</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=created&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Created</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=modified&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Modified</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Status</b></td>
+    <td><a href='tracking.php?type={TYPE}&sort=hreb_status&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">HREB Status</b></a></td>
+    <td><a href='tracking.php?type={TYPE}&sort=dean_status&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Dean Status</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">COI</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Form</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Files</b></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+<patTemplate:tmpl name="mainlist">
+
+    <tr>
+        <td>{FORM_TRACKING_ID}</td>
+        <td>{TRACKING_NAME}</td>
+        <td>{OWNER}</td>
+        <td>{DEPARTMENT_NAME}</td>
+        <td>{CREATED}</td>
+        <td>{MODIFIED}</td>
+        <td>{STATUS}</td>
+        <td>{HREB_STATUS}</td>
+        <td>{DEAN_STATUS}</td>
+        <td bgcolor={COICOLOUR} align="center">{COI}</td>
+        <td><button type='button' class='pdf' onClick='window.location="tracking.php?printpdf&form_tracking_id={FORM_TRACKING_ID}";'><img src='/images/icon-sm-pdf2.gif'></button>
+        <td><button type='button' onClick='window.location="tracking.php?section=files&id={FORM_TRACKING_ID}";' style="display:{SHOWFILES}">Files ({})</button></td>
+<!--
+        <td><button type='button' onClick='window.location="tracking.php?section=edit&id={FORM_TRACKING_ID}";'>Edit</button></td>
+-->
+        <td>{ORS_STATUS}</td>
+        <td>{ARCHIVE}</td>
+    </tr>
+
+</patTemplate:tmpl>
+</table>
+
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="files" visibility="hidden">
+    <h1>Files : Tracking ID = {DETAILS}</h1>
+    <button type='button' title='Download All'
+            onClick='javascript:window.location="download.php?type=all&form_tracking_id={TRACKING_ID}&userid={USER_ID}"'>
+        Download All Files</button>
+    <br/><br/>
+        <table cellspacing="4">
+            <th>Filename</th>
+            <th>Size</th>
+            <patTemplate:tmpl name="fileslist">
+                <tr>
+                    <td>{NAME}</td>
+                    <td>{SIZE} bytes</td>
+                    <td><button type='button' title='Download'
+                                 onClick='javascript:window.location="download.php?type=single&form_tracking_id={TRACKING_ID}&userid={USER_ID}&filename={URLFILENAME}"'>
+                        Download</button>
+                    </td>
+                    <td><button type='button' title='Delete'
+                            onClick='javascript: if(confirm("Really delete?")) window.location="tracking.php?section=deletefile&form_tracking_id={TRACKING_ID}&userid={USER_ID}&filename={URLFILENAME}"'>
+                       Delete</button>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+        </table>
+</patTemplate:tmpl>
+
+
+<patTemplate:tmpl name="edit" visibility="hidden">
+    <form name="edit" action="tracking.php?update"/>
+    <input type="hidden" name="id" value="{FORM_TRACKING_ID}"/>
+    <input type="hidden" name="saveme" value=""/>
+    <input type="hidden" name="saveagency" value=""/>
+    
+    <table cellspacing="4">
+     <tr>
+        <td colspan="6" class="successhead">Edit: Tracking Forms</td>
+    </tr>
+    <tr height="10"><td colspan='7' height="14" class="success">{SUCCESS}</td></tr>
+    <tr><td colspan="3">&nbsp;</td></tr>
+   
+   <tr>
+   		<td width='150'>Name</td>
+   		<td colspan="2"><input name="tracking_name" type="text" size="80" value="{TRACKING_NAME}"/></td>
+   </tr> 
+    
+   <tr>
+        <td width='150'>Project Link</td>
+        <td colspan="2"><select name="project_id"><option value='0'></option>
+        <patTemplate:tmpl name="project_options">
+        	<option value="{ID}" {SEL}>{NAME}</option>
+        </patTemplate:tmpl>
+        </select></td>
+   </tr>
+   
+   <tr>
+   <td>New Project</td>
+   <td><input type="text" name="newproject" value="{NEWPROJECT}" /></td>
+   </tr>
+   
+   <tr>
+   <td valign="top">Synopsis</td>
+   <td><textarea name="synopsis"  rows="6" cols="100">{SYNOPSIS}</textarea></td>
+   </tr>
+   
+<!--      <tr>
+        <td>Date Received</td>
+        <td><input type="text" id="date_received" name="date_received" value="{DATE_RECEIVED}" maxlength="10" size="10" > &nbsp;
+        <img src='/admin/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "date_received", "chooserSpan", 2011, 2020, "Y-m-d", false);'>
+        <div id='chooserSpan' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+		</div> &nbsp;
+		<button type="button" onClick="javascript: date_received.value=nowDate();">Now</button>
+		<i>Date it arrived</i></td>
+    </tr>-->
+    <tr>
+        <td>Created</td>
+        <td>{CREATED}</td>
+    </tr>
+    <tr>
+        <td>Last Modified</td>
+        <td>{MODIFIED}</td>
+    </tr>
+   <tr>
+        <td width='150'>Owner</td>
+        <td colspan="1"><select name='user_id'>
+        <option value="0">&nbsp;</option>
+        <patTemplate:tmpl name="owner_options">	
+<option value="{USER_ID}" {SEL}>{LAST_NAME}, {FIRST_NAME}</option>
+        </patTemplate:tmpl>
+        </select>
+        </td>
+   </tr>
+   <tr><td>Owner is PI?</td>
+   <td><input type="checkbox" name="pi_id" </td></tr>
+   
+   <tr>
+        <td width='150'>PI (Internal)</td>
+        <td colspan="1"><select name='pi_id'>
+        <option value="0">&nbsp;</option>
+        <patTemplate:tmpl name="pi_options">
+<option value="{USER_ID}" {SEL}>{LAST_NAME}, {FIRST_NAME}</option>
+        </patTemplate:tmpl>
+        </select>
+        </td>
+   </tr>
+   
+   
+   <tr><td colspan="3"><hr \></td></tr>
+   <tr><td colspan="2"><b>Alternative PI</b> (if not in above list)</td>
+        <tr>
+        <td width='150'>Name (last, first)</td>
+        <td colspan="1"><input type="text" size="40" value="{LASTNAME}" name="lastname" \>&nbsp;,&nbsp;<input type="text" size="40" value="{FIRSTNAME}" name="firstname" \></td>      
+   </tr>
+   <tr>
+        <td width='150'>Phone</td>
+        <td colspan="1"><input type="text" size="40" value="{PHONE}" name="phone" \></td>
+        
+   </tr>
+   <tr>
+        <td width='150'>Email</td>
+        <td colspan="1"><input type="text" size="40" value="{EMAIL}" name="email" \></td>
+        
+   </tr>
+   <tr>
+        <td width='150'>Position</td>
+        <td colspan="1"><input type="text" size="40" value="{POSITION}" name="position" \></td>
+   </tr>
+    <tr>
+        <td width='150'>Address 1</td>
+        <td colspan="1"><input type="text" size="40" name="address1" value="{ADDRESS1}" \></td>
+   </tr>
+   <tr>
+        <td width='150'>Address 2</td>
+        <td colspan="1"><input type="text" size="40" name="address2" value="{ADDRESS2}" \></td>
+   </tr>
+   <tr>
+        <td width='150'>Address 3</td>
+        <td colspan="1"><input type="text" size="40" name="address3" value="{ADDRESS3}"\></td>
+
+   </tr>
+      <tr><td colspan="3"><hr \></td></tr>
+      
+    <tr><td>Co-Researchers</td><td>
+                <table>
+                 <patTemplate:tmpl name="coresearchers">
+                <tr><td>{NAME}</td><td>{DELETE}</td></tr>
+                </patTemplate:tmpl>
+                </table>
+                </td></tr>
+                
+                
+                <tr><td>Add a Co-Researcher:</td><td><select name='add_co' onchange="submitform();"><option value='0'>&nbsp;</option>{CO_OPTIONS} </select></td></tr>
+   
+   
+      
+   <tr>
+        <td width='150' valign="top">Other Co-Researchers</td>
+        <td colspan="2"><textarea cols="80" rows='2' name="coresearchers">{CORESEARCHERS}</textarea></td>
+   </tr>
+	<tr>
+		<td>Co-Students</td>
+		<td><input type="checkbox" name="costudents" {COSTUDENTS} /></td>
+	</tr>
+	<tr><td colspan="3"><hr /></td></tr>
+	<tr>
+		<td>Funding?</td>
+		<td><input type="checkbox" name="funding" {FUNDING} /></td>
+	</tr>
+	<tr>
+		<td>Agency</td>
+		<td><select name="agency_id" onchange="document.edit.saveme.value='true';submitform();">
+			<option value="0"></option>
+			<patTemplate:tmpl name="agency">
+				<option value="{ID}" {SEL}>{NAME}</option>
+			</patTemplate:tmpl>
+		</select>&nbsp;&nbsp;&nbsp;
+		Program: &nbsp;<select name="program_id" >
+			<option value="0"></option>
+			<patTemplate:tmpl name="program">
+				<option value="{ID}" {SEL}>{NAME}</option>
+			</patTemplate:tmpl>
+		</select></td>
+	</tr>
+	<tr>
+		<td>Other Agency:</td>
+		<td><input type="text" size='40' name="agency_name" value="{AGENCY_NAME}"  />
+		&nbsp;&nbsp;&nbsp;
+		Other Program: <input size="40" type="text" name="program_name">
+		<button onclick="document.edit.saveagency.value='true'; document.edit.saveme.value='true';	document.edit.submit();">Save to DB</button><br>
+		<i>(If you only add a program it will be linked to the Agency in the drop-down)</i>
+		</td>
+	</tr>
+	
+	<tr><td colspan="2">
+	
+	 
+               <table cellpadding="5">  
+                
+                <tr><td colspan="3">Budget Summary:</td></tr>
+                <tr><td colspan="3">
+                <table border="0"><tr><th width='10'>&nbsp;</th><th>&nbsp;</th><th>Cash</th><th>In-Kind</th><th>&nbsp;</th><th>&nbsp;</th><th>Cash</th><th>In-Kind</th></tr>
+                <tr><td colspan="2" class="budget-text">Stipends to Investigators</td><td class="budget-amount"><input type="text" name="c_stipends" size="8" value="{C_STIPENDS}" onChange="CalculateTotal(this.form)" tabindex="5"/></td><td class="budget-amount"><input type="text" name="i_stipends" size="8" tabindex="6" value="{I_STIPENDS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount" width='40'>&nbsp;</td>
+                <td class="budget-text">Benefits</td><td class="budget-amount"><input type="text" tabindex="18" name="c_benefits" size="8" value="{C_BENEFITS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="19" name="i_benefits" size="8" value="{I_BENEFITS}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td colspan="2" class="budget-text">Secretarial/technical personnel</td><td class="budget-amount"><input type="text" name="c_persons" size="8" tabindex="7" value="{C_PERSONS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" name="i_persons" tabindex="8" size="8" value="{I_PERSONS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">Equipment</td><td class="budget-amount"><input type="text" tabindex="20" name="c_equipment" size="8" value="{C_EQUIPMENT}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="21" name="i_equipment" size="8" value="{I_EQUIPMENT}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td colspan="2" class="budget-text">Assistantships</td><td colspan="2" class="budget-amount"></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">Supplies</td><td class="budget-amount"><input type="text" tabindex="22" name="c_supplies" size="8" value="{C_SUPPLIES}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="23" name="i_supplies" size="8" value="{I_SUPPLIES}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td>&nbsp;</td><td class="budget-text">Undergrad Students</td><td class="budget-amount"><input type="text" name="c_ustudents" tabindex="9" size="8" value="{C_USTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" name="i_ustudents" tabindex="10" size="8" value="{I_USTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">Travel</td><td class="budget-amount"><input type="text" tabindex="24" name="c_travel" size="8" value="{C_TRAVEL}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="25" name="i_travel" size="8" value="{I_TRAVEL}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td>&nbsp;</td><td class="budget-text">Grad Students/Post-Docs</td><td class="budget-amount"><input type="text" tabindex="11" name="c_gstudents" size="8" value="{C_GSTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="12" name="i_gstudents" size="8" value="{I_GSTUDENTS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">IT Services</td><td class="budget-amount"><input type="text" tabindex="26" name="c_comp" size="8" value="{C_COMP}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="27" name="i_comp" size="8" value="{I_COMP}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td>&nbsp;</td><td class="budget-text">Other Research Assistants</td><td class="budget-amount"><input type="text" tabindex="13" name="c_ras" size="8" value="{C_RAS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="14" name="i_ras" size="8" value="{I_RAS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">Overhead/Indirect<br>Costs Recovery</td><td class="budget-amount"><input type="text" tabindex="28" name="c_oh" size="8" value="{C_OH}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="29" name="i_oh" size="8" value="{I_OH}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td>&nbsp;</td><td class="budget-text">Other</td><td class="budget-amount"><input type="text" name="c_others" tabindex="15" size="8" value="{C_OTHERS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="16" name="i_others" size="8" value="{I_OTHERS}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount">&nbsp;</td>
+                <td class="budget-text">Space or Facilities</td><td class="budget-amount"><input type="text" tabindex="30" name="c_space" size="8" value="{C_SPACE}" onChange="CalculateTotal(this.form)"/></td><td class="budget-amount"><input type="text" tabindex="31" name="i_space" size="8" value="{I_SPACE}" onChange="CalculateTotal(this.form)"/></td></tr>
+                
+                <tr><td>&nbsp;</td><td class="budget-text">(stipulate)</td><td colspan="6" class="budget-amount"><input type="text" tabindex="17" name="others_text" size="70" value="{OTHERS_TEXT}"/></td></tr>
+                </table>
+                </td></tr>
+                <tr><td>Calculated Totals</td><td>Cash: <input type="text" name="TOTALC" readonly="true" size="10"/> In-Kind: <input type="text" name="TOTALI" readonly="true" size="10"/></td><td>&nbsp;</td></tr>
+                <tr><td>Confirmed? </td><td><input type="checkbox" tabindex="32" name="funding_confirmed" {FUNDING_CONFIRMED} /></td><td>&nbsp;</td></tr>
+                <tr><td>Requested $: </td><td><input type="text" tabindex="33" size="12" name="requested" value="{REQUESTED}" /></td><td>&nbsp;</td></tr>
+                <tr><td>Awarded $: </td><td><input type="text" tabindex="34" size="12" name="received" value="{RECEIVED}" /></td><td>&nbsp;</td></tr>
+                
+                <script type="text/javascript">CalculateTotal(document.edit)</script>
+               
+                
+            </table>
+
+	
+	</td></tr>
+	<tr><td colspan="3"><hr \></td></tr>
+	<tr>
+		<td valign="top">Equipment</td>
+		<td valign="top"><input type="checkbox" name="equipment_flag" {EQUIPMENT_FLAG} /> <textarea name="equipment" role="6" cols="100">{EQUIPMENT}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Space</td>
+		<td valign="top"><input type="checkbox" name="space_flag" {SPACE_FLAG} /> <textarea name="space" role="6" cols="100">{SPACE}</textarea></td>
+	</tr>
+
+	<tr>
+		<td valign="top">Commitments</td>
+		<td valign="top"><input style="align: top;" type="checkbox" name="commitments_flag" {COMMITMENTS_FLAG} /> <textarea name="commitments" role="6" cols="100">{COMMITMENTS}</textarea></td>
+	</tr>  
+	
+	<tr>
+		<td>Employment?</td>
+		<td>Anyone? <input type="checkbox" name="employ_flag" {EMPLOY_FLAG} />&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Students? <input type="checkbox" name="emp_students" {EMP_STUDENTS} /> &nbsp; &nbsp; R.A.s? <input  type="checkbox" name="emp_ras" {EMP_RAS} />
+		&nbsp; &nbsp; Consultants? <input type="checkbox" name="emp_consultants" {EMP_CONSULTANTS} /></td>
+	</tr>
+	
+	<tr><td>Location:</td>
+	<td>MRU? <input type="checkbox" name="loc_mru" {LOC_MRU} />&nbsp; &nbsp; Canada <input type="checkbox" name="loc_canada" {LOC_CANADA} />
+	&nbsp;&nbsp; International <input type="checkbox" name="loc_international" {LOC_INTERNATIONAL} />
+	&nbsp; &nbsp; Where? <input type="text" size="40" name="where" value="{WHERE}" /></td>
+	</tr>
+	
+	<tr>
+		<td>Compliance:</td>
+		<td>Human Behavioural: <input type="checkbox" name="human_b" {HUMAN_B} />
+		&nbsp;&nbsp;&nbsp;Human Health: <input type="checkbox" name="human_h" {HUMAN_H} />
+		&nbsp;&nbsp;&nbsp;Animal Subjects: <input type="checkbox" name="animal" {ANIMAL} />
+		&nbsp;&nbsp;&nbsp;Biohazards: <input type="checkbox" name="biohaz" {BIOHAZ} /></td>
+	</tr>
+	
+	<tr>
+		<td>Tracking Options:</td>
+		<td><select name="trackoptions">
+		<option value="a" {SEL_A}>No Attachments</option>
+		<option value="b" {SEL_B}>Electronic Only</option>
+		<option value="c" {SEL_C}>Paper</option>
+		</select></td>
+	</tr>
+	
+	<tr>
+		<td>Status:</td>
+		<td><select name="status">
+			<option value="0" {SEL_0}>In Prep</option>
+			<option value="1" {SEL_1}>Submitted</option>
+			<option value="2" {SEL_2}>Completed</option>
+		</select></td>
+	</tr>
+	<tr><td colspan="3"><hr \></td></tr>
+	<tr><td valign="top">COIs</td>
+		<td>
+		<patTemplate:tmpl name="coi" visibility="hidden">
+			<table>
+			<tr><td><b>Declaration For:</b> {LAST_NAME}, {FIRST_NAME} {PI}</td></tr>
+			<tr><td><b>Declarations:</b><br>{DECL}</td></tr>
+			{RELATIONSHIP}
+			{SITUATION}
+			</table>
+			<br><br>
+		</patTemplate:tmpl>
+		<patTemplate:tmpl name="nocoi" visibility="hidden">
+		<b>No Declarations on File</b>
+		</patTemplate:tmpl>
+		</td>
+	</tr>
+	
+	<tr><td colspan="3"><hr \></td></tr>
+	
+	
+	<tr>
+		<td>Dean Signature:</td>
+		<td>Signed: <input type="checkbox" name="dean_sig" {DEAN_SIG} />&nbsp;&nbsp;&nbsp;By: 
+		<select name="dean_id">
+		<option value='0'></option>
+		<patTemplate:tmpl name="dean_sig">
+<option value="{USER_ID}" {SEL}>{LAST_NAME}, {FIRST_NAME}</option>
+		</patTemplate:tmpl>
+		</select>
+		&nbsp;&nbsp;Date: <input type="text" id="dean_date" name="dean_date" value="{DEAN_DATE}" size="19" /> <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "dean_date", "chooserSpan3", 2011, 2020, "Y-m-d", false);'>
+        <div id='chooserSpan3' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+		</div>&nbsp;
+		<button type="button" onClick="javascript: dean_date.value=nowDateTime();">Now</button></td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Dean Comments:</td>
+		<td><textarea name="dean_comments" rows="6" cols="100">{DEAN_COMMENTS}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td>ORS Signature:</td>
+		<td>Signed: <input type="checkbox" name="dean_sig" {ORS_SIG} />&nbsp;&nbsp;&nbsp;By: 
+		<select name="ors_id">
+		<option value='0'></option>
+		<patTemplate:tmpl name="ors_sig">
+<option value="{USER_ID}" {SEL}>{LAST_NAME}, {FIRST_NAME}</option>
+		</patTemplate:tmpl>
+		</select>
+		&nbsp;&nbsp;Date: <input type="text" name="ors_date" id="ors_date" value="{ORS_DATE}" size="19" /> <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "ors_date", "chooserSpan2", 2011, 2020, "Y-m-d", false);'>
+        <div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+		</div>&nbsp;
+		<button type="button" onClick="javascript: ors_date.value=nowDateTime();">Now</button></td>
+	</tr>
+
+	<tr>
+		<td valign="top">ORS Comments:</td>
+		<td><textarea name="ors_comments" rows="6" cols="100">{ORS_COMMENTS}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td valign="top">Documents:</td>
+		<td><textarea name="documents" rows="6" cols="100">{DOCUMENTS}</textarea></td>
+	</tr>
+	
+	<tr>
+		<td>Agreement:</td>
+		<td><input type="checkbox" name="iagree" {IAGREE} /></td>
+	</tr>
+    
+       
+   <tr><td colspan="4">&nbsp;</td></tr>
+   <tr><td width='150'><button type="submit" name="update" value="update">Update</button> &nbsp;&nbsp;<button style='background-color: red;' type="button" name="Delete" value="delete" onClick="javascript: if(confirm('Really Delete?')) window.location='tracking.php?delete&id={FORMS_TRACKING_ID}';" >Delete</button></td></tr>
+   
+   
+   </table>
+    </form>
+    
+    
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

@@ -1,0 +1,54 @@
+
+<form method="post" name="form1" action="" enctype="multipart/form-data">
+<table>
+	<tr>
+		<td colspan="6"  class="successhead">Associate: Pictures</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+	  <td align="center">&nbsp;</td>
+	  <td align="center">&nbsp;</td>
+    </tr>
+	<tr>
+		<td align="center">Deadlines</td>
+		    <td align="center">News</td>
+	</tr>
+    <tr>
+		<td align="center">
+			<select name="deadlines[]" multiple size="8">
+				~!deadlines~
+			</select></td>
+<td align="center">
+            <select name="news[]" multiple size="8">
+                ~!news~
+            </select></td>
+	</tr>
+>
+
+		<td align="center">Projects</td>
+		<td align="center">Users</td>
+		
+	</tr>
+	<tr>
+			<td align="center">
+			<select name="projects[]" multiple size="8">
+				~!projects~
+			</select></td>
+		<td align="center">
+			<select name="users[]" multiple size="8">
+				~!users~
+			</select></td>
+	</tr>
+	<tr>
+		<td colspan="6">
+			<table cellspacing="7">
+				<tr>~!pictures~</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="6" align="center"><input type="submit" name="add" value="Associate">&nbsp;&nbsp;
+			<button onClick="window.location='pictures.php?section=view'">Back</button></td>
+	</tr>
+</form>
+</table>

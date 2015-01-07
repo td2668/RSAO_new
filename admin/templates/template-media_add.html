@@ -1,0 +1,94 @@
+<script type="text/javascript" src="/js/jquery-ui-1.7.2.widgets.min.js"></script>
+<link href="/css/jquery/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet">
+<style type="text/css">
+    .textarea1 {width:600px; height:100px;}
+</style>
+<script type="text/javascript">
+    $(function() {
+        $('#media_date').datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: true,
+            gotoCurrent: true
+        });
+
+    });
+</script>
+
+<form method="post" name="form1" action="" enctype="multipart/form-data" style="vertical-align:top;">
+<input type="hidden" name="form_action" value="add">
+<table width="900">
+    <tr>
+        <td width="1%"><img src="/images/spacer.gif" width="200" height="1" /></td>
+        <td width="99%"><img src="/images/spacer.gif" width="600" height="1" /></td>
+    </tr>
+    <tr>
+        <td colspan="2"  class="successhead">Add: Media</td>
+    </tr>
+    <tr height="10"><td colspan="2" height="14" class="success"> ~!success~</td></tr>    <tr>
+        <td width="40%">Title / Caption:</td>
+        <td><input type="text" size="80" maxlength="255" name="title"></td>
+    </tr>
+    <tr>
+        <td width="40%">Type:</td>
+        <td><input type="text" size="80" maxlength="255" name="media_type"></td>
+    </tr>
+    <tr>
+        <td width="40%">Date:</td>
+        <td><input type="text" size="80" maxlength="255" id="media_date" name="media_date"></td>
+    </tr>
+    <tr>
+        <td width="40%">Image:</td>
+        <td><input type="file" name="original_image_name" size="80"></td>
+    </tr>
+    <tr><td colspan="2"><hr width="100%" size="1" noshade /></td></tr>
+    <tr>
+        <td width="40%">Media:</td>
+        <td>
+            <p>There are three ways to include media in the database.  The preferred method for all short media clips is to
+            convert the media to Flash and upload the .flv file.  Otherwise, the embed code can be used for media that is
+            available via 'embed' from sites like Youtube, Vimeo, etc. or a link to the external media or page can also be provided
+            as a last resort.</p>
+            <h4>Upload File (Maximum size of file allowed for this server is: ~!maxfilesize~)</h4>
+            <input type="file" name="original_movie_name" size="80">
+            <h4>Embed Code</h4>
+            <textarea name="embed_code" class="textarea1"></textarea>
+            <h4>External Link</h4>
+            <input type="text" name="external_link" size="80" maxlength="255">
+        </td>
+    </tr>
+    <tr><td colspan="2"><hr width="100%" size="1" noshade /></td></tr>
+    <tr>
+        <td width="40%">Soundtrack (optional):</td>
+        <td><input type="file" name="original_soundtrack_name" size="80"></td>
+    </tr>
+    <tr>
+        <td width="40%">Synopsis:</td>
+        <td><textarea name="synopsis" class="textarea1" style="height:75px;"></textarea></td>
+    </tr>
+    <tr>
+        <td width="40%">Description:</td>
+        <td><textarea name="description" class="textarea1" style="height:200px;"></textarea></td>
+    </tr>
+    <tr>
+        <td width="40%">Feature?</td>
+        <td><input type="checkbox" name="feature" value="yes"     >
+            Checking this box will allow this media clip to be displayed in the 'featured' media sections on the website.
+        </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+        <td width="40%">Attachments (optional):</td>
+        <td><input type="file" name="original_attachment_name[]" size="80"><br />
+        <input type="file" name="original_attachment_name[]" size="80"><br />
+        <input type="file" name="original_attachment_name[]" size="80"><a href="javascript;">+ Add More</a></td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+        <td width="40%">&nbsp;</td>
+        <td>This might take a long time id your files are large.  Please be patient.<br />
+            <input type="submit" name="add" value="Add">&nbsp;&nbsp;
+            <button onClick="window.location='pictures.php?section=view'">Back</button>
+        </td>
+    </tr>
+</table>
+</form>

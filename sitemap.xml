@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sitemap>VIU RSAO sitemap
+<!--type section is an element that generates a page listing subpages but doesn't have any HTML associated to it. Its only a container.-->
+<index type="dynamic" url="index.php">Home</index>
+<!--
+<my_activities type="dynamic" url="myactivities.php?section=my_profile" protected="yes">
+
+    <my_profile type="dynamic" url="myactivities.php?section=my_profile" protected="yes">Edit Profile</my_profile>
+    <my_projects type="dynamic" url="myactivities.php?section=my_projects" protected="yes">My Projects</my_projects>
+    
+    My Profile
+</my_activities>
+-->
+<!--
+<cv type="database" targeturl="cv.php" dbtable="cas_headings" dbheader="short_name" dbkey="cas_heading_id" dbsort="order" protected="yes">My C.V.
+        <this_year type="dynamic" url="cv_review_print.php" protected="yes">* Review | Print *</this_year>
+</cv>
+-->
+
+
+
+<!--
+<my_forms type='static' protected='yes'>Forms
+<my_tracking type='dynamic' url='my_tracking.php' protected='yes'>My Tracking Forms</my_tracking>
+<my_irgf type='dynamic' url='my_irgf.php' protected='yes'>My Internal Grant Forms</my_irgf>
+<my_reviews type="dynamic" url="my_reviews.php" protected="yes">Reviewer Forms</my_reviews>
+<other_forms type="dynamic" url="/content.php?page=research_forms" protected="yes">Other Forms</other_forms>
+</my_forms>
+-->
+
+
+
+<!--
+<approvals type='dynamic' url="my_approvals.php" protected='yes' dean='yes'>Approvals
+        <my_approvals type='dynamic' url="my_approvals.php" protected='yes' dean='yes'>My Approvals
+        </my_approvals>
+
+    <delegate_approvals type='dynamic' url="delegate.php" protected='yes' dean='yes'>Assign Delegate
+    </delegate_approvals>
+</approvals>
+-->
+
+
+    <!--
+    <news_and_events protected="no" type="static">
+    News and Events</news_and_events>
+    -->
+
+<!--<funding protected="yes" type="static">
+Funding</funding>-->
+
+
+
+
+<!--
+<celeb_research type="dynamic" url="research.php" >Celebrating Research
+    <research type="dynamic" url="research.php">Research at MRU</research>
+    <faces_of_innovation type="static">Faces of Innovation</faces_of_innovation>
+    <presentations type="static">Presentations</presentations>
+    <media type="dynamic" url="media.php">Media</media>
+</celeb_research>
+-->
+
+
+
+<!-- <centres type="static" >Centres &amp; Institutes</centres> -->
+
+
+
+<!--
+<opportunities type="dynamic" url="opportunities.php?section=deadlines">Opportunities
+    <deadlines type="dynamic" url="opportunities.php?section=deadlines">Deadlines</deadlines>
+    <events type="dynamic" url="opportunities.php?section=events">Events</events>
+<news type="dynamic" url="opportunities.php?section=news">News</news>
+    <resources type="static">Resources</resources>   
+</opportunities>
+-->
+
+<!--<partnerships>Partnerships</partnerships>-->
+
+
+
+<!--
+<research_office type="static">Research Office
+    <research_forms type="static">Funding &amp; Forms</research_forms>
+    <research_policies type="static" menutitle="Policies">Policies</research_policies>
+    <committees type="dynamic" url="committees.php">Committees</committees>
+    <research_reports type="dynamic" url='research_reports.php' menutitle="Reports/Statistics"></research_reports>
+    <internal_grants type="dynamic" url='internal_grants.php' menutitle="Internal Grants">
+    </internal_grants>
+    <funding_results type="static">Funding Results
+    </funding_results>
+    <icp type="static">Indirect Costs
+    </icp>
+    <blog type="dynamic" url="rss.php">Blog</blog>
+</research_office>
+-->
+
+
+
+<!--
+<compliance type="dynamic" url="http://www.mtroyal.ca/Research/Ethics/index.htm">Ethics
+    <ethics type="dynamic" url="ethics.php">Human Ethics (HREB)</ethics>
+    <biomed type="static">Biomedical/Health Info</biomed>
+    <animal type="static">Animal Care</animal>
+    <biosafety type="static">Biosafety</biosafety>
+</compliance>
+-->
+
+
+
+<ugr_intro type="static">Students and Research
+<!--     <ugr_what_is type="static">What is Research?</ugr_what_is> -->
+<!--     <ugr_funding type="static">Grad School Funding</ugr_funding> -->
+ <student_research type="dynamic" url="student_research.php">Student Research</student_research>
+<!--     <ugr_stories type="static">Student Stories</ugr_stories> -->
+    <create type="static">CREATE</create>
+    <my_create type="dynamic" url="my_create.php">CREATE Registration</my_create>
+    <posterform type="dynamic" url="posterreg.php">Poster Printing</posterform>
+<!--
+    <asrd type="dynamic" url="http://mtroyal.ca/ProgramsCourses/FacultiesSchoolsCentres/Arts/artsresearchday.htm">Arts Research Day</asrd>
+-->
+<!--   <srdregform type="static">SRD Registration</srdregform>-->
+    <!--<ugr_findajob type="dynamic">Find a Research Job</ugr_findajob>-->
+</ugr_intro>
+
+<!--<handbook type="dynamic" url="handbook.php">Handbook
+    <internal_funding type="section">Internal Funding
+        <reserve_fund type="static">Reserve Fund</reserve_fund>
+        <other_opportunities type="static">Other Opportunities</other_opportunities>
+        <internal_procedures type="static">Internal Procedures</internal_procedures>
+        <spending_procedures type="text">Spending Procedures</spending_procedures>
+        <projects_funded type="static">Projects Funded</projects_funded>
+    </internal_funding>
+
+    <federal_funding type="static">Federal</federal_funding>
+    <provincial_funding type="static">Provincial</provincial_funding>
+    <other_funding type="static">Other Funding</other_funding>
+
+    <research_resources type="section">Resources
+        <hiring type="static">Hiring</hiring>
+        <applications type="static">Applications</applications>
+    </research_resources>
+</handbook> -->
+    <!--
+<media type="section">Media
+<media_speakers type="static">Speakers</media_speakers>
+    <media_presentations type="static">Presentations</media_presentations>
+    <news type="dynamic" url="news.php">In the News</news>
+</media>
+-->
+<!-- <contact_us>Contact Us</contact_us> -->
+<loginlogout type="loginlogout" url="#login-box">Sign in,Sign out
+<!--An element of type loginlogout is handled special.
+The if no session is started, Sign in text will be displayed on menu, otherwise Sign out text. Sign in text and Sign out text should be specified, separated by a comma.
+All else is like type dynamic.--></loginlogout>
+</sitemap>

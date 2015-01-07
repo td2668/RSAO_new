@@ -1,0 +1,208 @@
+<patTemplate:tmpl name="PAGE">
+	<div id="mainpage">
+
+    <patTemplate:tmpl name="view" visibility="hidden">
+		<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+			
+			
+			<tr>
+				<td bgcolor="#000000">&nbsp;</td>
+		        <td bgcolor="#000000"><a href='projects.php?sort=name&dir=~!dir~'><b style="color:#E1E1E1;font-size:10px">Name</b></a></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Who</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Feature</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Topics</b></td>
+				<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Synopsis</b></td>
+			</tr>
+			
+			<patTemplate:tmpl name="PROJECTLIST">
+			<tr>
+				<td bgcolor='#E09731'><a style='color:white' href='projects.php?section=update&id={PROJECT_ID}'>Update</a></td>
+				<td bgcolor='{ACOLOR}'>{NAME}</td>
+				<td bgcolor='#D7D7D9'>{PEOPLELIST}</td>
+				<td align='center' bgcolor='#D7D7D9'>{FEATUREFLAG}</td>
+				<td bgcolor='$topics_set'>{OBJECT_ID}</td>
+				<td bgcolor='#D7D7D9'>{SYNOPSIS}</td>
+				<td><button type="button" onClick="window.location='projects.php?section=view&delete=y&id={PROJECT_ID}'">Delete</button></td>
+			</tr>
+			</patTemplate:tmpl>						
+									
+		</table>
+    </patTemplate:tmpl>
+    
+    
+    <patTemplate:tmpl name="add" visibility="hidden">
+    
+    	<form method="post" name="form1" action="projects.php">
+			<fieldset>
+				<div class="users"><label class="users">Name:</label>
+					<input type="text" name="name" maxlength="255" size="80">
+				</div>
+				<div class="users"><label class="users">End Date:</label>
+				  	<input type="text" name="enddate" id='enddate' maxlength="20" size="15">
+			        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "enddate", "chooserSpan2", 2011, 2020, "Y-m-d", false);'>
+			        <div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				</div>
+			    <div class="users"><label class="users">Synopsis:</label>
+					<textarea name="synopsis" rows="8" cols="100"></textarea>
+			    </div>
+				<div class="users"><label class="users">Description:</label>
+					<textarea name="description" rows="20" cols="100"></textarea>
+				</div>
+				<div class="users"><label class="users">Departments:</label>
+					
+							{DEPARTMENT_OPTIONS}
+						
+				</div>
+				<div class="users"><label class="users">Faculty:</label>
+					<select name="researchers[]" multiple size="8">
+							<option value="">None</option>
+							{RESEARCHER_OPTIONS}
+						</select>
+				</div>
+				<div class="users"><label class="users">Research Topics:</label>
+					
+							{TOPIC_OPTIONS}
+						
+				</div>
+				<div class="users"><label class="users">Keywords:</label>
+			        <input type="text" name="keywords" maxlength="255" size="80">
+				</div>
+			    <div class="users"><label class="users">Student Project?</label>
+			      <input type="checkbox" name="studentflag" value="yes" >
+			    </div>
+			    <div class="users"><label class="users">Student Names:</label>
+			      <input type="text" name="students" maxlength="255" size="80">
+			    </div>
+			    <div class="users"><label class="users">Feature?</label>
+				  <input type="checkbox" name="feature" value="yes">
+			    </div>
+				<div class="users"><label class="users">Approved?</label>
+				  <input type="checkbox" name="approved">
+				</div>
+			    <div class="users"><label class="users">Internal Grant?</label>
+			      <input type="checkbox" name="internal_grant">
+			    </div>
+			    <div class="users"><label class="users">Internal Grant Start Year:</label>
+			      <select name='grant_year'>
+			        {GRANT_YEAR_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Internal Grant End Year:</label>
+			      <select name='end_year'>
+			        {END_YEAR_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Internal Grant Amount:</label>
+			       <input type="text" name="grant_amount" maxlength="10" size="10" >
+			    </div>
+					
+				<div style="text-align: center"><button type="submit" name="add" value="Add">Add</button>&nbsp;&nbsp;
+						
+						<button type="button" onClick="window.location='projects.php?section=view'">Back</button>
+						
+				</div>
+			</form>
+
+    
+    </patTemplate:tmpl>
+    
+    
+    <patTemplate:tmpl name="update" visibility="hidden">
+    	
+    	<form method="post" name="form1" action="projects.php?section=view&id={ID}">
+			<fieldset>
+				<div class="users"><label class="users">Name:</label>
+					<input type="text" name="name" maxlength="255" size="80" value="{NAME}">
+				</div>
+				<div class="users"><label class="users">End Date:</label>
+				  	<input type="text" name="enddate" id='enddate' maxlength="20" size="15" value="{ENDDATE}">
+			        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "enddate", "chooserSpan2", 2011, 2020, "Y-m-d", false);'>
+			        <div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div>
+				</div>
+			    <div class="users"><label class="users">Synopsis:</label>
+					<textarea name="synopsis" rows="8" cols="100">{SYNOPSIS}</textarea>
+			    </div>
+				<div class="users"><label class="users">Description:</label>
+					<textarea name="description" rows="20" cols="100">{DESCRIPTION}</textarea>
+				</div>
+				<div class="users"><label class="users">Departments:</label>
+					<select name="departments[]" multiple size="8">
+							{DEPARTMENT_OPTIONS}
+						</select>
+				</div>
+				<div class="users"><label class="users">Faculty:</label>
+					<select name="researchers[]" multiple size="8">
+							<option value="">None</option>
+							{RESEARCHER_OPTIONS}
+						</select>
+				</div>
+				<div class="users"><label class="users">Research Topics:</label>
+					<select name="topics_research[]" multiple size="8">
+							{TOPIC_OPTIONS}
+						</select>
+				</div>
+				<div class="users"><label class="users">Keywords:</label>
+			        <input type="text" name="keywords" maxlength="255" size="80" value="{KEYWORDS}">
+				</div>
+			    <div class="users"><label class="users">Student Project?</label>
+			      <input type="checkbox" name="studentflag" value="yes" {STUDENTFLAG}>
+			    </div>
+			    <div class="users"><label class="users">Student Names:</label>
+			      <input type="text" name="students" maxlength="255" size="80" value="{STUDENTS}">
+			    </div>
+			    <div class="users"><label class="users">Feature?</label>
+				  <input type="checkbox" name="feature" value="yes" {PROJECT_FEATURE}>
+			    </div>
+				<div class="users"><label class="users">Approved?</label>
+				  <input type="checkbox" name="approved" {APPROVED}>
+				</div>
+			    <div class="users"><label class="users">Internal Grant?</label>
+			      <input type="checkbox" name="internal_grant" {INTERNAL_GRANT}>
+			    </div>
+			    <div class="users"><label class="users">Internal Grant Start Year:</label>
+			      <select name='grant_year'>
+			        {GRANT_YEAR_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Internal Grant End Year:</label>
+			      <select name='end_year'>
+			        {END_YEAR_OPTIONS}
+			        </select>
+			    </div>
+			    <div class="users"><label class="users">Internal Grant Amount:</label>
+			       <input type="text" name="grant_amount" value="{GRANT_AMOUNT}" maxlength="10" size="10" >
+			    </div>
+					
+				<div style="text-align: center"><button type="submit" name="update" value="Update">Update</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='projects.php?section=view&delete=y&id={ID}'">Delete</button>&nbsp;&nbsp;
+						<button type="button" onClick="window.location='projects.php?section=view'">Back</button>
+						{PICTURE_BUTTON}
+				</div>
+			</form>
+			
+    
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="where" visibility="hidden">
+    	<form method="post" name="form1" action="">
+
+
+	<tr>
+		<td>Project:</td><td><select name='project_id' onchange="form1.submit()"><option value='0'></option>
+        ~!project_options~
+        </select></td></tr>
+    <tr><td valign='top'>Current:</td><td> ~!table~ </td></tr>    
+    <tr><td>Country:</td><td><select name='country_code' onchange="form1.submit()"><option value='0'>--Select a Country--</option>
+    ~!country_options~
+    </select></td></tr>
+    <tr><td>State:</td><td><select name='state_code' onchange="form1.submit()"><option value='0'></option><option value='NOSTATE'>--No State--</option>
+    ~!state_options~
+    </select></td></tr>
+</table>
+</form>
+    
+    </patTemplate:tmpl>
+
+	</div>
+	
+</patTemplate:tmpl>

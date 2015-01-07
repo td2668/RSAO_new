@@ -1,0 +1,32 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+//arrValidationDesc=
+//	[
+//	[["required","Please select an image file."]], // Name
+//	]; 
+//-->
+</script>
+<table>
+<form method="post" name="form1" action="pictures-associate.php?section=update&id=~!id~&table_name=~!php_file~" enctype="multipart/form-data">
+	<tr>
+		<td colspan="2"  class="successhead">Update Associates: Pictures</td>
+	</tr>
+	<tr>
+	  <td>&nbsp;</td>
+    </tr>
+	<tr>
+		<td>Name: <strong>~!name~</strong></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<table cellspacing="7">
+				<tr>~!pictures~</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2">
+			<input type="submit" name="delete" value="Remove Selected"></td>
+	</tr>
+</form>
+</table>

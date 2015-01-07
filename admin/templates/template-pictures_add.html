@@ -1,0 +1,60 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[], // Name
+	[["required","Please select an image file."]] // File
+	];
+//-->
+</script>
+<table>
+<form method="post" name="form1" action="" onSubmit="return validateForm(this,arrValidationDesc)" enctype="multipart/form-data">
+	<tr>
+		<td colspan="32"  class="successhead">Add: Picture</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="40%">Caption:</td>
+	  <td><input type="text" size="80" maxlength="255" name="caption">
+		</td>
+
+	</tr>
+	<tr>
+		<td width="40%">Picture:</td>
+		<td><input type="file" name="file_name" size="80"></td>
+
+	</tr>
+	<tr>
+		<td width="40%">Resize Image:</td>
+		<td><input type="checkbox" name="resize" value="yes" >&nbsp;
+		<input type="radio" name="type" value="front-main">Front page main
+		<input type="radio" name="type" value="news">News
+		<input type="radio" name="type" value="faculty">Faculty (lrg)
+		  </td>
+
+	</tr>
+		<tr>
+		<td width="40%">Shadow Image:</td>
+		<td><input type="checkbox" name="shadow" value="yes" >
+	</td>
+	</tr>
+	<tr>
+			  <td width="40%">Feature?</td>
+			  <td><input type="checkbox" name="feature" value="yes"     >
+			  <img src='/images/helpicon.gif' width="20" height="20"  border="0" align="top" onMouseOver="ShowHelp('d1', 'Feature', 'This image is used for synopsis and front page items. To use within an item detail view, upload a second image.')" onMouseOut="HideHelp('d1')">
+		<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d1"></div>
+			  </td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>
+	<tr>
+		<td width="40%">&nbsp;</td>
+		<td><input type="submit" name="add" value="add">&nbsp;&nbsp;
+			<button onClick="window.location='media.php?section=view'">Back</button></td>
+
+	</tr>
+</form>
+</table>

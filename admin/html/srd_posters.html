@@ -1,0 +1,140 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<div id="mainpage">
+
+<patTemplate:tmpl name="view" visibility="hidden">
+
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1" width="80%">
+
+
+    <tr>
+    <td nowrap="" colspan='3' style="font-weight: bold">Total Posters: {COUNT}</td>
+    <td nowrap="" colspan="3">Range: {RANGE}</td>
+    <td colspan="3">Acad. Yr.:<select name="range" onchange="javascript: window.location='srd_posters.php?year='+this.value">
+	    {YEAR_OPTIONS}
+    </select></td>
+    </tr>
+    <tr bgcolor="#000000">
+    <td><b style="color:#E1E1E1;font-size:10px">ID#</b></td>
+    <td>
+        <b style="color:#E1E1E1;font-size:10px">
+        <a href='srd_posters.php?sort=name' title='sort by name' style='color:white'>Name</a></b>
+        <div {NAMESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+    <td><b style="color:#E1E1E1;font-size:10px">ID#</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Department</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">
+        <a href='srd_posters.php?sort=date' title='sort by date' style='color:white'>Date In</a></b>
+        <div {DATESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+    <td><b style="color:#E1E1E1;font-size:10px">Orient.</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Status</b></td>
+    <td>&nsbp;</td>
+
+</tr>
+    <patTemplate:tmpl name="mainlist" type="OddEven">
+        <patTemplate:sub condition="odd">
+            <tr bgcolor='#CCCCCC'>
+             <td>{POSTER_REG_ID}</td>
+                <td>{LASTNAME}, {FIRSTNAME}</td>
+                <td>{STUDENTID}</td>
+                <td>{DEPARTMENTNAME}</td>
+                <td>{TITLE}</td>
+                <td>{SUBMIT_DATE}</td>
+                <td>{ORI}</td>
+                <td>{STATUS}</td>
+                <td>
+                <button type='button' onClick='window.location="srd_posters.php?section=edit&id={POSTER_REG_ID}&year={YEAR}";'>Edit</button>
+                </td>
+            </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr bgcolor="#CCFFFF">
+                    <td>{POSTER_REG_ID}</td>
+                        <td>{LASTNAME}, {FIRSTNAME}</td>
+                        <td>{STUDENTID}</td>
+                        <td>{DEPARTMENTNAME}</td>
+                        <td>{TITLE}</td>
+                        <td>{SUBMIT_DATE}</td>
+                        <td>{ORI}</td>
+                        <td>{STATUS}</td>
+
+                        <td>
+                        	<button type='button'  onClick='window.location="srd_posters.php?section=edit&id={POSTER_REG_ID}&year={YEAR}";'>Edit</button>
+                        </td>
+                        
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        <form name="edit" action="srd_posters.php?update" enctype="multipart/form-data" method="post">
+	        <fieldset>
+            <input type="hidden" name="id" value="{POSTER_REG_ID}">
+            <input type="hidden" name="MAX_FILE_SIZE" value="300000000" />
+            <input type="hidden" name="year" value="{YEAR}"/>
+            
+                <div class="users"><label class="users">Last Name</label>
+                    <input type="text" value="{LASTNAME}" size="60" name="lastName"
+                                           title="The name of the lead student" \>
+                </div>
+                <div class="users"><label class="users">First Name</label>
+                    <input type="text" value="{FIRSTNAME}" size="60" name="firstName"
+                                           title="The name of the lead student" \>
+                </div>
+                <div class="users"><label class="users">Student ID#</label>
+                    <input type="text" size="10" value="{STUDENTID}" name="studentid"
+                                           title="We need at least one ID# if it's a group registering" \>
+                </div>
+                <div class="users"><label class="users">Contact Email</label>
+                    <input type="text" size="40" value="{EMAIL}" name="email"
+                                           title="This will be our main way of contacting you" \>
+                </div>
+                <div class="users"><label class="users">Department</label>
+                    <input type="text" size="40" value="{DEPARTMENT}" readonly=""/>
+                </div>
+                
+                <div class="users"><label class="users">Faculty Supervisor</label>
+                    <input type="text" size="40" value="{SUPERVISOR}" readonly=""/>
+                </div>
+                <div class="users"><label class="users">Status:</label>
+                    <select name='status'>
+                        <patTemplate:tmpl name="status_options">
+                            <option value="{VALUE}"
+                            {SEL}>{TEXT}</option>
+                        </patTemplate:tmpl>
+                    </select>
+                </div>
+                <div class="users"><label class="users">Title of the poster:</label>
+                        <textarea cols="80" rows="2" name="title">{TITLE}</textarea>
+                </div>
+                <div class="users"><label class="users">Orientation:</label>
+                    
+                     <input type="radio" name="orientation"  value="portrait" {PORTRAIT} >Portrait 
+                     <input type="radio" name="orientation"  value="landscape" {LANDSCAPE} >Landscape 
+                     <input type="radio" name="orientation"  value="unknown" {UNKNOWN} >Unknown
+                </div>
+                 <div class="users"><label class="users">Poster Filename:</label>
+	                  <a target="_blank" href='{FILENAME}'>{FILENAME}</a>&nbsp;&nbsp;
+                    Upload New One: <input type="file" id="filename2" name="filename2">
+                 </div>
+                <br />
+                <div style="text-align: center">
+                        <button type="submit" name="update" value="update">Update</button>
+                        &nbsp;&nbsp;
+                        <button style='background-color: red;' type="button" name="Delete" value="delete"
+                                onClick="javascript: if(confirm('Really Delete?')) window.location='srd_posters.php?delete&id={POSTER_REG_ID}&year={YEAR}';">
+                            Delete
+                        </button>
+                </div>
+                   
+	        </fieldset>
+        </form>
+
+
+    </patTemplate:tmpl>
+</div>
+</patTemplate:tmpl>

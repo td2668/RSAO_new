@@ -1,0 +1,113 @@
+/***************************************
+All Copyright (C) Reserved
+Department of Communications & Public Relations, Vancouver Island University
+Date: 11th July, 2006
+Print
+****************************************/
+@media print {
+/*general----------------------*/
+
+body {
+	font-size: 10.01pt; /*9pt have problem on ie printing*/
+}
+#container {
+	width: auto;
+	margin: 0 5%;
+	padding: 0;
+	border: 0;
+	float: none !important;
+	color: black;
+	background: transparent none;
+}
+#content ul, #content ol {
+}
+img {
+}
+body, * {
+	background:white;
+	overflow:visible;
+}
+#headsize, #topbanner, #mainBar_colThree, #navigation, #search_panel, #headnav {
+	display: none;
+}
+/*header----------------------*/
+
+#unihead {
+	margin-bottom:30px;
+	padding-bottom:20px;
+	border-bottom:2px dashed #1E3B59;
+}
+/*footer----------------------*/
+
+#footer {
+	border-top:2px dashed #1E3B59;
+}
+#footer_container ul#footer_pr {
+	margin:0;
+	padding:0;
+}
+#footer, #footer_container, #footer_info, #footer_pr {
+	text-align:left;
+	background:none;
+}
+#footer_container ul li {
+	margin-left:0;
+}
+/*content--------------------------*/
+
+#wrapper, #content {
+}
+#content * {
+	float:none;
+}
+#wrapper {
+}
+div#content {
+	margin-left: 0%;
+	padding-top: 1em;
+}
+div#content {
+	margin-bottom: -8px;
+}
+div#content img {
+	vertical-align: bottom;
+	padding:5px;
+}
+a:link, a:visited {
+	color:#0000FF;
+	background: transparent;
+	font-weight: bold;
+	text-decoration: underline;
+}
+/*
+   
+#content a:link:after, #content a:visited:after {
+   content: " (" attr(href) ") ";
+   font-size: 90%;
+   }
+   
+#content a[href^="/"]:after {
+   content: " (http://www.viu.ca" attr(href) ") ";
+   }
+
+*/   
+
+table {
+	width:80%;
+	float:none;
+}	
+dt {
+	font-weight:bold;
+}
+dd {
+	margin-bottom:8px;
+	line-height:1.4em;
+}
+#content h1, #content h2 {
+}
+
+#NREPSchedule { font-size:90%;
+}
+
+} /*@media print--------------------------*/
+

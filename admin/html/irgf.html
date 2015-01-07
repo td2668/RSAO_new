@@ -1,0 +1,122 @@
+<patTemplate:tmpl name="PAGE">
+
+<script language="Javascript" type="text/javascript">
+<!--
+function nowDate()
+{
+	var now=new Date();
+	var formdate=now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate();
+	return formdate;
+}
+
+function nowDateTime()
+{
+	var now=new Date();
+	var formdate=now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+	return formdate;
+}
+
+
+function submitform()
+{
+  document.edit.submit();
+}
+
+
+function CalculateTotal(frm) {
+    var c_total = 0
+    var i_total = 0
+    for (var i=0; i < frm.elements.length; ++i) {
+        form_field = frm.elements[i]
+        form_name = form_field.name
+        // Is it a C field?
+        if (form_name.substring(0,2) == "c_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 c_total += parseFloat(form_field.value)  
+            }         
+        }
+        if (form_name.substring(0,2) == "i_") {
+            if(form_field.value != '' && !isNaN(parseFloat(form_field.value)) ){
+                 i_total += parseFloat(form_field.value )    
+            }      
+        }
+    }
+    frm.TOTALC.value = c_total
+    frm.TOTALI.value = i_total
+}
+
+function round_decimals(original_number, decimals) {
+    var result1 = original_number * Math.pow(10, decimals)
+    var result2 = Math.round(result1)
+    var result3 = result2 / Math.pow(10, decimals)
+    return pad_with_zeros(result3, decimals)
+}
+function pad_with_zeros(rounded_value, decimal_places) {
+    var value_string = rounded_value.toString()
+    var decimal_location = value_string.indexOf(".")
+    if (decimal_location == -1) {     
+        // If no, then all decimal places will be padded with 0s
+        decimal_part_length = 0
+        // If decimal_places is greater than zero, tack on a decimal point
+        value_string += decimal_places > 0 ? "." : ""
+    }
+    else {
+        // If yes, then only the extra decimal places will be padded with 0s
+        decimal_part_length = value_string.length - decimal_location - 1
+    }    
+    // Calculate the number of decimal places that need to be padded with 0s
+    var pad_total = decimal_places - decimal_part_length   
+    if (pad_total > 0) {       
+        // Pad the string with 0s
+        for (var counter = 1; counter <= pad_total; counter++) 
+            value_string += "0"
+        }
+    return value_string
+}
+
+
+//-->
+</script>
+
+<patTemplate:tmpl name="list" visibility="hidden">
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+    <tr>
+        <td colspan="8" class="successhead">Viewing: IRGF Forms</td>
+    </tr>
+    <tr height="10"><td colspan='8' height="14" class="success">{SUCCESS}</td></tr>
+    <tr><td colspan="6">&nbsp;</td></tr>
+<tr bgcolor="#000000">
+    <td><b style="color:#E1E1E1;font-size:10px">#</b></td>
+    <td><a href='irgf.php?sort=owner&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Owner</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">PI</b></td>
+	<td><b style="color:#E1E1E1;font-size:10px">Reviewer</b></td>
+    <td><a href='irgf.php?sort=modified&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Modified</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">IRGF</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Tracking</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Attachm.</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">CV(s)</b></td>
+    <td>&nbsp;</td>
+    </tr>
+<patTemplate:tmpl name="mainlist">
+
+    <tr bgcolor='{LINECOLOUR}'>
+    	<td>{FORM_IRGF_ID}</td>
+    	<td>{OWNER}</td>
+    	
+        <td>{PI_NAME}</td>
+        <td>{REVIEWER}</td>
+        <td>{MODIFIED}</td>
+        <td>{IRGF_PDF}</td>
+        <td>{TRACKING_PDF}</td>
+        <td>{ATTACH_PDF}</td>
+        <td>{CV_PDF}</td>
+        <td>{FILE_BUTTON}</td>
+
+    </tr>
+
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>

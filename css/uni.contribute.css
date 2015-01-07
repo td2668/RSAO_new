@@ -1,0 +1,84 @@
+.leftcolumn {}
+.rightcolumn {}
+
+
+.imageright {}
+
+.imageleft {}
+
+
+
+/* -------------------- Tables --------------------- */
+#content table tr.TableHead {
+
+}
+
+#content table.noborder {
+
+	
+}
+
+
+
+
+		h1{
+		
+		}
+		h2{
+		
+		}
+		h3{
+		
+		}
+		h4{
+		
+		}
+		h5{
+		
+		}
+		h6{
+		
+		}
+		
+			h1{
+			
+			}
+		
+			h2{
+			
+			}
+			
+				#container h2 a{
+				
+				}
+				
+					#container h2 a:hover{
+					
+					}
+			
+			h3{
+			
+			}
+			
+			h4{
+			
+			}
+			
+			h5{
+			
+			}
+
+#NREPSchedule { font-size:95%;
+}
+
+#newsstories body, #newsstories p { font-size:95%;
+}
+
+#bottomlinks { background-color: #dae2e7;
+	}
+
+
+
+
+
+

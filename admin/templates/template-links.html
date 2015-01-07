@@ -1,0 +1,49 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a Category Name."]], // Title
+	]; 
+//-->
+</script>
+<table>
+	<tr>
+		<td colspan="2"  class="successhead">Add: Default User Links</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+		<td>
+			<table cellpadding="0">
+			<form method="post" action="links.php">
+				~!content~
+				<tr>
+					<td colspan="3" align="center"><input type="submit" name="update" value="Update"></td>
+				</tr>
+			</form>
+			</table>
+		</td>
+		<td valign="top">
+			<table>
+			<form method="post" name="form1" action="links.php" onSubmit="return validateForm(this,arrValidationDesc)">
+				<tr>
+					<td rowspan="8" width="10"><img src="/images/private/spacer.gif"></td>
+				</tr>
+				<tr>
+				  <td colspan="2" height="30">&nbsp;</td>
+			  </tr>
+				<tr>
+					<td colspan="2" height="30"><strong>Add New Category</strong></td>
+				</tr>
+				<tr>
+					<td>category name:</td>
+					<td><input type="text" maxlength="50" size="20" name="category_name"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type='submit' name='add' value='Add'></td>
+				</tr>
+
+			</form>	
+			</table>
+		</td>
+	</tr>
+</table>

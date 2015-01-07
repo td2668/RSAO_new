@@ -1,0 +1,67 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+
+    <style type="text/css">
+        table th {
+            color:white;
+            background-color: black;
+            font-size: 11pt;
+        }
+        table th a {
+            color: white;
+            font-size: 11pt;
+        }
+        input {
+            background-color: white !important;
+        }
+        select {
+            background-color: white !important;
+        }
+    </style>
+
+    <h1>Manage HREB Applications</h1>
+
+    {MESSAGE}
+
+    <form name="hrebForm" action="hreb.php" method="POST">
+        <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+            <th><a href='hreb.php?sort=ethicsnum&dir={DIR}'>App #</a></th>
+            <th><a href='hreb.php?sort=form_tracking_id&dir={DIR}'>Tracking ID</a></th>
+            <th><a href='hreb.php?sort=tracking_name&dir={DIR}'>Title</a></th>
+            <th><a href='hreb.php?sort=status&dir={DIR}'>Status</a></th>
+            <th><a href='hreb.php?sort=expirydate&dir={DIR}'>Expiry Date</a></th>
+            <th><a href='hreb.php?sort=lastmodified&dir={DIR}'>Last Modified</a></th>
+            <th>Edit</th>
+            <th>Revision</th>
+            <th>Delete</th>
+            <patTemplate:tmpl name="trackinglist" type="OddEven">
+                <patTemplate:sub condition="odd">
+                    <tr bgcolor="#CCCCCC">
+                        <td>{ETHICSNUM}{REVISION}</td>
+                        <td>{FORM_TRACKING_ID}</td>
+                        <td>{TRACKING_NAME}</td>
+                        <td><select name="status" onChange='window.location="hreb.php?section=edit&ethicsnum={ETHICSNUM}&status=" + this.value;'>{STATUS_SELECT}</select></td>
+                        <td><input type="date" name='expiry-date' value='{EXPIRYDATE}' onChange='window.location="hreb.php?section=edit&ethicsnum={ETHICSNUM}&date="+ this.value;' /></td>
+                        <td>{LASTMODIFIED}</td>
+                        <td><button type='button' onClick='window.location="hreb-modify.php?action=edit&ethicsnum={ETHICSNUM}"'>Edit</button></td>
+                        <td><button type='button' onClick='if(confirm("Are you sure you wish to create a new revision?")) { window.location="hreb-modify.php?action=revision&ethicsnum={ETHICSNUM}"}'>New Revision</button></td>
+                        <td><button type='button' onClick='if(confirm("Are you sure you wish to delete this application?")) { window.location="hreb-modify.php?action=delete&ethicsnum={ETHICSNUM}"}'>Delete</button></td>
+                    </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr>
+                        <td>{ETHICSNUM}{REVISION}</td>
+                        <td>{FORM_TRACKING_ID}</td>
+                        <td>{TRACKING_NAME}</td>
+                        <td><select name="status" onChange='window.location="hreb.php?section=edit&ethicsnum={ETHICSNUM}&status=" + this.value;'>{STATUS_SELECT}</select></td>
+                        <td><input type="date" name='expiry-date' value='{EXPIRYDATE}' onChange='window.location="hreb.php?section=edit&ethicsnum={ETHICSNUM}&date="+ this.value;' /></td>
+                        <td>{LASTMODIFIED}</td>
+                        <td><button type='button' onClick='window.location="hreb-modify.php?action=edit&ethicsnum={ETHICSNUM}"'>Edit</button></td>
+                        <td><button type='button' onClick='if(confirm("Are you sure you wish to create a new revision?")) { window.location="hreb-modify.php?action=revision&ethicsnum={ETHICSNUM}"}'>New Revision</button></td>
+                        <td><button type='button' onClick='if(confirm("Are you sure you wish to delete this application?")) { window.location="hreb-modify.php?action=delete&ethicsnum={ETHICSNUM}"}'>Delete</button></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+    </table>
+    </form>
+</patTemplate:tmpl>

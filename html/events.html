@@ -1,0 +1,50 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL">
+<h1 >Events</h1>
+<span class="enfasis">Upcoming research presentations, talks or other events on campus and around Calgary</span><br /> <br />
+<table width="*" cellpadding="2" cellspacing="0">
+<patTemplate:tmpl name="EVENTS" type="simpleCondition" requiredVars="EVENT_ID" >
+<tr bgcolor="{COLOR}">
+   <td><b style="font-size:16px">{TITLE}</b></td>
+</tr>
+<tr bgcolor="{COLOR}">
+   <td><span style="font-size:10px">{START_DATE} {START_TIME} - {END_DATE} {END_TIME}</span><br>
+   <span style="font-size:10px">{LOCATION}, {ADDRESS}<br>
+   Contact: {CONTACT}</span></td>
+</tr>
+<tr bgcolor="{COLOR}">
+   <td>{SYNOPSIS}</td>
+</tr>
+<tr bgcolor="{COLOR}" height='20'>
+   <td height='25' valign="top"><a href="./opportunities.php?section=events&event_id={EVENT_ID}">More Info...</a></td>
+</tr>
+
+</patTemplate:tmpl>
+<patTemplate:tmpl name="NOEVENTS" type="simpleCondition" requiredVars="MESSAGE" >
+<tr><td>{MESSAGE}</td></tr>
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+<patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+<b style="font-size:18px">{TITLE}</b><br>
+<span style="font-size:10px">{START_DATE} {START_TIME} - {END_DATE} {END_TIME}</span><br>
+<span style="font-size:10px">{LOCATION}</span>, 
+<span style="font-size:10px">{ADDRESS}</span><br>
+<span style="font-size:10px">Contact: {CONTACT}</span><br><br>
+<table align="right">
+<patTemplate:tmpl name="PIX" type="simpleCondition" requiredVars="PICTURE_PATH">
+<tr><td align="center">
+  <img src="{PICTURE_PATH}{FILE_NAME}" bordercolor="black" border="0" />
+  <br />
+  <i>{CAPTION}</i>
+</td></tr>
+</patTemplate:tmpl>
+</table>
+<patTemplate:var name="DESCRIPTION" modifier="nl2br" />
+<br />
+<br />
+<a href="./opportunities.php?section=events">Go Back...</a> <br /><br />
+</patTemplate:tmpl>
+<patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

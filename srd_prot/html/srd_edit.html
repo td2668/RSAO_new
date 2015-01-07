@@ -1,0 +1,247 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <patTemplate:tmpl src="header.html"/>
+ 
+<patTemplate:tmpl name="view" visibility="hidden">
+
+    <div id="legend" style='float:right; letter-spacing: 2pt;'>
+        <span style="background-color:{YESCOLOR}; padding: 2px">Yes</span>
+        <span style="background-color:{NOCOLOR}; padding: 2px">No</span>
+        <span style="background-color:{MAYBECOLOR}; padding: 2px">Not Sure</span>
+    </div>
+ 
+<h2>S&T Student Research Day Registrations</h2>
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+    <tr height="10"><td colspan='11' height="14" class="success">{SUCCESS}</td></tr>
+
+
+    <tr>
+    <td colspan='3' style="font-weight: bold">Total Registrations: {COUNT}</td>
+    <td colspan="12">Range: {RANGE}</td>
+    <td><button type='button' onClick='window.location="srd_edit.php?csv";'>CSV Dump</button> <button type='button' onClick='window.location="srd_edit.php?extractall";'>Extract All</button></td>
+    </tr>
+    <tr bgcolor="#000000"> 
+    <td>
+        <b style="color:#E1E1E1;font-size:10px">
+        <a href='srd_edit.php?sort=name' title='sort by name' style='color:white'>Name</a></b>
+        <div {NAMESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+    <td><b style="color:#E1E1E1;font-size:10px">ID#</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Department</b></td>
+        <td><b style="color:#E1E1E1;font-size:10px">Course</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">
+        <a href='srd_edit.php?sort=date' title='sort by date' style='color:white'>Date In</a></b>
+        <div {DATESORTCLASS} style='display:inline-block'>&nbsp;</div>
+    </td>
+    <td><b style="color:#E1E1E1;font-size:10px"># Co-Res</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">HREB</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">HREB-OK</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">FOIP</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Words</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Status</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Posters</b></td>
+
+    <td>&nsbp;</td>
+    <td>&nsbp;</td>
+    <td>&nsbp;</td>
+</tr>
+    <patTemplate:tmpl name="mainlist" type="OddEven">
+        <patTemplate:sub condition="odd">
+            <tr bgcolor='#CCCCCC'>
+                <td>{LASTNAME}, {FIRSTNAME}</td>
+                <td>{STUDENTID}</td>
+                <td>{DEPARTMENTNAME}</td>
+                <td>{COURSE}</td>
+                <td>{TITLE}</td>
+                <td>{SUBMIT_DATE}</td>
+                <td>{CORESEARCHERS}</td>
+                <td style='background-color:{HREB}'>&nbsp;</td>
+                <td style='background-color:{HREB2}'>&nbsp;</td>
+                <td style='background-color:{FOIP}'>&nbsp;</td>
+                <td>{DESCRIP}</td>
+                <td>{STATUS}</td>
+                <td>{POSTER}</td>
+                <td>
+                <button type='button' onClick='window.location="srd_edit.php?section=edit&id={SRD_REG_ID}";'>Edit</button>
+                </td>
+                <td>
+                <button type='button' {DIS} style="background-color:#e6e6e6;" onClick='window.location="srd_edit.php?move&id={SRD_REG_ID}";'>Move</button>
+                </td>
+                <td>
+                <button type='button' style="background-color:#e6e6e6;" onClick='window.location="srd_edit.php?extract&id={SRD_REG_ID}";'>Extract</button>
+                </td>
+            </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr bgcolor="#CCFFFF">
+                        <td>{LASTNAME}, {FIRSTNAME}</td>
+                        <td>{STUDENTID}</td>
+                        <td>{DEPARTMENTNAME}</td>
+                        <td>{COURSE}</td>
+                        <td>{TITLE}</td>
+                        
+                        <td>{SUBMIT_DATE}</td>
+                        <td>{CORESEARCHERS}</td>
+                        <td style='background-color:{HREB}'>&nbsp;</td>
+                        <td style='background-color:{HREB2}'>&nbsp;</td>
+                        <td style='background-color:{FOIP}'>&nbsp;</td>
+                        <td>{DESCRIP}</td>
+                        <td>{STATUS}</td>
+                        <td>{POSTER}</td>
+                        <td>
+                        	<button type='button'  onClick='window.location="srd_edit.php?section=edit&id={SRD_REG_ID}";'>Edit</button>
+                        </td>
+                        <td>
+                			<button type='button' {DIS} style="" onClick='window.location="srd_edit.php?move&id={SRD_REG_ID}";'>Move</button>
+                		</td>
+                		<td>
+                		<button type='button' onClick='window.location="srd_edit.php?extract&id={SRD_REG_ID}";'>Extract</button>
+                		</td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        <form name="edit" action="srd_edit.php?update">
+            <input type="hidden" name="id" value="{SRD_REG_ID}">
+            <h2>Edit: SRD Registration</h2>
+            <table cellspacing="4">
+                
+                <tr height="10">
+                    <td colspan='7' height="14" class="success">{SUCCESS}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td width='150'>Last Name</td>
+                    <td colspan="2"><input type="text" value="{LASTNAME}" size="60" name="lastName"
+                                           title="The name of the lead student" \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>First Name</td>
+                    <td colspan="2"><input type="text" value="{FIRSTNAME}" size="60" name="firstName"
+                                           title="The name of the lead student" \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Co-researchers</td>
+                    <td colspan="2">{CORESEARCHERS}</td>
+                </tr>
+                <tr>
+                    <td width='150'>Student ID#</td>
+                    <td colspan="2"><input type="text" size="10" value="{STUDENTID}" name="studentid"
+                                           title="We need at least one ID# if it's a group registering" \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Contact Email</td>
+                    <td colspan="2"><input type="text" size="40" value="{EMAIL}" name="email"
+                                           title="This will be our main way of contacting you" \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Program</td>
+                    <td colspan="2"><input type="text" size="40" value="{PROGRAM}" name="program"
+                                           title="e.g. Bach of Science, Bach of Arts Honours, etc." \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Department</td>
+                    <td colspan="2">{DEPARTMENT}
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Related Course (if any)</td>
+                    <td colspan="2"><input type="text" size="40" name="course" value="{COURSE}"
+                                           title="If your project is part of or linked to a course, provide the course number"
+                        \>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='150'>Faculty Supervisor (if any)</td>
+                    <td colspan="2">{SUPERVISOR}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td nowrap="nowrap" colspan="3">Presentation Preference: &nbsp; &nbsp;Poster <input type="radio"
+                                                                                                        name="pref"
+                                                                                                        value="poster"
+                                                    {PREF1} \>
+                                                    &nbsp;&nbsp;Multimedia <input type="radio" name="pref" value="multimedia"
+                                                    {PREF2} \>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td nowrap="nowrap" colspan='3'>Does this project involve human participants?
+                                                    &nbsp;&nbsp;Yes<input type="radio" name="hreb" value="yes"
+                                                    {HREBNEED1} \>
+                                                    &nbsp;&nbsp;No<input type="radio" name="hreb" value="no" {HREBNEED2}
+                                                    \>
+                                                    &nbsp;&nbsp;Not Sure<input type="radio" name="hreb" value="notsure"
+                                                    {HREBNEED3} \>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" colspan='3' nowrap="nowrap">If yes, do you already have ethics approval?
+                                                                 &nbsp;&nbsp;Yes<input type="radio" name="hreb2"
+                                                                                       value="yes" {HREBDONE1} \>
+                                                                 &nbsp;&nbsp;No<input type="radio" name="hreb2"
+                                                                                      value="no" {HREBDONE2} \>
+                                                                 &nbsp;&nbsp;Not Sure<input type="radio" name="hreb2"
+                                                                                            value="notsure" {HREBDONE3}
+                                                                 \>
+                        <br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" colspan='3' nowrap="nowrap">Do you agree to FOIP?
+                        &nbsp;&nbsp;Yes<input type="radio" name="foip"
+                                              value="1" {FOIPYES} \>
+                        &nbsp;&nbsp;No<input type="radio" name="foip"
+                                             value="0" {FOIPNO} \>
+                        <br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td colspan="2"><select name='status'>
+                        <patTemplate:tmpl name="status_options">
+                            <option value="{VALUE}"
+                            {SEL}>{TEXT}</option>
+                        </patTemplate:tmpl>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">Title of the presentation:<br \>
+                        <textarea cols="80" rows="2" name="title">{TITLE}</textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Project Description:<br \>
+                        <textarea cols="80" rows="10" name="descrip">{DESCRIP}</textarea></td>
+                </tr>
+
+                <tr>
+                    <td width='150'>
+                        <button type="submit" name="update" value="update">Update</button>
+                        &nbsp;&nbsp;
+                        <button style='background-color: red;' type="button" name="Delete" value="delete"
+                                onClick="javascript: if(confirm('Really Delete?')) window.location='srd_edit.php?delete&id={SRD_REG_ID}';">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+
+    </patTemplate:tmpl>
+
+</patTemplate:tmpl>

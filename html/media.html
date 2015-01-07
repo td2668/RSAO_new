@@ -1,0 +1,62 @@
+<script type="text/javascript" src="/includes/mediaplayer/swfobject.js"></script>
+<script type="text/javascript" src="/js/playback.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('a').click(function() { this.blur(); } );
+        {JS_ONLOAD}
+    });
+</script>
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+    <h1>{MAIN_HEADING}</h1>
+    <div style="margin-bottom:20px;"><a href="javascript:;">People</a> | <a href="javascript:;">Projects</a></div>
+    {STATUS}
+    <table>
+    <patTemplate:tmpl name="MEDIA_LIST" type="simpleCondition" requiredVars="DISPLAY">
+        <tr>
+            <td valign="top" align="left">
+                <a href="?mr_action=detail&media_id={MEDIA_ID}" title="Click to view this media"><img src="{MEDIA_URL_PATH}/{IMAGE_NAME}" width="300" border="0" /></a>
+            </td>
+            <td><img src="/images/spacer.gif" width="20" height="1" /></td>
+            <td valign="top" align="left">
+                <span class="media_detail_heading">Title:</span> <strong>{TITLE}</strong><br />
+                <span class="media_detail_heading">Date:</span> {DATE}<br />
+                <span class="media_detail_heading">Date Added:</span> {DATE_ADDED}<br />
+                <span class="media_detail_heading">Synopsis:</span><br />
+                {SYNOPSIS}<br />
+                <br />
+                <a href="?mr_action=detail&media_id={MEDIA_ID}" title="Click to view this media">View Media</a>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
+    </table>
+    <patTemplate:tmpl name="MEDIA_DETAIL" type="simpleCondition" requiredVars="DISPLAY">
+    <div id="media_markup">
+        {MEDIA_MARKUP}
+    </div>
+    <h2>Media Details</h2>
+    <table id="media_details">
+        <tr>
+            <td class="column0">Title:</td>
+            <td class="column1">{TITLE}</td>
+        </tr>
+        <tr>
+            <td class="column0">Date Added:</td>
+            <td class="column1">{DATE_ADDED}</td>
+        </tr>
+        <tr>
+            <td class="column0">Soundtrack:</td>
+            <td class="column1">{SOUNDTRACK_MARKUP}</td>
+        </tr>
+        <tr>
+            <td class="column0">Synopsis:</td>
+            <td class="column1">{SYNOPSIS}</td>
+        </tr>
+        <tr>
+            <td class="column0">Full Description:</td>
+            <td class="column1">{DESCRIPTION}</td>
+        </tr>
+    </table>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

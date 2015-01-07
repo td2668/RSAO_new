@@ -1,0 +1,66 @@
+/***************************************
+All Copyright (C) Reserved (((((HL)))))
+Department of Communications & Public Relations, Vancouver Island University
+Date: 27th Sept, 2006
+Spec:
+760x420
+****************************************/
+/*3 column contents body>>>extra-----------------------------------*/
+	#extra{
+	float:right;
+	width:166px;
+	margin:0 0 10px 10px;
+	padding:4px;
+	}
+		
+		.extra_containers{
+		border-top:0px dotted #214275;
+		float:left;
+		background:#ffffff;
+		margin-bottom:20px;
+		}
+		
+			#extra img{
+			}
+		
+			#extra a{
+			text-decoration:underline;
+			}
+		
+			#extra p{
+			font-size:98%;
+			line-height:1.4em;
+			}
+			
+			#extra h3{
+			font-size:120%;
+			background:#456f98;
+			padding:2px 5px;
+			border-left:4px solid #214275;
+			margin:0;
+			color:#ffffff;
+			}
+			
+			#extra h4{
+			font-size:110%;
+			margin:5px 0 0 0;
+			}
+			
+			#extra img{
+			float:left;
+			}
+			
+			#extra ul{
+			list-style:square;
+			margin-left:15px;
+			}
+			
+				#extra ul li{
+				margin-bottom:3px;
+				}
+				
+					#extra ul li a{
+					}
+					
+						#extra ul li a:hover{
+						}

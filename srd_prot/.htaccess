@@ -1,0 +1,10 @@
+AuthType Basic
+AuthName "S+T SRD Admin"
+AuthBasicProvider ldap
+AuthLDAPBindDN uid=readonly,o=MRC
+AuthLDAPBindPassword readingrailroad$200
+AuthzLDAPAuthoritative on
+AuthLDAPURL ldap://ldap-ss.mtroyal.ca/o=MRC
+
+require user jescott tdavis carmstrong jcameron jljohnson
+

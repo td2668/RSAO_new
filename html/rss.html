@@ -1,0 +1,17 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+         
+            <div>
+            <h1>Research Services Blog</h1>
+             <patTemplate:tmpl name="ARTICLES">
+               <div style="padding-left:0px;">
+               <h3>{TITLE}</h3>
+                {DESCRIPTION}    <br />
+                &nbsp;&nbsp;&nbsp;<a href="{LINK}">More &gt;</a><br />
+                </div>
+             </patTemplate:tmpl>
+            </div>
+         
+   
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

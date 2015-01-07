@@ -1,0 +1,97 @@
+<patTemplate:tmpl name="PAGE">
+  <patTemplate:tmpl src="header.html" />
+	<patTemplate:tmpl name="PAGE_ALL">
+	<table cellpadding="0" cellspacing="0" width="100%">
+	 <tr >
+	   <td nowrap align="left">
+		  <h3 style="height:25px; vertical-align:middle">Faculty Profiles</h3>
+	   </td>
+	   <td align='right' nowrap>
+		 <form method="post" action="">
+		  <h3 style="height:25px;">&nbsp;
+		  <select name="menu1" onChange="javascript:this.form.submit()" size="1">
+			 <option value="?section=all">Search by departments</option>
+			 <option value="?section=all">SHOW ALL</option>
+			 <patTemplate:tmpl name="DEPARTMENTS">
+			   <option value="?section=all&search_department={DEP_ID}">
+				 {DEP_NAME}
+			   </option>
+			 </patTemplate:tmpl>
+		  </select>&nbsp;&nbsp;&nbsp;
+		  <select name="menu2" onChange="javascript:this.form.submit()" size="1">
+			 <option value="?section=all">Search by research topics</option>
+			 <option value="?section=all">SHOW ALL</option>
+			 <patTemplate:tmpl name="TOPICS">
+			   <option value="?section=all&search_topic={TOPIC_ID}">
+				  {TOPIC_NAME}
+			   </option>
+			 </patTemplate:tmpl>
+		  </select>&nbsp;&nbsp;&nbsp;
+		  <select name="menu3" onChange="javascript:this.form.submit()" size="1">
+			 <option value="?section=all">Search by name</option>
+			 <patTemplate:tmpl name="NAMES">
+			   <option value="?section=all&search_topic={NAME_ID}">
+				  {LAST_NAME}, {FIRST_NAME}
+			   </option>
+			 </patTemplate:tmpl>
+		  </select></h3>
+		  </form>
+		</td>
+	  </tr>
+	</table>
+	<table width="*" cellpadding="2" cellspacing="0">
+	  <tr><td style="font-size:9px" height='30'>
+	   {VIEW_FLAG}
+	  </td></tr>
+	  <patTemplate:tmpl name="RESEARCHERS">
+	  <tr bgcolor="{COLOR}">
+		 <td><b style="font-size:18px">{FIRST_NAME} {LAST_NAME}</b></td>
+	  </tr>
+	  <tr bgcolor="{COLOR}">
+		 <td><span style="font-size:10px"><b>Projects:</b>
+		   <patTemplate:tmpl name="PROJECT">
+		   <a href="projects.php?section=single&id={PRO_ID}"
+			 style="font-size:10px;color:#6A62BF;">
+			   {PRO_NAME}
+		   </a>&nbsp;
+		   </patTemplate:tmpl>
+		 </span></td>
+	  </tr>
+	  <tr bgcolor="{COLOR}">
+		<td>{DESCRIPTION}</td>
+	  </tr>
+	  <tr bgcolor="{COLOR}">
+		<td>
+		  <a href="researchers.php?section=single&id={RESEARCH_ID}">
+			Full Profile...
+		  </a></td>
+	  </tr>
+	  </patTemplate:tmpl>
+	</table>
+	</patTemplate:tmpl>
+	<patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+	<table width="100%" border="0" cellpadding="2">
+	   <tr bgcolor="#CCCCCC">
+		 <td colspan="3"><span class="c1">{FIRST_NAME} {LAST_NAME}</span></td>
+	   </tr>
+	   <tr>
+		 <td width="33%" valign="top" background="{IMAGE3}" class="c2">
+		   {ONLINE_CV1}
+		 </td>
+		 <td width="33%" align="center" valign="top"><img src="{IMAGE2}" />
+		 </td>
+		 <td width="33%" align="right" valign="top"><img src="{IMAGE}">
+		 </td>
+	   </tr>
+	 </table>
+	 <table>
+	   <patTemplate:tmpl name="PROJECT_SINGLE">
+	   <tr><td>
+		 <b><a style="font-size:12px;color:#6A62BF;" href="projects.php?section=single&id={PRO_ID}">{PRO_NAME}</a></b>
+	   </td></tr>";
+	   <tr><td>{SYNOPSIS}</td></tr>
+	   </patTemplate:tmpl>
+	 </table>
+	</patTemplate:tmpl>
+  <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

@@ -1,0 +1,136 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL" >
+ <div style="float:right" id="actionMessage"></div>
+<h1>Tracking Forms</h1>
+<patTemplate:tmpl name="list" visibility="hidden">
+
+
+ 
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+    
+    <tr><td colspan="10"><b>Bold</b>: Sig Required &nbsp;&nbsp;<span style='color:red'><b>Red</b></span>: Overdue</td></tr>
+<tr bgcolor="#000000">
+    <td><b style="color:#E1E1E1;font-size:10px">ID</b></td>
+    <td title='Sort'><a href='tracking_list.php?sort=owner&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Owner</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">PI</b></td>
+
+    <td title='Sort'><a href='tracking_list.php?sort=tracking_name&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Title</b></a></td>
+    <td title='Sort'><a href='tracking_list.php?sort=submit_date&dir={DIR}'><b style="color:#E1E1E1;font-size:10px">Submitted</b></a></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Tracking</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Applic.</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Attachm.</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">CV(s)</b></td>
+     <td><b style="color:#E1E1E1;font-size:10px"></b></td>
+    </tr>
+<patTemplate:tmpl name="MAINLIST">
+	
+    <tr bgcolor='{ROWCOLOUR}' style="{BOLD}{COLOUR}">
+        <td>{FORM_TRACKING_ID}</td>
+
+        <td>{OWNER}</td>
+        <td>{PI_NAME}</td>
+        <td title="{TRACKING_NAME_TITLE}">{TRACKING_NAME}</td>
+        <td>{SUBMITTED}</td>
+        <td title="View Form">{TRACKING_PDF}</td>
+        <td>{APP_PDF}</td>
+        <td>{ATTACH_PDF}</td>
+        <td>{CV_PDF} </td>
+		<td><div id="commentLink{FORM_TRACKING_ID}" onclick="$('#commentFormDiv{FORM_TRACKING_ID}').toggle(200);"><a href="#"><span class="ar_comments">Your&nbsp;Comments</span></a></div></td>
+    </tr>
+    <div id="actionMessage{FORM_TRACKING_ID}"></div>
+    <tr  bgcolor='#CCCCCC'>
+        <td colspan="10">
+            <div id="commentFormDiv{FORM_TRACKING_ID}" style="display:none; text-align:left;">
+                <strong>&nbsp;&nbsp; Your Comments:</strong>
+                <br />
+                <label class="error" for="comments" id="description_error" style="color:red;"></label>
+                <textarea name="comments{FORM_TRACKING_ID}" id="comments{FORM_TRACKING_ID}" style="width:90%; height:100px; margin:5px;" >{COMMENTS}</textarea><br />
+                <br />
+                <div id ="commentFormButtonDiv{FORM_TRACKING_ID}" align="right">
+                    <input type="button" value="Cancel" name="button" onClick="$('#commentFormDiv{FORM_TRACKING_ID}').hide(200); $('#commentLink{REPORT_ID}').show(200);">
+                    <input type="button" value="Save" name="submit" onClick="SubmitComments('{FORM_TRACKING_ID}');" />
+                    
+                    {EXTRA_BUTTONS}
+                    
+                    <br />
+                    
+                </div>
+                {OTHER_COMMENTS}
+            </div>
+        </td>
+    </tr>
+
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+
+   </patTemplate:tmpl>
+   <script type="text/javascript">
+        
+        function SubmitComments(reportId) {
+
+            var comments = $("#comments"+reportId).val();
+            //alert('submit report id ' + reportId + ' comments: ' + comments);
+            // send the comments to be saved to the database
+            var dataString = 'mr_action=ajax_save_comments&report_id=' + reportId + '&comments=' + comments;
+            //alert(dataString);return false;
+            $.ajax({
+                type: "POST",
+                data: dataString,
+                url: 'tracking_list.php',
+                error: function() {
+                    $('#actionMessage').html('<p>Sorry, an error occurred and your comments were not saved (1).</p>').hide().fadeIn(1500);
+                },
+                success: function(returnStatus) {
+                    //alert(returnStatus);
+                    $('#actionMessage'+reportId).html(''); // clear status message
+                    if (returnStatus == 1) {
+                        $('#actionMessage').html('<p>Your comments have been saved.</p>').show().fadeOut(2000);
+                        // update the comment link
+                        //$('#commentLink'+reportId).html('<a href="#"><span class="ar_comments" alt="' + comments + '" >Dean\'s&nbsp;Comments</span></a>');
+                    } else {
+                    	confirm(returnStatus);
+                        $('#actionMessage').html('<p>Sorry, an error occurred and your comments were not saved (2) ' + '</p>').hide().fadeIn(1500).fadeOut(2000);
+                    }                }
+            });
+            $('#commentFormDiv' + reportId).toggle(200);
+
+            return true;
+
+        } // function
+        
+        function AppAction(action,reportId) {
+
+            var comments = $("#comments"+reportId).val();
+            //alert('submit report id ' + reportId + ' comments: ' + comments);
+            // send the comments to be saved to the database
+            var dataString = 'mr_action=ajax_appaction&report_id=' + reportId + '&action=' + action + '&comments=' + comments;
+            //alert(dataString);return false;
+            $.ajax({
+                type: "POST",
+                data: dataString,
+                url: 'tracking_list.php',
+                error: function() {
+                    $('#actionMessage').html('<p>Sorry, an error occurred.</p>').hide().fadeIn(1500);
+                },
+                success: function(returnStatus) {
+                    //alert(returnStatus);
+                    $('#actionMessage'+reportId).html(''); // clear status message
+                    if (returnStatus == 1) {
+                        $('#actionMessage').html('<p>The application was returned.</p>').show().fadeOut(2000);
+                        // update the comment link
+                        //$('#commentLink'+reportId).html('<a href="#"><span class="ar_comments" alt="' + comments + '" >Dean\'s&nbsp;Comments</span></a>');
+                    } else {
+                    	//confirm(returnStatus);
+                        $('#actionMessage').html('<p>Sorry, an error occurred. ' + '</p>').hide().fadeIn(1500).fadeOut(2000);
+                    }                }
+            });
+            $('#commentFormDiv' + reportId).toggle(200);
+
+            return true;
+
+        } // function
+    </script>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

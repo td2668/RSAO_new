@@ -1,0 +1,610 @@
+html {
+	font: 90%/1.0 arial,sans-serif;
+	/*padding:1em;
+	#background:#fafafa;
+	*/
+}
+/*
+* {margin:0; padding:0;}
+*/
+form {
+	background:#fff;
+	padding:1em;
+	border:1px solid #eee;
+}
+.login {
+	background:url(/images/user.gif) no-repeat 95% 1em;
+}
+.contact {
+	background:url(/images/email2.gif) no-repeat 95% 1em;
+}
+fieldset {
+	margin:0.3em 0;
+	clear:both;
+	
+}
+
+div.users{
+	margin-top: 6px;
+	font-size: 0.9em;
+	vertical-align: middle;
+    
+     }
+label.users{
+	float:left;
+	width:12em;
+	margin-top: 2px;	
+}
+label.usersnobox{
+	float:left;
+	width:12em;
+	
+}
+
+form {
+	margin:1em;
+	width:55em;
+}
+label {
+	/*float:left;*/
+	width:10em;
+	text-align:right;
+	margin-right:0.5em;
+	
+}
+legend {
+	color:#0b77b7;
+	font-size:1.2em;
+}
+legend span {
+	width:10em;
+	text-align:right;
+}
+input  {
+	padding:0.15em;
+	/*width:10em;*/
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 0.9em arial, sans-serif;
+
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+input:hover, input:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+} 
+
+select  {
+	padding:0.15em;
+	/*width:10em;*/
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 0.8em arial, sans-serif;
+
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+select:hover, select:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+} 
+
+textarea  {
+	padding:0.2em;
+	margin-top: 5px;
+	/*width:10em;*/
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 1.1em arial, sans-serif;
+	font-size: 11pt;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+textarea:hover, textarea:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+}
+
+fieldset {
+	border:1px solid #ddd;
+	padding:0 0.5em 0.5em;
+}
+.dategroup{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+
+.date input {
+	background-image:url(/images/calendar-small.gif);
+	background-repeat:no-repeat;
+	background-position:100% 50%;
+}
+
+.date fieldset label {
+	float:none;
+	display:block;
+	text-align:left;
+	width:auto;
+}
+.date fieldset div {
+	float:left;
+	clear:none;
+	margin-right:0.2em;
+}
+.radio, .date {
+	position:relative;
+}
+.radio fieldset, .date fieldset {
+	border:none;
+	width:auto;
+	padding:1px 0 0 11em;
+}
+.radio legend, .date legend {
+	font-size:1em;
+	color:#000;
+}
+.radio legend span, .date legend span {
+	position:absolute;
+	left:0;
+	top:0.3em;
+	width:10em;
+	display:block;
+}
+.radio label, .radio input {
+	vertical-align:middle;
+	display:inline;
+	float:none;
+	width:auto;
+	background:none;
+	border:none;
+}
+.radio div {
+	float:left;
+	white-space:nowrap;
+	clear:none;
+}
+
+.email {
+	width:14em;
+}
+
+input.default {
+	color:#bbb;
+}
+
+#submit-go {
+	margin-top:1em;
+	width:69px;
+	height:26px;
+	text-indent:-9999px;
+	overflow:hidden;
+	border:0;
+	background:url(/images/submit-button.gif) no-repeat 0 0;
+	display:block;
+	cursor:pointer !important; cursor:hand;
+}
+#submit-go:hover {
+	background-position:0 -26px;
+}
+
+/*
+input[type=checkbox], input[type=radio] { visibility: hidden; width:0; height:0; padding:0; margin:0; }
+input[type=checkbox] + label, input[type=radio] + label { padding-left:18px; }
+input[type=checkbox] + label{ background: url(../gfx/check_radio.png) 0 0 no-repeat; }
+input[type=checkbox]:focus + label{ background-position: 0 -16px; }
+input[type=checkbox] + label:hover{ background-position: 0 -32px; } 
+input[type=checkbox]:checked + label{ background-position: 0 -48px; }
+
+input[type=radio] + label{ background: url(../gfx/check_radio.png) 0 -64px no-repeat; }
+input[type=radio]:focus + label{ background-position: 0 -80px; }
+input[type=radio] + label:hover{ background-position: 0 -96px; } 
+input[type=radio]:checked + label{ background-position: 0 -112px; }
+*/
+
+
+
+td {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:12px}
+h2 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:14px}
+.functiontitle {font-family: Verdana, Arial, Helvetica, sans-serif; font-size:14px}
+a.matchtd {font-family: Verdana, Arial, Helvetica, sans-serif; color:#954A00; text-decoration:none; font-size:12px}
+a.matchtd:hover {font-family: Verdana, Arial, Helvetica, sans-serif; color:#661133; text-decoration:underline; font-size:12px}
+b {font-family: Verdana, Arial, Helvetica, sans-serif;  text-decoration:none; font-size:11px}
+b.little {font-family: Verdana, Arial, Helvetica, sans-serif;  text-decoration:none; font-size:9px}
+a {font-family: Verdana, Arial, Helvetica, sans-serif; color:#954A00; text-decoration:none; font-size:11px}
+
+/* Old Menu Items */
+a.menu {
+	font-family: arial;
+	color:#97979A;
+	text-decoration:none;
+	font-size:12px;
+	line-height: 12px;
+}
+a.menu:hover {
+	font-family: arial;
+	color:#FFFFFF;
+	text-decoration:underline;
+	font-size:12px;
+	line-height: 12px;
+}
+
+
+div.success2 {
+    font-family: Arial, Helveti1a, sans-serif;
+    font-size: 11px;
+    line-height: 12px;
+    padding: 3px 3px 1px 25px;
+    color: #333333;
+    height:14px;
+    clear:both;
+
+}
+
+div.datapage {
+	float: left;
+	padding: 11px 0px 0px 25px;
+	
+}
+
+/* ----- New Menu Items -------- */
+
+.menumain {
+    width: 960px;
+}
+
+.menucol1 {
+    float:left;
+    width:300px;
+    padding:10px;
+}
+
+.menucol2 {
+    float:left;
+    width:300px;
+    padding:10px;
+}
+
+.menucol3 {
+    float:right;
+    width:300px;
+    padding:10px;
+}
+
+.menugroup {
+    border-left: solid 1px #afc0ca;
+    border-right: solid 1px #afc0ca;
+    border-bottom: solid 1px #afc0ca;
+    background-color: #d3d3d3;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    -moz-border-radius-bottomright: 50px 25px;
+    border-bottom-right-radius: 50px 25px;
+}
+
+.menuheading {
+    background: #afc0ca url('../images/minimize.png') no-repeat right;
+    height : 25px;
+}
+
+.menuheadingtext{
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left : 5px;
+    line-height: 25px;
+}
+
+.menusubheading {
+    background-color: #afc0ca;
+    margin-left: 10px;
+}
+
+.menusubheadingtext {
+    color: black;
+    text-decoration:none;
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 10px;
+    width: 75%;
+    border-bottom: 2px solid #afc0ca;
+}
+
+a.menu-item {
+    color:black;
+    text-decoration:none;
+    font-size: 11px;
+    margin-left: 25px;
+}
+
+a.menu-item:hover {
+    color: grey;
+    text-decoration:underline;
+    font-size: 11px;
+    margin-left: 25px;
+}
+
+/* -------------- */
+
+a:hover {font-family: Verdana, Arial, Helvetica, sans-serif; color: #333333; text-decoration: underline; font-weight: 200;}
+
+a.summary {font-family: Arial, Helvetica,Verdana, sans-serif; color:#954A00; text-decoration:none; font-size: 12px;}
+a.summary:hover {font-family: Arial, Helvetica,Verdana,sans-serif; ; font-size: 12px;  color:#954A00;text-decoration: underline;}
+
+a.side {font-family: Verdana, Arial, Helvetica, sans-serif; color:#6633CC; font-weight:200; text-decoration:none}
+a.side:hover {font-family: Verdana, Arial, Helvetica, sans-serif; color:#9E92D4; font-weight:200; text-decoration:underline;}
+
+a.main {font-family: Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none}
+a.main:hover {font-family: Arial, Helvetica, sans-serif; text-decoration:underline; color:#5253FC}
+
+a.main2 {font-family: Arial, Helvetica, sans-serif; color:#666666; text-decoration:none}
+a.main2:hover {font-family: Arial, Helvetica, sans-serif; text-decoration:underline; color:#5253FC}
+
+a.mainbottom {font-family: arial; color:#000000; text-decoration:none}
+a.mainbottom:hover {font-family: arial; text-decoration:underline; color:#5253FC}
+
+a.subnav {font-family: arial; color:#000000; text-decoration:none}
+a.subnav:hover {font-family: arial; text-decoration:underline; color:#FFFFFF}
+
+.number {font-family:"Courier New", Courier, mono; font-size:13px}
+.number:hover {font-family:"Courier New", Courier, mono; font-size:13px; text-decoration:underline;}
+
+select.fixed {background-color: #afc0ca;
+	    border: 1px solid #093f5b;
+	    font-family: "Courier New", Courier, mono;
+	    font-size: 12px;
+	    font-weight: normal;
+	    color: black;
+	    text-decoration: none;}
+.update {background-color: #be7be2;}
+button {background-color: #be7be2;
+		border: 1px solid #093f5b;
+		font-family: arial;
+		font-size: 12px;
+		font-weight: normal;
+		color: black;
+		text-decoration: none;}
+button.pdf {background-color: inherit;
+		border: 1px solid #afc0ca;
+		font-family: arial;
+		font-size: 12px;
+		font-weight: normal;
+		color: black;
+		text-decoration: none;}
+
+body.mceContentBody {background-color: #afc0ca;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: normal;
+    color: black;
+    text-decoration: none;}
+td {font-family:arial;}
+.successhead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	background-color: #CCCCCC;
+	padding: 4px;
+	font-weight: 900;
+}
+h3 {
+	font-family: "Helvetics 95 Black", "Helvetica Black", "Arial Black", Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	color: #FFFFFF;
+	padding: 1px 1px 1px 4px;
+	font-weight: normal;
+	margin-bottom: 5px;
+	background-color: #CC6600;
+	text-align: left;
+	letter-spacing: 0.7em;
+	word-spacing: 1.5em;
+}
+.staticsubhead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	background-color: #CCCCCC;
+	padding: 2px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.staticsubheadanchor {
+font-family: Verdana, Arial, Helvetica, sans-serif;	font-size: 11px;	color: #000000;	background-color: #CCCCCC; padding: 2px; font-weight: bold; width:800; height:17; vertical-align:middle;
+}
+p.menuitems {
+	margin-bottom:2px;
+	margin-top: 8px;
+	line-height:12px;
+}
+.sactableheader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: italic;
+	font-weight: bolder;
+}
+.success {
+	font-family: Arial, Helveti1a, sans-serif;
+	font-size: 12px;
+	padding: 0px 1px 1px 4px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	background-color: #AAAAAA;
+	color: #FFFFFF;
+
+}
+.total {
+	border: 1px solid #885F03;
+	background-color:white;
+	font-weight:bold;
+	font-size:12px;
+	text-align:right;
+}
+.money {
+	text-align:right;
+}
+.whtablehead{
+	color:#E1E1E1;
+	font-size:12px;
+
+	font-weight:bold
+}
+
+.hiddenfieldleft {
+    border: none;
+    background-color:#FFFFFF;
+    text-align:left;
+    padding-right:10px;
+    width: 300px;
+    font-weight:bold;
+    height:16px;
+    vertical-align:bottom;
+
+}
+.hiddenfieldright {
+    border: none;
+    background-color:#FFFFFF;
+    text-align:left;
+    padding-left:10px;
+    width:400px;
+}
+
+.listhead{
+    background-color: #000000;
+}
+.listbody{
+    background-color: #D7D7D9;
+}
+
+/** Table styling for new list style tables **/
+
+table.tablelist {
+    border-width: 1px;
+    border-spacing: 1px;
+    border-collapse: separate;
+    border-color: #FFFFFF;
+}
+
+table.tablelist td{
+    padding: 5px;
+}
+
+thead.tablelist-head tr {
+    background-color: #000000;
+}
+
+thead.tablelist-head td {
+    font-weight: bold;
+    color: #E1E1E1;
+    font-size: 12px;
+}
+
+tr.tablelist-odd td {
+    background-color: #D8D8D8 ;
+}
+
+tr.tablelist-even td {
+    background-color: white;
+}
+
+table.tablelist input {
+    background-color: white;
+    vertical-align: middle;
+}
+
+/* ---- Styling for forms --- */
+
+/*label
+{
+    width: 12em;
+    float: left;
+    text-align: right;
+    margin-right: 1em;
+    display: block;
+}*/
+
+
+/** -------- **/
+
+.arrow-up {
+    margin-left: 25px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+
+    border-bottom: 8px solid white;
+}
+
+.arrow-down {
+    margin-left: 15px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+}
+
+
+/*Styles for tables */
+
+
+/* odd items 1,3,5,7,... */
+table tr.odd th,
+.odd {
+    background: #E5E5E5;
+}
+
+/* even items 2,4,6,8,... */
+table tr.even th,
+.even {
+    background: #D5D5D5;
+}
+
+/* hovered items */
+.odd:hover,
+.even:hover,
+.hover {
+    background: #CCFFCC;
+    color: #000000;
+}
+
+/* hovered table rows */
+table tr.odd:hover th,
+table tr.even:hover th,
+table tr.hover th {
+    background:   #CCFFCC;
+    color:   #000000;
+}
+
+#unihead
+{
+  height: 40px;
+  background-color: transparent;
+  background-image: url("/images/logo-bg.jpg");
+  background-repeat: repeat-x;
+  background-attachment: scroll;
+  background-position: 0px 0px;
+  background-clip: border-box;
+  background-origin: padding-box;
+  background-size: auto auto;
+}
+
+#container
+{
+	width: 100%;
+}
+
+#subunihead {
+	background-color: #a7a7aa;
+	height: 30px;
+}
+
+#mainpage{
+	float: left; padding-left: 15px;
+	width:92%;
+	font-size: 13pt;
+}
+

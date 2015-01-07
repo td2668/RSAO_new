@@ -1,0 +1,366 @@
+<patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+   <patTemplate:tmpl src="header.html" />
+
+   <script type='text/javascript'>
+    jQuery(function() {
+        var studentDiv = jQuery('#studentNames');
+        var i = jQuery('#studentNames').size();
+
+        jQuery('#addstudent').live('click', function() {
+            jQuery('<span class="researcher">' +
+                    '<label for="namesfirst_' + i + '">Given Names(s)</label>' +
+                    '<input type="text" name="namesfirst_' + i +'" value="" size="30" value="" placeholder="First Name" style=><br/>' +
+                    '<label for="nameslast_' + i + '">Surname</label>' +
+                    '<input type="text" name="nameslast_' + i +'" value="" size="30" value="" placeholder="Surname">' +
+                    '</input><br/>' +
+/*
+                    '<a href="#" id="remName" style="float:right;padding:5px" title="Remove"><img src="images/minus.png" alt="remove student" width="25px" /></a>' +
+*/
+                    '</span><br/>').appendTo(studentDiv);
+            jQuery('input[name=numResearchers]').val(i); //save the number of students added for later
+            i++;
+            return false;
+        });
+
+/*        jQuery('#remName').live('click', function() {
+            if( i > 2 ) {
+                jQuery(this).parents('p').remove();
+                i--;
+            }
+            return false;
+        });*/
+    });
+
+    function validateForm()
+    {
+        var errors = false;
+        var errorMsg = "";
+
+        var firstname = document.regform.primaryNameFirst.value;
+        if (firstname==null || firstname=="")
+        {
+            errorMsg += "First name must be filled out";
+            errors = true;
+        }
+
+        var lastname = document.regform.primaryNameLast.value;
+        if (firstname==null || firstname=="")
+        {
+            errorMsg += "\nSurname must be filled out";
+            errors = true;
+        }
+
+        var studentid = document.regform.studentid.value;
+        if (studentid==null || studentid=="")
+        {
+            errorMsg += "\nStudent ID must be filled out";
+            errors = true;
+        }
+
+        var email = document.regform.email.value;
+        if (email==null || email=="")
+        {
+            errorMsg += "\nEmail must be filled out";
+            errors = true;
+        } else {
+            var atpos=email.indexOf("@");
+            var dotpos=email.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=email.length)
+            {
+                errorMsg += "\nNot a valid e-mail address";
+                errors = true;
+            }
+        }
+
+        var title = document.regform.title.value;
+        if (title==null || title=="")
+        {
+            errorMsg += "\nProject title must be filled out";
+            errors = true;
+        }
+        
+        var title = document.regform.course.value;
+        if (course==null || course=="")
+        {
+            errorMsg += "\nCourse must be filled out";
+            errors = true;
+        }
+
+/*        var descrip = document.regform.descrip.value;
+        if (descrip==null || descrip=="")
+        {
+            errorMsg += "\nProject description must be filled out";
+            errors = true;
+        }*/
+
+        if(errors == true) {
+            alert(errorMsg);
+            return false;
+        }
+
+        return true;
+    }
+
+    function checkWordLen(obj, wordLen){
+        var len = obj.value.split(/[\s]+/);
+        if(len.length > wordLen){
+            alert("You've exceeded the "+wordLen+" word limit for this description.");
+            obj.oldValue = obj.value!=obj.oldValue?obj.value:obj.oldValue;
+            obj.value = obj.oldValue?obj.oldValue:"";
+            return false;
+        }
+        return true;
+    }
+
+</script>
+
+<style type="text/css"   >
+    body{
+        font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+        font-size:12px;
+    }
+    p, h1, form, button{border:0; margin:0; padding:0;}
+    .spacer{clear:both; height:3px;}
+        /* ----------- My Form ----------- */
+    .myform{
+        margin:0 auto;
+        width:650px;
+        padding:14px;
+    }
+
+        /* ----------- stylized ----------- */
+    #stylized{
+        border:solid 2px #b7ddf2;
+        background:#ebf4fb;
+    }
+    #stylized h1 {
+        font-size:15px;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+    #stylized p{
+        font-size:11px;
+        color:#666666;
+        margin-bottom:20px;
+        /*border-bottom:solid 1px #b7ddf2; */
+        padding-bottom:10px;
+    }
+    #stylized label{
+        display:block;
+        font-weight:bold;
+        text-align:right;
+        width:140px;
+        float:left;
+        padding-top: 6px;
+    }
+    #stylized .small{
+        color:#666666;
+        display:block;
+        font-size:11px;
+        font-weight:normal;
+        text-align:right;
+        width:140px;
+    }
+    #stylized input[type=text]{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized textarea{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized select{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized button{
+        clear:both;
+        margin-left:150px;
+        width:125px;
+        height:31px;
+        background:#666666 url(img/button.png) no-repeat;
+        text-align:center;
+        line-height:31px;
+        color:#FFFFFF;
+        font-size:11px;
+        font-weight:bold;
+    }
+
+    #register-form .fieldgroup label.error {
+        color: #FB3A3A;
+        display: inline-block;
+        margin: 4px 0 5px 125px;
+        padding: 0;
+        text-align: left;
+        width: 220px;
+    }
+</style>
+	<div class="enfasis" style="text-align: right">Logged in as: {USERNAME} &nbsp; <a href='students/logout.php'>Logout</a></div>
+
+   <h1>Student Research Day Registration</h1><br><br>
+<!--
+   
+    <div >
+       <h2>SRD Registration is now closed.</h2>
+   </div>
+-->
+
+   <div style="display:{SUCCESS}">
+       <h3>Thank you.  Your project has been registered.</h3>
+       <h3>Did you know that the Research Office will print your Research Day (or Faculty/Dept Showcase) poster for free? The link is on the left.</h3>
+   </div>
+
+<!--
+<div id='stylized' class="myform" style="display:none">
+-->
+<div id='stylized' class="myform" style="display:{FORM}">
+
+    <p>Please use the form below to register your interest in participating in student research day.  If more than one
+    student was involved in a project, then please register just once including all participants in the spaces provided below.</p>
+
+   <form name="regform" id="regform"  title="Registration Form" action="studentregistration.php" method="post" onsubmit="return validateForm()">
+       <div id="form-content">
+           <fieldset>
+
+       {FORM_ERRORS}
+
+       <input type="hidden" name="_submit_check" value="1"/>
+       
+      This registration is for: <input type="checkbox" name="srd" id="srd" checked="checked">Student Research Day &nbsp; 
+          <input type="checkbox" name="strd" id="strd">Sci&amp;Tech Research Day.<br><br>
+
+       <h1>Presentation Title</h1>
+       <label for="title">* Project Title</label>
+       <input type="text" name="title" id="title" value='{TITLE}' placeholder="My Research Project's Title"/>
+
+       <p></p>
+
+       <h1>Student Researcher </h1>
+       <label for="primaryNameFirst">* First Name</label>
+       <input type='text' name='primaryNameFirst' id="primaryNameFirst" value="{PRIMARYNAMEFIRST}" placeholder="First Name" />
+
+       <label for="primaryNameLast">* Surname</label>
+       <input type='text' name='primaryNameLast' id="primaryNameLast" value="{PRIMARYNAMELAST}" placeholder="Surname" />
+
+       <label for="studentid">* Student ID#</label>
+       <input type="text" size="10" name="studentid" value="{STUDENTID}" title="We need at least one ID# if it's a group registering" placeholder="e.g. 20199999" />
+
+       <label for="email">* Contact Email
+       <div class="small">Communication will be directed to this address.</div></label>
+       <input type="text" name="email" value="{EMAIL}" title="This will be our main way of contacting you"  />
+<br clear='left'><br>
+      <h1>Additional Student Researchers</h1>
+       <div id="studentNames">
+               <label for="addstudent">Add Researcher</label>
+               <a href="#" id="addstudent"><img src='images/plus.png' alt='add student' width='25px' /></a>
+              <p></p>
+       </div>
+       <input name="numResearchers" value="0" type="hidden"/>
+
+       <span class='spacer'></span>
+       <h1>Program Details</h1>
+            <label for="program">Program</label>
+            <input type="text"  name="program" id="program" title="e.g. Bach of Science, Bach of Arts Honours, etc."  placeholder="e.g. Bachelor of Science" />
+
+          <label for="department">* Department</label>
+           <select name='department' id='department'>
+           <option value="0">-- None --</option>
+               <patTemplate:tmpl name="DEPARTMENT_OPTIONS">
+                   <option value='{DEPARTMENT_ID}' {SELECTED}>{NAME}</option>
+               </patTemplate:tmpl>
+           </select>
+
+            <label for="course">* Related Course
+            <span class="small">'Independent' if no course</span></label>
+            <input type="text" name="course" id="course" value="{COURSE}" title="If your project is part of or linked to a course, provide the course number" placeholder="e.g. Biology 101"  /><br/>
+
+           <label for='supervisor'>Faculty Supervisor
+           <span class="small">If you have no supervisor we'll be connecting you with a faculty volunteer</span></label>
+           <select name='supervisor' id='supervisor'>
+               <option value="0">-- None --</option>
+               <patTemplate:tmpl name="SUPERVISOR_OPTIONS">
+                   <option value='{USER_ID}' {SELECTED}>{NAME}</option>
+               </patTemplate:tmpl>
+           </select>
+       <div class="spacer"></div>
+
+       <p></p>
+
+       <h1>Presentation Details</h1>
+       
+       <p>Just as with any academic conference, a critical component is a short abstract describing your project. If you're not ready yet then please continue with the registration process and leave this blank. We will be in touch via the above email during the last week of March to ask you to forward it. We can't post your project/poster to our web site without the abstract.</p>
+
+		<label for="descrip" align='left'>Project Description / Abstract<br>(200 words or less):</label>
+       <textarea cols="80" rows="8" name="descrip" id="descrip" onKeyUp="checkWordLen(this.form.descrip,220);"></textarea>
+
+       <p>Presentation Preference
+           <input type="radio" name="pref" value="poster" checked="checked">Poster</input>
+            <input type="radio" name="pref" value="multimedia"/> Multi-Media</input>
+        </p>
+        
+          <p>URL for Multimedia<br>
+          <input type="text" name="url" id="url"  placeholder="Optional URL of presentation if needed"/><br clear="all">
+          </p>
+
+       <p>Does this project involve human participants?
+           Yes<input type="radio" name="hreb" value="yes"  />
+           No<input type="radio" name="hreb" value="no"  />
+           Not Sure<input type="radio" name="hreb" value="notsure" checked/>
+       </p>
+
+       <p>If yes, do you already have ethics approval?
+           Yes<input type="radio" name="hreb2" value="yes"  />
+           No<input type="radio" name="hreb2" value="no" />
+           Not Sure<input type="radio" name="hreb2" value="notsure"  checked/>
+       </p>
+
+       <h1>Photo Release</h1>
+
+               <p>This event will be photographed and videotaped for the purpose of promoting undergraduate research at
+                   Mount Royal University. These images and/or interviews will be collected under the authority of the
+                   Post‐Secondary Learning Act and the Alberta Freedom of Information and Protection of Privacy (FOIP)
+                   Act - Section 33(c).
+                   Collected personal information is protected from unauthorized access, collection, use, and disclosure
+                   in accordance with the FOIP Act and can be reviewed or corrected on request. Questions regarding the
+                   collection of personal information can be directed to: </p>
+
+               <p style='margin-left:20px'>Manager, Research Services,<br/>
+                   Mount Royal University<br/>
+                   4825 Mount Royal Gate SW<br/>
+                   Calgary, AB T3E 6K6<br/>
+                   403-440-5081<br/>
+                   <span class='codedirection'>ac.layortm@noremacj</span>
+               </p>
+
+               <p>I hereby consent to and authorize Mount Royal University (MRU) to use
+                   and reproduce any and all photographs and/or audiovisual recordings that MRU will make of me during
+                   Student Research Day on March 20, 2013, for any purpose whatsoever - including marketing materials
+                   such as the MRU website, advertising and other institutional and recruitment marketing and
+                   communication materials - without compensation to me. All materials in which my photo or audiovisual
+                   recording content is included will remain MRU's property, solely and completely. I authorize use of
+                   my photo and/or audiovisual recording, in all forms, in perpetuity and I waive all copyright and
+                   moral rights to the information.</p>
+
+               <p><input type="radio" name="foip" value="yes"  checked/> I consent  <input type="radio" name="foip" value="no"  />I do not consent</p>
+
+        <p>
+            <button type='submit' name="submit">Submit</button>
+        </p>
+       </fieldset>
+       </div>
+   </form>
+</div>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

@@ -1,0 +1,57 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a Name."]] // Name
+	]; 
+//-->
+</script>
+<table>
+    <form method="post" name="form1" action="" onSubmit="return validateForm(this,arrValidationDesc)">
+        <tr>
+            <td colspan="2" class="successhead">Add: Department</td>
+        </tr>
+        <tr height="10">
+            <td colspan='7' height="14" class="success"> ~!success~</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name" maxlength="255" size="30"></td>
+        </tr>
+        <tr>
+            <td>Short Name:</td>
+            <td><input type="text" name="shortname" maxlength="255" size="30"></td>
+        </tr>
+        <tr>
+            <td>Division:</td>
+            <td><select name="division_id">
+                <option value='0'>&nbsp;</option>
+                ~!division_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>Chair:</td>
+            <td><select name="chair">
+                <option value="0">&nbsp;</option>
+                ~!user_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>Director:</td>
+            <td><select name="director">
+                <option value="0">&nbsp;</option>
+                ~!user_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="add" value="Add">&nbsp;&nbsp;
+                <button onClick="window.location='departments.php?section=view'">Back</button>
+            </td>
+        </tr>
+    </form>
+</table>

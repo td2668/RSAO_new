@@ -1,0 +1,1696 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html"/>
+<patTemplate:tmpl name="PAGE_ALL">
+
+<link href="/css/jquery/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+<link href="/css/jquery/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" ></script>
+<script src="/js/jquery-ui-1.7.2.custom.min.js"></script>
+
+<script type="text/javascript">
+
+    jQuery( document ).ready(function() {
+        var elem = document.createElement('input');
+        elem.setAttribute('type', 'date');
+
+        if ( elem.type === 'text' ) {
+            jQuery('#deadline').datepicker({ dateFormat: 'yy-mm-dd'});
+            jQuery('#funding_deadline').datepicker({ dateFormat: 'yy-mm-dd'});
+
+        }
+
+        /** Show and hide help text when an input is clicked **/
+
+        jQuery('input').focus(function() {
+            nextElement = jQuery(this).nextAll('.field-help');
+                nextElement.slideToggle('fast');
+        });
+
+        jQuery('input').blur(function() {
+            nextElement = jQuery(this).nextAll('.field-help');
+                nextElement.slideUp('fast');
+        });
+
+    });
+
+    function submitform() {
+        document.form1.submit();
+    }
+
+
+    function CalculateTotal(frm) {
+        var c_total = 0
+        var i_total = 0
+        for (var i = 0; i < frm.elements.length; ++i) {
+            form_field = frm.elements[i]
+            form_name = form_field.name
+            // Is it a C field?
+            if (form_name.substring(0, 2) == "c_") {
+                if (form_field.value != '' && !isNaN(parseFloat(form_field.value))) {
+                    c_total += parseFloat(form_field.value)
+                }
+            }
+            if (form_name.substring(0, 2) == "i_") {
+                if (form_field.value != '' && !isNaN(parseFloat(form_field.value))) {
+                    i_total += parseFloat(form_field.value)
+                }
+            }
+        }
+        frm.TOTALC.value = c_total
+        frm.TOTALI.value = i_total
+    }
+
+    function round_decimals(original_number, decimals) {
+        var result1 = original_number * Math.pow(10, decimals)
+        var result2 = Math.round(result1)
+        var result3 = result2 / Math.pow(10, decimals)
+        return pad_with_zeros(result3, decimals)
+    }
+    function pad_with_zeros(rounded_value, decimal_places) {
+        var value_string = rounded_value.toString()
+        var decimal_location = value_string.indexOf(".")
+        if (decimal_location == -1) {
+            // If no, then all decimal places will be padded with 0s
+            decimal_part_length = 0
+            // If decimal_places is greater than zero, tack on a decimal point
+            value_string += decimal_places > 0 ? "." : ""
+        }
+        else {
+            // If yes, then only the extra decimal places will be padded with 0s
+            decimal_part_length = value_string.length - decimal_location - 1
+        }
+        // Calculate the number of decimal places that need to be padded with 0s
+        var pad_total = decimal_places - decimal_part_length
+        if (pad_total > 0) {
+            // Pad the string with 0s
+            for (var counter = 1; counter <= pad_total; counter++)
+                value_string += "0"
+        }
+        return value_string
+    }
+
+</script>
+
+<script type="text/javascript" src="js/ajax-dynamic-content.js"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/ajax-tooltip.js"></script>
+
+<link rel="stylesheet" href="css/forms.css" media="screen" type="text/css">
+<link rel="stylesheet" href="css/ajax-tooltip.css" media="screen" type="text/css">
+
+<form action="my_tracking.php" name="form1" method="POST" enctype="multipart/form-data">
+<input type="hidden" name="section" value="{SECTION}"/>
+<input type="hidden" name="gotosection" value=""/>
+<input type="hidden" name="newname" value=""/>
+<input type="hidden" name="saveme" value="false"/>
+<input type="hidden" name="locksubmit" value="false"/>
+<input type="hidden" name="newcoi" value="false"/>
+<input type="hidden" name="trackingId" id="trackingId" value="{TRACKING_ID}"/>
+<input type="hidden" name="userId" id="userId" value="{USER_ID}"/>
+
+
+
+<div name="formchooser">
+    <patTemplate:tmpl name="chooser" visibility="visible">
+        <b>
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='info';"><span
+                    class='{HILITE_INFO}'>Info</span></a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='funding';"><span
+                    class='{HILITE_FUNDING}'>Funding</span></a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='commitments';"><span
+                    class='{HILITE_COMMITMENTS}'>Commitments</span></a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='coi';"><span
+                    class='{HILITE_COI}'>COI</span></a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='compliance';"><span
+                    class='{HILITE_COMPLIANCE}'>Compliance</span></a>&nbsp;&nbsp;|&nbsp;
+<!--            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='approvals';"><span
+                    class='{HILITE_APPROVALS}'>Forms &amp; Approvals</span></a>&nbsp;&nbsp;|&nbsp;-->
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='files';"><span
+                    class='{HILITE_FILES}'>Files</span></a>&nbsp;&nbsp;|&nbsp;
+            <a href="javascript: submitform()"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='submit';"><span
+                    class='{HILITE_SUBMIT}'>Submit</span></a>
+                                                         &nbsp;&nbsp; <br><br>
+        </b>
+    </patTemplate:tmpl>
+</div>
+
+
+<patTemplate:tmpl name="section" type="condition" conditionvar="section">
+<patTemplate:sub condition="list">
+    <h3>My Tracking Forms</h3>
+<!--    <div style='float:right; border: 1px solid #00529B;; color:#00529B; padding:10px; -moz-border-radius: 15px;
+border-radius: 15px; margin-right: 20px; width:150px'>
+        <h4>Understanding the Tracking Form</h4>
+        <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+             onClick="ajax_toggleTooltip(window.event,'help/forms_intro.html',this);return false"/>
+        When and Why
+    </div>-->
+    <p class="info">
+        Research Services needs to keep track of research and research related activities. A tracking
+        form is the way we get this process started.<br/><br/>
+    </p>
+    <div id="forms_list">
+
+        <a href="javascript: submitform()" title="Create a new form" onclick="javascript: document.form1.saveme.value='true'; document.form1.newname.value=prompt('Provide a descriptive Name for this form','Tracking Name?'); document.form1.section.value='new';">
+            <!--<a href="javascript: submitform()" title="Create a new form"
+               onClick="javascript: document.form1.saveme.value='true'; document.form1.tracking_name.value=prompt('Provide a descriptive Name for this form','Tracking Name?'); document.form1.section.value='new';">-->
+
+            <img src='images/new-doc.png' alt='new' width=25px; style='margin-right:5px;'>New Form</image>
+        </a>
+    </div>
+
+    <h3>Pending Forms</h3>
+    <table class='mytracking'>
+        <thead>
+        <th width='200'>Project Title</th>
+        <th width="85">Last Modified</th>
+        <th width="30">Edit</th>
+        <th width="30">Delete</th>
+        <!--<th width="30">Copy</th> -->
+        </thead>
+        <tbody>
+        <patTemplate:tmpl name="list-pending">
+            <tr class='{EVENODD}' >
+                <td class=''>
+                    {TRACKING_NAME}
+                </td>
+                <td>{MODIFIED}</td>
+                <td>
+                    <div style='display:{HIDESUBMITTED}'>
+                        <button class='' type='button' title='Edit'
+                                onClick='javascript: window.location="/my_tracking.php?gotosection=info&form_tracking_id={TRACKING_ID}";'>
+                            <img src='/images/icon-sm-edit.gif' alt='copy'>
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div style='display:{HIDESUBMITTED}'>
+                        <button class='' type='button' title='Delete'
+                                onClick='javascript: if(confirm("Really delete?")) window.location="/my_tracking.php?delete&form_tracking_id={TRACKING_ID}";'>
+                            <img src='/images/icon-sm-trash.gif'></button>
+                    </div>
+                </td>
+                <!--                    <td>
+                                        <button class='' type='button' title='Copy to New'
+                                                onClick='javascript: window.location="/my_tracking.php?copy&form_tracking_id={FORM_TRACKING_ID}";'>
+                                            <img src='/images/icon-sm-copy.gif' alt='copy'>
+                                        </button>
+                                    </td>-->
+            </tr>
+        </patTemplate:tmpl>
+        </tbody>
+    </table>
+
+    <h3>Submitted Forms</h3>
+        <table class='mytracking'>
+            <thead>
+                <th width='30'>ID</th>
+                <th width='200'>Project Title</th>
+                <th width="85">Last Modified</th>
+                <!--<th width="30">Copy</th> -->
+                <th width="30">PDF</th>
+                <th width='100' align="left">HREB</th>
+                <th width='100' align=left>Dean</th>
+                <th width='100' align="left">ORS</th>
+            </thead>
+            <tbody>
+            <patTemplate:tmpl name="list">
+                <tr class='{EVENODD}' >
+                    <td style='font-size: 13pt;'>
+                        {TRACKING_ID_DISPLAY}
+                    </td>
+                    <td class=''>
+                        {TRACKING_NAME}
+                    </td>
+                    <td>{MODIFIED}</td>
+<!--                    <td>
+                        <button class='' type='button' title='Copy to New'
+                                onClick='javascript: window.location="/my_tracking.php?copy&form_tracking_id={FORM_TRACKING_ID}";'>
+                            <img src='/images/icon-sm-copy.gif' alt='copy'>
+                        </button>
+                    </td>-->
+                    <td>
+                        <div style='display:{SHOWSUBMITTED};text-align: center'>
+                        <button type='button' value='viewpdf' title='Generate PDF'
+                                onClick='javascript: window.open("/my_tracking.php?printpdf&form_tracking_id={TRACKING_ID}");'>
+                            <img src='/images/icon-sm-pdf2.gif'></button>
+                    </div>
+                    </td>
+                    <td>
+                        <div style='display:{SHOWSUBMITTED};text-align: left'>
+                            <img src='images/{HREB_IMAGE}' alt='{HREB_TEXT}' title='HREB {HREB_TEXT}'></image>&nbsp;<span style="font-size: 8pt;">{HREB_TEXT}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div style='display:{SHOWSUBMITTED};text-align: left'>
+                            <img src='images/{APPROVAL_IMAGE}' alt='{APPROVAL_TEXT}' title='Dean {APPROVAL_TEXT}'></image>&nbsp;<span style="font-size: 8pt;">{APPROVAL_TEXT}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div style='display:{SHOWSUBMITTED};text-align: left'>
+                            <img src='images/{ORS_IMAGE}' alt='{ORS_TEXT}' title='ORS {ORS_TEXT}'></image>&nbsp;<span style="font-size: 8pt;">{ORS_TEXT}</span>
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            </tbody>
+        </table>
+</patTemplate:sub>
+
+
+<patTemplate:sub condition="info">
+    <patTemplate:tmpl name="info">
+        <input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+
+        <table class='formtable' cellpadding="2">
+                <tr>
+                    <td colspan='2'>
+                            <span class="field-help">Pages save automatically as you move between sections; but your changes will be
+                                lost if you move away from this module, so be sure to 'Save'.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class='trackheading'><h3>Project Information</h3></td>
+                </tr>
+                <patTemplate:tmpl name="newproject" varscope="info">
+                    <tr>
+                        <td>
+                            <label for='tracking_name'>* Project Title: </label>
+                        </td>
+                        <td>
+                            <input type="text" name="tracking_name" size="50" value="{TRACKING_NAME}"{DISABLED}/>
+                            <div class="field-help" style="height: auto; display:none;"> The title of the project being tracked.
+                                <br> </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for='synopsis'>Synopsis:</label>
+                        </td>
+                        <td>
+                            <textarea name="synopsis" rows="4" cols="60" placeholder="Provide a brief, single paragraph description of your project" {DISABLED}>{SYNOPSIS}</textarea>
+                            <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                                 onClick="ajax_toggleTooltip(window.event,'help/forms_info_synopsis.html',this);return false"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <label for='deadline'>* Approval Deadline:</label>
+                        </td>
+                        <td>
+                            <input type='date' name='deadline' id='deadline' value='{DEADLINE}'></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                                <div class="field-help sub">* The Approval Deadline is the date you require Dean approval by.
+                                    6 months is the default, though approvals normally occur much quicker than this.
+                                    This deadline doesn't not apply to funding, for funding deadlines please see the Funding section.
+                             <br> </div>
+                        </td>
+                    </tr>
+                </patTemplate:tmpl>
+            <tr>
+                <td colspan="2" class='trackheading'><h3>Principal Investigator</h3></td>
+            </tr>
+            <tr>
+                <td colspan='2'><label for='pi'>Are you the Principal Investigator ?</label>
+
+                    <input type="radio" value='1' {DISABLED} name='pi' {PI}
+                                                  onclick="javascript:document.form1.saveme.value='true';
+                                                  document.form1.section.value='info';
+                                                  submitform();">Yes</input>
+                    <input type="radio" value='0' {DISABLED} name='pi' {NOTPI}
+                                                  onclick="javascript:document.form1.saveme.value='true';
+                                                  document.form1.section.value='info';
+                                                  submitform();">No</input>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_info_pi.html',this);return false"/>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="pi_link" visibility="visible" varscope="info">
+                <tr>
+                    <td colspan="2"><span class="form_instructions">Select and MRU investigator, or enter the investigators details below.</span></td>
+                </tr>
+                <tr>
+                    <td colspan='2'><label class='sub' for='pi_id'>MRU Faculty :</label>
+                        <select name='pi_id' {DISABLED} onchange="javascript:document.form1.saveme.value='true';
+                                             document.form1.section.value='info'; submitform();">
+                        <option value='0'>----- External Investigator -----</option>
+                                             {PI_ID} </select>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <patTemplate:tmpl name="pi_info" visibility="hidden" varscope="info">
+                <tr>
+                    <td colspan="2"><label for='firstname'>External Principal Investigator :</label></td>
+
+                </tr>
+                <tr>
+                    <td><label class='sub' for='firstname'>First Name:</label></td>
+                    <td><input type="text" {DISABLED} name="firstname" value="{FIRSTNAME}" size="40" /></td>
+                </tr>
+                <tr>
+                    <td><label class='sub' for='lastname'>Last Name:</label></td>
+                    <td><input type="text" {DISABLED} name="lastname" value="{LASTNAME}" size="40" /></td>
+                </tr>
+                <tr>
+                    <td><label class='sub' for='phone'>Phone:</label></td>
+                    <td><input type="text" {DISABLED} name="phone" value="{PHONE}" size="16" /></td>
+                </tr>
+                <tr>
+                    <td><label class='sub' for='email'>Email:</label></td>
+                    <td><input type="text" {DISABLED} name="email" value="{EMAIL}" size="30" /></td>
+                </tr>
+                <tr>
+                    <td><label class='sub' for='address1'>Address:</label></td>
+                    <td>
+                        <input type="text" {DISABLED} name="address1" value="{ADDRESS1}" size="60" /><br/>
+                        <input type="text" {DISABLED} name="address2" value="{ADDRESS2}" size="60" /><br/>
+                        <input type="text" {DISABLED} name="address3" value="{ADDRESS3}" size="60" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label class='sub' for='institution'>Institution:</label></td>
+                    <td><input type="text" {DISABLED} name="institution" value="{INSTITUTION}" size="40" /></td>
+                </tr>
+            </patTemplate:tmpl>
+            <tr>
+                <td colspan="2" class='trackheading'><h3>Co-Researchers</h3></td>
+            </tr>
+
+            <tr>
+                <td><label for='add_co'>MRU Faculty :</label>
+                </td>
+                <td><select name='add_co' {DISABLED} onchange="javascript:document.form1.saveme.value='true';
+                                          document.form1.section.value='info'; submitform();">
+                    <option value='0'>&nbsp;</option>
+                                          {CO_OPTIONS} </select>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_info_add_co.html',this);return false"/>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="co_researchers_section" visibility="hidden">
+                <table class="formtable" cellpadding="2">
+                    <patTemplate:tmpl name="coresearchers">
+                        <tr>
+                            <td><span class='sub'>{NAME}</span></td>
+                            <td>{DELETE}</td>
+                        </tr>
+                    </patTemplate:tmpl>
+                </table>
+                <table class="formtable" cellpadding="2">
+            </patTemplate:tmpl>
+
+            <tr>
+                <td><label for='coresearchers'>External/Other : </label></td>
+                <td><textarea {DISABLED} cols="60" rows="2" name="coresearchers"
+                              onblur="javascript:document.form1.saveme.value='true';
+                              document.form1.section.value='info';
+                              submitform();">{CORESEARCHERS}</textarea>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                         title='Click Me'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_info_other_co.html',this);return false"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'><label for='costudents'>Are any co-researchers students ?</label>
+                    <input type="checkbox" {DISABLED} name="costudents" {COSTUDENTS}
+                                           onclick="javascript:document.form1.saveme.value='true';
+                                           document.form1.section.value='info';
+                                           submitform();"/>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="ipinfo" visibility="hidden">
+                <tr>
+                    <td colspan='2'>
+                        <div class="info">When involved with co-researchers, and in particular
+                                          student co-researchers, it is important to set up expectations of intellectual
+                                          property
+                                          ownership in advance. The <a href='/documents/forms/ipform.pdf'>'Intellectual
+                                                                                                          Property'
+                                                                                                          form </a>provides
+                                          a place for you and members of your group to clearly define your
+                                          relationship, and can be modified whenever required.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+</patTemplate:sub>
+
+
+<patTemplate:sub condition="funding">
+<patTemplate:tmpl name="funding">
+<input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+<table cellpadding="2" class='formtable'>
+    <tr>
+        <td colspan="2"><label for='funding'>Do you plan to apply for funding (or have you secured funding) for this project?</label>
+<!--            <input type="checkbox" tabindex="1" name='funding' {FUNDING}
+                                                               onclick="javascript:document.form1.saveme.value='true';
+                                                               document.form1.section.value='funding';
+                                                               submitform();"/>-->
+        </td>
+        </tr>
+    <tr>
+        <td><input class="sub" type="radio" tabindex="1" name='funding' value="on" {FUNDING_YES}
+                                                                                     onclick="javascript:document.form1.saveme.value='true';
+                                                                                     document.form1.section.value='funding';
+                                                                                     submitform();">Yes</input>
+            <input class="sub" type="radio" tabindex="1" name='funding' value="off" {FUNDING_NO}
+                                                                        onclick="javascript:document.form1.saveme.value='true';
+                                                                        document.form1.section.value='funding';
+                                                                        submitform();">No</input>
+        </td>
+</tr>
+    <br/>
+<patTemplate:tmpl name="funding_details" visibility="hidden" varscope="funding">
+    <tr>
+        <td colspan="3" class='trackheading' style="width:600px"><h3>Funding</h3></td>
+    </tr>
+    <tr>
+        <td><label for='funding_confirmed'>Has funding been confirmed?</label></td>
+        <td>
+            <input type="checkbox" tabindex="32" name="funding_confirmed" {FUNDING_CONFIRMED} />
+            <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_funding_confirmed.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for='grant_type'>Grant Type: </label>
+            <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_grant_type.html',this);return false"/>
+        </td>
+        <td>
+            <input type="radio" name="grant_type" value="0" {GRANT_INTERNAL} />Internal
+            <input type="radio" name="grant_type" value="1" {GRANT_EXTERNAL} /> External
+        </td>
+     </tr>
+    <td colspan="2" class='trackheading'><h3>Agency</h3></td>
+</tr>
+<tr>
+    <td><label for='agency_id'>Agency:</label></td>
+    <td colspan='2'><select name='agency_id' tabindex="2"
+                            onchange="javascript:document.form1.saveme.value='true'; document.form1.section.value='funding'; submitform();">
+        <option value='0'>&nbsp;</option>
+        {AGENCY_ID} </select></td>
+</tr>
+<tr>
+    <td><label for='program_id'>Program:</label></td>
+    <td><select name='program_id' tabindex="3">
+        <option value='0'>&nbsp;</option>
+        {PROGRAM_ID} </select></td>
+</tr>
+    <tr>
+        <td nowrap="nowrap"><label for='agency_name'>Or Agency/Program Names: </label>
+        </td>
+        <td>
+            <input type="text" tabindex="4" size="40" name="agency_name" value="{AGENCY_NAME}">
+            <img class='helpimg' src='/images/helpicon.gif'
+                 alt='?' title='Click Me'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_funding_names.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <label for="letter_required">Does this application require a letter of support from the institution? *</label>
+            <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_funding_letter.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><input class="sub" type="radio" tabindex="1" name='letter_required' value="1" {LETTER_YES}
+            onclick="javascript:document.form1.saveme.value='true';
+            document.form1.section.value='funding';">Yes</input>
+            <input class="sub" type="radio" tabindex="1" id='letter-no' name='letter_required' value="0" {LETTER_NO}
+            onclick="javascript:document.form1.saveme.value='true';
+            document.form1.section.value='funding';$('.letter_text').toggle();">No</input>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="field-help sub">* You must allow the Office of Research Services 1 week in order to produce the letter and obtain signatures.
+                Please follow up with the Office of Research Services with details of your requirements.</div>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <label for='agency_deadline'>Agency/Funding Deadline: **</label>
+        </td>
+        <td>
+            <input type='date' name='funding_deadline' id='funding_deadline' value='{FUNDING_DEADLINE}'></input>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="field-help sub">** The Mount Royal University deadline is two business days before the agency deadline. Applications submitted later than 48 hours before the Agency deadline will not be approved for funding. </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <label for="ors_submits">Does the Office of Research Services need to submit this proposal on your behalf?</label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><input class="sub" type="radio" tabindex="1"  name='ors_submits' value="1" {ORS_SUBMITS_YES}
+            onclick="javascript:document.form1.saveme.value='true';
+            document.form1.section.value='funding';">Yes</input>
+            <input class="sub" type="radio" tabindex="1" name='ors_submits' value="0" {ORS_SUBMITS_NO}
+            onclick="javascript:document.form1.saveme.value='true';
+            document.form1.section.value='funding';$('.letter_text').toggle();">No</input>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="field-help sub">Most tri-council opportunities (Insight, Discovery, Connection grants) and some other external grants require that submission be made by the Research Office on your behalf.
+            </div>
+        </td>
+    </tr>
+<tr>
+    <td colspan="2" class='trackheading'>
+        <h3>Requested Amounts <img class='helpimg' src='/images/helpicon.gif'
+                                alt='?' title='Click Me'
+                                onClick="ajax_toggleTooltip(window.event,'help/forms_funding_summary.html',this);return false"/>
+        </h3>
+    </td>
+</tr>
+<tr>
+    <td>Requested :</td>
+    <td>
+        $<input type="text" tabindex="33" size="8" name="requested" value="{REQUESTED}"/>
+        <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+             onClick="ajax_toggleTooltip(window.event,'help/forms_funding_requested.html',this);return false"/>
+    </td>
+</tr>
+<tr>
+    <td>Awarded :</td>
+    <td>
+        $<input type="text" tabindex="34" size="8" name="received" value="{RECEIVED}"/>
+        <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me'
+             onClick="ajax_toggleTooltip(window.event,'help/forms_funding_awarded.html',this);return false"/>
+    </td>
+</tr>
+
+</patTemplate:tmpl>
+
+</table>
+</patTemplate:tmpl>
+</patTemplate:sub>
+
+
+<patTemplate:sub condition="commitments">
+    <patTemplate:tmpl name="commitments">
+        <input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+        <table cellpadding="2" class='formtable'>
+            <tr>
+                <td colspan="2" class='trackheading'><h3>Commitments</h3></td>
+            </tr>
+            <tr>
+                <td>
+                    <label for='equipment_flag'>Are you making use of MRU-owned equipment?</label>
+                </td>
+                <td>
+                    <input type="checkbox" name='equipment_flag' {EQUIPMENT_FLAG}
+                                                                 onclick="javascript:document.form1.saveme.value='true';
+                                                                 document.form1.section.value='commitments';
+                                                                 submitform();"/>
+                    <img class='helpimg'
+                         src='/images/helpicon.gif'
+                         alt='?' title='Click Me'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_commitments_equipment.html',this);return false"/>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="equipment_details" visibility="hidden" varscope="commitments">
+                <tr>
+                    <td colspan="2"><span class='sub'>Detail equipment and planned usage:</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class='sub'><textarea class='sub' cols="60" rows="5"
+                                                          name='equipment'>{EQUIPMENT}</textarea></td>
+                </tr>
+
+            </patTemplate:tmpl>
+
+            <tr>
+                <td><label for='space_flag'>Will you be utilizing class or lab space?</label></td>
+                <td>
+                    <input type="checkbox" name='space_flag'
+                    {SPACE_FLAG} onclick="javascript:document.form1.saveme.value='true';
+                    document.form1.section.value='commitments'; submitform();"/>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="space_details" visibility="hidden" varscope="commitments">
+                <tr>
+                    <td colspan="2"><span class='sub'>Detail space and planned usage:</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea class='sub' cols="60" rows="5" name='space'>{SPACE}</textarea></td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <tr>
+                <td><label for='commitments_flag'>Other required commitments of MRU?</label></td>
+                <td><input type="checkbox" name='commitments_flag' {COMMITMENTS_FLAG}
+                                                                   onclick="javascript:document.form1.saveme.value='true';
+                                                                   document.form1.section.value='commitments';
+                                                                   submitform();"/>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="commitments_details" visibility="hidden" varscope="commitments">
+                <tr>
+                    <td colspan="2"><span class='sub'>Detail the commitments:</span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><textarea class='sub' cols="60" rows="5" name='commitments'>{COMMITMENTS}</textarea>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <tr>
+                <td><label for='employ_flag'>Will anyone be employed on this project?</label></td>
+                <td><input type="checkbox" name='employ_flag'
+                    {EMPLOY_FLAG} onclick="javascript:document.form1.saveme.value='true';
+                    document.form1.section.value='commitments'; submitform();"/>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="employ_details" visibility="hidden" varscope="commitments">
+                <tr>
+                    <td>
+                        <label class='sub' for='emp_students'>Students</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="emp_students" {EMP_STUDENTS} /><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class='sub' for='emp_ras'>Research Assistants</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="emp_ras" {EMP_RAS} />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class='sub' for='emp_consultants'>Consultants</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="emp_consultants" {EMP_CONSULTANTS} />
+                    </td>
+                </tr>
+
+            </patTemplate:tmpl>
+
+        </table>
+    </patTemplate:tmpl>
+</patTemplate:sub>
+
+
+<patTemplate:sub condition="coi">
+<patTemplate:tmpl name="coi">
+<input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+<input type="hidden" name="form_coi_id" value="{FORM_COI_ID}"/>
+<table cellpadding="2" class='formtable'>
+<tr>
+    <td colspan="2" class='trackheading'>
+        <h3>
+            Conflict of Interest
+            <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_coi_def.html',this);return false"/>
+        </h3>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <div class='info'>
+            <p>Public and professional confidence in the products of research depend upon trust in the
+               integrity of the researcher. One important way of maintaining or enhancing this trust is to
+               declare any types of relevant conflicts of interest and for an independent group to
+               determine how to manage (or disallow) such conflicts. Any
+               declarations made here will be brought to your Dean for a recommendation and to the
+               'Responsible Conduct of Research' Committee for a final decision. </p>
+
+            <p>See <a href='/documents/policy/960-15_coi.pdf' target='policy'>the policy</a> for further
+               details.</p>
+        </div>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <table cellpadding="2" class='formtable'>
+            <tr>
+                <td class="bottomspace" colspan="2">
+                    <button type="button" onclick="javascript: document.form1.saveme.value=true;
+            document.form1.newcoi.value='true'; document.form1.gotosection.value='coi'; submitform();">New COI Sub-form
+                    </button>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_coi.html',this);return false"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class='trackheading'>
+                    <h3>
+                        COI Declarations for this Tracking Form:
+                    </h3>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="coi_none" varscope="coi">
+                <tr>
+                    <td>
+                        No declarations
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <patTemplate:tmpl name="coi_list" varscope="coi" visibility="hidden">
+                <tr>
+                    <td class="{CLASS}">{LISTNAME}</td>
+                    <td>{MODIFIED}</td>
+                    <td>
+                        <button class="other" type='button'
+                                onClick="javascript: window.location='/my_tracking.php?form_coi_id={FORM_COI_ID}&form_tracking_id={FORM_TRACKING_ID}&gotosection=coi';">
+                            {BUTTON_NAME}
+                        </button>
+                    </td>
+                    <td>
+                        <button class="delete" type="button"
+                                onClick="javascript: window.location='/my_tracking.php?deletecoi&form_coi_id={FORM_COI_ID}&form_tracking_id={FORM_TRACKING_ID}&gotosection=coi';"
+                        {DEL_DISABLED}>Delete</button></td>
+                    <td>{ARROW}</td>
+                </tr>
+
+            </patTemplate:tmpl>
+        </table>
+    </td>
+</tr>
+<patTemplate:tmpl name="coi_detail" visibility="hidden">
+    <tr>
+        <td> &nbsp;</td>
+    </tr>
+    <tr>
+        <td class="bottomspace"><label for='name' class='sub'>Declaration For: </label>
+            <input type="text" name="name" size="50" value="{NAME}"{DISABLED} />
+            <i>(Leave blank if this is for you)</i>
+        </td>
+    </tr>
+    <tr>
+        <td class="bottomspace"><input type="checkbox" name="coi_none" class='sub' {COI_NONE} {DISABLED}
+                                                                                   onclick="javascript:
+                                                                                   document.form1.saveme.value=true;
+                                                                                   document.form1.gotosection.value='coi';
+                                                                                   submitform();"/>
+            <label for='coi_none'><span style='text-decoration: underline'>I have no conflicts to declare
+                                related to this project</span></label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+                            <span class="form_instructions">Indicate the real, perceived or potential conflict of
+                                interest situation you wish to disclose:</span>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi01" class='sub' {COI01} {DISABLED}>
+            <label for='coi01'>Interest in a research, business,
+                               contract or transaction</label>
+            <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_coi_1.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi02" class='sub' {COI02} {DISABLED}>
+            <label for='coi02'>Influencing purchase of equipment,
+                               materials or services</label> <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                                                                  onClick="ajax_toggleTooltip(window.event,'help/forms_coi_2.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi03" class='sub' {COI03} {DISABLED}>
+            <label for='coi03'>Acceptance of gifts, benefits or
+                               financial favours </label><img class='helpimg' src='/images/helpicon.gif' alt='?'
+                                                              onClick="ajax_toggleTooltip(window.event,'help/forms_coi_3.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi04" class='sub' {COI04} {DISABLED}>
+            <label for='coi04'>Use of information</label> <img
+                    class='helpimg' src='/images/helpicon.gif' alt='?'
+                    onClick="ajax_toggleTooltip(window.event,'help/forms_coi_4.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi05" class='sub' {COI05} {DISABLED}>
+            <label for='coi05'>Use of students, university
+                               personnel, resources or assets </label><img class='helpimg' src='/images/helpicon.gif'
+                                                                           alt='?'
+                                                                           onClick="ajax_toggleTooltip(window.event,'help/forms_coi_5.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi06" class='sub' {COI06} {DISABLED}>
+            <label for='coi06'>Involvement in personnel decisions</label>
+            <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_coi_6.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi07" class='sub' {COI07} {DISABLED}>
+            <label for='coi07'>Evaluation of academic work</label> <img
+                    class='helpimg' src='/images/helpicon.gif' alt='?'
+                    onClick="ajax_toggleTooltip(window.event,'help/forms_coi_7.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi08" class='sub' {COI08} {DISABLED}>
+            <label for='coi08'>Academic program decisions</label><img
+                    class='helpimg' src='/images/helpicon.gif' alt='?'
+                    onClick="ajax_toggleTooltip(window.event,'help/forms_coi_8.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi09" class='sub' {COI09} {DISABLED}>
+            <label for='coi09'>Favouring outside interests for
+                               personal gain </label><img class='helpimg' src='/images/helpicon.gif' alt='?'
+                                                          onClick="ajax_toggleTooltip(window.event,'help/forms_coi_9.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi10" class='sub' {COI10} {DISABLED}>
+            <label for='coi10'>Relationship </label>
+            <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                 onClick="ajax_toggleTooltip(window.event,'help/forms_coi_10.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="coi11" class='sub' {COI11} {DISABLED}>
+            <label for='coi11'>Undertaking of outside activity </label><img
+                    class='helpimg' src='/images/helpicon.gif' alt='?'
+                    onClick="ajax_toggleTooltip(window.event,'help/forms_coi_11.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="bottomspace"><input type="checkbox" name="coi_other" class='sub' {COI_OTHER} {DISABLED}>
+            <label for='coi_other'>Other (describe below) </label>
+        </td>
+    </tr>
+
+
+    <tr>
+        <td colspan="3"><span class='sub'>Describe the relationship:</span> <img class='helpimg'
+                                                                                 src='/images/helpicon.gif'
+                                                                                 alt='?'
+                                                                                 onClick="ajax_toggleTooltip(window.event,'help/forms_coi_relationship.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td class="bottomspace" colspan="3"><textarea cols="60" rows="5" name="relationship" class='sub'
+            {DISABLED}>{RELATIONSHIP}</textarea></td>
+    </tr>
+    <tr>
+        <td colspan="3" style="margin-top: 10px;">
+                            <span class='sub'>Describe the real, potential or perceived conflict of
+                            interest situation: </span> <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                                                             onClick="ajax_toggleTooltip(window.event,'help/forms_coi_situation.html',this);return false"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3"><textarea cols="60" rows="5" name="situation" class='sub' {DISABLED}>{SITUATION}</textarea>
+        </td>
+    </tr>
+
+
+</patTemplate:tmpl>
+</table>
+</patTemplate:tmpl>
+</patTemplate:sub>
+
+
+<patTemplate:sub condition="compliance">
+    <patTemplate:tmpl name="compliance">
+        <input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+        <table cellpadding="2" class='formtable'>
+            <tr>
+                <td colspan="2" class='trackheading'>
+                    <h3>
+                        Compliance
+                    </h3>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for='loc_mru'>Where will the project take place?</label>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_loc.html',this);return false">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" class='sub' name="loc_mru" {LOC_MRU}
+                                                                      onclick="javascript:document.form1.saveme.value='true';
+                                                                      document.form1.section.value='compliance';
+                                                                      submitform();"/> MRU<br/>
+                    <input type="checkbox" class='sub' name="loc_canada" {LOC_CANADA}
+                                                                      onclick="javascript:document.form1.saveme.value='true';
+                                                                      document.form1.section.value='compliance';
+                                                                      submitform();"/> Elsewhere in Canada <br/>
+                    <input type="checkbox" class='sub' name="loc_international" {LOC_INTERNATIONAL}
+                                                                      onclick="javascript:document.form1.saveme.value='true';
+                                                                      document.form1.section.value='compliance';
+                                                                      submitform();"/> Outside of Canada
+                </td>
+            </tr>
+            <patTemplate:tmpl name="where" visibility="hidden" varscope="compliance">
+                <tr>
+                    <td><label for='where' class='sub'>Where?</label></td>
+                    <td><input type="text" name="where" size='55' value="{WHERE}"/></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class="info">
+                            Note: Research-related travel to off-site locations
+                            require you to file a travel form and to assess the risk level. Travel with students,
+                            even
+                            when employed as RAs, is always considered elevated risk.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <tr>
+            <td colspan='2'><input type="checkbox" name="human_b" {HUMAN_B}
+                                                                  onclick="javascript:document.form1.saveme.value='true';
+                                                                  document.form1.section.value='compliance';
+                                                                  submitform();"/>
+                <label for='human_b'>Does your research involve human subjects (behavioural only) </label>
+                <img class='helpimg'
+                     src='/images/helpicon.gif'
+                     alt='?' title='Click Me'
+                     onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_human_b.html',this);return false"/>
+            </td>
+            </tr>
+            <patTemplate:tmpl name="human_b_clearance" visibility="hidden">
+            <tr>
+                <td colspan="2">
+                    <label for='human_b_clearance' class='sub'>Have you received clearance from the MRU Human Research Ethics Board?</label>
+                    <input type='checkbox' name="human_b_clearance" {HUMAN_B_CLEARANCE}
+                                                                    onclick="javascript:document.form1.saveme.value='true';
+                                                                    document.form1.section.value='compliance';
+                                                                    submitform();"/>
+                </td>
+            </tr>
+            </patTemplate:tmpl>
+            <patTemplate:tmpl name="human_b_protocol" visibility="hidden">
+                <tr>
+                    <td colspan='2'>
+                        <label for='human_b_protocol' class='sub'>Protocol # :</label>
+                        <input type='text' value="{HUMAN_B_PROTOCOL}" name="human_b_protocol" />
+                        <img class='helpimg'
+                             src='/images/helpicon.gif'
+                             alt='?' title='Click Me'
+                             onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_protocol.html',this);return false"/>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <patTemplate:tmpl name="human_b" visibility="hidden">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class="info">
+                            Your project will require clearance from MRU's Human
+                            Research Ethics Board before you can proceed with subject recruitment or access funding. See
+                            <a href='http://www.mtroyal.ca/Research/Ethics/HumanresearchHREB/index.htm' target='_blank'>this page</a> for more details.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <tr>
+                <td colspan="2"><input type="checkbox" name="human_h" {HUMAN_H}
+                                                                      onclick="javascript:document.form1.saveme.value='true';
+                                                                      document.form1.section.value='compliance';
+                                                                      submitform();"/>
+                    <label for='human_h'>Does your research involve human subjects
+                                         (health info, clinical or other health-related study)</label>
+                    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_human_h.html',this);return false"/>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="human_h" visibility="hidden">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class='info'>
+                            Your project will require clearance from U of C's
+                            CHREB before you can proceed with subject recruitment or access funding. See
+                            <a href='http://www.mtroyal.ca/Research/Ethics/BiomedicalorHIAstudies/index.htm' target='_blank'>this page</a> for more details.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <tr>
+                <td colspan="2"><input type="checkbox" name="biohaz" {BIOHAZ}
+                                                                     onclick="javascript:document.form1.saveme.value='true';
+                                                                     document.form1.section.value='compliance';
+                                                                     submitform();"/>
+                    <label for='biohaz'>Does your research involve biohazardous materials?</label>
+                    <img class='helpimg'
+                         src='/images/helpicon.gif' alt='?'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_biohaz.html',this);return false"/>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="biohaz" visibility="hidden">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class='info'>
+                            Your project will require clearance from MRU's
+                            Biosafety Committee before proceeding and before accessing funding. See
+                            <a href='http://mtroyal.ca/Research/Ethics/BiomedicalorHIAstudies/index.htm' target='_blank'>this page</a> for more details.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+            <tr>
+                <td colspan="2"><input type="checkbox" name="animal" {ANIMAL}
+                                                                     onclick="javascript:document.form1.saveme.value='true';
+                                                                     document.form1.section.value='compliance';
+                                                                     submitform();"/>
+                    <label for='animal'>
+                        Does your research involve animal subjects? (including fieldwork)</label>
+                    <img class='helpimg'
+                         src='/images/helpicon.gif'
+                         alt='?'
+                         onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_animal.html',this);return false"/>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="animal" visibility="hidden">
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <div class="info">
+                            Your project will require clearance from MRU's Animal
+                            Care Committee before you can proceed with subject recruitment or access funding. See
+                            <a href='http://mtroyal.ca/Research/Ethics/Animalresearch/index.htm' target='_blank'>this page</a> for more details.
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+        </table>
+    </patTemplate:tmpl>
+</patTemplate:sub>
+
+<patTemplate:sub condition="files">
+    <patTemplate:tmpl name="files">
+        <input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+        <table cellpadding="2" class='formtable'>
+            <tr>
+                <td colspan="2" class='trackheading'>
+                    <h3>
+                        File Uploads
+                    </h3>
+                </td>
+            </tr>
+            <tr><td><span style='color:red;'>{ERRORS}</span></td></tr>
+            <tr><td>Please upload any documents required to support your research application here</td></tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr >
+                            <th align="left">File</th>
+                            <th align="left">Description</th>
+                        </tr>
+                        <tr>
+                            <td><input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+                            <input type="hidden" name="saveme" value="true"/>
+                            <input type="file" name="file_upload" /></td>
+                            <td><input type="text" size="45" name="file_description" placeholder="Provide a short description that describes this file." /></td>
+                            </tr>
+                        <tr>
+                            <td colspan="3" align="right"><input type="submit" value="Upload File"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <patTemplate:tmpl name="existingFiles"  visibility="hidden">
+                <tr>
+                    <td colspan="2">
+                        <h3>Uploaded Files</h3>
+                    </td>
+                </tr>
+                <table cellpadding="4" style='margin-left:25px' width="80%">
+                    <thead style='background-color: #0066A2; color:white;'>
+                    <tr>
+                        <th>Filename</th>
+                        <th>Description</th>
+                        <th>Size</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <patTemplate:tmpl name="filelist" varscope="files">
+                        <tr>
+                            <td>
+                                {NAME}
+                            </td>
+                            <td>
+                                {DESCRIPTION}
+                            </td>
+                            <td width="10%">
+                                {SIZE}
+                            </td>
+                            <td width="10%">
+                                <div style='display:{HIDESUBMITTED}'>
+                                    <button class='' type='button' title='Delete'
+                                            onClick='javascript: if(confirm("Really delete?")) window.location="/my_tracking.php?gotosection=files&deletefile&saveme=true&form_tracking_id={FORM_TRACKING_ID}&filename={NAME}"'>
+                                        <img src='/images/icon-sm-trash.gif'></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </patTemplate:tmpl>
+                </table>
+            </patTemplate:tmpl>
+
+        </table>
+    </patTemplate:tmpl>
+</patTemplate:sub>
+
+<patTemplate:sub condition="approvals">
+
+<!--
+<patTemplate:tmpl name="approvals">
+-->
+<!--<input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+<table class='formtable'>-->
+<!--
+<patTemplate:tmpl name="required_section" visibility="hidden">
+<patTemplate:tmpl name="c-approval" visibility="hidden">
+    <tr>
+        <td colspan="2">
+            <p>
+                Based on the details provided the following approvals will be required. Please review
+                this information.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class='trackheading'>
+            <h3>
+                Required Approvals &amp; Forms
+            </h3>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" class='narrow'>
+            <img src='/images/checklist-1.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details' title='click for details'>Commitments
+            </div>
+        </td>
+    </tr>
+    <tr style='display: none'>
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                Commitments on the part of the institution require approval
+                at the appropriate level. When you submit this form a printed copy, along with
+                supporting documentation, will have to go to your Dean, who will forward to the ORS. It
+                is your responsibility to have informed the approvers and negotiated such commitments in
+                advance.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-funding" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-2.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details' title='click for details'>External Funding</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                Applications for funding from external agencies require
+                ORS approval before the application goes out, whether a signature is required on the
+                application or not. Any external funding requires that the institution agree to manage
+                the funds. This approval step ensures that, should you be successful, MRU will manage
+                the funds for you. Be sure you have read the policy on <a
+                    href="/documents/policy/585-6_research_overhead.pdf" target="policy">Indirect
+                                                                                         Costs</a> and are including
+                appropriate amounts in your budget.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+
+<patTemplate:tmpl name="c-contract" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-3.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Contracts</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                MRU reviews all contracts between the institution and external
+                or internal providers (you cannot enter into/sign such a contract yourself). We provide
+                (and are developing) <a href="#">several templates</a> that are the mandatory starting
+                point. A standard unmodified template can be reviewed very quickly. Modification or
+                deletion of clauses will require more extensive review, and using your own contract
+                requires the longest, if allowed by our legal specialists.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-coi" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-2.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Conflict of Interest</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                You or one of your research associates have made a COI declaration
+                that includes a declared conflict. When you submit this tracking form the COI
+                declaration will be processed by your Dean and the MRU Responsible Conduct of
+                Research
+                Committee, who will be in touch regarding their assessment. Conflicts of interest
+                may be
+                allowed, allowed with conditions, or disallowed.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-risk" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-1.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Risk Management - Travel</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                When traveling out of town or when working with
+                students off-campus filing a risk management form is mandatory. Any such student
+                activity is considered 'elevated risk', and you are asked to consider possible
+                scenarios
+                and plan contingencies. These forms require approval (research activities are
+                submitted
+                to the AVP Research) before the activity can occur.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-human-b" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-2.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Ethics - Behavioural</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                You are required to successfully complete a review
+                by MRU's Human Research Ethics Board prior to starting the relevant parts of your
+                project, and prior to accessing any funds. All the information you need <a
+                    href="ethics.php"> is here</a>. This is both a federal and institutional
+                requirement. If your research involves other post-secondary institutions you will
+                likely
+                be required to do the same there. Start early to avoid delays.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-human-h" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-3.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Ethics - Health</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>You are required to successfully complete a review by a
+                                 provincially approved Health Ethics Board prior to starting the relevant parts of
+                                 your
+                                 project, and prior to accessing any funds. MRU has an arrangement with the U of
+                                 Calgary's Health Board that allows us to use their process, as <a
+                        href="ethics.php#biomed"> described here</a>. This a federal policy, a
+                                 provincial law, and an institutional requirement. If your research involves other
+                                 post-secondary institutions you will likely be required to do the same there. Start
+                                 early to avoid delays.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-animal" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-2.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Animal Care</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'>
+                You are required to successfully complete a review by MRU's
+                Animal Care Committee prior to starting the relevant parts of your project, and
+                prior to accessing any funds. Since this committee typical only reviews protocols twice a
+                year, you might want to start early. Details are <a href="content.php?page=animal">
+                available here</a>. This a federal policy, a provincial law, and an institutional requirement.
+                If your research involves other post-secondary institutions you will likely be
+                required to do the same there. Start early to avoid delays.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="c-bio" visibility="hidden">
+    <tr>
+        <td valign="top">
+            <img src='/images/checklist-1.jpg' alt='checkbox'/>
+        </td>
+        <td>
+            <div class='approval-heading' title='click for details'>Biohazards</div>
+        </td>
+    </tr>
+    <tr style="display: none">
+        <td>&nbsp;</td>
+        <td>
+            <div class='warning'> Any biohazards on campus require a review by our <a
+                    href="content.php?page=biosafety">Biosafety Committee</a> prior to arrival or
+                                  implementation of a project.
+            </div>
+        </td>
+    </tr>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>
+-->
+<!--
+<patTemplate:comment>End of REQUIRED section</patTemplate:comment>
+-->
+
+<!--
+<patTemplate:tmpl name="optional_section" visibility="hidden">
+    <tr>
+        <td colspan="2" class='trackheading'>
+            <h3>
+                Recommended Steps
+            </h3>
+        </td>
+    </tr>
+    <patTemplate:tmpl name="c-ip1" visibility="hidden">
+        <tr>
+            <td valign="top">
+                <img src='/images/checklist-1.jpg' alt='checkbox'/>
+            </td>
+            <td>
+                <div class='approval-heading' title='click for details'>Intellectual Property</div>
+            </td>
+        </tr>
+        <tr style="display: none">
+            <td>&nbsp;</td>
+            <td>
+                <div class='info'>When working with other researchers it is highly
+                                  recommended that you all complete and sign an <a href="#">Intellectual Property
+                                                                                            Form</a>.
+                                  Although by policy (and standard academic practise) IP belongs to the creator, it is
+                                  often difficult to determine exactly who created what at a later date. This form,
+                                  much
+                                  like a pre-nuptual agreement, lays out roles and expected division of IP. As roles
+                                  change (eg, by the end of a project) this form can be modified and re-filed with the
+                                  ORS.
+                </div>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="c-ip-student" visibility="hidden">
+        <tr>
+            <td valign="top">
+                <img src='/images/checklist-3.jpg' alt='checkbox'/>
+            </td>
+            <td>
+                <div class='approval-heading' title='click for details'>Student Researchers</div>
+            </td>
+        </tr>
+        <tr style="display: none">
+            <td>&nbsp;</td>
+            <td>
+                <div class='info'>
+                    When working with students in a supervisory or
+                    collaborative style it is <b><u>recommended</u></b> that you all complete and sign a
+                    <a
+                            href="#">Student Intellectual Property Form</a>. Although by policy (and
+                    standard academic practise) IP belongs to the creator, it is often difficult to
+                    determine exactly who created what at a later date. With student involvement it is
+                    particularly important to lay out the details, as the students may exit the academic
+                    system in a few years and wish to take the IP with them.
+                </div>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="c-employ" visibility="hidden">
+        <tr>
+            <td valign="top">
+                <img src='/images/checklist-2.jpg' alt='checkbox'/>
+            </td>
+            <td>
+                <div class='approval-heading' title='click for details'>Student Employment</div>
+            </td>
+        </tr>
+        <tr style="display: none">
+            <td>&nbsp;</td>
+            <td>
+                <div class='info'>
+                    There are several ways to employ students at MRU, as
+                    <a href="content.php?page=research_forms#hiring">described here</a>. The ORS has
+                    worked
+                    out a simple system that provides maximum flexibility for all concerned, so we
+                    recommend
+                    you use our standard forms. We ask that all researchers encourage their students to
+                    participate in our <a href="content.php?page=ugr_intro">Undergraduate Research Info
+                                                                            Site</a> and add their own comments and
+                    testimonials.
+                </div>
+            </td>
+        </tr>
+    </patTemplate:tmpl>
+
+</patTemplate:tmpl>
+-->
+<!--
+<patTemplate:comment>End of OPTIONAL section</patTemplate:comment>
+-->
+
+
+<!--</table>-->
+
+<!--</patTemplate:tmpl>-->
+</patTemplate:sub>
+
+<patTemplate:sub condition="submit">
+    <patTemplate:tmpl name="submit">
+        <input type="hidden" name="form_tracking_id" value="{FORM_TRACKING_ID}"/>
+        <table cellpadding="5" class='formtable'>
+
+            <tr>
+                <td colspan="2" class='trackheading'>
+                    <h3>
+                        Submit Form
+                    </h3>
+                </td>
+            </tr>
+
+            <patTemplate:tmpl name="noapprovals" visibility="visible">
+                <tr>
+                    <td colspan="2">Nothing you have indicated in your document requires a signature by your Chair or
+                                    Dean (the information you have entered will be available to both of them FYI). When
+                                    you submit this form it will no longer be editable and a PDF version will be
+                                    generated for your use. If you are submitting paperwork to the ORS please attach a
+                                    copy of the tracking form for, as you might have guessed, tracking purposes. Should
+                                    you need to revise this form make a copy and make the changes, then submit again.
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="appr-commitments" visibility="hidden">
+                <tr>
+                    <td colspan="2">You have noted institutional commitments in your tracking form that require sign-off
+                                    by your Dean and/or the ORS.
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="appr-coi" visibility="hidden">
+                <tr>
+                    <td colspan="2">The COI declaration will be processed through a separate process after you submit
+                                    this form.
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="coiwarning" visibility="hidden">
+                <tr>
+                    <td colspan="2"><font color='red'>You do not have any COI forms attached. At least one for the PI is
+                                                      required.</font></td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="fundingdeadlinewarning" visibility="hidden">
+                <tr>
+                    <td colspan="2"><font color='red'>You do not have not entered an Agency/Funding Deadline in the Funding section of the this form.</font></td>
+                </tr>
+            </patTemplate:tmpl>
+
+            <patTemplate:tmpl name="appr-funding" visibility="hidden" varscope="submit">
+                <tr>
+                    <td colspan="2">Any funding request requires ORS vetting and approval to ensure that it complies
+                                    with institutional policy. Given sufficient lead-time we can also provide detailed
+                                    comments on the 'practical' components of the application, including implementation,
+                                    budgets and justification.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr width="90%"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="iagree" {CHECKAGREE} onclick="javascript: if(this.checked==true)
+                                                             {document.form1.submitme.disabled=false;} else
+                                                             {document.form1.submitme.disabled=true;}">
+                    </td>
+                    <td> If the agreement/funding is awarded, I undertake to administer the funds in accordance with the
+                         policies of the external agency or the University as applicable.
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+
+            <patTemplate:tmpl name="appr-options1" visibility="visible" varscope="submit">
+                <patTemplate:tmpl name="docs" varscope="submit">
+
+                    <tr>
+                        <td colspan="2">
+                            <hr width="90%"/>
+                        </td>
+                    </tr>
+
+                </patTemplate:tmpl>
+
+                <tr>
+                    <td colspan="2">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <hr width="90%"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <div style="float:right;">
+                            <button type="submit" name="list" value="list" onClick="javascript:document.form1.saveme.value='true'; document.form1.gotosection.value='list';" }>Save &amp; Exit</button>
+                            <button type="button" name="submitme" id="submitme"
+                            {DISABLED} onclick="javascript: if(confirm('{CONFIRMTEXT}')) {document.form1.saveme.value='true';
+                            document.form1.locksubmit.value='true'; document.form1.section.value='submit';
+                            document.form1.gotosection.value='list';submitform();}">Submit Form</button>
+                        </div>
+                    </td>
+                </tr>
+            </patTemplate:tmpl>
+
+
+        </table>
+    </patTemplate:tmpl>
+</patTemplate:sub>
+
+<patTemplate:sub condition="__default">
+    unknown page
+</patTemplate:sub>
+
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="savecontrol">
+    <div style="margin-top: 50px">
+        <br/>
+        <div style="float:left; margin: 10px;">
+            <button type="submit" name="previous" value="previous" onClick="javascript:document.form1.saveme.value='true'; document.form1.gotosection.value='{PREV_SECTION}';" {DISABLED} {PREV_DISABLED}><< Previous</button>
+            <button type="submit" name="list" value="list" onClick="javascript:document.form1.saveme.value='true'; document.form1.gotosection.value='list';"  {NEXT_DISABLED}>Save &amp; Exit</button>
+        </div>
+        <div style="float: right; margin: 10px; display:inline-block;">
+            <button type="submit" name="save" value="save" onClick="javascript:document.form1.saveme.value='true'; document.form1.gotosection.value='{NEXT_SECTION}';" {DISABLED} {NEXT_DISABLED}>Next >></button>
+        </div>
+    </div>
+</patTemplate:tmpl>
+
+</form>
+</patTemplate:tmpl>
+<patTemplate:tmpl src="footer.html"/>
+</patTemplate:tmpl>
+<patTemplate:comment>
+
+    Old One
+    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+         onmouseover="ajax_showTooltip(window.event,'help/ajax-tooltip.html',this);return false"
+         onmouseout="ajax_hideTooltip()">
+
+
+    Toggle One
+    <img class='helpimg' src='/images/helpicon.gif' alt='?'
+         onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_human_h.html',this);return false"/>
+</patTemplate:comment>

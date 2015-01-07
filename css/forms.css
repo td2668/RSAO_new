@@ -1,0 +1,314 @@
+/*Body override for the forms section only*/
+body,html{
+    font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+    /*line-height: 130%;*/
+}
+
+h4 {
+    font: 16px georgia, times, serif; 
+    color:#AF3F36;
+    margin-bottom: 5px;
+    margin-top: 0px;
+}
+
+textarea, input, select {
+    background-color: #EEEEEE;
+    font-size: 9pt;
+}
+input.budgetamount {
+    text-align: right;
+}
+
+.helpimg {
+    vertical-align:text-bottom;
+    border: none;
+}
+
+.bottomspace {
+    padding-bottom: 10px;
+}
+
+td.sel{
+    background-color: #CCCCCC;
+}
+
+
+
+/*Tables in the tracking forms */
+
+
+.formtable {
+    border-spacing:5px 5px;
+}
+
+.formtable td {
+	font-size: 80%;
+	}
+
+.formtable .narrow {
+     width: 75px;
+}
+
+.form_instructions {
+    color: #35718F;
+    font: 12px Arial,Verdana,Trebuchet MS,Helvetica,sans-serif;
+    line-height: 1.5;
+    padding: 10px;
+    margin: 20px;
+}
+
+#forms_list .projectname{
+    background-color: #DDDDDD ;
+}
+#forms_list .projectcell{
+    padding-left: 5px;  
+}
+
+#forms_list .short{
+    height: 8px;  
+}
+#forms_list .indentcell{
+    padding-left: 35px;  
+}
+
+button.delete {
+    background-color: #FFAAAA;
+    border: 1px solid #885F03;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: normal;
+    color: black;  
+}
+
+button.other {
+    /*background-color: #CCCCCC;*/
+    border: 1px solid #885F03;
+    font-family: arial;
+    font-size: 11px;
+    font-weight: normal;
+    color: black;   
+}
+#forms_list .header{
+    font: 10px Arial,Verdana,Trebuchet MS,Helvetica,sans-serif;
+}
+
+.here {
+    font-weight: bold;
+    color: #AF3F36;
+    font-size: 100%;
+}
+
+span {
+	font-weight: bold;
+	font-size: 100%;
+}
+
+#formchooser .not_here{
+    font-weight: normal;
+}
+
+td.review_r{
+	width: 50px; 
+	text-align: center;
+	vertical-align: top;
+}
+
+td.review_a{
+	border-style: none;
+	padding-left: 5px;
+	vertical-align: top;
+	
+}
+
+.trackheading {
+    margin-top: 5px;
+    padding-bottom: 3px;
+    border: 1px solid #35718F;
+    background-color: #35718F;
+}
+.trackheading h3 {
+    margin : 1px !important;
+    color: white;
+    font: 16px georgia, times, serif bold;
+    letter-spacing: 0.1em;
+}
+
+.tracksubheading {
+    font-size: 120%;
+    margin-left: 10px;
+    color: #A30500;
+}
+
+.formtable label {
+    font-size: 90%;;
+    margin-left: 10px;
+}
+
+.formtable .sub {
+    margin-left: 40px;
+}
+
+.formtable .approval-heading {
+    font-family: 'Simonetta', cursive;
+    font-size: 1.6em;
+}
+
+.formtable .approval-heading:hover {
+    font-size: 2.0em;
+    cursor: pointer;
+}
+
+.mytracking {
+    color: #00529B;
+    font-size: 1.2em;
+    width:714px;
+    border-collapse: collapse;
+}
+
+.mytracking th {
+    color: #00529B;
+    padding: 0px 5px 0px 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.mytracking table {
+    border:none; !important
+}
+
+.mytracking td {
+    padding: 0px 5px 0px 5px; !important Changed by TD from 5
+}
+
+/* override the global border on tables */
+#main_content tr {
+    border:none;
+}
+
+
+.mytracking tr.odd td {
+    padding: 0px 5px 0px 5px; !important  TD changed from 5 to test
+    border: none; !important
+}
+
+
+
+.mytracking a {
+    color: #00529B;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.mytracking .approval-required {
+    color:black;
+    font-size: 10px;
+    height: 6px;
+}
+
+.mytracking2 {
+    color: #00529B;
+    font-size: 1.2em;
+    width:714px;
+    border-collapse: collapse;
+}
+
+.mytracking2 th {
+    color: #00529B;
+    padding: 0px 5px 0px 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.mytracking2 table {
+    border:none; !important
+}
+
+.mytracking2 td {
+    padding: 5px 5px 5px 5px; !important Changed by TD from 5
+}
+
+.mytracking2 tr.odd td {
+    padding: 5px 5px 5px 5px; !important  TD changed from 5 to test
+    border: none; !important
+}
+
+
+
+.mytracking2 a {
+    color: #00529B;
+    text-decoration: none;
+    border-bottom: none;
+}
+.approval-table td {
+     padding: 2px;
+ }
+
+.pending {
+    color: #9F6000;
+}
+
+.approved {
+    color: #4F8A10;
+}
+/* Info and Warning Boxes */
+.info, .success, .warning, .error, .validation {
+    margin: 5px 0px;
+    padding:5px 5px 5px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px 4px;
+    line-height: 1.2;
+    font-size: 9pt;
+    font-style: italic;
+}
+.info {
+    background-image: url('/images/info.png');
+}
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url('/images/checkmark.png');
+}
+.warning {
+    color: #9F6000;
+    background-image: url('/images/warning.png');
+}
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('/images/error.png');
+}
+
+.arrow-r-grey {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 5px 0 5px 5px;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent #9AA0A5;
+    margin-left: 10px;
+}
+
+.arrow-r-grey-down {
+    display: inline-block;
+    margin-left: 10px;
+    top: 8px;
+    border-width: 5px 5px 0 5px;
+    border-style: solid dashed dashed;
+    border-color: #9AA0A5 transparent transparent;
+}
+
+/** File upload styling for tracking forms **/
+
+.ax-file-list  {
+    border-collapse: collapse;
+    border: 1px solid;
+    margin-left: 20px;
+    width: 500px;
+}
+
+.ax-file-list th {
+    background-color: #0066A2;
+    color: white;
+}

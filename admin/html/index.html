@@ -1,0 +1,244 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    // slide toggle menu items
+    jQuery(document).ready(function() {
+        jQuery('.menuheading').click(function() {
+            var div =  jQuery(this).parent().children('.menugroup');
+            div.slideToggle('medium');
+        });
+    });
+</script>
+
+<div id="main" class="container_12">
+
+    <div id="col1" class="grid_4">
+        <h2>Communications</h2>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">News &amp; Events</p>
+            </div>
+
+            <div class="menugroup">
+                <p class="menusubheadingtext">News</p>
+                <a class="menu-item" href="news.php?section=add">Add</a><br/>
+                <a class="menu-item" href="news.php?section=view">Update/Delete</a>
+
+                <p class="menusubheadingtext">Events</p>
+                <a class="menu-item" href="events.php?section=add">Add</a><br/>
+                <a class="menu-item" href="events.php?section=view">Update/Delete</a>
+
+                <p class="menusubheadingtext">Slider Features</p>
+                <a class="menu-item" href="sliders.php">Configure Sliders</a><br/>
+            </div>
+        </div>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">Opportunities</p>
+            </div>
+            <div class="menugroup">
+                <p class="menusubheadingtext">Deadlines</p>
+                <a class="menu-item" href="deadlines.php?section=add">Add</a><br/>
+                <a class="menu-item" href="deadlines.php?section=view">Update/Delete</a><br/>
+            </div>
+         </div>
+
+        <h2>Ethics</h2>
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">HREB</p>
+            </div>
+            <div class="menugroup">
+                <p class="menusubheadingtext">HREB Management</p>
+                <a class="menu-item" href="hreb.php">Manage Applications</a><br/>
+                <a class="menu-item" href="hreb-modify.php?action=new">New Application</a><br/>
+            </div>
+        </div>
+
+     </div>
+
+    <!-- Column 2 -->
+     <div id="col2" class="grid_4">
+         <h2>Research</h2>
+
+         <div class='collapsable-menu'>
+             <div class="menuheading">
+                 <p class="menuheadingtext">Research Forms</p>
+             </div>
+             <div class="menugroup">
+                 <p class="menusubheadingtext">Tracking Forms</p>
+<!--                 <a class="menu-item" href="tracking.php">View Active Forms</a><br/>
+                 <a class="menu-item" href="tracking.php?type=completed">View Completed Forms</a><br/>-->
+                 <a class="menu-item" href="tracking-forms.php?sorts[submitted_on]=-1">Submitted Forms</a><br/>
+                 <a class="menu-item" href="tracking-forms.php?type=inprep">In-Prep Forms</a><br/>
+                 <a class="menu-item" href="tracking-forms.php?type=completed">Completed Forms</a><br/>
+                 <!--<a class="menu-item" href="tracking.php?add">Add New Form</a><br/>-->
+
+                 <p class="menusubheadingtext">Internal Grant Applications</p>
+                 <a class="menu-item" href="irgf.php">View Forms</a><br/>
+             </div>
+         </div>
+
+         <div class='collapsable-menu'>
+             <div class="menuheading">
+                 <p class="menuheadingtext">Projects</p>
+             </div>
+             <div class="menugroup">
+                 <p class="menusubheadingtext">Research Projects</p>
+                 <a class="menu-item" href="projects.php?section=add">Add</a><br/>
+                 <a class="menu-item" href="projects.php?section=view">Update/Delete</a><br/>
+                 <a class="menu-item" href="projects.php?section=where">Where</a><br/>
+
+
+                 <p class="menusubheadingtext">Student Research Projects</p>
+                 <a class="menu-item" href="student_research.php">Manage Projects</a><br/>
+                 <a class="menu-item" href="student_researchers.php">Manage Researchers</a>
+
+                 <p class="menusubheadingtext">Research Topics</p>
+                 <a class="menu-item" href="topics-research.php?section=add">Add</a><br/>
+                 <a class="menu-item" href="topics-research.php?section=view">Update/Delete</a>
+             </div>
+        </div>
+
+         <div class='collapsable-menu'>
+             <div class="menuheading">
+                 <p class="menuheadingtext">Research Tracking</p>
+             </div>
+             <div class="menugroup">
+                 <p class="menusubheadingtext">Tracking Forms</p>
+                 <a class="menu-item" href="tracking.php">View Forms</a><br/>
+                 <a class="menu-item" href="tracking.php?add">Add New Form</a><br/>
+
+                 <p class="menusubheadingtext">Internal Grant Applications</p>
+                 <a class="menu-item" href="irgf.php">View Forms</a><br/>
+             </div>
+         </div>
+
+         <div class='collapsable-menu'>
+             <div class="menuheading">
+                 <p class="menuheadingtext">Student Research Day</p>
+             </div>
+             <div class="menugroup">
+                 <p class="menusubheadingtext">Registrations</p>
+                 <a class="menu-item" href="srd.php">View Registrations</a><br/>
+             </div>
+             <div class="menugroup">
+                 <p class="menusubheadingtext">Posters</p>
+                 <a class="menu-item" href="srd_posters.php">View Posters</a><br/>
+             </div>
+         </div>
+
+         </div>
+
+
+    <!-- Column 3 -->
+
+    <div id="col3" class="grid_4">
+        <h2>Administration</h2>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">Administration</p>
+            </div>
+            <div class="menugroup">
+                <p class="menusubheadingtext">Departments &amp; Divisions</p>
+                <a class="menu-item" href="departments.php?section=add">Add Department</a><br/>
+                <a class="menu-item" href="departments.php?section=view">Update/Delete Department</a><br/><br/>
+                <a class="menu-item" href="divisions.php?section=add">Add Division</a><br>
+                <a class="menu-item" href="divisions.php?section=view">Update/Delete Divisions</a><br/>
+
+                <p class="menusubheadingtext">Database Backups</p>
+                <a class="menu-item" href="backup.php?action=tables">Backup</a><br/>
+                <a class="menu-item" href="backup.php?action=list">View / Delete </a>
+
+                <p class="menusubheadingtext">HR Import</p>
+                <a class="menu-item" href="hrimport.php?section=load">Load</a><br/>
+                <a class="menu-item" href="hrimport.php?genchanges">Generate Changes</a><br/>
+                <a class="menu-item" href="hrimport.php?section=compare">Compare</a>
+
+                <p class="menusubheadingtext">Mail</p>
+                <a class="menu-item" href="mailme.php?section=view">Manage Queue</a><br/>
+                <a class="menu-item" href="mailme.php?section=add">Create Message</a><br/>
+                <a class="menu-item" href="mailme.php?section=lists">View Lists</a><br/>
+                <a class="menu-item" href="messages.php?section=view">Manage Std Messages</a><br/>
+                <a class="menu-item" href="messages.php?section=add">New Std Messages</a><br/>
+
+
+                 <p class='menusubheadingtext' >Committees</p>
+                 <a class="menu-item" href="committees.php?section=committeeadd">Add</a><br/>
+                 <a class="menu-item" href="committees.php?section=committeeview">Update/Delete</a><br/>
+                 <a class="menu-item" href="committees.php?section=members">Members</a><br/>
+
+            </div>
+        </div>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">User Management</p>
+            </div>
+
+            <div class="menugroup">
+                <p class="menusubheadingtext">Faculty &amp; Staff</p>
+                <a class="menu-item" href="users.php?section=view">View All Users</a><br/>
+                <a class="menu-item" href="users.php?section=view&fac_only">View Faculty Users</a><br/>
+                <a class="menu-item" href="users.php?section=add">Add New User</a>
+
+                <p class="menusubheadingtext">Pictures</p>
+                <a class="menu-item" href="pictures.php?section=add">Add</a><br/>
+                <a class="menu-item" href="pictures.php?section=view">Update/Delete</a><br/>
+                <a class="menu-item" href="pictures-associate.php?section=add">Associate</a>
+
+            </div>
+        </div>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">CV &amp; Annual Reports</p>
+            </div>
+
+            <div class="menugroup">
+                
+
+                <p class="menusubheadingtext">Annual Reporting</p>
+                <a class="menu-item" href="cas_fix.php?section=choose">Fix Lists</a><br/>
+                <a class="menu-item" href="cas_types.php?section=view">List-Edit</a><br/>
+                <!--<a class="menu-item" href="cas_convert.php">Convert</a><br/>-->
+                <!--<a class="menu-item" href="cas_xref.php?section=view">X-Refs</a><br/>-->
+                <!--<a class="menu-item" href="cas_xref.php?section=count">Count</a><br/>-->
+                <a class="menu-item" href="ar.php?section=archive">Rollover</a><br/>
+                <a class="menu-item" href="ar.php?section=status">Status by Dept</a><br/>
+                <a class="menu-item" href="ar.php?section=user_status">Status by User</a><br/>
+                
+
+
+                <p class="menusubheadingtext">Annual Report Override</p>
+                <a class="menu-item" href="administrators.php?section=add">Add</a><br/>
+                <a class="menu-item" href="administrators.php?section=view">Update/Delete</a>
+            </div>
+        </div>
+
+        <div class='collapsable-menu'>
+            <div class="menuheading">
+                <p class="menuheadingtext">Reports</p>
+            </div>
+
+            <div class="menugroup">
+                <p class="menusubheadingtext">Campus Alberta Quality Council</p>
+                <a class="menu-item" href="caqc.php?section=stats">Statistics</a><br/>
+                <a class="menu-item" href="caqc.php?section=relate">Relate - Add</a><br/>
+                <a class="menu-item" href="caqc.php?section=edit">Relate - Edit</a>
+            </div>
+       </div>
+
+</div>
+
+<span class="clear"></span>
+
+</div>
+
+</patTemplate:tmpl>

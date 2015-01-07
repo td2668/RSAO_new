@@ -1,0 +1,127 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_home">
+		<div class="leftcol">
+			<div class="researcher">
+
+				<IMG src="images/myactivities/zizler_myactivities.jpg" alt="My Activities intro image" width="432" height="216" align="left" border="0">
+				<br />
+			</div><!-- researcher -->
+
+
+
+			<div class="blog">
+				<div class="contents">
+				<h2>Trevor's blog</h2>
+				<patTemplate:tmpl name="blog" limit="5">
+				<b><a href="{LINK}">{TITLE}</a></b><br>
+				<p>{SYNOPSIS}</p>
+				</patTemplate:tmpl>
+				</div><!-- contents -->
+				<div class="foot">
+					<a href="/blog/">Go to Trevor's Blog</a>
+				</div><!-- foot -->
+			</div><!-- blog -->
+
+
+
+			<div class="news">
+				<div class="contents">
+				<h2>News</h2>
+				<ul style="padding:0px 0px 0px 15px">
+					<patTemplate:tmpl name="news"  limit="5">
+						<LI><a href="opportunities.php?section=news&news_id={NEWS_ID}">
+							{TITLE}</a></LI>
+					</patTemplate:tmpl>
+
+				</ul>
+				</div><!-- contents -->
+				<div class="foot">
+					<a href="news.php">Go to News</a>
+				</div>
+			</div><!-- news -->
+		</div><!-- leftcol -->
+
+		<div class="rightcol">
+			<div class="deadlines">
+				<div class="contents">
+
+
+					<h2>Events</h2>
+					<patTemplate:tmpl name="events" limit="5">
+						<p class="deadline_event">
+						<span class="deadline_date">{START_DATE}</span>
+						<span class="deadline_title"><a href="opportunities.php?section=events&event_id={EVENT_ID}">{TITLE}</a></span>
+						</p>
+					</patTemplate:tmpl>
+				</div>
+				<div class="foot">
+					<a href="opportunities.php?section=events">Go to Events</a>
+				</div>
+			</div><!-- deadlines -->
+
+
+
+			<div class="deadlines">
+				<div class="contents">
+					<h2>Deadlines</h2>
+					<patTemplate:tmpl name="deadlines" limit="5">
+						<p class="deadline_event">
+						<span class="deadline_date">{DATE}</span>
+						<span class="deadline_title"><a href="opportunities.php?section=deadlines&deadline_id={DEADLINE_ID}&date_id={DATE_ID}">{TITLE}</a></span>
+						</p>
+					</patTemplate:tmpl>
+				</div>
+				<div class="foot">
+					<a href="myactivities.php?section=my_profile#modify_filters">Change filters</a> | <a href="opportunities.php?section=deadlines">Go to Deadlines</a>
+				</div>
+			</div><!-- deadlines -->
+
+			<div class="grants">
+				<div class="contents">
+					<h2>My funding</h2>
+
+					<table tableborder="none" style="color : #6f6f6f;">
+					<thead style="color : black; font-size : 9px;text-align:left">
+						<tr>
+						<th>account name</th>
+						<th>granted</th>
+						<th>remaining</th>
+						</tr>
+					</thead>
+					<tbody>
+						<patTemplate:tmpl name="grants" type="oddeven" limit="8">
+							<patTemplate:sub condition="__odd">
+								<tr>
+								<td>{TITLE}</td>
+								<td>TBA</td><td>TBA</td>
+								<!--
+								<td>{GRANTED}</td>
+								<td>{REMAINING}</td>
+								-->
+								</tr>
+							</patTemplate:sub>
+							<patTemplate:sub condition="__even">
+								<tr style="background-color:#DFEBFF">
+								<td>{TITLE}</td>
+								<td>TBA</td><td>TBA</td>
+								<!--
+								<td>{GRANTED}</td>
+								<td>{REMAINING}</td>
+								-->
+								</tr>
+								</patTemplate:sub>
+						</patTemplate:tmpl>
+
+					</tbody>
+					</table>
+				</div>
+				<div class="foot">
+					<!--<a href="#">Change filters</a> | --><a href="#">Go to My Funding</a>
+				</div>
+			</div><!-- grants -->
+		</div><!-- rightcol -->
+	</div><!-- myactivities_home -->
+	<div style="clear:both"></div>
+	<patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

@@ -1,0 +1,1 @@
+ALTER TABLE `srd_reg` ADD `url` VARCHAR( 255 ) NOT NULL ;

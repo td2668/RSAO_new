@@ -1,0 +1,257 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_profile">
+    <form name="profile_form" id="profile_form" action="myactivities.php?section=my_profile" method="post" >
+		<div style="float:right;width:150px">
+			<span style="color:#AF3F36;font:bold 14px georgia,times,serif;padding:7px 0;">Tools</span>
+			<hr style="height:1px">
+			<button name='savechanges' type='button' disabled="TRUE"  href="#" onClick="document.forms['profile_form'].submit();">Save Changes</button><br /><br />
+		    <patTemplate:tmpl name="profile_visibility" type="condition" conditionVar="checked">
+                <patTemplate:sub condition="0">
+                <input type="checkbox" name='show_checkbox' onClick="document.forms['profile_form'].submit();" checked /> Show Profile<br />
+                </patTemplate:sub>    
+                <patTemplate:sub condition="__default">
+                <input type="checkbox" name='show_checkbox' onClick="document.forms['profile_form'].submit();" /> Show Profile<br />
+                </patTemplate:sub>    
+            </patTemplate:tmpl>
+        </div>
+		
+			<input type="hidden" name="action" value="update">
+
+			<div style="width:500px;height:100px">
+				<h1>Edit profile</h1>
+				<p class="enfasis">The items in this section are used for your Full CV, your Web CV and your Public Profile.</p>
+            </div>
+            <div style="width:700px;">
+                <div style='float:left'>
+				    <img src="{IMG_URL}" title="{IMG_TEXT}"  alt="{IMG_TEXT}"
+						style="border:none; width:180px;height:139px;" />
+                        <br><br>
+
+                    <h2 style="color:#AF3F36;font:bold 12px georgia,times,serif;padding:7px 0 0 0;">Email Preferences</h2>
+                    <patTemplate:tmpl name="mail_events" type="condition" conditionVar="checked">
+                        <patTemplate:sub condition="1">
+                            <input type="checkbox" name='events_checkbox' onClick="document.forms['profile_form'].submit();" checked title='Enable or disable the automatic emailing of event notifications' /><label for="events_checkbox" title="Enable or disable the automatic emailing of event notifications"> Newsletter</label><br />
+                        </patTemplate:sub>    
+                        <patTemplate:sub condition="__default">
+                            <input type="checkbox" name='events_checkbox' onClick="document.forms['profile_form'].submit();" title='Enable or disable the automatic emailing of event notifications'/> <label for="events_checkbox" title="Enable or disable the automatic emailing of event notifications"> Newsletter</label><br />
+                        </patTemplate:sub>    
+                    </patTemplate:tmpl> 
+                    
+                    <patTemplate:tmpl name="mail_deadlines" type="condition" conditionVar="checked">
+                        <patTemplate:sub condition="1">
+                            <input type="checkbox" name='deadlines_checkbox' onClick="document.forms['profile_form'].submit();" checked title='Enable or disable the automatic emailing of grant deadline notifications'/><label title="Enable or disable the automatic emailing of grant deadline notifications" for="deadlines_checkbox"> Deadline Notifications</label><br />
+                        </patTemplate:sub>    
+                        <patTemplate:sub condition="__default">
+                            <input type="checkbox" name='deadlines_checkbox' onClick="document.forms['profile_form'].submit();" title='Enable or disable the automatic emailing of grant deadline notifications'/><label title="Enable or disable the automatic emailing of grant deadline notifications" for="deadlines_checkbox"> Deadline Notifications</label><br />
+                        </patTemplate:sub>    
+                    </patTemplate:tmpl>
+                    
+                       
+                </div>
+				<table style="border:none;width:500px;float:right">
+			   <tr>
+				  <td ><span class='enfasis'>First Name<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="first_name" 
+                        id="first_name" 
+                        title="first name" 
+                        value="{FIRST_NAME}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+				  <td><span class='enfasis'>Office<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="office" 
+                        id="office" 
+                        title="office location" 
+                        value="{OFFICE}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+			   </tr>
+			   <tr>
+				  <td><span class='enfasis'>Last Name<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="last_name" 
+                        id="last_name" 
+                        title="last name" 
+                        value="{LAST_NAME}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+				  <td><span class='enfasis'>Phone<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="phone" 
+                        id="phone" 
+                        title="phone number" 
+                        value="{PHONE}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+			   </tr>
+			   <tr>
+				  <td><span class='enfasis'>Title<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="title" 
+                        id="title" 
+                        title="job title" 
+                        value="{TITLE}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+				  <td><span class='enfasis'>Fax<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="fax" 
+                        id="fax" 
+                        title="fax number" 
+                        value="{FAX}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+			   </tr>
+			   <tr>
+				  <td><span class='enfasis'>Secondary Title<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="secondary_title" 
+                        id="secondary_title" 
+                        title="secondary title" 
+                        value="{SECONDARY_TITLE}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+				  <td><span class='enfasis'>Email<br/></span>
+					 <input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="email" 
+                        id="email" 
+                        title="email" 
+                        value="{EMAIL}" 
+                        style="width:200px;font-size: 13px; font-family:monospace;" />
+				  </td>
+			   </tr>
+			   <tr>
+					<td>
+					&nbsp;
+					</td>
+					<td><span class='enfasis'>Personal Homepage<br/></span>
+					<input type="text" 
+                        onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                        name="homepage" 
+                        id="homepage"
+                        maxlength="255" 
+                        title="personal webpage" 
+                        value="{HOMEPAGE}" 
+                        style="width:200px; font-size: 13px; font-family:monospace;" />
+					</td>
+			   </tr>
+			   <tr>
+				 <td><span class='enfasis'>Department<br/></span>
+						<!--
+						<label for="department_id" style="color:#A30500;font-family:georgia, times,serif">Home Department</label><br />
+						-->
+						<select name="department_id" 
+                            onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                            title="home department"  style="width:200px; font-size: 13px; font-family:monospace;" />
+						<option value="0">- Select a home Department -</option>
+						<patTemplate:tmpl name="home_dept">
+							<option value="{DEPARTMENT_ID}" {DEPARTMENT_SELECTED}>{DEPARTMENT_NAME}</option>
+						</patTemplate:tmpl>
+						</select>
+					</td>
+				  <td><span class='enfasis'>Secondary Dept.<br/></span>
+						<!--
+						<label for="department2_id" style="color:#A30500;font-family:georgia, times,serif">Secondary Department</label><br />
+						-->
+						<select name="department2_id" 
+                            onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                            title="secondary department" style="width:200px;font-size: 13px; font-family:monospace;" />
+						<option value="0">- Select a secondary Department -</option>
+						<patTemplate:tmpl name="second_dept">
+							<option value="{DEPARTMENT_ID}" {DEPARTMENT_SELECTED}>{DEPARTMENT_NAME}</option>
+						</patTemplate:tmpl>
+						</select>
+				  </td>
+
+			   </tr>
+               
+            </table>
+			</div>
+
+			<div style="width:700px;margin-top:10px">
+
+			
+				<div id="research_filter_topics">
+					
+				<div style="width:350px; height:160px; position:relative; float: left;">
+
+					<h2 style="color:#AF3F36;font:bold 16px georgia,times,serif;padding:7px 0 0 0;">Short profile statement</h2>
+					<textarea name="profile_short"
+                                onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                                id="profile_short"
+						        title="short profile statement (will be used in listings)"
+						        style="width:300px;height:100px; font-size: 13px; font-family:monospace;"
+						>{PROFILE_SHORT}</textarea>
+				</div>
+				
+				<div style="width:350px; height:160px; float:right; position:relative;">
+					<h2 style="color:#AF3F36;font:bold 16px georgia,times,serif;padding:7px 0 0 0;">Keywords</h2>
+					<textarea name="keywords" onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" 
+                    id="keywords" title="keywords"  style="width:300px;height:100px; font-size: 13px; font-family:monospace;">{KEYWORDS}</textarea>
+				</div>
+				
+				<div style="width:700px; display:inline-table;">				
+					<h2 style="color:#AF3F36;font:bold 16px georgia,times,serif;padding:7px 0 0 0;">Full profile statement</h2>
+					<textarea name="profile_ext" onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" id="profile_ext"
+						title="full profile statement (will be used when viewing the detailed profile)"
+						style="width:700px;height:190px; font-size: 13px; font-family:monospace;"
+						>{PROFILE_EXT}</textarea>
+
+				</div>
+
+			
+
+				<div id="research_topics">
+					<h2 >Research topics</h2>
+					<i>Select topics that are related to your research. You will be listed under these topics.</i>
+
+					<table>
+					<patTemplate:tmpl name="TOPICLIST">
+						<tr><td><input type="checkbox" name="topics[]" onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" value="{TOPIC_ID}"  title="{NAME}" {TOPIC_CHECKED}></td><td>{NAME}</td></tr>
+					</patTemplate:tmpl>
+					</table>
+				</div>
+
+				<div id="filter_topics">					
+					<a name="modify_filters"></a>
+					<h2 >Filter topics</h2>
+					<i>Select topics that you are interested in. This determines which deadlines you will see.</i>
+					
+					<table>
+					<patTemplate:tmpl name="FILTERLIST">
+					
+						<tr><td><input type="checkbox" name="filters[]" onClick="document.profile_form.savechanges.disabled=false; document.profile_form.savechanges2.disabled=false" value="{TOPIC_ID}"  title="{NAME}" {FILTER_CHECKED}></td><td>{NAME}</td></tr>
+					</patTemplate:tmpl>
+					</table>
+
+				</div>
+				
+				</div>
+			</div>
+		
+	</div>
+
+	<div style="clear:both; margin: 40px 0px 0px 180px;">
+    
+               <br /><button name='savechanges2' 
+                            type='button' 
+                            disabled="TRUE"  
+                            href="#" 
+                            style="font-size:13px;"
+                            onClick="document.forms['profile_form'].submit();">
+                            Save Changes</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </form> 
+    </div>
+	<patTemplate:tmpl src="footer.html" />
+   
+</patTemplate:tmpl>

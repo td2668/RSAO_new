@@ -1,0 +1,43 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+		<patTemplate:tmpl src="research_controls.tpl" />
+		<div class="research_main">
+			<h1>Research at MRU</h1>
+			<p class="enfasis">Search by Faculty, Department, Topic, or Keyword.
+			Or try a more personal search in <a href='/content.php?page=faces_of_innovation'>Faces of Innovation</a>.</p>
+
+			<p>Research or creative practise are critical components of the post-secondary experience. Most of our faculty at Mount Royal are active researchers, 
+            with projects ranging from multi-institutional grant-funded 'big science' to small individual projects. What ties them all 
+            together is the link between research and the classroom. 
+            
+            
+            
+            Faculty are not only encouraged, but are expected, to bring their research into the 
+            classroom. Whether that translates into teaching research techniques, demonstrating cutting-edge work, or directly involving undergraduates in
+            their projects, faculty work to link these two sides of their jobs.</p>
+
+			<h2>Featured Project</h2>
+
+
+			<patTemplate:tmpl name="FEATURED_PROJECT" type="condition" conditionVar="IMG">
+                <patTemplate:sub condition="__empty">
+                
+                <div style="margin-left:40px; margin-right:40px;">
+                    <b><a href="research.php?action=view&type=project&pid={PROJECT_ID}" title="{NAME}">{NAME}</a></b>
+                    <p>{SYNOPSIS}</p>
+                </div>
+                </patTemplate:sub>
+                 
+                <patTemplate:sub condition="__default">
+				<img src="{IMG}" style="float:left; margin-right:30px;" />
+				<div style="margin-left:20px">
+					<b><a href="research.php?action=view&type=project&pid={PROJECT_ID}" title="{NAME}">{NAME}</a></b>
+					<p>{SYNOPSIS}</p>
+				</div>
+                </patTemplate:sub> 
+			</patTemplate:tmpl>
+		</div>
+
+
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

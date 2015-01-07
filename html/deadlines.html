@@ -1,0 +1,77 @@
+<patTemplate:tmpl name="PAGE">
+  <patTemplate:tmpl src="header.html" />
+  <patTemplate:tmpl name="PAGE_ALL">
+ 
+    <h1 style='height:20px; padding-bottom:0px;'>Deadlines</h1>
+    <span style='font-size:9px'>Topic Filter: {FILTER}<br><br></span>
+    <table cellspacing="0" cellpadding="2">
+      <patTemplate:tmpl name="DEADLINES">
+        <tr bgcolor="{COLOR}">
+         <td><b style="font-size:16px">{TITLE}</b></td>
+        </tr>
+        <tr height="10" valign"top" bgcolor="{COLOR}">
+         <patTemplate:tmpl name="DATE_SECTION1" type="condition" conditionvar="NO_DEADLINE" varscope="DEADLINES">
+        <patTemplate:sub condition="0">
+          <td><span style="font-size:10px">Due:<b>{DATE}</b></span></td>
+        </patTemplate:sub>
+        <patTemplate:sub condition="1">
+            <td><span style="font-size:10px"><b>Open Date</b></span></td>
+        </patTemplate:sub>
+    </patTemplate:tmpl>
+         
+        </tr>
+        <tr bgcolor="{COLOR}">
+         <td>{SYNOPSIS}</td>
+        </tr>
+        <patTemplate:tmpl name="moreinfo" type="simpleCondition" requiredVars="TITLE" varscope="DEADLINES">
+        <tr  bgcolor="{COLOR}" height='5'>
+         <td height='30' valign="top">
+         <a href="opportunities.php?section=deadlines&deadline_id={DEADLINE_ID}&date_id={DATE_ID}">
+         More Info...
+         </a>
+         </td>
+        </tr>
+        
+        </patTemplate:tmpl>
+       </patTemplate:tmpl>
+      </table>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+     <div > 
+      <b style="font-size:18px">{TITLE}</b><br />
+      <span style="font-size:10px">
+      
+      <patTemplate:tmpl name="DATE_SECTION" type="condition" conditionvar="NO_DEADLINE" varscope="PAGE_SINGLE">
+        <patTemplate:sub condition="0">
+          Due:<b>{DATE}</b>&nbsp;{OTHERS}<br />
+        <br />
+        </patTemplate:sub>
+        <patTemplate:sub condition="1">
+            <b>Open Due Date</b><br /><br /> 
+        </patTemplate:sub>
+    </patTemplate:tmpl>
+    
+    
+        
+      </span>
+      <table align="right">
+      <patTemplate:tmpl name="PIX" type="simpleCondition" requiredVars="PICTURE_PATH">
+      <tr>
+        <td align="center">
+          <img src="{PICTURE_PATH}{FILE_NAME}" bordercolor='black' border='0'>
+          <br />
+          <i>{CAPTION}</i>
+        </td>
+      </tr>
+      </patTemplate:tmpl>
+      </table>
+      <patTemplate:var name="DESCRIPTION" modifier="nl2br" />
+			<br />
+			<br />
+			 <a href="opportunities.php?section=deadlines">
+			 Go Back...
+			 </a>
+     </div>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

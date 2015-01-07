@@ -1,0 +1,56 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<div id="myactivities_researchlist">
+		<div style="float:right;width:150px">
+			<span style="color:#AF3F36;font:bold 14px georgia,times,serif;padding:7px 0;">Tools</span>
+			<hr style="height:1px">
+			<button type="button" style='font-size:13px;' onClick="window.location='myactivities.php?section=my_projects&subsection=edititem&action=addnew_project'">Add a Project</button><br /><br />
+			
+			
+		</div>
+
+
+		<div style="width:500px">
+			
+
+				<h1>Projects</h1>
+				<p class="enfasis">Here you may add or modify project descriptions that may be linked to your profile or your collaborators.</p>
+                        <br /><br />
+         </div>
+         <div style="width:700px;">               
+                <form name="research_list_form" id="research_list_form_id" action="myactivities.php?section=my_projects"
+                    method="post" title="My Projects">
+                <input type="hidden" name="action" value="update_project_list">
+				<table cellpadding='0' cellspacing='0' border='0' style="border:none;width:700px;">
+                <tr><td><b>Title</b></td><td><b>Synopsis</b></td><td><b>Modified</b></td></tr>
+				<patTemplate:tmpl name="project_list" type="condition" conditionvar="type" >
+					<patTemplate:sub condition="evenrow">
+						<tr class="evenrow">
+                            <td width='160' ><div class='list'><a href="myactivities.php?section=my_projects&subsection=edititem&project_id={PROJECT_ID}" >{NAME}</a></div></td>
+                            <td><div class='list'>{SYNOPSIS}</div></td>
+                            <td nowrap><div class="list">{MODIFIED}</div></td>
+														
+						</tr>
+					</patTemplate:sub>
+					<patTemplate:sub condition="oddrow">
+						<tr class="oddrow">
+                            <td width='160'><div class='list'><a href="myactivities.php?section=my_projects&subsection=edititem&project_id={PROJECT_ID}" >{NAME}</a></div></td>
+							<td><div class='list'>{SYNOPSIS}</div></td>
+                            <td nowrap><div class='list'>{MODIFIED}</div></td>
+							
+						</tr>
+					</patTemplate:sub>
+                   <patTemplate:sub condition="default">
+                    <tr class="evenrow"><td colspan='3'>No Projects Found</td></tr>
+                    </patTemplate:sub>
+				</patTemplate:tmpl>
+				</table>
+			</form>
+		</div>
+
+	</div>
+	<div style="clear:both"></div>
+
+	<patTemplate:tmpl src="footer.html" />
+
+</patTemplate:tmpl>

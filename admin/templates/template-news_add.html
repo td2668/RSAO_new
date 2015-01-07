@@ -1,0 +1,89 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a Title."]], // Title
+	[["required","Please enter a VALID Date."],["date"]], // Post Date 
+	[["required","Please enter a VALID Date."],["date"]], // Event Date 
+	[], // Expiry Date 
+	[],// Description
+	[["required","Please enter a Synopsis"]],// Synopsis
+	[]// Source
+	]; 
+//-->
+</script>
+
+
+<form method="post" name="form1" action="" onSubmit="return validateForm(this,arrValidationDesc)">
+<table>
+	<tr>
+		<td colspan="2"  class="successhead">Add: News</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+    <tr><td>Classification:</td>
+    <td><input type="radio" name="news_for" value="for" checked>News for Faculty &nbsp;&nbsp;
+    <input type="radio" name="news_for" value="about" >News about MRU
+    </td></tr>
+	<tr>
+		<td>Title:</td>
+		<td><input type="text" name="title" maxlength="255" size="120"></td>
+	</tr>
+
+	<tr>
+		<td>Post Date:</td>
+		<td><input type="text" id="post_date" name="post_date" maxlength="10" size="10" value="~!post_date~"> 
+        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "post_date", "chooserSpan", 2011, 2020, "d/m/Y", false);'>
+        <div id='chooserSpan' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+</div> <i>Date it appears</i></td>
+	</tr>
+	<tr>
+		<td>Event Date:</td>
+		<td><input type="text" id='event_date' name="event_date" maxlength="10" size="10" value="">
+        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "event_date", "chooserSpan2", 2011, 2020, "d/m/Y", false);'>
+        <div id='chooserSpan2' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+</div> <i>Date it happened / was published</i></td>
+	</tr>
+	<tr>
+		<td>Expiry Date:</td>
+		<td><input type="text" id='expiry_date' name="expiry_date" maxlength="10" size="10">
+        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "expiry_date", "chooserSpan3", 2011, 2020, "d/m/Y", false);'>
+        <div id='chooserSpan3' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+</div> <i>Date it disappears</i></td>
+	</tr>
+	<tr>
+		<td valign="top">Description:</td>
+		<td><textarea name="description" rows="20" cols="120"></textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Synopsis:</td>
+		<td><textarea name="synopsis" rows="10" cols="120"></textarea></td>
+	</tr>
+	<tr>
+		<td>Source:</td>
+		<td><input type="text" name="source" maxlength="255" size="120"></td>
+	</tr>
+	<tr>
+		<td valign="top">General Topics:</td>
+		<td><select name="topics[]" multiple size="8">
+				~!topic_options~
+			</select></td>
+	</tr>
+	<tr>
+		<td>Approved:</td>
+		<td><input type="checkbox" checked name="approved" value="yes"></td>
+	</tr>
+	<tr>
+		<td>Feature:<br><i>use on main page</i></td>
+		<td><input type="checkbox" name="internal" value="yes"></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" name="add" value="Add">&nbsp;&nbsp;
+			<button onClick="window.location='news.php?section=view'">Back</button></td>
+	</tr>
+</form>
+</table>

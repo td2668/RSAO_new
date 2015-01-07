@@ -1,0 +1,421 @@
+
+
+body {
+	margin: 0px;
+	padding: 0px;
+	color: #000;
+}
+
+
+/*###############################################
+       MAIN BACKGROUND TABLE PROPERTIES
+
+  The main outer tables surrounding everything.
+  basically, main-outer is the border color, 
+  and main-inner is the background color of the table*/
+.main-outer{
+	color:black;
+	/* background-color: black; */
+}
+.main-inner{
+	color:black;
+	/* background-color: #eeeedd; */
+}
+/*################################################*/
+
+
+
+/*################################################
+           EVENT LINK PROPERTIES
+
+  the event links on the main calendar page,
+  shown inside each cell of the calendar.
+  NOTE: only used if you choose to let people click on 
+  the individual events from there. */
+a.event_link{
+	color: #990000;
+	text-decoration: none;
+	background-color: inherit;}
+	
+a.event_link:hover{
+	color: #990000;
+	text-decoration: underline;
+	background-color: inherit;
+}
+div.event_block{
+	color: black;
+	text-decoration: none;
+	background-color: inherit;
+	margin: 1px;
+	padding-left: 1px;
+	border-left: 5px solid #990000;
+	border-bottom: 1px solid #990000;
+}
+table.event_block{
+	background-color: #990000;
+	border: 1px solid #777777;
+	width: 15px;
+	height: 28px;
+	font-size: 10%;
+}
+
+/*on the viewdate page, the event's title. 
+  (subject of the event) */
+a.viewdatesubject, a.viewdatesubject:visited, a.viewdatesubject:hover, a.viewdatesubject:active{
+	color: #990000;
+	text-decoration: none;
+	font-size: 110%;
+	font-weight: bold;
+}
+
+a.viewdateoption, a.viewdateoption:visited, a.viewdateoption:hover, a.viewdateoption:active{
+	color: #990000;
+	text-decoration: none;
+	font-size: 100%;
+	font-weight: bold;
+}
+.viewdatetext{
+	color: #990000;
+	text-decoration: none;
+	font-size: 100%;
+	font-weight: bold;
+}
+/*################################################*/
+	
+
+
+
+
+/*#################################################
+           LINK/TEXT PROPERTIES
+
+/* just regular links */
+a {
+  color: #990000;
+  background-color: inherit;}
+a:hover {
+  color: #333;
+  background-color: inherit;
+} 
+/* The titles that say the month year, and sometimes the day at the top. */
+.month_title{
+	font-size: 150%;
+	font-weight: Bold;
+	color: #990000;
+}
+/* The titles on each of the modules */
+.box_title{
+  color: #990000;
+  background-color: inherit;
+  font-size: 170%;
+  font-weight: bold;
+}
+.box_subtitle{
+  color: #333;
+  background-color: inherit;
+  font-size: 120%;
+  font-weight: bold;
+}
+.cal_tab_title{
+  color: #990000;
+  background-color: inherit;
+  font-size: 140%;
+  font-weight: bold;
+}
+.cal_tab_subtitle{
+  color: #990000;
+  background-color: inherit;
+  font-size: 120%;
+  font-weight: bold;
+}
+.success{
+    font-size: 150%;
+    color: #990000;
+}
+.failure{
+    font-size: 150%;
+    color: #333;
+}
+/* this makes the link a big box to click on,
+such as the "back to calendar" box */
+a.box {
+  background-color: #990000;
+  border-color: #990000;
+  color: #FFF;}
+a.box:hover {
+  background-color: white;
+  border-color: #990000;
+  color: #FFF;}
+/*##############################################*/
+
+
+.cal_tab{
+	background-color: #eee;
+	border-top: 1px solid #333;
+	border-left: 1px solid #333;
+	border-right: 1px solid #333;
+	border-bottom: 1px solid #eee;
+	padding: 3px 5px 0px 5px;
+	margin: 0px 5px;
+    cursor:pointer;
+    cursor:hand;
+	font-size: 80%;
+	font-weight: bold;
+	color: #990000;
+}
+
+.cal_tab2{
+	background-color: #eee;
+	border-top: 1px solid #333;
+	border-left: 1px solid #333;
+	border-right: 1px solid #333;
+	border-bottom: 2px solid #eee;
+	padding: 3px 5px 0px 5px;
+	margin: 0px 5px;
+    cursor:pointer;
+    cursor:hand;
+	font-size: 90%;
+	font-weight: bold;
+	color: #990000;
+}
+
+.cal_tabbody{
+	background-color: #eee;
+	border: 1px solid #333;
+	padding: 5px;
+	float: center;
+	margin-top: 0px;
+}
+
+/*#############################################
+           NAVIGATION BAR PROPERTIES
+  These are the bottom links for the login page, admin page, etc 
+  #############################################*/
+#navbar a {
+	color: #990000;
+	font-size: 90%;
+}
+#navbar a:hover {
+	color: #333;
+	text-decoration: underline;
+}
+/*#############################################*/
+ 
+ 
+ 
+
+  
+
+  
+/*############################################
+      THE MAIN CALENDAR PROPERTIES
+  
+this is the calendar table background, and
+basically only shows up as the border and spaces
+between the cells of the main calendar.  */
+#calendar {
+  background-color: white;
+  color: white;
+  width: 90%;
+  text-align: center;
+  font-size: 90%;
+  table-layout: fixed;
+  border-style: none;
+}
+#calendar table{
+  padding: 1px;
+  background-color: inherit;
+  border-spacing: 1px;
+}
+/* the calendar table headers */
+#calendar th{
+  background-color: #990000;
+  color: white;
+  font-size: 90%;
+  font-weight: bold;
+  padding: 2px;
+  text-align: center;
+}
+#calendar td{
+	font-size: 90%;
+	overflow: hidden;
+}
+#calendar div.daylink{
+	width: 100%;
+	background-color: #990000;
+	padding: 3px;
+}
+#calendar div.daylink a{
+	font-size: 90%;
+	font-weight: bold;
+	color: white;
+	padding: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 1px;
+	display: inline;
+	border-width: 0px;
+}
+#calendar div.daylink a:hover{
+	color: #333;
+	background-color: #ccc;
+	border: 1px solid #ccc;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: none;
+}
+#calendar div.todaylink{
+	width: 100%;
+	background-color: #333; /* #FFCC33; /* #31528E; */
+	padding: 3px;
+}
+#calendar div.todaylink a{
+	font-size: 90%;
+	font-weight: bold;
+	padding: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 1px;
+	display: inline;
+	border-width: 0px;
+	color: #fff;
+}
+#calendar div.todaylink a:hover{
+	color: #333;
+	background-color: #ccc;
+	border: 1px solid #ccc;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: none;
+}
+#calendar div.extralink{
+	width: 100%;
+	background-color: #999; /* D1DCEE; /* #A2A9BB; */
+	padding: 3px;
+}
+#calendar div.extralink a{
+	font-size: 90%;
+	font-weight: bold;
+	color: white;
+	padding: 0px;
+	padding-left: 4px;
+	padding-right: 4px;
+	margin-right: 1px;
+	display: inline;
+	border-width: 0px;
+	color: white;
+}
+#calendar div.extralink a:hover{
+	color: #fff;
+	background-color: #990000;
+	border: 1px solid #990000;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: none;
+}
+/* the 'past' colors for the main calednar page */
+#calendar td.weekend{
+  text-align: left;
+  color: black;
+  background-color: #ccc;}
+#calendar td.weekday{
+  text-align: left;
+  color: black;
+  background-color: #ccc;}
+#calendar td.weekday_future{
+  text-align: left;
+  color: black;
+  background-color: #999;}
+#calendar td.weekend, #calendar td.weekday, #calendar td.weekday_future{
+  text-align: left;
+  height: 80px;
+}
+
+/*#################################################*/
+
+
+
+
+
+
+/*###################################################
+            MODULE TABLE PROPERTIES
+
+This are the admin page table properties  */
+table.adminpage-table{
+  background-color: #fff;
+  color: black;
+  border-color: black;
+ 	font-size: 90%;
+}
+/* This is for the table each module is loaded in,
+with the exception of the admin page */
+table.box{
+  background-color: #fff;
+  color: black;
+  border: 1px solid #fff;
+  width: 90%;
+	font-size: 90%;
+}
+/*################################################*/
+
+
+
+
+/* this is for the usernames listed in the admin section where you edit user options */
+span.cal_admin_usernames{
+	color: #333; 
+	font-weight: bold;
+	font-size: 100%;
+}
+
+/* this is the wrapper table arround all the edit user blocks in the admin section */
+table.cal_admin_userlist{
+	background-color: inherit;
+	padding: 0px;
+	border-spacing: 5px;
+	border-width: 0px;
+	width: 90%;
+	font-size: 90%;
+}
+table.cal_admin_userlist td{
+	vertical-align: top;
+	font-size: 90%;
+}
+table.cal_admin_userblock_anonymous{
+	background-color: #ccc; 
+
+	border: 1px solid #333;
+	width: 98%;
+	padding: 3px;
+	margin-bottom: 10px;
+	font-size: 90%;
+}
+table.cal_admin_userblock{
+	background-color: #C9BBBB; 
+	border: 1px solid #333;
+	width: 98%;
+	padding: 3px;
+	margin-bottom: 10px;
+	font-size: 90%;
+}
+
+input.cal_admin_edituser_button{
+	width: 120px;
+	font-size: 100%;
+	text-align: center;
+}
+
+.admintabletext {
+	font-size: 90%;
+}
+
+.is_admin {
+	font-size: 85%;
+ }
+ 
+.user_disabled {
+	font-size: 85%;
+}
+
+

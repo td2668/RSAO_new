@@ -1,0 +1,61 @@
+<script language="JavaScript" type="text/javascript">
+    <!--
+    arrValidationDesc =
+            [
+                [
+                    ["required", "Please enter a Name."]
+                ] // Name
+            ];
+    //-->
+</script>
+<table>
+    <form method="post" name="form1" action="departments.php?section=view&id=~!id~"
+          onSubmit="return validateForm(this,arrValidationDesc)">
+        <tr>
+            <td colspan="2" class="successhead">Update: Department</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" name="name" maxlength="255" size="30" value="~!name~"></td>
+        </tr>
+        <tr>
+            <td>Short Name:</td>
+            <td><input type="text" name="shortname" maxlength="255" size="30" value="~!shortname~"></td>
+        </tr>
+        <tr>
+            <td>Division:</td>
+            <td><select name="division_id">
+                <option value='0'>&nbsp;</option>
+                ~!division_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>Chair:</td>
+            <td><select name="chair">
+                <option value="0">&nbsp;</option>
+                ~!user_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>Director:</td>
+            <td><select name="director">
+                <option value="0">&nbsp;</option>
+                ~!director_options~
+            </select></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" name="update" value="Update">&nbsp;&nbsp;
+                <button type="button" onClick="window.location='departments.php?section=view&delete=y&id=~!id~'">
+                    Delete
+                </button>
+                &nbsp;&nbsp;
+                <button type="button" onClick="window.location='departments.php?section=view'">Back</button>
+            </td>
+        </tr>
+    </form>
+</table>

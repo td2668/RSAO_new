@@ -1,0 +1,10 @@
+<patTemplate:tmpl name="PAGE">
+	<patTemplate:tmpl src="header.html" />
+	<h1>{SECTIONNAME}</h1>
+	<ul>
+		<patTemplate:tmpl name="pages">
+			<li><a href="{URL}">{TITLE}</a></li>
+		</patTemplate:tmpl>
+	</ul>
+	<patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

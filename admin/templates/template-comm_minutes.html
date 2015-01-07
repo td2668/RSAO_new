@@ -1,0 +1,49 @@
+<style type="text/css">
+<!--
+.val {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 11px;
+	border: 1px solid;
+}
+-->
+</style>
+<td valign='top'>
+
+
+
+<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+	<tr>
+	 <td colspan='3' class="successhead">Committee Minutes: ~!name~</td>
+	  </tr>
+	<tr height="10"><td colspan='3' height="14" class="success"> ~!success~</td></tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+
+	<tr>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Date</b></td>
+		<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px">Uploaded By</b></td>
+        <td bgcolor="#000000"><b style="color:#E1E1E1;font-size:12px"></b></td>
+
+</tr>
+	~!output~
+</table>
+<form action="?section=minutes" method="post" name="form1" enctype="multipart/form-data">
+<table>
+<tr><td>&nbsp;</td></tr>
+
+<input type='hidden' name='committee_id' value='~!committee_id~'/>
+<input type="hidden" name="MAX_FILE_SIZE" value="900000" />
+
+<tr><td>Add Minutes:</td><td><input type="file" name="file"></td><td>Date of Mtg:</td>
+<td><input type="text" id='meeting_date' name="meeting_date" maxlength="10" size="10">
+        <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "meeting_date", "chooserSpan3", 2011, 2020, "d/m/Y", false);'>
+        <div id='chooserSpan3' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'>
+</div> </td>
+<td><button type="submit" name="addminutes" value="addminutes">Add Minutes</button></td></tr>
+
+</table>
+</form>
+</td>

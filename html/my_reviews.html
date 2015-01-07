@@ -1,0 +1,237 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL" >
+
+
+
+<script type="text/javascript">
+function submitform()
+{
+  document.form1.submit();
+}
+</script>
+
+<script type="text/javascript" src="js/ajax-dynamic-content.js"></script>
+    <script type="text/javascript" src="js/ajax.js"></script>
+    <script type="text/javascript" src="js/ajax-tooltip.js"></script>
+    <SCRIPT LANGUAGE="JavaScript">
+<!-- Dynamic Version by: Nannette Thacker -->
+<!-- http://www.shiningstar.net -->
+<!-- Original by :  Ronnie T. Moore -->
+<!-- Web Site:  The JavaScript Source -->
+<!-- Use one function for multiple text areas on a page -->
+<!-- Limit the number of characters per textarea -->
+<!-- Begin
+function textCounter(field,cntfield,maxlimit) {
+if (field.value.length > maxlimit) // if too long...trim it!
+field.value = field.value.substring(0, maxlimit);
+
+// otherwise, update 'characters left' counter
+else
+cntfield.value = maxlimit - field.value.length;
+}
+//  End -->
+</script>
+    
+<link rel="stylesheet" href="css/forms.css" media="screen" type="text/css">
+<link rel="stylesheet" href="css/ajax-tooltip.css" media="screen" type="text/css">
+
+<form method="post" action="my_reviews.php" name="form1">
+<input type="hidden" name="section" value="{SECTION}" />
+<input type="hidden" name="gotosection" value="" />
+<input type="hidden" name="newname" value="" />
+<input type="hidden" name="saveme" value="false" /> 
+<input type="hidden" name="locksubmit" value="false" /> 
+
+
+
+
+<div style="float: right;" >
+<patTemplate:tmpl name="savecontrol" >  
+    <button type="submit" name="save" value="save" onClick="javascript:document.form1.saveme.value='true';" {DISABLED}>Save</button><br><br>
+</patTemplate:tmpl> 
+<a href="javascript: submitform()" title="Back to the list" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='list';">My Reviews</a><br><br>
+
+</div>
+
+<div name="formchooser">
+<patTemplate:tmpl name="chooser" visibility="visible">
+<b>
+<a  href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='info';"><span class='{HILITE_INFO}'>Info</span></a>&nbsp;&nbsp;|&nbsp;
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='review';"><span class='{HILITE_REVIEW}'>Review</span></a>&nbsp;&nbsp;|&nbsp;
+<a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='submit';"><span class='{HILITE_SUBMIT}'>Submit</span></a>
+
+&nbsp;&nbsp; <br><br>
+</b>
+</patTemplate:tmpl>
+</div>
+
+
+
+<patTemplate:tmpl name="section" type="condition" conditionvar="section">
+    <patTemplate:sub condition="list">
+    <h3>Internal Research Grant Reviews</h3>
+    <p class="enfasis">You have been selected as a reviewer for the application(s) listed below <br />(Help with this page <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_irgf_intro2.html',this);return false" />)</p>
+           <patTemplate:tmpl name="list"> 
+            <script>
+        function DoPrint(generateWhat){
+            	var url = "cv_review_print.php?generate=" + generateWhat + "&report_user_id={USER_ID}&style=apa";
+				window.open(url);
+            }
+            </script>
+           <div id="forms_list"> 
+           <br/>
+                <table  cellpadding="3">
+                
+                {OUTPUT}
+                </table>
+            </div>
+            </patTemplate:tmpl>  
+    </patTemplate:sub>
+
+
+    
+    <patTemplate:sub condition="info">
+        <patTemplate:tmpl name="info">
+       
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+            
+            <table class='formtable' cellpadding="5">
+            <tr><td width='90'>Applicant:</td><td align="left">{NAME}</td></tr>
+            <tr><td>Title:</td><td align="left">{IRGF_NAME}</td></tr>
+            <tr><td>File Link:</td><td align="left">{LINK}</td></tr>
+            <tr><td>Summary:</td></tr>
+            <tr><td colspan="2">{SUMMARY}</td></tr>
+            
+            	
+                
+            </table>
+        </patTemplate:tmpl>
+    </patTemplate:sub>
+ 
+ 
+ 	<patTemplate:sub condition="review">
+        <patTemplate:tmpl name="review">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" />
+            
+            <table class='formtable' cellpadding="5">
+            <tr><td colspan='2'><span class="enfasis">Pages save automatically as you move between sections; but your changes will be lost if you move away from this module, so be sure to 'Save'.</span></td></tr>
+            
+            
+            <tr><td valign="top">1.</td><td valign="top">How would you rate the degree of originality of the proposed research and its expected contribution to knowledge?</td></tr>
+            <tr><td>&nbsp;</td><td>
+            <table>            	
+            	<tr>
+            		<td class='review_a' width="30%"><i>Research is not original and will contribute little to knowledge.</i></td>
+            		<td class='review_r'>Modest<br><input type="radio" name="originality" value="1" {ORIGINALITY1}></td>
+            		<td class='review_r'>Good<br><input type="radio" name="originality" value="2" {ORIGINALITY2}></td>
+            		<td class='review_r'>V.Good<br><input type="radio" name="originality" value="3" {ORIGINALITY3}></td>
+            		<td class='review_r'>Excellent<br><input type="radio" name="originality" value="4" {ORIGINALITY4}></td>
+            		<td class='review_a' width="30%"><i>Research is extremely innovative, is a great idea and is at the fore-front of its discipline. It has a high potential contribution.</i></td>
+            	</tr>
+            	           
+            </table>
+            </td></tr>
+            <tr><td>&nbsp;</td><td>Please explain your response</td></tr>
+			<tr><td>&nbsp;</td><td><textarea rows="5" cols="80" name="originality_exp">{ORIGINALITY_EXP}</textarea></td></tr> 	  
+				
+				
+				
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td valign="top">2.</td><td valign="top">Is the theoretical/conceptual approach or framework sufficiently developed, explained and focused?</td></tr>
+            <tr><td>&nbsp;</td><td>
+            <table>            	
+            	<tr>
+            		<td class='review_a' width="30%"><i>Under-developed, insufficiently explained and is generally too broad.</i></td>
+            		<td class='review_r'>Modest<br><input type="radio" name="developed" value="1" {DEVELOPED1}></td>
+            		<td class='review_r'>Good<br><input type="radio" name="developed" value="2" {DEVELOPED2}></td>
+            		<td class='review_r'>V.Good<br><input type="radio" name="developed" value="3" {DEVELOPED3}></td>
+            		<td class='review_r'>Excellent<br><input type="radio" name="developed" value="4" {DEVELOPED4}></td>
+            		<td class='review_a' width="30%"><i>Well developed and explained, with a strong focus.</i></td>
+            	</tr>
+            	           
+            </table>
+            </td></tr>
+            <tr><td>&nbsp;</td><td>Please explain your response</td></tr>
+			<tr><td>&nbsp;</td><td><textarea rows="5" cols="80" name="developed_exp">{DEVELOPED_EXP}</textarea></td></tr> 	  
+			
+			
+			
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td valign="top">3.</td><td valign="top">How well explained and described is the methodology? Is the methodology appropriate to the project and its projected outcomes?</td></tr>
+            <tr><td>&nbsp;</td><td>
+            <table>            	
+            	<tr>
+            		<td class='review_a' width="30%"><i>Methodology is not appropriate or justified and is badly explained.</i></td>
+            		<td class='review_r'>Modest<br><input type="radio" name="methodology" value="1" {METHODOLOGY1}></td>
+            		<td class='review_r'>Good<br><input type="radio" name="methodology" value="2" {METHODOLOGY2}></td>
+            		<td class='review_r'>V.Good<br><input type="radio" name="methodology" value="3" {METHODOLOGY3}></td>
+            		<td class='review_r'>Excellent<br><input type="radio" name="methodology" value="4" {METHODOLOGY4}></td>
+            		<td class='review_a' width="30%"><i>Methodology is the most appropriate for the project, is strongly justified and explained.</i></td>
+            	</tr>
+            	           
+            </table>
+            </td></tr>
+            <tr><td>&nbsp;</td><td>Please explain your response</td></tr>
+			<tr><td>&nbsp;</td><td><textarea rows="5" cols="80" name="methodology_exp">{METHODOLOGY_EXP}</textarea></td></tr> 	  
+			
+			
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td valign="top">4.</td><td>From the information contained in their application and CV, does the applicant have the experience to be undertaking the research project contained in this application <b>while considering his or her career stage</b>?<br><br>
+In the case of a research team, please evaluate whether the team has the skills and ability to undertake the project outlined in this application?
+</td></tr>
+			<tr><td>&nbsp;</td><td><textarea rows="5" cols="80" name="experience">{EXPERIENCE}</textarea></td></tr>
+			
+			
+			<tr><td colspan="2">&nbsp;</td></tr>
+			<tr><td valign="top">5.</td><td>What are the weaknesses in the proposal? Are there any areas in which it could be improved? <b>Please comment on at least one weakness.</b></td></tr>
+			<tr><td>&nbsp;</td><td><textarea rows="5" cols="80" name="weaknesses">{WEAKNESSES}</textarea></td></tr>
+				              
+            </table>
+            <script language="Javascript">textCounter(document.form1.summary,document.form1.remLen1,1000)</script>
+        </patTemplate:tmpl>
+    </patTemplate:sub>
+    
+    
+   
+  
+  
+  
+      <patTemplate:sub condition="submit">
+         <patTemplate:tmpl name="submit">
+            <input type="hidden" name="form_irgf_id" value="{FORM_IRGF_ID}" /> 
+            <table cellpadding="5" class='formtable'>
+             
+            <tr><td>&nbsp;</td></tr>
+            <tr><td>{CHECKTEXT}</td></tr>
+            
+               <tr><td colspan="2"><button type="button" name="submitme" id="submitme" {DISABLED} onclick="javascript: document.form1.saveme.value='true'; document.form1.locksubmit.value='true'; document.form1.section.value='submit'; document.form1.gotosection.value='list';submitform();">Submit</button></td></tr>
+            </table>
+            <script>
+        	function DoPrint(generateWhat){
+            	var url = "cv_review_print.php?generate=" + generateWhat + "&report_user_id={USER_ID}&style=apa";
+				window.open(url);
+            }
+   			</script>
+         </patTemplate:tmpl>
+    </patTemplate:sub>
+          
+    <patTemplate:sub condition="__default">
+            unknown page
+    </patTemplate:sub>
+
+</patTemplate:tmpl>
+
+</form>
+   </patTemplate:tmpl>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>
+<patTemplate:comment>
+
+Old One
+<img class='helpimg' src='/images/helpicon.gif' alt='?' onmouseover="ajax_showTooltip(window.event,'help/ajax-tooltip.html',this);return false" onmouseout="ajax_hideTooltip()">
+
+
+Toggle One
+<img class='helpimg' src='/images/helpicon.gif' alt='?' onClick="ajax_toggleTooltip(window.event,'help/forms_compliance_human_h.html',this);return false" />
+</patTemplate:comment>

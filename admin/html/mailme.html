@@ -1,0 +1,205 @@
+<patTemplate:tmpl name="PAGE">
+	<div id="mainpage">
+    <patTemplate:tmpl name="view" visibility="hidden">		
+    	<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">		
+		<tr>
+			<td bgcolor="#000000">&nbsp;</td>
+	        <td bgcolor="#000000">&nbsp;</td> 
+			<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Subject</b></td>
+			<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Mail Date</b></td>
+			<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Sent?</b></td>
+			<td bgcolor="#000000"><b style="color:#E1E1E1;font-size:10px">Link Item</b></td>
+		</tr>
+		<patTemplate:tmpl name="viewlist" type="condition" conditionvar="rowtype">
+		<patTemplate:sub condition="main">
+	<tr>
+		<td bgcolor='#E09731'><a style='color:white' href='mailme.php?section=update&id={MAIL_ID}'>Update</a></td>	
+		<td width='25' bgcolor='#E09731'><a style='color:white' href='mailme.php?delete&id={MAIL_ID}&section=view'>Delete</a></td>
+        <td bgcolor='#D7D7D9'>{SUBJECT}</td>
+                <td bgcolor='#D7D7D9'>{S_DATE}</td>
+                <td bgcolor='{SENT}'>&nbsp;</td>
+                <td bgcolor='#D7D7D9'>{LINKITEM}</td> </tr>
+				</patTemplate:sub>
+<patTemplate:sub condition="sub">
+			<tr>
+                <td bgcolor='#D7D7D9'>&nbsp;</td>
+                <td bgcolor='#D7D7D9'>&nbsp;</td>
+                <td bgcolor='#D7D7D9'>
+	                <b>{TYPE}</b> {ITEM}</td>
+                <td bgcolor='#D7D7D9' nowrap>{DATE1}</td>
+                <td bgcolor='#D7D7D9'>{COUNT}</td>
+                <td bgcolor='#D7D7D9'>&nbsp;</td>
+            </tr>
+</patTemplate:sub>
+</patTemplate:tmpl>  
+</table>
+    </patTemplate:tmpl>
+    
+    
+    <patTemplate:tmpl name="update" visibility="hidden">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+		
+		<link rel="stylesheet" type="text/css" href="/includes/markdown/demo.css" />
+		<script src="/includes/markdown/Markdown.Converter.js"></script>
+		<script src="/includes/markdown/Markdown.Sanitizer.js"></script>
+		<script src="/includes/markdown/Markdown.Editor.js"></script>
+
+		<script language="JavaScript" type="text/javascript">
+
+    $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    });
+	</script>	
+
+<form method="post" ENCTYPE="multipart/form-data" name="form1" action="mailme.php?section=view&id={ID}">
+<input type="hidden" name="old_filename" value="{FILENAME}">
+<fieldset name="users">
+<legend>Mail Info</legend>
+
+    <div class="users"><label class="users">Email Type :</label>
+        <div>
+            <input name="type" type="radio" onclick="$('#prepend').val('[ResearchNews]');" value="news" {TYPE_NEWS}/> Newsletter
+            <input name="type" type="radio" onclick="$('#prepend').val('[ResearchDeadline]');" value="deadline" {TYPE_DEADLINE}/> Deadline
+            <input name="type" type="radio" onclick="$('#prepend').val('{PREPEND}');" value="other" {TYPE_OTHER}/> Other
+        </div>
+    </div>
+    <div class="users"><label class="users">Prepend:</label>
+        <input type="text" size="30" name="prepend" id='prepend' value="{PREPEND}"/>
+    </div>
+	<div class="users"><label class="users">Subject:</label>
+		<input type="text" name="subject" maxlength="255" size="80" value="{SUBJECT}">
+	</div>
+	<div class="users"><label class="users">Mail Date:</label>
+	  <input type="text" id='datepicker' name="s_date" maxlength="20" size="15" value="{S_DATE}">
+          <input type="checkbox" name="sent" value="sent" {SENT}> Sent Flag
+	</div>
+	
+     <div class="users"><label class="users"><br><br><br>Body:</label>
+       <div class="wmd-panel">
+            <div id="wmd-button-bar"></div>
+            <textarea class="wmd-input" id="wmd-input" name="body">{BODY}</textarea>
+        </div>
+     </div>
+     <div class="users"><label class="users">Preview:</label>
+        <div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+        
+     </div>
+	<div class="users"><label class="users"></label>
+		<div style="text-align: center; clear: both"><button type="button" name="template" onClick="javascript: document.form1.body.value='@firstname@:<br>\n<br>\n';">HTML Template</button></div>
+	</div>
+
+        
+
+	
+	
+	<div class="users"><label class="users">Filename:</label>
+        {FILENAME} 
+            <input type="file" name="file" id="file" /> 
+	</div>
+    
+    <div class="users"><label class="users">From Email:</label>
+    	<input type="text" size="30" name="from_email" value="{FROM_EMAIL}" />
+    </div>
+    <div class="users"><label class="users">From Name:</label>
+    	<input type="text" size="30" name="from_name" value="{FROM_NAME}" /> (<i>Avoid apostrophes please</i>)
+    </div>
+
+</fieldset>
+<fieldset class="users">
+	<legend>Recipients</legend>
+    
+        
+        <hr/>
+
+		<div class="users"><label class="users">Override:</label>
+            <input name="override" type="checkbox" id="override" value="yes" {OVERRIDE} />
+            <span style='font-weight:bold; margin-left: 10px'>* Include recipients below who have indicated they do not wish to receive mail</span>
+		</div>
+        <hr/>
+
+		<div class="users"><label class="users">Faculty:</label>
+			{DIVISION_OPTIONS}
+		</div>
+		<div class="users"><label class="users">Research Topics: </label>
+			{TOPIC_OPTIONS}
+		</div>
+	
+	  <div class="users"><label class="users">Full-time Faculty </label>
+	  	<input name="ft_faculty" type="checkbox" id="ft_faculty" {FT_FACULTY} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Part-time Faculty </label>
+	  	<input name="pt_faculty" type="checkbox" id="pt_faculty" {PT_FACULTY} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Management </label>
+      	<input name="management" type="checkbox" id="management" {MANAGEMENT} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Support Staff </label>
+      	<input name="support" type="checkbox" id="support" {SUPPORT} value="yes">
+      </div>
+      <div class="users"><label class="users">Outside VIU </label>
+	  	<input name="outside" type="checkbox" id="outside" {OUTSIDE} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Chairs</label>
+	  	<input name="chairs" type="checkbox" id="chairs" {CHAIRS} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Deans</label>
+	  	<input name="deans" type="checkbox" id="deans" {DEANS} value="yes">
+	  </div>
+	  <div class="users"><label class="users">Individuals</label>
+	  	{SINGLE_USER_LIST}
+
+	  </div>
+	
+	  <div style="text-align: center; margin-top: 8px;"><button type="submit" name="update" value="Update">Update</button>&nbsp;&nbsp;
+			<button type='button' onClick="window.location='mailme.php?section=view&delete=y&id={ID}'">Delete</button>
+			<button type="submit" name="usend" value="usend">Send Now</button>&nbsp;&nbsp;
+			<button type="submit" name="utestsend" value="utestsend">Test Send to Admin</button>&nbsp;&nbsp;
+			<button type='button' onClick="window.location='mailme.php?section=view'">Back</button>
+	  </div>
+</fieldset>
+
+</form>
+<script type="text/javascript">
+            (function () {
+	           
+                var converter1 = Markdown.getSanitizingConverter();
+                
+                converter1.hooks.chain("preBlockGamut", function (text, rbg) {
+                    return text.replace(/^ {0,3}""" *\n((?:.*?\n)+?) {0,3}""" *$/gm, function (whole, inner) {
+                        return "<blockquote>" + rbg(inner) + "</blockquote>\n";
+                    });
+                });
+                var help = function () { alert("Do you need help?"); }
+                var options = {
+                    helpButton: { handler: help },
+                    strings: { quoteexample: "whatever you're quoting, put it right here" }
+                };
+                
+                converter1.hooks.chain("postConversion", function (text) {
+					return text.replace(/(@firstname@)/gi, "John");
+    			});
+    			
+                
+                var editor1 = new Markdown.Editor(converter1,"",options);
+                
+                
+                editor1.run();
+                
+                
+
+                
+                
+                
+                
+            })();
+        </script>
+
+    
+    </patTemplate:tmpl>
+    
+	</div>
+</patTemplate:tmpl>
+
+

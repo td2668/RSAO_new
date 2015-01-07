@@ -1,0 +1,112 @@
+<patTemplate:tmpl name="PAGE">
+
+    <patTemplate:tmpl name="add" visibility="hidden">
+       
+        <form name="form1" action="userlog.php?">
+        <input type="hidden" value="{FAC_ONLY}" name="fac_only">
+        <input type="hidden" value="{LETTER}" name="letter">
+            <table>
+                <tr><td>Name:</td>
+                <td><select name='user_id'>
+                    <option value="0"></option>
+                    <patTemplate:tmpl name="NAMELIST">
+                    <option value="{USER_ID}" {SELECTED}>{LAST_NAME}, {FIRST_NAME}</option>
+                    </patTemplate:tmpl>
+                    </select>
+                </td>
+                </tr>
+                <tr><td>Category:</td>
+                <td><select name='category'>
+                    <option value=""></option>
+                    <patTemplate:tmpl name="CATEGORY">
+                    <option value="{NAME}" {SELECTED}>{NAME}</option>
+                    </patTemplate:tmpl>
+                    </select>
+                </td>
+                </tr>
+                <tr><td>Date:</td>
+                <td><input type="text" id="date" name="date" size="12"> <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "date", "chooserSpan", 2009, 2020, "Y-m-d", false);'>
+                <div id='chooserSpan' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div></td></tr>
+                <tr><td valign="top">Note:</td>
+                <td><textarea name="contents" rows="16" cols="80"></textarea></td>
+                <tr><td colspan="2"> <button type="submit" name="add">Add Item</button>
+                </td></tr>
+            </table>
+        </form>
+
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        
+        <form name="form1" action="userlog.php?update&category={CATEGORY}&log_id={LOG_ID}">
+        <input type="hidden" name="log_id" value="{LOG_ID}">
+            <table>
+                <tr><td>Name:</td>
+                <td><select name='user_id'>
+                    <option value="0"></option>
+                    <patTemplate:tmpl name="NAMELISTE">
+                    <option value="{USER_ID}" {SELECTED}>{LAST_NAME}, {FIRST_NAME}</option>
+                    </patTemplate:tmpl>
+                    </select>
+                </td>
+                </tr>
+                <tr><td>Category:</td>
+                <td><select name='category'>
+                    <option value=""></option>
+                    <patTemplate:tmpl name="CATEGORYE">
+                    <option value="{NAME}" {SELECTED}>{NAME}</option>
+                    </patTemplate:tmpl>
+                    </select>
+                </td>
+                </tr>
+                <tr><td>Date:</td>
+                <td><input type="text" id="date" name="date" size="12" value="{DATE}"> <img src='/includes/calendar.gif'  align='absmiddle' onclick='showChooser(this, "date", "chooserSpan", 2009, 2020, "Y-m-d", false);'>
+                <div id='chooserSpan' class='dateChooser select-free' style='display: none; visibility: hidden; width: 166px;'></div></td></tr>
+                <tr><td valign="top">Note:</td>
+                <td><textarea name="contents" rows="16" cols="80">{CONTENTS}</textarea></td>
+                <tr><td colspan="2"> <button type="submit" name="update">Update</button>
+                <button type="submit" name="delete">Delete</button>
+                </td></tr>
+            </table>
+        </form>
+
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="viewcat" visibility="hidden">
+    	<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+    		<tr bgcolor="#000000">
+				<td>&nbsp;</td>
+       			<td><b><a href="{DATEURL}" style="color:#E1E1E1;font-size:10px">Date</a></b></td>
+       			<td><b><a href="{NAMEURL}" style="color:#E1E1E1;font-size:10px">Name</a></b></td>
+                <patTemplate:tmpl name="cond1" type="simplecondition" requiredvars="cat" varscope="viewcat">
+                <td><b><b style="color:#E1E1E1;font-size:10px">Category</b></td>
+                </patTemplate:tmpl>
+       			<td><b style="color:#E1E1E1;font-size:10px">Comment</b></td>
+       		</tr>
+       		<patTemplate:tmpl name="catlist" varscope="viewcat">
+       		<tr class='odd' onclick="javascript: window.location='userlog.php?section=edit&log_id={LOG_ID}';">
+       			<td ></td>
+       			<td >{DATE}</td>
+       			<td >{NAME}</td>
+                 <patTemplate:tmpl name="cond2" type="simplecondition" requiredvars="cat" varscope="catlist">
+                 <td>{CATEGORY}</td>
+                 </patTemplate:tmpl>
+       			<td >{CONTENTS}</td>
+       		</tr>
+       		</patTemplate:tmpl>
+    	</table>
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="addcat" visibility="hidden">
+        <form name="form1" action="userlog.php?addcat">
+            <table>
+
+                <tr><td>Category:</td>
+                <td><input type="text" size="20" name="category"></td>
+                </tr>
+                <tr><td colspan="2"> <button type="submit" name="addcat">Add</button>
+            </table>
+        </form>
+    </patTemplate:tmpl>
+
+</patTemplate:tmpl>

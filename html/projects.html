@@ -1,0 +1,88 @@
+<patTemplate:tmpl name="PAGE">
+  <patTemplate:tmpl src="header.html" />
+  <patTemplate:tmpl name="PAGE_ALL">
+  <table cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+      <td nowrap>
+        <h3 style="height:25px; vertical-align:middle">Research Projects</h3>
+      </td>
+      <td align="right" nowrap>
+        <form action="">
+          <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
+            <option value="?section=all">Search by departments</option>
+            <option value="?section=all">SHOW ALL</option>
+            <patTemplate:tmpl name="DEPARTMENTS">
+              <option value="?section=all&search_department={DEP_ID}">
+                {DEP_NAME}
+              </option>
+            </patTemplate:tmpl>
+          </select>&nbsp;&nbsp;
+          <select name="menu2" onChange="MM_jumpMenu('parent',this,0)">
+            <option value="?section=all">Search by research topics</option>
+            <option value="?section=all">SHOW ALL</option>
+            <patTemplate:tmpl name="TOPICS">
+              <option value="?section=all&search_topic={TOPIC_ID}">
+                {TOPIC_NAME}
+              </option>
+            </patTemplate:tmpl>
+          </select>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <table width="*" cellpadding="2" cellspacing="0">
+    <tr><td style="font-size:9px" height='30'>
+      {VIEW_FLAG}
+    </td></tr>
+    <patTemplate:tmpl name="PROJECTS">
+      <tr bgcolor="{COLOR}">
+        <td><b style="font-size:18px">{NAME}</b></td>
+      </tr>
+      <tr bgcolor="{COLOR}">
+        <td><span style="font-size:10px"><b>Researchers:</b>
+          <patTemplate:tmpl name="RESEARCH">
+            <a href="researchers.php?section=single&id={RES_ID}"
+              style="font-size:10px;color:#6A62BF;">
+              {RES_FIRST} {RES_LAST}
+            </a>&nbsp;
+          </patTemplate:tmpl>
+        </span></td>
+      </tr>
+      <tr bgcolor="{COLOR}">
+        <td>{SYNOPSIS}</td>
+      </tr>
+      <tr bgcolor="{COLOR}">
+      <td>
+        <a href="projects.php?section=single&id={PROJECT_ID}">
+          More Info...
+        </a></td>
+      </tr>
+    </patTemplate:tmpl>
+  </table>
+  </patTemplate:tmpl>
+  <patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+    <b style="font-size:18px">{NAME}</b><br />
+    <span style="font-size:10px">Researchers:
+    <patTemplate:tmpl name="RES_SINGLE">
+      <a href="researchers.php?section=single&id={RESEARCHER_ID}"
+        style="font-size:10px;color:#6A62BF;">
+        {FIRST_NAME} {LAST_NAME}
+      </a>
+    </patTemplate:tmpl>
+    <br /><br /></span>
+    <table align="right">
+    <patTemplate:tmpl name="PIX">
+      <tr><td align="center">
+        <img src="{PICTURE_PATH}{FILE_NAME}" bordercolor="black" border="0" />
+        <br />
+        <i>{CAPTION}</i>
+      </td></tr>
+    </patTemplate:tmpl>
+    </table>
+    {DESCRIPTION}
+  </patTemplate:tmpl>
+  <patTemplate:tmpl name="PAGE_ERROR" visibility="hidden">
+    There are currently no records for your search parameters.
+  </patTemplate:tmpl>
+  <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

@@ -1,0 +1,48 @@
+<patTemplate:tmpl name="PAGE">
+<patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL">
+<h1>News and Announcements</h1>
+
+<patTemplate:tmpl name="NEWS">
+<table width="700" cellpadding="2" cellspacing="0">
+<tr bgcolor="{COLOR}">
+   <td><b style="font-size:16px">{TITLE}</b></td>
+   <td rowspan="4" align="right">
+
+   <img src="{PICTURE_PATH}{FILE_NAME}" bordercolor="black" border="0" height="{PICTURE_HEIGHT}" />
+
+   </td>
+</tr>
+<tr bgcolor="{COLOR}">
+   <td><span style="font-size:10px">{EVENT_DATE} </span></td>
+</tr>
+<tr bgcolor="{COLOR}">
+   <td>{SYNOPSIS}</td>
+</tr>
+<tr bgcolor="{COLOR}" height='30' valign="top">
+   <td>{MEDIA_HTML} <a href="./opportunities.php?section=news&news_id={NEWS_ID}">More Info...</a></td>
+</tr>
+</table>
+</patTemplate:tmpl>
+
+</patTemplate:tmpl>
+<patTemplate:tmpl name="PAGE_SINGLE" visibility="hidden">
+<b style="font-size:18px">{TITLE}</b>
+<span style="font-size:10px"><br />{EVENT_DATE}<br /><br /></span>
+<table align="right">
+<patTemplate:tmpl name="PIX" type="simpleCondition" requiredVars="PICTURE_PATH">
+<tr><td align="center">
+  <img src="{PICTURE_PATH}{FILE_NAME}" bordercolor="black" border="0" />
+  <br />
+  <i>{CAPTION}</i>
+</td></tr>
+</patTemplate:tmpl>
+</table>
+<patTemplate:var name="DESCRIPTION" modifier="nl2br" />
+<br /><br />
+{MEDIA_LINK}
+<br />
+
+</patTemplate:tmpl>
+<patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

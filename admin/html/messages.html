@@ -1,0 +1,105 @@
+<patTemplate:tmpl name="PAGE">
+
+    <patTemplate:tmpl name="view" visibility="hidden">
+    	<table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">	
+			
+		 
+          <patTemplate:tmpl name="listtitle" type="simpleCondition" requiredvars="MESSAGE_ID" varscope="viewlist">
+		  <tr>
+			  <td colspan="3"><font size='-6'>&nbsp;</font></td>
+		  </tr>
+			<tr bgcolor="#000000">
+				<td>&nbsp;</td>
+		        <td>&nbsp;</td>
+				<td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
+				
+			</tr>
+            </patTemplate:tmpl>
+			<patTemplate:tmpl name="viewlist" type="simpleCondition" requiredvars="MESSAGE_ID">
+				<tr>
+					<td bgcolor='#E09731'><a style='color:white' href='messages.php?section=update&id={MESSAGE_ID}'><b>Update</b></a></td>
+                    <td bgcolor='#E09731'><a style='color:white' href='messages.php?section=view&copyme&id={MESSAGE_ID}'><b>Copy</b></a></td>
+                    
+					<td bgcolor='{BGCOLOR}'>{NAME}</td>
+					</tr>			
+			</patTemplate:tmpl>
+			
+			
+			
+			
+		</table>
+	</patTemplate:tmpl>
+    
+    
+    
+    <patTemplate:tmpl name="add" visibility="hidden">
+        <form method="post" name="form1" action="messages.php?section=add" onSubmit="">
+            <table>                
+                     <tr>
+						<td>Name:</td>
+						<td><input type="text" style="font-size:12px; " name="name" maxlength="255" size="80"></td>
+					</tr>
+					<tr>
+		<td>Subject:</td>
+		<td><input type="text" style="font-size:12px; " name="subject" maxlength="255" size="80"></td>
+	</tr>
+						<td valign="top">Substitutions:</td>
+						<td><input  type="text" style="font-size:12px;" name="substitutions" maxlength="255" size="80"><br>
+						<i>Comma separated list of variables that the handling routine will recognize. Each variable must be entered in the message as <b>@foobar@</b></i>
+						</td>
+					<tr>
+					</tr>
+					<tr>
+						<td valign="top">Message: </td>
+						<td><textarea style="font-size:12px; " cols="140" rows="40" name="message"></textarea></td>
+					</tr>
+					<tr>
+
+                    <td>&nbsp;</td>
+                    <td><input type="submit" name="add" value="Add">&nbsp;&nbsp;
+                        <button onClick="window.location='messages.php?section=view'">Back</button></td>
+                </tr>
+            </table>
+            </form>
+    </patTemplate:tmpl>
+    
+    <patTemplate:tmpl name="update" visibility="hidden">
+    	<form method="post" name="form1" action="messages.php?section=update&id={MESSAGE_ID}" onSubmit="return">
+			<table>
+				<tr>
+		<td>Name:</td>
+		<td><input type="text" style="font-size:12px; " name="name" maxlength="255" size="80" value="{NAME}"></td>
+	</tr>
+	<tr>
+		<td>Subject:</td>
+		<td><input type="text" style="font-size:12px; " name="subject" maxlength="255" size="80" value="{SUBJECT}"></td>
+	</tr>
+		<td valign="top">Substitutions:</td>
+		<td ><input  type="text" style="font-size:12px;" name="substitutions" maxlength="255" size="80" value="{SUBSTITUTIONS}"><br>
+		<i>Comma separated list of variables that the handling routine will recognize. Each variable must be entered in the message as <b>@foobar@</b></i>
+		</td>
+	<tr>
+	</tr>
+	<tr>
+		<td valign="top">Message: </td>
+		<td><textarea style="font-size:12px; " cols="140" rows="40" name="message">{MESSAGE}</textarea></td>
+	</tr>
+	<tr>
+	<tr>
+		<td valign="top">Output:</td>
+		<td >{MESSAGEOP}</td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>	
+	<tr>
+	
+		<td>&nbsp;</td>
+		<td><input type="submit" name="update" value="Update">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='messages.php?section=view&delete=y&id=~!id~'">Delete</button>&nbsp;&nbsp;
+			<button type="button" onClick="window.location='messages.php?section=view'">Back to List</button></td>
+	</tr>	               
+        </table>
+    </patTemplate:tmpl>
+                
+			</form>
+    
+</patTemplate:tmpl>

@@ -1,0 +1,38 @@
+<table>
+<form method="post" name="form1" action="administrators.php?section=update&id=~!id~" onSubmit="">
+	<tr>
+		<td colspan="2"  class="successhead">Update: Administrator</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+	<tr>
+		<td>User:</td>
+		<td><select name="user_id">
+				~!user_list~
+			</select></td>
+	</tr>
+		<tr>
+		<td>Department:</td>
+		<td><select name="dept_id"><option value='0'></option>
+				~!dept_list~
+			</select></td>
+	</tr>
+			<tr>
+		<td>Faculty:</td>
+		<td><select name="division_id"><option value='0'></option>
+				~!division_list~
+			</select></td>
+	</tr>
+	<tr>
+		<td>Title:</td>
+		<td><select name="title"><option value='0'></option>
+		~!title_list~
+		</select></td>
+	</tr>
+	<tr><td></td></tr>
+	<tr><td>&nbsp;</td>
+		<td><input type="submit" name="update" value="Update">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='administrators.php?section=view&delete=y&id=~!id~'">Delete</button>&nbsp;&nbsp;
+			<button type="button" onClick="window.location='administrators.php?section=view'">Back</button></td>
+	</tr>
+</form>
+</table>

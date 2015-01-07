@@ -1,0 +1,63 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+
+		  <patTemplate:tmpl src="research_controls.tpl" />
+
+   <div class="research_main">
+   <h1>Research at MRU: <b><u>Projects</u></b></h1>
+   <p class="enfasis"><patTemplate:var name="ENFASIS" default="Projects at MRU" /></p>
+
+   <div id="listprojects">
+
+        <patTemplate:tmpl name="PROJECTS" type="condition" conditionVar="has_participants">
+		    <patTemplate:sub condition="__empty" >
+                <div class="project">
+                    <h3><a     href="research.php?action=view&type=projects&pid={PROJECT_ID}"
+                            title="{NAME}">{NAME}</a></h3>
+                    <div class="projsynopsis">{SYNOPSIS}</div>
+                        {ASSOCIATED_MEDIA_HTML}
+
+                </div>
+            </patTemplate:sub>
+
+
+			<patTemplate:sub condition="__default">
+				<div class="project">
+					<h3><a 	href="research.php?action=view&type=projects&pid={PROJECT_ID}"
+							title="{NAME}">{NAME}</a></h3>
+                    <div class="projparticipants">
+
+
+                        <patTemplate:tmpl name="RESEARCHERS_LIST" type="condition" conditionVar="user_level">
+                        <patTemplate:sub condition="0">
+                        <a href="research.php?action=view&type=researchers&rid={USER_ID}"
+                                     title="{FIRST_NAME} {LAST_NAME}">{FIRST_NAME} {LAST_NAME}</a>
+                        &nbsp;&nbsp;&nbsp;
+                        </patTemplate:sub>
+                         <patTemplate:sub condition="1">
+                        {FIRST_NAME} {LAST_NAME}
+                        &nbsp;&nbsp;&nbsp;
+                        </patTemplate:sub>
+                        </patTemplate:tmpl>
+
+
+                    </div>
+					<div class="projsynopsis">{SYNOPSIS}</div>
+                        {ASSOCIATED_MEDIA_HTML}
+
+
+				
+				</div>
+			</patTemplate:sub>
+		</patTemplate:tmpl>
+
+			{LISTNOTES}
+			<br />
+			{PAGES}
+
+		</div>
+   </div>
+
+
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

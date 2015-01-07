@@ -1,0 +1,60 @@
+<script language="JavaScript" type="text/javascript">
+<!--
+arrValidationDesc=
+	[
+	[["required","Please enter a First Name."]], // Name
+	[["required","Please enter a Last Name."]], // Name
+	[["required","Please enter a Description"]],// Description
+	[] //Keywords
+	]; 
+//-->
+</script>
+<table>
+<form method="post" name="form1" action="researchers.php?section=view&id=~!id~" onSubmit="return validateForm(this,arrValidationDesc)">
+	<tr>
+		<td colspan="2"  class="successhead">Update: Researcher</td>
+	</tr>
+	<tr>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    </tr>
+	<tr>
+		<td>First Name:</td>
+		<td><input type="text" name="first_name" maxlength="255" size="30" value="~!first_name~"></td>
+	</tr>
+	<tr>
+		<td>Last Name:</td>
+		<td><input type="text" name="last_name" maxlength="255" size="30" value="~!last_name~"></td>
+	</tr>
+	<tr>
+		<td valign="top">Description:</td>
+		<td><textarea name="description" rows="10" cols="80">~!description~</textarea></td>
+	</tr>
+	<tr>
+		<td valign="top">Departments:</td>
+		<td><select name="departments[]" multiple size="8">
+				~!department_options~
+			</select></td>
+	</tr>
+	<tr>
+		<td valign="top">Research Topics:</td>
+		<td><select name="topics_research[]" multiple size="8">
+				~!topic_options~
+			</select></td>
+	</tr>
+			<tr><td>Keywords:</td>
+		<td><input type="text" name="keywords" maxlength="255" size="60" value="~!keywords~"></td>
+	</tr>
+	<tr>
+	  <td>Feature?</td>
+	  <td><input type="checkbox" name="feature" value="yes" ~!researcher_feature~></td>
+    </tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><input type="submit" name="update" value="Update">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='researchers.php?section=view&delete=y&id=~!id~'">Delete</button>&nbsp;&nbsp;
+			<button type="button" onClick="window.location='researchers.php?section=view'">Back</button>
+			~!picture_button~</td>
+	</tr>
+</form>
+</table>

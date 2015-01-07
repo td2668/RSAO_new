@@ -1,0 +1,96 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+
+
+		<patTemplate:tmpl src="irg_controls.tpl" />
+		<div class="research_main"> 
+
+			
+
+			  <patTemplate:tmpl name="PROJECT" type="condition" conditionVar="PROJECT_ID">
+
+				<patTemplate:sub condition="__empty">
+					<h2><patTemplate:var name="DESCRIPTION" modifier="nl2br" /></h2>
+				</patTemplate:sub>
+
+				<patTemplate:sub condition="__default">
+					<div id="viewproject">
+					<patTemplate:tmpl name="IMGORNOT" type="condition" conditionVar="IMG_URL" varscope="PROJECT">
+					  <patTemplate:sub condition="__empty">
+						<div class="withoutimage">
+                            <div class="projecttext">
+                                <h2>{NAME}</h2>
+                                <strong>{NAME_LONG}</strong><br />
+                            </div>
+                            <div class="projecttext">              
+                                {DESCRIPTION}<br /><br />
+                            </div>
+                        
+                            <div style="padding-left:20px;padding-top:15px;">
+                                <patTemplate:tmpl name="participants1" type="condition" conditionVar="PARTICIPANTS" varscope="PROJECT">
+                                    <patTemplate:sub condition="__default"> 
+                                    <b>Participants:</b><br />
+                                    {PARTICIPANTS} 
+                                    <br /><br />
+                                    </patTemplate:sub>
+                                    <patTemplate:sub condition="__empty" />
+                                </patTemplate:tmpl>
+                                
+                                <patTemplate:tmpl name="keyw1" type="condition" conditionVar="KEYWORDS" varscope="PROJECT">
+                                    <patTemplate:sub condition="__default">
+                                    <b>Keywords:</b><br />
+                                    {KEYWORDS}
+                                    </patTemplate:sub>
+                                    
+                                    <patTemplate:sub condition="__empty" />
+                                </patTemplate:tmpl>
+                            </div>
+                                
+                        </div>
+					  </patTemplate:sub>
+
+					  <patTemplate:sub condition="__default">
+						<div class="withimage">
+                            <div class="projecttext">
+                                <h2>{NAME}</h2>
+                                <strong>{NAME_LONG}</strong><br />
+                            </div>
+                            <div class="projectimagebox">
+                                <img title="{IMG_CAPTION}" src="{IMG_URL}"  /><br />
+                                    <div style="padding-left:10px;padding-top:15px;">
+                                        <patTemplate:tmpl name="participants" type="condition" conditionVar="PARTICIPANTS" varscope="PROJECT">
+                                            <patTemplate:sub condition="__default"> 
+                                                    <b>Participants:</b><br />
+                                                    {PARTICIPANTS}
+                                                    <br /><br />
+                                            </patTemplate:sub>
+                                        <patTemplate:sub condition="__empty">
+                                        </patTemplate:sub>
+                                    </patTemplate:tmpl>
+                                    <patTemplate:tmpl name="keyw" type="condition" conditionVar="KEYWORDS" varscope="PROJECT">
+                                            <patTemplate:sub condition="__default">
+                                                
+                                                </patTemplate:sub>
+                                        <patTemplate:sub condition="__empty">
+                                        </patTemplate:sub>
+                                    </patTemplate:tmpl>                                  
+                                                </div>
+                             </div>        
+                             <div class="projecttext">
+                        
+                                {DESCRIPTION}<br /><br />
+                             </div>       
+                                    
+                        </div>
+					  </patTemplate:sub>
+					</patTemplate:tmpl>
+
+					</div>			
+                    
+				</patTemplate:sub>
+			</patTemplate:tmpl>
+
+
+		</div>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

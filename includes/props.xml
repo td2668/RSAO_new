@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<component name='XMLSlideShowV3'>
+
+<data>
+	<item itemEvents='true'
+
+						contentPath='images/652.jpg'
+
+						url='http://research.mtroyal.ca/research.php?action=view&type=researchers&rid=652'
+
+						fullName='Trevor Davis'
+						description='And now is the time for all good \"men\" to come to the aid, etc.'
+
+						/></data>
+
+</component>

@@ -1,0 +1,149 @@
+<script>
+function validate(objValue,target){
+	strValue = objValue;
+	var objRegExpYear = /^\d{4}$/
+	var objRegExpMonthYear = /^\d{1,2}(\-|\/|\.)\d{4}$/
+	if(strValue =="" && target == "f2") return true;
+	if(strValue =="" && target == "f3") return true;
+	//check to see if in correct format
+	if(!(objRegExpYear.test(strValue) || objRegExpMonthYear.test(strValue) ))  {
+	  alert("You Must Enter a Valid Date (Invalid Character or Bad Date)" );
+	  return false; //doesn't match pattern, bad date
+	 }
+	else{
+	  //var strSeparator = strValue.substring(2,3) //find date separator
+	  var strSeparator = "/";
+	  var arrayDate = strValue.split(strSeparator); //split date into month, year
+	  if (arrayDate.length == 1) { //just a year
+	  		if (arrayDate[0] > 2037 || arrayDate[0] < 1971) {
+			alert("You Must Enter a Valid Date (Year must be > 1970 and < 2038 ");	
+			return false
+			}
+	  }
+	  else { // has a month
+		  if (arrayDate[0] > 12) {
+			alert("You Must Enter a Valid Date (Month must be <= 12)");	
+			return false
+		  }
+		  if (arrayDate[1] > 2037) {
+			alert("You Must Enter a Valid Date (Year must be > 1901 and < 2038 ");	
+			return false
+		  }
+		}//month
+	  
+	  return true; 
+	 }
+}//function
+</script>
+
+<td align="left" valign="top" bgcolor="#FFFFFF" width="20"><img src="/images/public/spacer.gif" alt="" height="10" width="20" border="0"></td>
+<td align="left" valign="top" width="100%">
+<br>
+<table border="0">
+	<tr>
+		<td colspan="2"  class="successhead">Activity: Add</td>
+	</tr>
+	<tr height="10"><td colspan='7' height="14" class="success"> ~!success~</td></tr>
+<script> 
+   ~!varset~
+function loadFields(field){
+	
+	for(x=1;x<=11;x++){
+		if(nametext[field][x]=='') {
+			document.form1['f' + x].disabled=true;
+			document.form1['f' + x + '_name'].value='';
+			document.form1['f' + x + '_eg'].value='';
+		}
+		else {
+			document.form1['f' + x].disabled=false;
+			document.form1['f' + x + '_name'].value=nametext[field][x] + ':';
+			document.form1['f' + x + '_eg'].value=helptext[field][x];
+		}
+	}
+	if(webshow[field]==1) document.form1['web_show'].checked=true;
+	else document.form1['web_show'].checked=false;
+	
+}
+
+</script>
+<form name="form1" action="" method="post">
+<input type="hidden" name="user_id" value="~!user_id~">
+<tr><td colspan="2" >
+<b style="font-family: arial; font-size: 11px; color: black;">Activity/Document Type:</b>&nbsp;
+<select name='cv_item_type_id' onChange="if(this.options[this.selectedIndex].value=='0') {this.options[this.selectedIndex - 1].selected=true;} loadFields(this.options[this.selectedIndex].value)" tabindex="1">
+ ~!type_options~
+ </select></td></tr>
+ <tr><td colspan="2"><input type="checkbox" name="report_flag" > Show in current year's P.A.R.<img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d2', 'PARs', 'Show this item in your current year\'s Professional Activity Report.')" onMouseOut="HideHelp('d2')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d2"></div> &nbsp;&nbsp;&nbsp;<input type="checkbox" name="web_show" checked> Show in your web profile<img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d3', 'Web Profile', 'Selected items will show on your \'Researcher Profile\' page.')" onMouseOut="HideHelp('d3')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d3"></div></td></tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f1_name" class="hiddenfieldleft" readonly tabindex="20"></td>
+<td>&nbsp;&nbsp;&nbsp;<b style="font-family: arial; font-size: 11px; color: black;"><u>Explanation /
+    Example</u></b></td>
+</tr><tr>
+<td><textarea name="f1" cols="90" rows="3" tabindex="2"></textarea></td>
+<td valign='top'><input type="text" name="f1_eg" class="hiddenfieldright" readonly tabindex="21"></textarea></td>
+</tr>
+
+<tr>
+<td colspan="2" ><input type="text" name="f2_name" class="hiddenfieldleft" style="width:100px" readonly  tabindex="22">&nbsp;
+<input type="text" name="f2" size="20" tabindex="3" onBlur="if(!(validate(this.value,'f2'))) this.focus();"><img src='/images/helpicon.gif' width="20" height="20"  border="0" align="absmiddle" onMouseOver="ShowHelp('d1', 'Dates', 'Be sure to conform to the date format listed in the example. Dates that do not conform will cause the item to not appear in your list.')" onMouseOut="HideHelp('d1')">
+<div style="display:none; font:Verdana, Arial, Helvetica, sans-serif; font-size:10px" id="d1"></div>
+<input type="text" name="f2_eg" class="hiddenfieldright" readonly tabindex="23"></td>
+</tr><tr>
+<td colspan="2"><input type="text" name="f3_name" class="hiddenfieldleft" style="width:100px" readonly  tabindex="24">&nbsp;
+<input type="text" name="f3" size="20" tabindex="4" onBlur="if(!(validate(this.value,'f3'))) this.focus();">&nbsp;
+<input type="text" name="f3_eg" class="hiddenfieldright" readonly tabindex="25"></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f4_name" class="hiddenfieldleft" readonly tabindex="26"></td></tr><tr>
+<td><textarea name="f4" cols="90" rows="3" tabindex="5"></textarea></td>
+<td valign='top'><input type="text" name="f4_eg" class="hiddenfieldright" readonly tabindex="27"></textarea></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f5_name" class="hiddenfieldleft" readonly tabindex="28"></td></tr><tr>
+<td><textarea name="f5" cols="90" rows="3" tabindex="6"></textarea></td>
+<td valign='top'><input type="text" name="f5_eg" class="hiddenfieldright" readonly tabindex="29"></textarea></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f6_name" class="hiddenfieldleft" readonly  tabindex="30"></td></tr><tr>
+<td><textarea name="f6" cols="90" rows="3" tabindex="7"></textarea></td>
+<td valign='top'><input type="text" name="f6_eg" class="hiddenfieldright" readonly tabindex="31"></textarea></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f7_name" class="hiddenfieldleft" readonly  tabindex="32"></td></tr><tr>
+<td><textarea name="f7" cols="90" rows="3" tabindex="8"></textarea></td>
+<td valign='top'><input type="text" name="f7_eg" class="hiddenfieldright" readonly tabindex="33"></textarea></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f8_name" class="hiddenfieldleft" readonly  tabindex="34"></td></tr><tr>
+<td><textarea name="f8" cols="90" rows="3" tabindex="9"></textarea></td>
+<td valign='top'><input type="text" name="f8_eg" class="hiddenfieldright" readonly tabindex="35"></textarea></td>
+</tr>
+<tr>
+<td align="left" valign="top"><input type="text" name="f9_name" class="hiddenfieldleft" readonly  tabindex="36"></td></tr><tr>
+<td><textarea name="f9" cols="90" rows="3" tabindex="10"></textarea></td>
+<td valign='top'><input type="text" name="f9_eg" class="hiddenfieldright" readonly tabindex="37"></textarea></td>
+</tr>
+<tr>
+<td colspan="2"><input type="text" name="f10_name" class="hiddenfieldleft"  style="width:100px" readonly tabindex="38" >&nbsp;
+<input type="checkbox" name="f10" tabindex="11">&nbsp;
+<input type="text" name="f10_eg" class="hiddenfieldright" readonly tabindex="39" ></td>
+</tr>
+<tr>
+<td colspan="2"><input type="text" name="f11_name" class="hiddenfieldleft" style="width:100px" readonly  tabindex="40">&nbsp;
+<input type="checkbox" name="f11" tabindex="12">&nbsp;
+<input type="text" name="f11_eg" class="hiddenfieldright" readonly tabindex="41"></td>
+</tr>
+<tr><td>&nbsp;</td></tr>
+<tr>
+		
+		<td colspan="2">&nbsp;&nbsp;&nbsp;<input type="submit" name="add" value="Add" tabindex="13">&nbsp;&nbsp;
+			<button type="button" onClick="window.location='cv.php?section=view&user_id=~!user_id~'" tabindex="14">Back to List</button></td>
+	</tr>
+</table></form>
+</td>
+<!-- Load the Initial value into the fields -->
+<script>
+loadFields(document.form1.cv_item_type_id.options[document.form1.cv_item_type_id.options.selectedIndex].value);
+</script>

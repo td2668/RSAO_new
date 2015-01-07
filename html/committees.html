@@ -1,0 +1,297 @@
+<patTemplate:tmpl name="PAGE">
+   <patTemplate:tmpl src="header.html" />
+<patTemplate:tmpl name="PAGE_ALL" >
+       <h1>Committees</h1>
+       <p style="text-align:center;">Research Advisory | <a href="#rcrc">Integrity</a> | <a href="#ugrc">Undergrad Research</a>| <a href="#internal">Internal Grants</a> | <a href="#institutes">Institutes</a>
+        </p> 
+        <hr width="90%" align="left" />
+       
+       <h2>Research and Scholarship Advisory Committee</h2>
+       The RSAC, a subcommittee of General Faculties Council, is a broadly representative body of faculty and staff that:
+       <ul>
+       <li>Acts in an advisory capacity to the AVP Research
+       <li>Reviews the institution's Strategic Research Plan annually
+       <li>Develops, considers and reviews research-related policies and procedures
+       <li>Provides an internal communication mechanism between Faculty Councils and Research Services
+       <li>Considers applications for 'Research Centres'
+       </ul>
+       <a href='documents/committees/rsac_charter.pdf'>Committee Charter</a>
+       
+       <h3>Membership</h3>
+       <table cellpadding="5" cellspacing='0'>
+            <tr><td><b>Name</b></td><td>&nbsp;</td><td><b>Department</b></td><td><b>E-Mail</b></td><td><b>Phone</b></td></tr>
+            <patTemplate:tmpl name="RSAC" type="OddEven">
+                <patTemplate:sub condition="__odd"><tr bgcolor="#CCCCFF">
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>     
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even"><tr bgcolor="#FFFFFF"> 
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>  
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       </table>
+       
+       <h3>Meetings</h3>
+       <table cellpadding="5" cellspacing='0'>    
+           <patTemplate:tmpl name="RSAC_MIN" type="OddEven">
+                <patTemplate:sub condition="__odd">
+                    <tr bgcolor="#CCCCFF">
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>    
+                    <td><img src='{ICON}'></td>  
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even">
+                    <tr bgcolor="#FFFFFF"> 
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>  
+                    <td><img src='{ICON}'></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       
+       </table>
+      
+       
+       </td></tr></table>
+       <a name='rcrc'></a>
+      <hr width="90%" align="left" />
+       
+
+          <a name='rcrc'></a>
+      <hr width="90%" align="left" />
+       
+       <h2>Responsible Conduct of Research Committee</h2>
+       <p>The Responsible Conduct of Research Committee works to develop and implement educational programs about research integrity for both staff and students. They also 
+       evaluate research-related conflicts of interest and, in the rare case of actual allegations of misconduct, they provide a first fine of evaluation before involving a formal tribunal.
+       The RCRC has a member from every faculty, and meets regularly to discuss its educational responsibilities.
+  </p>
+
+       <a href='documents/committees/POL585-2-Policy.pdf'>Committee Policy</a>&nbsp;&nbsp;
+       <a href='documents/committees/POL585-2-Procedure.pdf'>Committee Procedures</a>
+       
+       <h3>Membership</h3>
+       <table cellpadding="5" cellspacing='0'>
+            <tr><td><b>Name</b></td><td>&nbsp;</td><td><b>Department</b></td><td><b>E-Mail</b></td><td><b>Phone</b></td></tr>
+            <patTemplate:tmpl name="RCRC" type="OddEven">
+                <patTemplate:sub condition="__odd"><tr bgcolor="#CCCCFF">
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>     
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even"><tr bgcolor="#FFFFFF"> 
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>  
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       </table>
+       
+       <h3>Meetings</h3>
+       <table cellpadding="5" cellspacing='0'>    
+           <patTemplate:tmpl name="RCRC_MIN" type="OddEven">
+                <patTemplate:sub condition="__odd">
+                    <tr bgcolor="#CCCCFF">
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>    
+                    <td><img src='{ICON}'></td>  
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even">
+                    <tr bgcolor="#FFFFFF"> 
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>  
+                    <td><img src='{ICON}'></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       
+       </table>
+
+
+             <a name='ugrc'></a>
+      <hr width="90%" align="left" />
+       
+       <h2>Undergraduate Research Standing Committee</h2>
+       <p>As an undergraduate university with a mission to integrate research with teaching wherever possible, Mount Royal places a heavy focus on student involvement in research activity -- 
+       both student and faculty-driven. The UGR Standing Committee, sponsored through the office of the AVP Research, is the driving force behind this initiative. The committee meets to discuss 
+       and plan celebrations, awards, curriculum integration and promotional activities.
+  </p>
+  <p>The committee members are only the tip of the iceberg for this activity. Join our Blackboard discussion group by contacting the Chair (below).</p>
+
+       <a href='documents/committees/ugr_charter.pdf'>Committee Charter</a>
+       
+       <h3>Membership</h3>
+       <table cellpadding="5" cellspacing='0'>
+            <tr><td><b>Name</b></td><td>&nbsp;</td><td><b>Department</b></td><td><b>E-Mail</b></td><td><b>Phone</b></td></tr>
+            <patTemplate:tmpl name="UGRC" type="OddEven">
+                <patTemplate:sub condition="__odd"><tr bgcolor="#CCCCFF">
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>     
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even"><tr bgcolor="#FFFFFF"> 
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>  
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       </table>
+       
+       <h3>Meetings</h3>
+       <table cellpadding="5" cellspacing='0'>    
+           <patTemplate:tmpl name="UGRC_MIN" type="OddEven">
+                <patTemplate:sub condition="__odd">
+                    <tr bgcolor="#CCCCFF">
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>    
+                    <td><img src='{ICON}'></td>  
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even">
+                    <tr bgcolor="#FFFFFF"> 
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>  
+                    <td><img src='{ICON}'></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       
+       </table>
+
+ 
+       
+       <a name='internal'></a>
+      <hr width="90%" align="left" />
+       
+       <h2>Scholarship Review Committee (Internal Grants)</h2>
+       <p>The Scholarship Review Committee (SRC) reviews all institution-wide internal grant applications, makes decisions on ranking, 
+       and provides recommendations on funding to the AVP Research. The SRC also acts as a team of topic-specialist reviewers that 
+       may be called upon by the Grants Facilitator, the Human Research Ethics Board, or individual faculty (through Research Services),
+        to review specific portions of applications. Committee members may also be called upon to review specific types of external 
+        calls where the institution is the manager of the funds, such as through AACTI or SSHRC Institutional Grants.  </p>
+
+       <a href='documents/committees/src_charter.pdf'>Committee Charter</a>
+       
+       <h3>Membership</h3>
+       <table cellpadding="5" cellspacing='0'>
+            <tr><td><b>Name</b></td><td>&nbsp;</td><td><b>Department</b></td><td><b>E-Mail</b></td><td><b>Phone</b></td></tr>
+            <patTemplate:tmpl name="SRC" type="OddEven">
+                <patTemplate:sub condition="__odd"><tr bgcolor="#CCCCFF">
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>     
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even"><tr bgcolor="#FFFFFF"> 
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>  
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       </table>
+       
+       <h3>Meetings</h3>
+       <table cellpadding="5" cellspacing='0'>    
+           <patTemplate:tmpl name="SRC_MIN" type="OddEven">
+                <patTemplate:sub condition="__odd">
+                    <tr bgcolor="#CCCCFF">
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>    
+                    <td><img src='{ICON}'></td>  
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even">
+                    <tr bgcolor="#FFFFFF"> 
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>  
+                    <td><img src='{ICON}'></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       
+       </table>
+
+       
+       
+       
+       
+       
+       <a name='institutes'></a>
+      <hr width="90%" align="left" />
+       
+       <h2>Institutes Review Committee</h2>
+       This committee's mission is to:
+       <ol>
+       <li>review existing and proposed Institutes and recommend establishment, continuation or revocation.
+       <li>review recommendations for appointments of Directors of Institutes or revocations of that appointment.
+       <li>review recommendations for members of each Institute's Advisory Committee or revocation of that appointment.
+        </ol>
+        
+       <a href='documents/committees/institutes_charter.pdf'>Committee Charter</a>
+       
+       <h3>Membership</h3>
+       <table cellpadding="5" cellspacing='0'>
+            <tr><td><b>Name</b></td><td>&nbsp;</td><td><b>Department</b></td><td><b>E-Mail</b></td><td><b>Phone</b></td></tr>
+            <patTemplate:tmpl name="IRC" type="OddEven">
+                <patTemplate:sub condition="__odd"><tr bgcolor="#CCCCFF">
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>     
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even"><tr bgcolor="#FFFFFF"> 
+                    <td>{FIRST_NAME} {LAST_NAME}</td><td>&nbsp;</td>
+                    <td>{NAME}</td>
+                    <td nowrap><span class='codedirection'>{EMAIL}</span></td>
+                    <td>{PHONE}</td>  
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       </table>
+       
+       <h3>Meetings</h3>
+       <table cellpadding="5" cellspacing='0'>    
+           <patTemplate:tmpl name="IRC_MIN" type="OddEven">
+                <patTemplate:sub condition="__odd">
+                    <tr bgcolor="#CCCCFF">
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>    
+                    <td><img src='{ICON}'></td>  
+                    </tr>    
+                </patTemplate:sub>
+                <patTemplate:sub condition="__even">
+                    <tr bgcolor="#FFFFFF"> 
+                    <td>{DATE}</td>
+                    <td>{MINLINK}</td>  
+                    <td><img src='{ICON}'></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+       
+       </table>
+ 
+       
+            
+   </patTemplate:tmpl>
+   <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>

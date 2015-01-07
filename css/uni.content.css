@@ -1,0 +1,401 @@
+/***************************************
+All Copyright (C) Reserved (((((HL)))))
+Department of Communications & Public Relations, Vancouver Island University
+Date: 27th Sept, 2006
+Spec: 760x420
+****************************************/
+/*3 column contents body>>>nav and content-----------------------------------*/
+
+/* wrapper causing print issues in IE 7 */
+ #wrapper{
+width:100%;
+}
+
+
+	#navigation{
+	/*continue in uni.nav.css*/
+	}	
+	
+	#content{
+	padding:0 0px 0px 30px;
+	margin-left:190px;
+	background-color:#FFFFFF;
+	}
+	/* h1 added to look like h2 so that contribute users and converted sites that had h1 tags on top look correct - this should not be given a white colour! White Was inherited from the original H1 */
+	
+	#content form{
+	display:block;
+	float:left;
+	}
+	
+	/* for form element have float:left porblem*/
+	#content form.no_float{
+	float:none;
+	}
+	
+		#content h1{
+		margin:0px 0px 0px -30px;
+		padding:0 0 30px 15px;
+		}
+		
+		#content h2{
+		margin:0px 0px 0px -30px;
+		padding:0 0 30px 15px;
+		}
+		
+		#content h3{
+		margin:0px 0 20px -15px;
+		}
+		
+		#content h4{
+		margin-bottom:5px;
+		}
+		
+		#content p{
+		line-height:1.8em;
+		margin:0 0 20px 0;
+		}
+		
+		#content ul, #content ol{
+		margin:25px;
+		font-size:100.01%;
+		line-height:1.6em;
+		}
+		
+		#content ul a, #content ol a, #content dl a{
+		font-weight:normal;
+		}
+		
+			#content ul li, #content ol li{
+			margin-bottom:4px;
+			}
+			
+				#content ul li p, #content ol li p, #content ul li{
+				line-height:1.6em;
+				font-size:100%;
+				margin-top:3px;
+				}
+		
+				#content ul ul{
+				margin:5px 0 5px 25px;
+				}
+				
+	#content dt{
+	font-weight:bold;
+	}
+	
+	#content dd{
+	margin-bottom:8px;
+	line-height:1.6em;
+	}	
+		
+		
+		#content img{
+		}
+		
+			#content .con_highlight{
+			padding:5px;
+			background-color:#66CCFF; /*colour choice*/
+			margin-bottom:20px;
+			}
+			
+				#content .con_highlight h2, #content .con_highlight h3, #content .con_highlight h4, #content .con_highlight h5{
+				margin-left:0;
+				padding-left:0;
+				}
+				
+		#content table{
+		width:100% !important;
+		width:99%; /*table width issue on ie6*/
+		overflow:hidden;
+		}
+						
+#content img.imageright {
+	}		
+	
+	
+	#content form input{
+	padding:3px;
+	}	
+	
+	.tdslist {
+        margin: 0px;
+    }
+    
+	.tdslist_item {
+        margin: 0 0 20px 0;
+        float: left;
+        width: 735px;
+    }
+    
+    #profile .tdslist_item {
+        margin: 0px;
+        float: none;
+    }
+	
+	#content .tdslist_item h3{
+		margin: 0 0 0 124px;
+		}
+	
+	#content .tdslist_item > h3{
+		
+		margin: 0 0 0 114px;
+		}
+	
+	#content .tdslist_item p{
+		margin: 0 0 0 124px;
+		}
+	
+	#content .tdslist_item > p{
+		
+		margin: 0 0 0 114px;
+		}
+    	
+    .tdslist_item img {
+        clear: both;
+    }
+    
+    .tdslist_item img.displayed {
+        border: solid 2px #214275;
+    }
+    
+    .tdslist_item_image {
+        min-height: 175px;
+        min-width: 100px;
+        height: 175px;
+        width: 100px;
+        float: left;
+        margin: 0px 10px 10px 0px;
+    }
+    
+    #content ul.tds_links {
+        margin: 0px 0px 0px 190px;
+    }
+    
+    #profile .tdslist_item_image {
+        min-height: 175px;
+        min-width: 100px;
+        height: 175px;
+        width: 100px;
+        float: left;
+        margin: 0px 15px 10px 15px;
+    }
+	
+	#profile_content p{
+		
+		margin: 15px 0 0 165px;
+		}
+	#profile_content h3{
+		
+		margin: 15px 0 0 165px;
+		}	
+	
+	#profile_content > p{
+		
+		margin: 15px 0 0 155px;
+		}
+	#profile_content > h3{
+		
+		margin: 15px 0 0 155px;
+		}	
+
+#content hr{
+		border:0;
+		background:#113371;
+		height:1px;
+		
+		margin-top:5px;
+		margin-bottom:10px;
+		
+		display:inline;
+		width:100%;
+		float:left;
+				
+		}
+
+#content span.leftcolumn,#content span.rightcolumn{
+}
+/*right link box------------------------------------*/
+		
+		.rightbox{
+		float:right;
+		width:166px;
+		margin:0 0 10px 10px;
+		padding:4px;
+		}
+		
+			.rightbox img{
+			width:100%;
+			}
+		
+			.rightbox a{
+			text-decoration:underline;
+			}
+		
+			.rightbox p{
+			font-size:98%;
+			line-height:1.4em;
+			}
+			
+			.rightbox h3{
+			font-size:120%;
+			background:#456f98;
+			padding:2px 5px;
+			border-left:4px solid #214275;
+			margin:0;
+			color:#ffffff;
+			}
+			
+			.rightbox h4{
+			font-size:110%;
+			margin:5px 0 0 0;
+			}
+			
+			.rightbox img{
+			float:left;
+			width:160px;
+			}
+			
+			.rightbox ul{
+			list-style:square;
+			margin-left:15px;
+			}
+			
+				.rightbox ul li{
+				margin-bottom:3px;
+				}
+				
+					.rightbox ul li a{
+					}
+					
+						.rightbox ul li a:hover{
+						}
+
+	
+	.credits {
+	text-align: right;
+	padding-right: 10px;
+}
+
+/* -------------------- Calendar Course Listings --------------------- */
+.inactive_course_desc h4, .inactive_course_desc p {
+    color: #999999;
+}
+/* -------------------- Foundation Gift Form --------------------- */
+#giftform li {
+	list-style-type: none;
+}
+		
+/* -------------------- Photo Galleries --------------------- */
+#tagcloud {
+    background:#F5F5F5 none repeat scroll 0%;
+    border:1px solid #EEEEEE;
+    padding:15px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+#tagcloud ul {
+ /*   display: inline; */
+    margin: 0px;
+    list-style-type: none;
+    float: left;
+}
+
+#tagcloud li {
+ /*   display: inline; 
+    padding: 2px 5px;*/
+    float: left;
+    width: 225px;
+    margin-right: 5px;
+}
+
+#tagcloud a:link, #tagcloud a:visited, #tagcloud a
+{
+    line-height: 1em;
+    text-decoration: none;
+}
+
+#tagcloud a:hover {
+    color: #F5F5F5;
+    background: green;
+    text-decoration: none;
+}
+
+#tagcloud li.active a {
+    color: #F5F5F5;
+    background: green;
+    text-decoration: none;
+}
+
+#tagcloud li.active a:hover {
+    color: #F5F5F5;
+    background: red;
+    text-decoration: none;
+}
+
+#tagcloud .reset_link
+{
+    display:block;
+    float: left;
+    text-align:right;
+}
+#tagcloud .reset_link a:hover
+{
+    background: red;
+}
+
+#search-options 
+{
+    margin-top: 1em;
+}
+
+#NewStockPhotos_PhotosRepeater_ctl00_HelpText {
+    clear: left;
+}
+/*
+.altlink 
+{
+    color: #214275;
+    font: Arial;
+    font-family: Arial;
+}
+
+.altlink:hover 
+{
+    color: #386FC5;
+    text-decoration: none;
+    cursor: pointer;
+    font: Arial;
+    font-family: Arial;
+}
+*/
+
+.altlink:hover {
+    background-color:#214275;
+    border:1px solid #CCCCCC;
+    color:#FFFFFF;
+    font-size:14px;
+    font-weight:bold;
+    padding:2px 12px;
+    text-align:center;
+    text-decoration:none;
+    width:auto;
+    cursor: pointer;
+}
+.altlink {
+    background-color:#CCCCCC;
+    border:1px solid #221166;
+    color:#214275;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:10px;
+    padding:2px 12px;
+    text-align:center;
+    text-decoration:none;
+    width:auto;
+    cursor: pointer;
+}
+
+/*imgCrossfader--------------------*/
+#imgCrossfader{ position: relative; width:362px; height:272px;}

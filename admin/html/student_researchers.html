@@ -1,0 +1,130 @@
+<patTemplate:tmpl name="PAGE">
+    <patTemplate:tmpl src="header.html" />
+
+    <patTemplate:tmpl name="list" visibility="hidden">
+        <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+            <tr>
+                <td colspan="6" class="successhead">Viewing: Student Research Projects</td>
+            </tr>
+            <tr height="10"><td colspan='6' height="14" class="success">{SUCCESS}</td></tr>
+            <tr><td colspan="6">&nbsp;</td></tr>
+            <tr><td colspan="3">
+                <button type="button" name="New" value="new" onClick="javascript: window.location='student_researchers.php?add'" >Add New Researcher</button>
+            </td></tr>
+            </table>
+
+            <table class="tablelist">
+            <thead class="tablelist-head">
+                <tr>
+                    <td>Surname</td>
+                    <td>First Name</td>
+                    <td>StudentID</td>
+                    <td>Email</td>
+                    <td># Projects</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+            <patTemplate:tmpl name="mainlist" type="OddEven">
+                <patTemplate:sub condition="odd">
+                    <tr class="tablelist-odd">
+                        <td>{LAST}</td>
+                        <td>{FIRST}</td>
+                        <td>{STUDENTID}</td>
+                        <td>{EMAIL}</td>
+                        <td>{NUMPROJECTS}</td>
+                        <td><button type='button' onClick='window.location="student_researchers.php?section=edit&id={ID}";'>Edit</button></td>
+                    </tr>
+                </patTemplate:sub>
+                <patTemplate:sub condition="even">
+                    <tr class="tablelist-even">
+                        <td>{LAST}</td>
+                        <td>{FIRST}</td>
+                        <td>{STUDENTID}</td>
+                        <td>{EMAIL}</td>
+                        <td>{NUMPROJECTS}</td>
+                        <td><button type='button' onClick='window.location="student_researchers.php?section=edit&id={ID}";'>Edit</button></td>
+                    </tr>
+                </patTemplate:sub>
+            </patTemplate:tmpl>
+        </table>
+    </patTemplate:tmpl>
+
+    <patTemplate:tmpl name="edit" visibility="hidden">
+        <form name="edit" action="student_researchers.php?update">
+            <input type="hidden" name="id" value="{ID}">
+            <table cellspacing="4">
+                <tr>
+                    <td colspan="6" class="successhead">Edit: Student Researcher</td>
+                </tr>
+                <tr height="10"></tr>
+                <tr><td colspan="3">&nbsp;</td></tr>
+                <tr>
+                    <td valign="top">Surname :</td>
+                    <td colspan="2">
+                        <input type='text' name="last" size="50" value="{LAST}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">First :</td>
+                    <td colspan="2">
+                        <input type='text' name="first" size="50" value="{FIRST}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td colspan="2">
+                        <input type='text' name="email" size="80" value="{EMAIL}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Student ID: </td>
+                    <td colspan="2">
+                        <input type='text' name="studentID" value="{STUDENTID}" />
+                        <div class="error">{ERROR}</div>
+                    </td>
+                </tr>
+                <tr><td width='150'>
+                    <button type="submit" name="update" value="update">Update</button> &nbsp;&nbsp;<button style='background-color: red;' type="button" name="Delete" value="delete" onClick="javascript: if(confirm('Really Delete?')) window.location='student_researchers.php?delete&id={ID}';" >Delete</button></td></tr>
+            </table>
+        </form>
+            <div id="projects" style="margin:20px;">
+                <h4>Associated Projects :</h4>
+                <table class="tablelist">
+                    <thead class='tablelist-head'>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Supervisor</th>
+                            <th>Department</th>
+                            <th>Type</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <patTemplate:tmpl name="projects" type="OddEven">
+                    <patTemplate:sub condition="odd">
+                        <tr class="tablelist-odd">
+                            <td>{ID}</td>
+                            <td>{TITLE}</td>
+                            <td>{SUPERVISOR}</td>
+                            <td>{DEPARTMENTNAME}</td>
+                            <td>{PRESENTATIONTYPE}</td>
+                            <td><button type='button' onClick='window.location="student_research.php?section=edit&id={ID}";'>Edit</button></td>
+                        </tr>
+                   </patTemplate:sub>
+                   <patTemplate:sub condition="even">
+                       <tr class="tablelist-even">
+                           <td>{ID}</td>
+                           <td>{TITLE}</td>
+                           <td>{SUPERVISOR}</td>
+                           <td>{DEPARTMENTNAME}</td>
+                           <td>{PRESENTATIONTYPE}</td>
+                           <td><button type='button' onClick='window.location="student_research.php?section=edit&id={ID}";'>Edit</button></td>
+                       </tr>
+                   </patTemplate:sub>
+                </patTemplate:tmpl>
+                </table>
+            </div>
+            </patTemplate:tmpl>
+
+
+    </patTemplate:tmpl>

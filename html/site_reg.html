@@ -1,0 +1,199 @@
+<patTemplate:tmpl name="PAGE">
+  <patTemplate:tmpl src="header.html" />
+  <patTemplate:tmpl name="PAGE_ALL">
+ 
+ <style type="text/css"   >
+    body{
+        font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+        font-size:12px;
+    }
+    p, h1, form, button{border:0; margin:0; padding:0;}
+    .spacer{clear:both; height:3px;}
+        /* ----------- My Form ----------- */
+    .myform{
+        margin:0 auto;
+        width:650px;
+        padding:14px;
+        
+    }
+
+        /* ----------- stylized ----------- */
+    #stylized{
+        border:solid 2px #b7ddf2;
+        background:#ebf4fb;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #stylized h1 {
+        font-size:15px;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+    #stylized p{
+        font-size:11px;
+        color:#666666;
+        margin-bottom:20px;
+        /*border-bottom:solid 1px #b7ddf2; */
+        padding-bottom:10px;
+    }
+    #stylized label{
+        display:block;
+        font-weight:bold;
+        text-align:right;
+        width:140px;
+        float:left;
+        padding-top: 6px;
+    }
+    #stylized .small{
+        color:#666666;
+        display:block;
+        font-size:11px;
+        font-weight:normal;
+        text-align:right;
+        width:140px;
+    }
+    #stylized input[type=text]{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized textarea{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized select{
+        float:left;
+        font-size:12px;
+        padding:4px 2px;
+        border:solid 1px #aacfe4;
+        width:450px;
+        margin:2px 0 20px 10px;
+    }
+    #stylized button{
+        clear:both;
+        margin-left:150px;
+        width:125px;
+        height:31px;
+        background:#666666 url(img/button.png) no-repeat;
+        text-align:center;
+        line-height:31px;
+        color:#FFFFFF;
+        font-size:11px;
+        font-weight:bold;
+    }
+
+    #register-form .fieldgroup label.error {
+        color: #FB3A3A;
+        display: inline-block;
+        margin: 4px 0 5px 125px;
+        padding: 0;
+        text-align: left;
+        width: 220px;
+    }
+</style>
+
+<script lang="text/javascript">
+	function scorePassword(pass) {
+    var score = 0;
+    if (!pass)
+        return score;
+
+    // award every unique letter until 5 repetitions
+    var letters = new Object();
+    for (var i=0; i<pass.length; i++) {
+        letters[pass[i]] = (letters[pass[i]] || 0) + 1;
+        score += 5.0 / letters[pass[i]];
+    }
+
+    // bonus points for mixing it up
+    var variations = {
+        digits: /\d/.test(pass),
+        lower: /[a-z]/.test(pass),
+        upper: /[A-Z]/.test(pass),
+        nonWords: /\W/.test(pass),
+    }
+
+    variationCount = 0;
+    for (var check in variations) {
+        variationCount += (variations[check] == true) ? 1 : 0;
+    }
+    score += (variationCount - 1) * 10;
+
+    return parseInt(score);
+    
+    
+}
+function colourpw(pass){
+	 	var score=scorePassword(pass)
+	 	if (score > 60) return "lightgreen"; 
+	 	if (score > 40) return "yellow";
+	 	if (score > 10) return "#EE0000";
+	 	return "white";
+	}
+</script>
+
+  	
+    <h1 style='height:20px; padding-bottom:20px;'>Student Registration</h1>
+    
+   <div> 
+    
+ <patTemplate:tmpl name="form" visibility="hidden">   
+    <form name="form1" id="stylized" method="post" action="">
+	    <input type="hidden" name="target" value="{TARGET}"/>
+	   		<p style="color: red; text-align: center">{ERRMSG}</p>
+		    <label class="user">First Name:</label>
+		    <input type="text" name="first_name" placeholder="First Name" value="{FIRST_NAME}" />
+	    
+	    
+		    <label class="user">Last Name:</label>
+		    <input type="text" name="last_name" placeholder="Last Name" value="{LAST_NAME}"/>
+		    
+		    <div style="clear: both; ">
+		    <label class="user">Student ID:</label>
+		    <input type="text" name="username" style="width: 100px;" placeholder="Student ID" value="{USERNAME}"/> <span style="margin-top: 6px; padding-top: 6px; vertical-align: middle; display: block" class="enfasis">&nbsp; (This will be your login ID)</span>
+		    </div>
+		    
+		    <div style="clear: both">
+		    <label class="user">E-mail:</label>
+		    <input type="text" name="email" placeholder="Email" value="{EMAIL}"/><br clear="all">
+		    </div>
+		    
+		    <label style="clear:both">Password:</label>
+		    <input type="text" style="width: 100px;" name="password" placeholder="Password" value="{PASSWORD}" onkeyup="document.form1.score.value=scorePassword(this.value);sty='width:20px;background-color:'+colourpw(this.value);document.form1.score.style='width:20px;background-color:'+colourpw(this.value)" />
+		    <input type="text" name="score" style="width: 20px;" readonly=""> <span style="display: block; margin-top: 8px;" class="enfasis"> &nbsp; Strength</span>
+		    
+		    
+		    
+		      <div style="clear:both">
+			      <label></label>
+    <img id="siimage" width="160" style="border: 1px solid #000; margin-right: 15px" src="/includes/securimage/securimage_show.php?sid=<?php echo md5(uniqid()) ?>" alt="CAPTCHA Image" align="left">
+    <object type="application/x-shockwave-flash" data="/includes/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/includes/securimage/images/audio_icon.png&amp;audio_file=/includes/securimage/securimage_play.php" height="32" width="32">
+    <param name="movie" value="/includes/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/includes/securimage/images/audio_icon.png&amp;audio_file=/includes/securimage/securimage_play.php" />
+    </object>
+    &nbsp;
+    <a tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = '/includes/securimage/securimage_show.php?sid=' + Math.random(); this.blur(); return false"><img src="/includes/securimage/images/refresh.png" alt="Reload Image" onclick="this.blur()" align="bottom" border="0" height='32'></a><br clear="all" />
+    <label>Enter Code*:</label>
+    <input type="text" name="ct_captcha" size="12" style="width: 100px;" maxlength="16" />
+    <br /><br />
+  </div>
+	    <div style="clear: both">
+		    <button type="submit" name="submit">Submit</button>
+
+    </form>
+    </patTemplate:tmpl>
+    <patTemplate:tmpl name="msg" visibility="hidden">
+    
+    <h2>You are registered. Please log in using the link on the left</h2>
+    </patTemplate:tmpl>
+    </div>
+   
+    </patTemplate:tmpl>
+    <patTemplate:tmpl src="footer.html" />
+</patTemplate:tmpl>
