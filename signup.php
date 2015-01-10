@@ -70,7 +70,7 @@ if ( sessionLoggedin() == false ) {
 			}
 			if($result){
 				if(isset($_REQUEST['target'])) if($_REQUEST['target'] != '') {
-					echo("<script type='text/javascript'>document.location='/$_REQUEST[target]'</script>");
+					echo("<script type='text/javascript'>document.location='/$_REQUEST[target]?registered'</script>");
 					}
 				else $tmpl->setAttribute('msg','visibility','visible');
 					
