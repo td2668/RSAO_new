@@ -218,7 +218,7 @@
 
             <label for="program">Where will this item be displayed?</label>
             <input type="text"  name="where" id="where" value="{WHERE}" placeholder="e.g. CREATE, Biology Poster Session, etc."   /><br clear='left'>
-
+<!--
           <label for="department">* Department</label>
            <select style="width: 200px; text-align: left" name='department' id='department'>
            <option value="0" >-- None --</option>
@@ -230,6 +230,7 @@
             <label for="course">Course</label>
             <input type="text" name="course" value="{COURSE}" id="course" placeholder="What course is this associated with?" placeholder="e.g. Biology 101"  /><br/>
 
+
            <label for='supervisor'>Instructor/ Supervisor
          </label>
            <select name='supervisor' id='supervisor'>
@@ -238,12 +239,13 @@
                    <option value='{USER_ID}' {SELECTED}>{NAME}</option>
                </patTemplate:tmpl>
            </select>
+-->
        <div class="spacer"></div>
 
     
        <label for="title">* Title of item</label>
 
-       <input type="text" name="title" value="{TITLE}" id="title" placeholder="My Item's Title"/>
+       <input type="text" name="title" value="{TITLE}" id="title" placeholder="Actual title of your poster, talk etc."/>
 		
 	   <span style=" vertical-align: middle; display: block; margin-bottom: 0px;" > <label for="filename" style="margin-top: 9px;">Select your file</label>
 
@@ -260,7 +262,7 @@
      
         <br />
         <label style="width: 80px;"></label>
-           <span style="display:block; text-align: left"> <button type='submit' name="submit" >Submit</button> </span>
+           <span style="display:block; text-align: left"> <button type='submit' name="submit" disabled="" >Submit</button> (Active mid-February)</span>
         
        </fieldset>
        </div><br>
@@ -270,7 +272,7 @@
 </patTemplate:tmpl>
 <patTemplate:tmpl name="loginplease" visibility="hidden">
 
-Please login using the link on the left, or if you are a new user you can <a href='signup.php'>register here</a>.
+Please login using the link on the left, or if you are a new user you can <a href='signup.php'>register here</a>. No need to register if you've done it before.
 
 </patTemplate:tmpl>
 

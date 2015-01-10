@@ -212,7 +212,7 @@ function getDeadlines() {	//Deadlines & Opportunities
             $user=$db->GetRow($sql);
 
             if(is_array($user)==false or count($user)==0) {
-                displayBlankPage("Error","<h1>Error</h1>There was a database error creating your initial user record.");
+                displayBlankPage("Error","<h1>Error</h1>There was a database error reading your user record.");
                 die;
             }
            $user_topics=array();
@@ -840,6 +840,7 @@ else {
     $result = $db->getRow($sql);
     $tfCount = $result['COUNT(*)'];
     if($tfCount>0){
+	    $tmpl->setAttribute('tf_main','visibility','visible');
     	$tmpl->addVar('tf_count', 'COUNT', $tfCount);
     	$tmpl->setAttribute('tf_section','visibility','visible');
     	$tmpl->setAttribute('tf_count','visibility','visible');
@@ -870,6 +871,7 @@ else {
     	if(strlen($tf['tracking_name'])>50) $title.='...';
     	$tflist[]= array('title'=>$title,'status'=>$status);
     }
+    
     $tmpl->setAttribute('tf_section','visibility','visible');
     $tmpl->addRows('tf_section',$tflist);
     
@@ -879,6 +881,7 @@ else {
     $result = $db->getRow($sql);
     $igCount = $result['COUNT(*)'];
     if($tfCount>0){
+	    $tmpl->setAttribute('irgf_main','visibility','visible');
 		$tmpl->addVar('ig_count', 'COUNT', $igCount);    	
 		$tmpl->setAttribute('irgf_section','visibility','visible');
     	$tmpl->setAttribute('ig_count','visibility','visible');
@@ -917,10 +920,10 @@ else {
 
 	//CREATE registrations
 
-    $sql="SELECT COUNT(*) FROM `forms_create` WHERE user_id=" .$_SESSION['user_info']['user_id'];
+    $sql="SELECT COUNT(*) FROM `forms_create` WHERE user_id='" .$_SESSION['user_info']['user_id']."'";
     $result = $db->getRow($sql);
     $crCount = $result['COUNT(*)'];
-    if($tfCount>0){
+    if($crCount>0){
 		$tmpl->addVar('cr_count', 'COUNT', $crCount);   	
 		$tmpl->setAttribute('cr_section','visibility','visible');
     	$tmpl->setAttribute('cr_count','visibility','visible');
@@ -954,6 +957,7 @@ else {
     	if(strlen($cr['create_name'])>50) $title.='...';
     	$crlist[]= array('title'=>$title,'status'=>$status);
     }
+    $tmpl->setAttribute('cr_main','visibility','visible');
     $tmpl->setAttribute('cr_section','visibility','visible');
     $tmpl->addRows('cr_section',$crlist);
 

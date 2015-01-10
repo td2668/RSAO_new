@@ -89,14 +89,18 @@
 
           //Fade in the Popup
           jQuery(loginBox).fadeIn(300);
+          
+         
 
           //Set the center alignment padding + border see css style
           var popMargTop = (jQuery(loginBox).height() + 24) / 2;
           var popMargLeft = (jQuery(loginBox).width() + 24) / 2;
+         // var popMargRight = popMargLeft+2;
 
           jQuery(loginBox).css({
               'margin-top' : -popMargTop,
               'margin-left' : -popMargLeft
+              
           });
 
           // Add the mask to body
@@ -134,6 +138,7 @@
             <input name='ajax' type='hidden' value='yes'>
             <input type="hidden" name="target" value="{TARGET}"/>
             <p class='enfasis'>You can login to access the personalized functions and more.</p>
+            <p class="enfasis">This site is not yet linked to the common login, so you'll<br>need to create an account before you can login</p>
             <fieldset class="textbox">
                 <label class="username">
                     <span>Username (or Student ID#)</span>
@@ -322,6 +327,9 @@
         </patTemplate:sub>
         </patTemplate:tmpl>
         </ul>
+        
+        <br><br><br><span class='item' style="color: #FFFFFF; margin-top: 100px;">help: <a style="color: #FFFFFF" href='mailto:research@viu.ca'>research@viu.ca</a></span>
+        
 <!--
 <div id="mrc_navigation_plates">
         {IMAGE}

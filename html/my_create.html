@@ -73,8 +73,10 @@ cntfield.value = maxlimit - field.value.length;
 <patTemplate:tmpl name="savecontrol">  
     <button type="submit" name="save" value="save" onClick="javascript:document.form1.saveme.value='true';" {DISABLED}>Save</button><br><br>
 </patTemplate:tmpl> 
-<a href="javascript: submitform()" title="Back to the list" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='list';">My Forms</a><br><br>
-<a href="javascript: submitform()" title="Create a new form" onClick="javascript: document.form1.saveme.value='true'; document.form1.section.value='new';">New Form</a><br> 
+
+
+<button type="button" title="Back to the list" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='list'; document.form1.submit()">My Forms</button><br><br>
+<button type="button"  title="Create a new form" onClick="javascript: document.form1.saveme.value='true'; document.form1.section.value='new'; document.form1.submit();">New Form</button><br> 
 </div>
 
 <div name="formchooser">
@@ -115,7 +117,11 @@ cntfield.value = maxlimit - field.value.length;
 	                	<!-- <td valign='top'><button title='Print PDF' type='button' value='viewpdf' onClick='javascript: window.location="my_create.php?printpdf&form_create_id={FORM_CREATE_ID}"'><img src='/images/icon-sm-pdf2.gif'></button></td> -->
 	                	</tr>
                 </patTemplate:tmpl>
+                
                 </table>
+                <patTemplate:tmpl name="emptymessage" visibility="hidden">
+                <p></p><p><b>Use the 'New Form' button on the right to get started</b></p>
+                </patTemplate:tmpl>
             </div>
             </patTemplate:tmpl>  
     </patTemplate:sub>
@@ -129,7 +135,7 @@ cntfield.value = maxlimit - field.value.length;
             <table class='formtable' cellpadding="5">
                 <tr><td colspan="2"><h3>CREATE Registration Form</h3></td></tr>
 
-                <tr><td colspan="2"><p>What CREATE is.... <a href="">here</a>.</p>
+                <tr><td colspan="2"><p>What CREATE is.... <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_whatis.html',this);return false" />.</p>
 
                                     <p>You may start this application at any time, and return to modify it as required until you click "Submit". Save regularly: while the form will automatically save content as you move between the pages of your application, it will not save if you leave this page for another page or website.</p>
                 </td></tr>
@@ -139,7 +145,7 @@ cntfield.value = maxlimit - field.value.length;
 
 
                 <tr><td valign="top"><label for="create_name">Descriptive&nbsp;Name:</label></td>
-                    <td><input type="text" size="70" name="create_name" value="{CREATE_NAME}" />
+                    <td><input type="text" size="70" name="create_name" value="{CREATE_NAME}" placeholder="Project Name" />
                     <div class="field-help" style="height: auto; display:none;"> The title of your poster or presentation.
                         <br> </div>
                 </td></tr>
@@ -157,32 +163,59 @@ cntfield.value = maxlimit - field.value.length;
 		            <td>{CAT_OPTIONS}</td>
                 </tr>
                 <tr>
+	                <td colspan="2">If you want to enter more than one item (eg two posters, a poster and a presentation) you need to submit a second registration form.</td>
+                </tr>
+                <tr>
+	                <td style="vertical-align: top"><label >Availability:</label><br>
+		                
+	                </td>
+		            <td><table><tr><td nowrap="" style="vertical-align: top">{TIMESLOTS} </td> 
+		            <td style="vertical-align: top"><span  class="enfasis">
+		                (Select all possible time slots when you can be with your
+		                poster or present your talk. Once we have scheduled everything we'll get back to you with a final selection.)<br>
+		                ** hold 'control' to select multiple entries</span></td>
+		            </tr>
+		            </table>
+		            </td>
+		                            </tr>
+		        <tr>
+			        <td><label>Scholarship Slam: </label></td>
+			        <td><input type="checkbox" name='slam' {SLAM} /> &nbsp;<img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_slam.html',this);return false" /> (no need to select a time)</td>
+		        </tr>
+				    <td><label>No Judging:</label></td>
+			        <td><input type="checkbox" name='nojudging' {NOJUDGING} /> <span class="enfasis"> (Opt out of being judged for prizes)</span></td>
+		        </tr>        
+                <tr>
 	                <td><label>Course:</label></td>
-                	<td><input type="text" name="course" value="{COURSE}" \></td>
+                	<td><input style="width: 250px;" type="text" name="course" value="{COURSE}" placeholder="Course associated if applicable" \></td>
                 </tr>
                 <tr>
 	                <td><label>Program:</label></td>
-                	<td><input type="text" name="program" value="{PROGRAM}" \></td>
+                	<td><input style="width: 250px;" type="text" name="program" value="{PROGRAM}" placeholder="Program, degree, etc."\></td>
                 </tr>
                 
                 <tr>
 	                <td><label>Supervisor:</label></td>
-	                <td nowrap="">{SUPERVISOR_OPTIONS} or <input type="text" name="supervisor_last" size="16" title="Surname" value={SUPERVISOR_LAST}>,&nbsp;<input type="text" name="supervisor_first" size="16" title="First Name" value={SUPERVISOR_FIRST}><div class="field-help" style="height: auto; display:none;"> Select a name OR enter Surname,Firstname
+	                <td nowrap="">{SUPERVISOR_OPTIONS} or <input type="text" name="supervisor_last" size="16" title="Surname" value={SUPERVISOR_LAST}>,&nbsp;<input type="text" name="supervisor_first" size="16" title="First Name" value={SUPERVISOR_FIRST}> <span class="enfasis"> (if applicable)</span><div class="field-help" style="height: auto; display:none;"> Select a name OR enter Surname,Firstname. A supervisor is optional.
                         <br> </div></td>
                 </tr>
                  
                 
                 <tr>
 	                <td><label>Partners:</label></td>
-	                <td nowrap="">{CORESEARCHER_OPTIONS} <input type="text" name="co_last" size="16">,&nbsp;<input type="text" name="co_first" size="16"> <button type="submit" name="add_coresearcher" value="add_coresearcher">Add</button></td>
+	                <td nowrap="">{CORESEARCHER_OPTIONS} or <input type="text" name="co_last" size="16">,&nbsp;<input type="text" name="co_first" size="16"> <button type="submit" title="Add Partner" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='info'; document.form1.submit()" name="add_coresearcher" value="add_coresearcher">Add</button><div class="field-help" style="height: auto; display:none;"> Select a name OR enter Surname,Firstname. These are other students who participated in the work.</div></td>
                 </tr>
                 <patTemplate:tmpl name="coresearcher_list" visibility="hidden">
                 	<tr>
 	                	<td>&nbsp;</td>
-						<td>{NAME} <button type="submit" name="delete_coresearcher" value="{ID}">Delete</button></td>
+						<td>{NAME} <button type="submit" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='info'; document.form1.submit()" name="delete_coresearcher" value="{ID}">Delete</button></td>
                 	</tr>
                 </patTemplate:tmpl>
-		                
+		        
+		        <tr>
+			        <td colspan="2" style="text-align: center; margin-top: 12px;"><a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='summary';"><span class='{HILITE_SUMMARY}'>Go to Next Page: Summary</span></a>
+			        </td>
+		        </tr>     
                                
 				
                 
@@ -198,7 +231,7 @@ cntfield.value = maxlimit - field.value.length;
             <table class='formtable' cellpadding="5">
             
             
-            	<tr><td colspan="2">Summarize your project for a general audience.<img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_summarize.html',this);return false" /></td></tr>
+            	<tr><td colspan="2">Summarize your project for a general audience. This text will be displayed in the on-line and printed programs. ** Note: You can come back and modify this any time up until 5 days before the event. </td></tr>
                     <tr><td><textarea wrap="physical" cols="80" rows="20" name="summary"
                     
                     onKeyDown="textCounter(document.form1.summary,document.form1.remLen1,500)"
@@ -211,6 +244,9 @@ cntfield.value = maxlimit - field.value.length;
                 
             </table>
             <script language="Javascript">textCounter(document.form1.summary,document.form1.remLen1,500)</script>
+            
+			        <span style="text-align: center; margin-top: 12px;"><a href="javascript: submitform()" onClick="javascript: document.form1.saveme.value='true'; document.form1.gotosection.value='submit';"><span class='{HILITE_SUMMARY}'>Go to Next Page: Submit</span></a>
+			        </span>
         </patTemplate:tmpl>
     </patTemplate:sub>
 
@@ -219,19 +255,22 @@ cntfield.value = maxlimit - field.value.length;
          <patTemplate:tmpl name="submit">
             <input type="hidden" name="form_create_id" value="{FORM_CREATE_ID}" /> 
             <table cellpadding="5" class='formtable'>   
-            <tr><td>This project requires ethics review.</td><td><input type="radio" name="reb_req" value="1" {REB_REQ_1} /> Yes &nbsp;<input type="radio" name="reb_req" value="3" {REB_REQ_3} /> No &nbsp;<input type="radio" name="reb_req" value="2" {REB_REQ_2} /> Don't Know</td>  
+            <tr><td >This project requires ethics review. <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_ethicsreview.html',this);return false" /></td><td style="text-align: left"><input type="radio" name="reb_req" value="1" {REB_REQ_1} /> Yes &nbsp;<input type="radio" name="reb_req" value="3" {REB_REQ_3} /> No &nbsp;<input type="radio" name="reb_req" value="2" {REB_REQ_2} /> Don't Know </td>  
             </tr>
 	         
-            <tr><td>This project has ethics clearance.</td><td><input type="radio" name="reb_status" value="1" {REB_STATUS_1}/> Yes  &nbsp;<input type="radio" name="reb_status" value="3" {REB_STATUS_3} /> No  &nbsp;<input type="radio" name="reb_status" value="2" {REB_STATUS_2} /> Don't Know</td>  
+            <tr><td>This project has ethics clearance. <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_ethicsclearance.html',this);return false" /></td><td><input type="radio" name="reb_status" value="1" {REB_STATUS_1}/> Yes  &nbsp;<input type="radio" name="reb_status" value="3" {REB_STATUS_3} /> No  &nbsp;<input type="radio" name="reb_status" value="2" {REB_STATUS_2} /> Don't Know</td>  
             </tr>
-             <tr><td colspan="2">I agree to allow my image or audio to be recorded during CREATE: <input type="checkbox" name="iagree" {CHECKAGREE}  onclick="javascript: document.form1.saveme.value='true';  document.form1.section.value='submit'; document.form1.gotosection.value='submit';submitform(); "></td></tr>
+             <tr><td colspan="2">Please do NOT record my image or audio during CREATE: <img class='helpimg' src='/images/helpicon.gif' alt='?' title='Click Me' onClick="ajax_toggleTooltip(window.event,'help/forms_create_recorded.html',this);return false" /> <input type="checkbox" name="iagree" {CHECKAGREE}  onclick="javascript: document.form1.saveme.value='true';  document.form1.section.value='submit'; document.form1.gotosection.value='submit';submitform(); "></td></tr>
+             <patTemplate:tmpl name="posterprint" visibility="hidden">
+             <tr><td colspan="3"><b><u>Breaking News:</u> The Research Office will be covering all the costs of posters being presented at CREATE and printed by us (your poster can be used for other events or classes so long as it also appears at CREATE). You can submit your poster on this site up until 4 working days before the event. More details will be provided directly to registrants via email.</b></td></tr>
+             </patTemplate:tmpl>
 
             <tr><td></td></tr>
                <!-- <tr><td colspan="2"><button type="button" name="justsave" onclick="javascript: document.form1.saveme.value='true'; document.form1.section.value='submit'; submitform();">Just Save</button></td></tr> -->
-               <tr><td colspan="2"><button type="button" name="submitme" id="submitme" {DISABLED} onclick="javascript: document.form1.saveme.value='true'; document.form1.locksubmit.value='true'; document.form1.section.value='submit'; document.form1.gotosection.value='list';submitform();">Submit</button></td></tr>
+               <tr><td colspan="2"><button style="border-color: red; font-size: 100%;" type="button" name="submitme" id="submitme" {DISABLED} onclick="javascript: alert('Submitting registers your presentation, but you can still come back and make modifications at any time'); document.form1.saveme.value='true'; document.form1.locksubmit.value='true'; document.form1.section.value='submit'; document.form1.gotosection.value='list';submitform();">Submit</button></td></tr>
                <patTemplate:tmpl name="checks" visibility="hidden" varscope="submit">
-               <tr><td colspan="2" style="color:red;">
-               Complete the following before submitting:
+               <tr><td colspan="2" style="color:red;"><br>
+               Complete the following before submitting:<br><br>
                <ul style="color:red;">
                {CHECKTEXT}
                </ul>
@@ -266,8 +305,18 @@ cntfield.value = maxlimit - field.value.length;
 
 </patTemplate:tmpl>
 <patTemplate:tmpl name="loginplease" visibility="hidden">
-<p>{MSG}</p>p>
-Please login using the link on the left, or if you are a new <i>student</i> user you can <a href='signup.php?target=my_create.php'>register for the website here</a> before you log in. This allows you to return at any time to update your submitted form(s) or submit a poster for printing. 
+
+<h1>CREATE Registrations</h1>
+<p></p>
+<p>Please login using the link on the left, or if you are a new <i>student</i> user you can <a href='signup.php?target=my_create.php'>register for the website here</a> before you log in. This allows you to return at any time to update your submitted form(s) or submit a poster for printing. </p>
+
+</patTemplate:tmpl>
+
+<patTemplate:tmpl name="justregistered" visibility="hidden">
+
+<h1>CREATE Registrations</h1>
+<p></p>
+<p>Thanks for registering. You can now login using the link on the left.</p>
 
 </patTemplate:tmpl>
 

@@ -19,7 +19,7 @@ if (isset($_REQUEST['add'])) {
     if($_REQUEST['division']=='') $division=0; else $division=$_REQUEST['division'];
     if($_REQUEST['chair']=='') $chair=0; else $chair=$_REQUEST['chair'];
     if ($db->Execute("INSERT INTO departments SET
-    				name='$_REQUEST[name]',
+    				name='".mysql_real_escape_string($_REQUEST['name'])."',
     				shortname='$_REQUEST[shortname]',
     				division_id=$division,
     				chair=$chair				
@@ -32,7 +32,7 @@ else {
 	    if($_REQUEST['division']=='') $division=0; else $division=$_REQUEST['division'];
 		if($_REQUEST['chair']=='') $chair=0; else $chair=$_REQUEST['chair'];
         if ($db->Execute("UPDATE departments SET
-    				name='$_REQUEST[name]',
+    				name='".mysql_real_escape_string($_REQUEST['name'])."',
     				shortname='$_REQUEST[shortname]',
     				division_id=$division,
     				chair=$chair		

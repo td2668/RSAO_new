@@ -797,7 +797,7 @@ function GetPersonData($userId) {
 *
 *   @return     integer     4 digit year
 */
-function GetSchoolYear($timeStamp) {
+function GetSchoolYear($timeStamp){
 
     // if the month is Jan -> Aug then the year is this year, other wise it is next year
     if (date('n',$timeStamp) < 9) {

@@ -14,7 +14,10 @@ h4 {
 textarea, input, select {
     background-color: #EEEEEE;
     font-size: 9pt;
+    
 }
+
+
 input.budgetamount {
     text-align: right;
 }
@@ -42,7 +45,7 @@ td.sel{
 }
 
 .formtable td {
-	font-size: 80%;
+	font-size: 12px;;
 	}
 
 .formtable .narrow {
@@ -140,7 +143,7 @@ td.review_a{
 }
 
 .formtable label {
-    font-size: 90%;;
+    font-size: 100%;;
     margin-left: 10px;
 }
 

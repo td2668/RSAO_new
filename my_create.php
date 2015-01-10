@@ -112,26 +112,7 @@ if (sessionLoggedin()) {
     }
     
     
-    //Create a new record (only the name arrives with the REQUEST)
-    if(isset($_REQUEST['section'])) if( $_REQUEST['section']=='new'){
-        //create a new entry
-        //first need to figure out what date to use. Anything from Sept X-1 to May X
-        $today=getdate();
-        if($today['mon']>8) $year=$today['year']+1; else $year=$today['year']; 
-        $cr_name = (isset($_REQUEST['newname'])) ? mysql_real_escape_string($_REQUEST['newname']) : '';
-        $cv = 1; // default is to include MRU CV
-        $sql=" INSERT into `forms_create`  SET
-        		`created`=NOW(),
-        		`modified`=NOW(),
-        		`user_id`=$user[user_id],
-        		`create_name`='CREATE $year Registration'   		
-        		";	      
-         $result=$db->Execute($sql);
-         if(!$result) print($db->ErrorMsg());
-         $_REQUEST['form_create_id']= mysql_insert_id();
-         //echo ("Formirgf ID = $_REQUEST[form_irgf_id]");
-         $_REQUEST['gotosection']='info';
-    }
+    
     
    unset ($sql); 
     // If not a new file,  save any form data that arrived
@@ -141,6 +122,7 @@ if (sessionLoggedin()) {
            $create_name = (isset($_REQUEST['create_name'])) ? mysql_real_escape_string($_REQUEST['create_name']) : '';
            $which_fund = (isset($_REQUEST['which_fund'])) ? mysql_real_escape_string($_REQUEST['which_fund']) : '';
            $form_create_id= (isset($_REQUEST['form_create_id']) ? $_REQUEST['form_create_id'] : 0);
+           $timeslots = (isset($_REQUEST['timeslots']))?$timeslots = implode(",", $_REQUEST['timeslots']): "";
            
            $supervisor_id=($_REQUEST['supervisor_id']=='') ? 0 : $_REQUEST['supervisor_id'];
            if($supervisor_id>0) {$supervisor_last=''; $supervisor_first='';}
@@ -151,6 +133,9 @@ if (sessionLoggedin()) {
 	       $course=($_REQUEST['course']=='') ? '' : mysql_real_escape_string($_REQUEST['course']);
 	       $program=($_REQUEST['program']=='') ? '' : mysql_real_escape_string($_REQUEST['program']);
            $type=($_REQUEST['type']=='') ? 0 : $_REQUEST['type'];
+           if(isset($_REQUEST['slam'])) $slam=true; else $slam=0;
+           if(isset($_REQUEST['nojudging'])) $nojudging=true; else $nojudging=0;
+           
            //$modified=mktime();   
            //echo ("Project ID is $project_id");
            
@@ -161,9 +146,12 @@ if (sessionLoggedin()) {
            `supervisor_id`=$supervisor_id,
 		   `supervisor_last`='$supervisor_last',
 		   `supervisor_first`='$supervisor_first',
+		   timeslots='$timeslots',
 		   type=$type,
 		   course='".$course."',
-		   program='".$program."'
+		   program='".$program."',
+		   slam=$slam,
+		   nojudging=$nojudging
           
            WHERE `form_create_id` = '{$_REQUEST['form_create_id']}'
            ";
@@ -238,6 +226,27 @@ if (sessionLoggedin()) {
         
    }    //if - save form data
    
+   //Create a new record (only the name arrives with the REQUEST)
+    if(isset($_REQUEST['section'])) if( $_REQUEST['section']=='new'){
+        //create a new entry
+        //first need to figure out what date to use. Anything from Sept X-1 to May X
+        $today=getdate();
+        if($today['mon']>8) $year=$today['year']+1; else $year=$today['year']; 
+        $cr_name = (isset($_REQUEST['newname'])) ? mysql_real_escape_string($_REQUEST['newname']) : '';
+        $cv = 1; // default is to include MRU CV
+        $sql=" INSERT into `forms_create`  SET
+        		`created`=NOW(),
+        		`modified`=NOW(),
+        		`user_id`=$user[user_id],
+        		`create_name`=''   		
+        		";	      
+         $result=$db->Execute($sql);
+         if(!$result) print($db->ErrorMsg());
+         $_REQUEST['form_create_id']= mysql_insert_id();
+         //echo ("Formirgf ID = $_REQUEST[form_irgf_id]");
+         $_REQUEST['gotosection']='info';
+    }
+   
    
         //default to list (there may be some redundancy here - it was patched up)
         //The idea is that the 'section' is the current one being saved, and the
@@ -295,7 +304,8 @@ if (sessionLoggedin()) {
                     $tmpl->addRows('listitems',$op);
                     $tmpl->setAttribute('listitems','visibility','visible');
                 }//if count forms > 0  
-                
+                //Otherwise add a prompt
+                else $tmpl->setAttribute('emptymessage','visibility','visible');
                 
              break;
              
@@ -349,6 +359,14 @@ if (sessionLoggedin()) {
 		                 
 		                 $tmpl->AddRows('coresearcher_list',$colist);
 		             }       
+		             $thisyear=GetSchoolYear(time());
+		             $slots=explode(',',$form['timeslots']);
+		             $timeslots=$db->Execute("SELECT CONCAT(type,': ',slot) as name,id FROM forms_create_timeslots WHERE year=$thisyear ORDER BY type,id");
+		             if($timeslots->RecordCount()>0){
+			             $form['timeslots']=$timeslots->GetMenu2("timeslots",$slots,true,true,$timeslots->RecordCount()+1);
+			         }
+		             if($form['slam']) $form['slam']="checked"; else $form['slam']='';
+		             if($form['nojudging']) $form['nojudging']="checked"; else $form['nojudging']='';
                      $form['created']= date($niceday,strtotime($form['created']));
                      $form['modified']= date("$niceday G:i",strtotime($form['modified']));
 					 
@@ -410,11 +428,14 @@ if (sessionLoggedin()) {
                      $form['disabled']='';
                      $form['checktext']='';
                       
-                     if($form['summary']=='') { $form['disabled']='disabled'; $form['checktext'].="<li>Complete the 'Summary' section</li>";} 
+                     if($form['summary']=='') { $form['disabled']='disabled'; $form['checktext'].="<li>Enter at least a brief description in the 'Summary' section. You can return to finish it later.</li>";} 
                      if($form['type']==0) { $form['disabled']='disabled'; $form['checktext'].="<li>Indicate what type of presentation</li>";} 
 
                      
                      if($form['disabled']!='') $tmpl->setAttribute('checks','visibility','visible');
+                     
+                     $cats=$db->GetRow("SELECT name,cat_id FROM forms_create_categories WHERE name='Poster'");
+                     if($cats && $form['type']==$cats['cat_id']) $tmpl->setAttribute('posterprint','visibility','visible');
                     $tmpl->addVars('submit',$form);
                  }
              break;
@@ -436,8 +457,10 @@ if (sessionLoggedin()) {
 } //logged in user
 
 else {
+	if(isset($_REQUEST['registered'])) $tmpl->setAttribute('justregistered','visibility','visible');
+	else $tmpl->setAttribute('loginplease','visibility','visible');
 	$tmpl->addVar('header','target',$_SERVER['PHP_SELF']);
-	$tmpl->setAttribute('loginplease','visibility','visible');
+	
 	$tmpl->displayParsedTemplate('page');
 	
 }

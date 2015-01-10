@@ -2,7 +2,7 @@
     <patTemplate:tmpl src="header.html" />
     <div id="internal_home_tbls">
     <table width="100%" align="center" cellpadding="0">
-    <tr ><td><h2>VIU Scholarship & Community Engagement Office</h2></td><td></td><td class="user" align="right">Logged in as: {USERNAME}</td></tr>
+    <tr ><td><h2>VIU RSA Office</h2></td><td></td><td class="user" align="right">Logged in as: {USERNAME}</td></tr>
         <tr>
         
          <td valign="top" width="60%">
@@ -26,7 +26,7 @@
                 </patTemplate:tmpl>
 
                 <tr><td>&nbsp;</td></tr>
-
+				<patTemplate:tmpl name="tf_main" visibility="hidden">
                <tr><td colspan='4'><div class='h2rev'>Tracking/Sig Forms</div></td></tr>
 
                 <patTemplate:tmpl name="tf_section" visibility="hidden">
@@ -36,8 +36,10 @@
                 <patTemplate:tmpl name="tf_count" visibility="hidden">
                     <tr><td colspan='4' align="right" class="indinfo"><a href="/my_tracking.php"><b>... See All ({COUNT}) Tracking Forms</b></a></td></tr>
                 </patTemplate:tmpl>
-
-
+				</patTemplate:tmpl>
+				
+				
+				<patTemplate:tmpl name="irgf_main" visibility="hidden">
                 <tr><td>&nbsp;</td></tr>
                 <tr><td colspan='4'><div class='h2rev'>Internal Grant Forms</div></td></tr>
 
@@ -48,7 +50,9 @@
                 <patTemplate:tmpl name="ig_count" visibility="hidden">
                 <tr><td colspan='4' align="right" class="indinfo"><a href="/my_irgf.php"><b>... See All ({COUNT}) Internal Grant Forms</b></a></td></tr>
                 </patTemplate:tmpl>
+				</patTemplate:tmpl>
                 
+                <patTemplate:tmpl name="cr_main" visibility="hidden">
                 <tr><td>&nbsp;</td></tr>
                 <tr><td colspan='4'><div class='h2rev'>CREATE Registrations</div></td></tr>
 
@@ -59,7 +63,7 @@
                 <patTemplate:tmpl name="cr_count" visibility="hidden">
                 <tr><td colspan='4' align="right" class="indinfo"><a href="/my_create.php"><b>... See All ({COUNT}) Registrations</b></a></td></tr>
                 </patTemplate:tmpl>
-
+                </patTemplate:tmpl>
                 
                 </table>
                 <br/> <br/> <br/>
@@ -87,7 +91,8 @@
             
             
             <td width="39%" valign="top">
-                 <div class="h2rev">Deadlines</div> 
+                <br><br>
+                <div class="h2rev">Deadlines</div> 
                 <div class="contents">                  
                     <table>
                     <patTemplate:tmpl name="deadlines" limit="5">
