@@ -30,6 +30,31 @@ $configInfos["scholviu.v3client.com"]["email_db_options"] =
         'mail_table'  => 'mail_queue',
     );
 
+$configInfos["schol.viu.ca"]["server_name"] = "schol.viu.ca";
+$configInfos["schol.viu.ca"]["host"] = "localhost";
+$configInfos["schol.viu.ca"]["user"] = "scholviu_ors";
+$configInfos["schol.viu.ca"]["pass"] = "rilinc";
+$configInfos["schol.viu.ca"]["dbdriver"] = "mysql";
+$configInfos["schol.viu.ca"]["dbname"] = "scholviu_research";
+$configInfos["schol.viu.ca"]["peardir"] = '/usr/share/pear';
+$configInfos["schol.viu.ca"]["debug"] = false;
+$configInfos["schol.viu.ca"]["url_root"] = 'http://schol.viu.ca/';
+$configInfos["schol.viu.ca"]["file_root"] = '/home/scholviu/public_html';
+$configInfos["schol.viu.ca"]["upload_root"] = '/var/www/research_htdocs/documents/shared/uploads/';
+$configInfos["schol.viu.ca"]["tracking_docs"] = '/var/www/research_htdocs/documents/shared/tracking/';
+$configInfos["schol.viu.ca"]["picture_path"] = '/var/www/research_htdocs/documents/shared/pictures/';
+$configInfos["schol.viu.ca"]["picture_url"] = 'documents/shared/pictures/';
+$configInfos["schol.viu.ca"]["minutes_path"] = '/var/www/research_htdocs/documents/shared/committees/';
+$configInfos["schol.viu.ca"]["minutes_url"] = 'documents/shared/committees/';
+$configInfos["schol.viu.ca"]["master"] = "a603389b49d8da5b41bb4217e4ce5c1a";
+$configInfos["schol.viu.ca"]["admin"] = array('tdavis','cnakamoto');
+$configInfos["schol.viu.ca"]["master"] = "a603389b49d8da5b41bb4217e4ce5c1a";
+$configInfos["schol.viu.ca"]["email_db_options"] =
+    array(
+        'type'        => 'db',
+        'dsn'         => 'mysql://ors:rilinc@bckup-sigyn.mtroyal.ca/research',
+        'mail_table'  => 'mail_queue',
+    );
 
 
 
