@@ -1,7 +1,7 @@
 
 <?php
 	/**
-	 * List and manipulate Student Research Day registrations
+	 * List and manipulate CREATE registrations
 	 *
 	 * 
 	 *
@@ -32,7 +32,7 @@
 	$menuitems[]=array('title'=>'List','url'=>'srd.php?section=view');
 	$hdr->AddRows("list",$menuitems);
     
-    $tmpl=loadPage("srd", 'Student Research Day Registration');
+    $tmpl=loadPage("srd", 'CREATE Registration');
     //print_r($_REQUEST);
     //Manage the SRD table(s)
 
@@ -427,16 +427,16 @@ ABSTRACT: $descrip
             $tmpl->addVar('view', "MAYBECOLOR", $maybeColor);
 
              // determine sorting for query
-             $orderBy = "ORDER BY srd.lastName, srd.firstName ASC";
+             $orderBy = "ORDER BY users.last_name, users.first_name ASC";
              if(isset($sort)) {
                 if($sort == 'name') {
                     $tmpl->addVar('view', "NAMESORTCLASS", "class='arrow-down'");
                     $tmpl->addVar('view', "DATESORTCLASS", "");
-                    $orderBy = "ORDER BY srd.lastName, srd.firstName";
+                    $orderBy = "ORDER BY users.last_name, users.first_name";
                 } elseif($sort == 'date') {
                     $tmpl->addVar('view', "DATESORTCLASS", "class='arrow-down'");
                     $tmpl->addVar('view', "NAMESORTCLASS", "");
-                    $orderBy = "ORDER BY srd.submit_date DESC";
+                    $orderBy = "ORDER BY fc.submit_date DESC";
                 }
              }
 
@@ -454,13 +454,13 @@ ABSTRACT: $descrip
 	         	$year_options.="<option value=$year $sel>$year</option>\n";   
 	         }
 	             
-
-             $sql="SELECT srd.*, dep.name AS departmentName, CONCAT(users.first_name, ' ', users.last_name) AS supervisor
-                  FROM srd_reg AS srd
-		          LEFT JOIN departments AS dep ON srd.departmentId = dep.department_id
-		          LEFT JOIN users ON srd.supervisorId = users.user_id 
-		          WHERE 1 
-		    	  AND (
+			 
+			 $sql="SELECT fc.*, dep.name as departmentName, CONCAT(users.first_name, ' ', users.last_name) AS pi
+			 		FROM forms_create as fc
+			 		LEFT JOIN departments AS dep ON fc.department_id = dep.department_id
+			 		LEFT JOIN users ON fc.user_id = users.user_id
+			 		WHERE 1
+			 		AND (
 		    	    (YEAR(submit_date)=$srd_year 
 		    		AND MONTH(submit_date)>=1 
 		    		AND MONTH(submit_date)<6) 
@@ -468,9 +468,14 @@ ABSTRACT: $descrip
 		    		(YEAR(submit_date)=$srd_year-1
 		    		AND MONTH(submit_date)>5 
 		    		AND MONTH(submit_date)<=12)
-		    		)";
+		    		)
+			 		";
+			 	
              $sql = $sql . $orderBy;
          	 $regs=$db->getAll($sql);
+         	 echo("<pre>");
+         	 	print_r($regs);
+         	 	echo("</pre>");
 			$prev=$srd_year-1;
 			$range= "June " . $prev . ' - May ' . $srd_year;
             $tmpl->addVar('view', "COUNT", count($regs));
@@ -480,37 +485,37 @@ ABSTRACT: $descrip
              if(count($regs)>0){
                  foreach($regs as $key=>$reg){
 	                 $regs[$key]['year']=$srd_year;
-                     $sql = sprintf("SELECT COUNT(*) AS numCoresearchers FROM srd_researchers WHERE srd_reg_id = %s", $reg['srd_reg_id']);
+                     $sql = sprintf("SELECT COUNT(*) AS numCoresearchers FROM forms_create_coresearchers WHERE fcc_id = %s", $reg['form_create_id']);
                      $cores = $db->getRow($sql);
                      $regs[$key]['coresearchers'] = $cores['numCoresearchers'] == 0 ? '' : $cores['numCoresearchers'];
          			 $regs[$key]['submit_date']=date('Y-m-d, H:m',strtotime($reg['submit_date']));
-                     switch($reg['hreb'])
+                     switch($reg['reb_req'])
                      {
-                         case 'yes' :
-                             $regs[$key]['hreb'] = $yesColor;
+                         case '1' :
+                             $regs[$key]['reb_req'] = $yesColor;
                              break;
-                         case 'no' :
-                             $regs[$key]['hreb'] = $ignoreColor;
+                         case '1' :
+                             $regs[$key]['reb_req'] = $ignoreColor;
                              break;
-                         case 'notsure' :
-                             $regs[$key]['hreb'] = $maybeColor;
+                         case '0' :
+                             $regs[$key]['reb_req'] = $maybeColor;
                      }
-                     if($reg['hreb'] == 'no') {
-                         $regs[$key]['hreb2'] =  $ignoreColor;
+                     if($reg['reb_req'] == 'no') {
+                         $regs[$key]['reb_status'] =  $ignoreColor;
                      } else {
-                         switch($reg['hreb2'])
+                         switch($reg['reb_status'])
                          {
-                             case 'yes' :
-                                 $regs[$key]['hreb2'] = $yesColor;
+                             case '2' :
+                                 $regs[$key]['reb_status'] = $yesColor;
                                  break;
-                             case 'no' :
-                                 $regs[$key]['hreb2'] = $noColor;
+                             case '1' :
+                                 $regs[$key]['reb_status'] = $noColor;
                                  break;
-                             case 'notsure' :
-                                 $regs[$key]['hreb2'] = $maybeColor;
+                             case '0' :
+                                 $regs[$key]['reb_status'] = $maybeColor;
                          }
                      }
-                     $regs[$key]['foip']=($reg['foip'] == 1) ? $yesColor : $noColor;
+                     $regs[$key]['iagree']=($reg['iagree'] == 1) ? $yesColor : $noColor;
                      switch($reg['status'])
                      {
                          case '0' :
@@ -524,7 +529,7 @@ ABSTRACT: $descrip
                      }
                      
                      if($reg['mode']>0){
-                     	$sql="SELECT name,id FROM srd_categories WHERE id=$reg[mode]";
+                     	$sql="SELECT name,id FROM forms_create_categories WHERE cat_id=$reg[mode]";
 					 	$cats=$db->GetRow($sql);
 					 	$reg['mode']=$cats['name'];
                      }
