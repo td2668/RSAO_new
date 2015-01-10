@@ -184,14 +184,15 @@ cntfield.value = maxlimit - field.value.length;
 		        </tr>
 				    <td><label>No Judging:</label></td>
 			        <td><input type="checkbox" name='nojudging' {NOJUDGING} /> <span class="enfasis"> (Opt out of being judged for prizes)</span></td>
-		        </tr>        
+		        </tr>   
+		             
                 <tr>
 	                <td><label>Course:</label></td>
                 	<td><input style="width: 250px;" type="text" name="course" value="{COURSE}" placeholder="Course associated if applicable" \></td>
                 </tr>
                 <tr>
-	                <td><label>Program:</label></td>
-                	<td><input style="width: 250px;" type="text" name="program" value="{PROGRAM}" placeholder="Program, degree, etc."\></td>
+	                <td><label>Department:</label></td>
+                	<td>{DEPARTMENT_OPTIONS} <span class="enfasis"> (The dept. this project is associated with)</span></td>
                 </tr>
                 
                 <tr>

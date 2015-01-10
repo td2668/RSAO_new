@@ -123,6 +123,7 @@ if (sessionLoggedin()) {
            $which_fund = (isset($_REQUEST['which_fund'])) ? mysql_real_escape_string($_REQUEST['which_fund']) : '';
            $form_create_id= (isset($_REQUEST['form_create_id']) ? $_REQUEST['form_create_id'] : 0);
            $timeslots = (isset($_REQUEST['timeslots']))?$timeslots = implode(",", $_REQUEST['timeslots']): "";
+           $department_id= (isset($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0);
            
            $supervisor_id=($_REQUEST['supervisor_id']=='') ? 0 : $_REQUEST['supervisor_id'];
            if($supervisor_id>0) {$supervisor_last=''; $supervisor_first='';}
@@ -131,7 +132,7 @@ if (sessionLoggedin()) {
 	           	$supervisor_first=mysql_real_escape_string($_REQUEST['supervisor_first']);
 	       }
 	       $course=($_REQUEST['course']=='') ? '' : mysql_real_escape_string($_REQUEST['course']);
-	       $program=($_REQUEST['program']=='') ? '' : mysql_real_escape_string($_REQUEST['program']);
+	       //$program=($_REQUEST['program']=='') ? '' : mysql_real_escape_string($_REQUEST['program']);
            $type=($_REQUEST['type']=='') ? 0 : $_REQUEST['type'];
            if(isset($_REQUEST['slam'])) $slam=true; else $slam=0;
            if(isset($_REQUEST['nojudging'])) $nojudging=true; else $nojudging=0;
@@ -149,7 +150,7 @@ if (sessionLoggedin()) {
 		   timeslots='$timeslots',
 		   type=$type,
 		   course='".$course."',
-		   program='".$program."',
+		   department_id=$department_id,
 		   slam=$slam,
 		   nojudging=$nojudging
           
@@ -369,6 +370,9 @@ if (sessionLoggedin()) {
 		             if($form['nojudging']) $form['nojudging']="checked"; else $form['nojudging']='';
                      $form['created']= date($niceday,strtotime($form['created']));
                      $form['modified']= date("$niceday G:i",strtotime($form['modified']));
+					 
+					 $depts=$db->Execute("SELECT name,department_id FROM departments ORDER BY name");
+					 $form['department_options']=$depts->GetMenu2("department_id",$form['department_id']);
 					 
 					 $cats=$db->Execute("SELECT name,cat_id FROM forms_create_categories");
 					 $form['cat_options']=$cats->GetMenu2("type",$form['type']);
