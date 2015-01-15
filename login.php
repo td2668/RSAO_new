@@ -68,8 +68,8 @@ if ($_REQUEST["ajax"]=="yes") {
 } else {
 	//die('In the else again');
     //header("Location: http://research.mtroyal.ca/index.php");
-    header("Location: {$configInfo['url_root']}/index.php");
-    // $tmpl=loadPage("login_page","Sign in","loginlogout");
+    //header("Location: {$configInfo['url_root']}/index.php");
+     $tmpl=loadPage("login_page","Sign in","loginlogout");
 }
 
 if (sessionLoggedin() == false) {

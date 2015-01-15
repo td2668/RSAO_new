@@ -124,6 +124,7 @@ if (sessionLoggedin()) {
            $form_create_id= (isset($_REQUEST['form_create_id']) ? $_REQUEST['form_create_id'] : 0);
            $timeslots = (isset($_REQUEST['timeslots']))?$timeslots = implode(",", $_REQUEST['timeslots']): "";
            $department_id= (isset($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0);
+           if($department_id=='') $department_id=0;
            
            $supervisor_id=($_REQUEST['supervisor_id']=='') ? 0 : $_REQUEST['supervisor_id'];
            if($supervisor_id>0) {$supervisor_last=''; $supervisor_first='';}
@@ -213,7 +214,7 @@ if (sessionLoggedin()) {
         	if($_REQUEST['locksubmit']=='true' and isset($_REQUEST['form_create_id'])){
         	//If this fired then there is a completed tracking form and all other fields are verified.
         	//Lock the application from user editing (user can still print and copy)
-        		$sql="UPDATE forms_create SET status=1 WHERE form_create_id=$_REQUEST[form_create_id]";
+        		$sql="UPDATE forms_create SET status=1, submit_date=NOW() WHERE form_create_id=$_REQUEST[form_create_id]";
         		$db->Execute($sql);
         	
         	

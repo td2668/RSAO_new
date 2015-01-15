@@ -485,7 +485,7 @@ ABSTRACT: $descrip
              if(count($regs)>0){
                  foreach($regs as $key=>$reg){
 	                 $regs[$key]['year']=$srd_year;
-                     $sql = sprintf("SELECT COUNT(*) AS numCoresearchers FROM forms_create_coresearchers WHERE fcc_id = %s", $reg['form_create_id']);
+                     $sql = sprintf("SELECT COUNT(*) AS numCoresearchers FROM forms_create_coresearchers WHERE fc_id = %s", $reg['form_create_id']);
                      $cores = $db->getRow($sql);
                      $regs[$key]['coresearchers'] = $cores['numCoresearchers'] == 0 ? '' : $cores['numCoresearchers'];
          			 $regs[$key]['submit_date']=date('Y-m-d, H:m',strtotime($reg['submit_date']));
@@ -494,24 +494,24 @@ ABSTRACT: $descrip
                          case '1' :
                              $regs[$key]['reb_req'] = $yesColor;
                              break;
-                         case '1' :
+                         case '2' :
                              $regs[$key]['reb_req'] = $ignoreColor;
                              break;
-                         case '0' :
+                         case '3' :
                              $regs[$key]['reb_req'] = $maybeColor;
                      }
-                     if($reg['reb_req'] == 'no') {
+                     if($reg['reb_req'] == '2') {
                          $regs[$key]['reb_status'] =  $ignoreColor;
                      } else {
                          switch($reg['reb_status'])
                          {
-                             case '2' :
+                             case '1' :
                                  $regs[$key]['reb_status'] = $yesColor;
                                  break;
-                             case '1' :
+                             case '2' :
                                  $regs[$key]['reb_status'] = $noColor;
                                  break;
-                             case '0' :
+                             case '3' :
                                  $regs[$key]['reb_status'] = $maybeColor;
                          }
                      }
@@ -528,16 +528,16 @@ ABSTRACT: $descrip
                              $regs[$key]['status'] = 'Finalized';
                      }
                      
-                     if($reg['mode']>0){
-                     	$sql="SELECT name,id FROM forms_create_categories WHERE cat_id=$reg[mode]";
+                     if($reg['type']>0){
+                     	$sql="SELECT name,cat_id FROM forms_create_categories WHERE cat_id=$reg[type]";
 					 	$cats=$db->GetRow($sql);
-					 	$reg['mode']=$cats['name'];
+					 	$regs[$key]['type']=$cats['name'];
                      }
                      else $reg['mode']='';
                      
                      
-                     if(strlen($reg['title'])>30) $regs[$key]['title']=substr($reg['title'],0,30) . '...';
-                     if(strlen($reg['descrip'])<5) $regs[$key]['title']="<font color='red'>".$regs[$key]['title']."</font>";
+                     if(strlen($reg['create_name'])>30) $regs[$key]['create_name']=substr($reg['create_name'],0,30) . '...';
+                     if(strlen($reg['summary'])<5) $regs[$key]['create_name']="<font color='red'>".$regs[$key]['create_name']."</font>";
                      if($reg['moved']==TRUE) {
                      	$regs[$key]['dis']="disabled='disabled'"; 
                      	$regs[$key]['mname']='-Moved-';
@@ -550,7 +550,7 @@ ABSTRACT: $descrip
                      
                      //$srd_year=GetSchoolYear(time());
     	
-		    		$sql="SELECT * FROM poster_reg WHERE studentid='$reg[studentid]' 
+		    		$sql="SELECT * FROM poster_reg WHERE studentid='$reg[user_id]' 
 		    		AND (
 		    		(YEAR(submit_date)=$srd_year 
 		    		AND MONTH(submit_date)>=1 
@@ -570,9 +570,7 @@ if($reg['pref']=='poster')
 		    			{ $regs[$key]['p']="checked='checked'"; $regs[$key]['m']='';}
 		    		else {$regs[$key]['m']="checked='checked'"; $regs[$key]['p']='';}
 */
-					switch($reg['st_category']){
-						
-					}
+					
 		    		
                 }//foreach
                 $tmpl->addRows('mainlist',$regs);

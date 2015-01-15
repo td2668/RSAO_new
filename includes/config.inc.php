@@ -112,7 +112,7 @@ $configInfos["research-prep.mtroyal.ca"]["email_db_options"] =
         'mail_table'  => 'mail_queue',
     );
 
-/*
+
 $configInfos["localhost"]["host"] = 'localhost';
 $configInfos["localhost"]["user"] = 'ors';
 $configInfos["localhost"]["pass"] = 'rilinc';
@@ -122,7 +122,7 @@ $configInfos["localhost"]["peardir"] = '/vagrant/vendor/conservatory/research-pe
 $configInfos["localhost"]["debug"] = true;
 $configInfos["localhost"]["authmethod"] = 'database,usertable';
 $configInfos["localhost"]["url_root"] = 'http://localhost';
-$configInfos["localhost"]["file_root"] = '//Users/tdavis/Sites/webrepo/research/tags/release-4.0/';
+$configInfos["localhost"]["file_root"] = '//Users/tdavis/Sites/webrepo/research/tags/release-5.0/';
 $configInfos["localhost"]["upload_root"] = $configInfos["localhost"]["file_root"] . '/documents/uploads/';
 $configInfos["localhost"]["picture_path"] = $configInfos["localhost"]["file_root"] . '/documents/shared/pictures/';
 $configInfos["localhost"]["picture_url"] = '/pictures/';
@@ -133,8 +133,8 @@ $configInfos["email_db_options"] =  array(
     'dsn'         => 'mysql://ors:rilinc@localhost/research',
     'mail_table'  => 'mail_queue',
 );
-*/
 
+/*\
 $configInfos["localhost"]["host"] = 'localhost';
 $configInfos["localhost"]["user"] = 'ors';
 $configInfos["localhost"]["pass"] = 'rilinc';
@@ -157,7 +157,7 @@ $configInfos["email_db_options"] =  array(
 );
 
 
-
+*/
 
 
 // Global variable $configinfo will be filled with correct info depending on the server name

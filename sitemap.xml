@@ -150,7 +150,8 @@ Funding</funding>-->
 </media>
 -->
 <!-- <contact_us>Contact Us</contact_us> -->
-<loginlogout type="loginlogout" url="#login-box">Sign in,Sign out
+<!-- <loginlogout1 type="loginlogout" url="#login-box">Ajax in,Ajax out</loginlogout1> -->
+<loginlogout type="loginlogout" url="login.php">Sign in,Sign out	
 <!--An element of type loginlogout is handled special.
 The if no session is started, Sign in text will be displayed on menu, otherwise Sign out text. Sign in text and Sign out text should be specified, separated by a comma.
 All else is like type dynamic.--></loginlogout>

@@ -53,22 +53,22 @@
     <patTemplate:tmpl name="mainlist" type="OddEven">
         <patTemplate:sub condition="odd">
             <tr bgcolor='#CCCCCC'>
-            	<td>{SRD_REG_ID}</td>
-                <td>{LASTNAME}, {FIRSTNAME}</td>
+            	<td>{FORM_CREATE_ID}</td>
+                <td>{PI}</td>
 <!--
                 <td><input type="checkbox" {MAIN} readonly="readonly"></td>
                 <td><input type="checkbox" {ST} readonly="readonly"></td>
 -->
-                <td>{STUDENTID}</td>
+                <td>{USER_ID}</td>
                 <td>{DEPARTMENTNAME}</td>
-                <td>{TITLE}</td>
+                <td>{CREATE_NAME}</td>
                 <td>{SUBMIT_DATE}</td>
                 <td>{CORESEARCHERS}</td>
-                <td style='background-color:{HREB}'>&nbsp;</td>
-                <td style='background-color:{HREB2}'>&nbsp;</td>
-                <td style='background-color:{FOIP}'>&nbsp;</td>
+                <td style='background-color:{REB_REQ}'>&nbsp;</td>
+                <td style='background-color:{REB_STATUS}'>&nbsp;</td>
+                <td style='background-color:{IAGREE}'>&nbsp;</td>
                 <td>{STATUS}</td>
-                <td>{MODE}</td>
+                <td>{TYPE}</td>
 
                 <td>{POSTERS}</td>
                 <td>
@@ -84,22 +84,22 @@
                 </patTemplate:sub>
                 <patTemplate:sub condition="even">
                     <tr bgcolor="#CCFFFF">
-                    	<td>{SRD_REG_ID}</td>
-                        <td>{LASTNAME}, {FIRSTNAME}</td>
+                    	<td>{FORM_CREATE_ID}</td>
+                        <td>{PI}</td>
 <!--
                         <td><input type="checkbox" {MAIN} readonly="readonly"></td>
                 		<td><input type="checkbox" {ST} readonly="readonly"></td>
 -->
-                        <td>{STUDENTID}</td>
+                        <td>{USER_ID}</td>
                         <td>{DEPARTMENTNAME}</td>
-                        <td>{TITLE}</td>
+                        <td>{CREATE_NAME}</td>
                         <td>{SUBMIT_DATE}</td>
                         <td>{CORESEARCHERS}</td>
-                        <td style='background-color:{HREB}'>&nbsp;</td>
-                        <td style='background-color:{HREB2}'>&nbsp;</td>
-                        <td style='background-color:{FOIP}'>&nbsp;</td>
+                        <td style='background-color:{REB_REQ}'>&nbsp;</td>
+                        <td style='background-color:{REB_STATUS}'>&nbsp;</td>
+                        <td style='background-color:{IAGREE}'>&nbsp;</td>
                         <td>{STATUS}</td>
-                        <td>{MODE}</td>
+                        <td>{TYPE}</td>
                         <td>{POSTERS}</td>
                         <td>
                         	<button type='button'  onClick='window.location="srd.php?section=edit&id={SRD_REG_ID}&year={YEAR}";'>Edit</button>

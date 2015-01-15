@@ -339,7 +339,7 @@ function sessionProcessForm() {
     }
 
    
-	return "invalid";
+	return "<b style='color:red'>Invalid username or password</b>";
 }
 
 /**
