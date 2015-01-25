@@ -51,33 +51,33 @@
     $success='';
     
     if(isset($_REQUEST['add'])){
-        $sql="INSERT into srd_reg VALUES();";
+        $sql="INSERT into forms_create set modified=NOW(), created=NOW();";
         if($db->Execute($sql) === false)
         	$success= "<font color='red'>Error inserting: ".$db->ErrorMsg()."</font>";
         else {
 	        $success="Started";
 			$_REQUEST['id']=mysql_insert_id();
-			$sql="UPDATE srd_reg SET submit_date=NOW() WHERE srd_reg_id=$_REQUEST[id]";
-			if($db->Execute($sql) === false)
-				$success.= " <font color='red'>Error updating: ".$db->ErrorMsg()."</font>";
 			$_REQUEST['section']='edit';
 			}
 			
         //print_r($_REQUEST);
     }
-    if(isset($_REQUEST['deleteid'])) if($_REQUEST['deleteid']>0){
-	    $sql="DELETE FROM srd_researchers WHERE id=$_REQUEST[deleteid]";
-	    $db->Execute($sql);
-	    $_REQUEST['section']='edit';
-    }
-    if(isset($_REQUEST['addcores'])) {
-	    $sql="INSERT INTO srd_researchers SET 
-	    		first='".mysql_real_escape_string($_REQUEST['newcores_first'])."', 
-	    		last='".mysql_real_escape_string($_REQUEST['newcores_last'])."', 
-	    		srd_reg_id=$_REQUEST[id]";
-	    $db->Execute($sql);
-	    $_REQUEST['section']='edit';
-    }
+    
+    if(isset($_REQUEST['add_cores'])) {
+		$coresearcher_id=($_REQUEST['cores_add']=='') ? 0 : $_REQUEST['cores_add'];
+       if($coresearcher_id>0) {$co_last=''; $co_first='';}
+       else {
+           	$co_last=mysql_real_escape_string($_REQUEST['co_last']);
+           	$co_first=mysql_real_escape_string($_REQUEST['co_first']);
+       }
+	   $result=$db->Execute("INSERT INTO forms_create_coresearchers SET
+								user_id=$coresearcher_id,
+								lastname='$co_last',
+								firstname='$co_first',
+								fc_id=$_REQUEST[id] ");
+		if(!result) print($db->ErrorMsg());
+		
+	}
     
     
     if(isset($_REQUEST['delete'])){
@@ -91,6 +91,12 @@
             //print_r($arr);
         }
         
+    }
+    if(isset($_REQUEST['deleteid'])) if($_REQUEST['deleteid'] != '') {
+	    $sql="DELETE FROM forms_create_coresearchers WHERE fcc_id=$_REQUEST[deleteid]";
+	    if($db->Execute($sql) === false)
+        $success= "<font color='red'>Error deleting: ".$db->ErrorMsg()."</font>";
+      else $success="Deleted";
     }
     
 if(isset($_REQUEST['move'])){
@@ -379,36 +385,66 @@ ABSTRACT: $descrip
 	$success="Email Sent";
     }
 
-    
-    if(isset($_REQUEST['update']) || isset($_REQUEST['addcores'])){
+    print_r($_REQUEST);
+    if(isset($_REQUEST['update']) || isset($_REQUEST['add_cores']) || isset($_REQUEST['deleteid'])){
         if(isset($_REQUEST['id'])){
+	       $user_id= (isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : 0);
+	       $create_name = (isset($_REQUEST['create_name'])) ? mysql_real_escape_string($_REQUEST['create_name']) : '';
+           $which_fund = (isset($_REQUEST['which_fund'])) ? mysql_real_escape_string($_REQUEST['which_fund']) : '';
+           $form_create_id= (isset($_REQUEST['form_create_id']) ? $_REQUEST['form_create_id'] : 0);
+           $timeslots = (isset($_REQUEST['timeslots']))?$timeslots = implode(",", $_REQUEST['timeslots']): "";
+           $department_id= (isset($_REQUEST['department_id']) ? $_REQUEST['department_id'] : 0);
+           if($department_id=='') $department_id=0;
+           
+           $supervisor_id=($_REQUEST['supervisor_id']=='') ? 0 : $_REQUEST['supervisor_id'];
+           if($supervisor_id>0) {$supervisor_last=''; $supervisor_first='';}
+           else {
+	           	$supervisor_last=mysql_real_escape_string($_REQUEST['supervisor_last']);
+	           	$supervisor_first=mysql_real_escape_string($_REQUEST['supervisor_first']);
+	       }
+	       $course=($_REQUEST['course']=='') ? '' : mysql_real_escape_string($_REQUEST['course']);
+	       $program=($_REQUEST['program']=='') ? '' : mysql_real_escape_string($_REQUEST['program']);
+           $type=($_REQUEST['type']=='') ? 0 : $_REQUEST['type'];
+           if(isset($_REQUEST['slam'])) $slam=true; else $slam=0;
+           if(isset($_REQUEST['nojudging'])) $nojudging=true; else $nojudging=0;
+	       $summary = (isset($_REQUEST['summary'])) ? mysql_real_escape_string($_REQUEST['summary']) : '';
+	       $iagree= (isset($_REQUEST['iagree'])) ? 1 : 0;
+            $reb_req= (isset($_REQUEST['reb_req'])) ? $_REQUEST['reb_req'] : 0;
+            $reb_status= (isset($_REQUEST['reb_status'])) ? $_REQUEST['reb_status'] : 0;
+	       
 	        
-	        if(isset($_REQUEST['time'])) {
-		        $timeslots=implode(',', $_REQUEST['time']);
-	        }
-            
-            $sql="UPDATE srd_reg SET
-            firstName='". mysql_real_escape_string(isset($_REQUEST['firstName']) ? $_REQUEST['firstName'] : '') . "',
-            lastName='". mysql_real_escape_string(isset($_REQUEST['lastName']) ? $_REQUEST['lastName'] : '') . "',
-            studentid='". mysql_real_escape_string(isset($_REQUEST['studentid']) ? $_REQUEST['studentid'] : '') . "',
-            email='". mysql_real_escape_string(isset($_REQUEST['email']) ? $_REQUEST['email'] : '') . "',
-            program='". mysql_real_escape_string(isset($_REQUEST['program']) ? $_REQUEST['program'] : '') . "',
-            course='". mysql_real_escape_string(isset($_REQUEST['course']) ? $_REQUEST['course'] : '') . "',
-            hreb='". mysql_real_escape_string(isset($_REQUEST['hreb']) ? $_REQUEST['hreb'] : '') . "',
-            hreb2='". mysql_real_escape_string(isset($_REQUEST['hreb2']) ? $_REQUEST['hreb2'] : '') . "',
-            title='". mysql_real_escape_string(isset($_REQUEST['title']) ? $_REQUEST['title'] : '') . "',
-            descrip='". mysql_real_escape_string(isset($_REQUEST['descrip']) ? $_REQUEST['descrip'] : '') . "',
-            foip='". mysql_real_escape_string(isset($_REQUEST['foip']) ? $_REQUEST['foip'] : '') . "',
-            status='". mysql_real_escape_string(isset($_REQUEST['status']) ? $_REQUEST['status'] : '') . "',
-            url='". mysql_real_escape_string(isset($_REQUEST['url']) ? $_REQUEST['url'] : '') . "',
-            departmentId='". mysql_real_escape_string(isset($_REQUEST['department']) ? $_REQUEST['department'] : '') . "',
-            mode='". mysql_real_escape_string(isset($_REQUEST['mode']) ? $_REQUEST['mode'] : '') . "',
-            slots='$timeslots',
-            supervisor='".mysql_real_escape_string(isset($_REQUEST['supervisor']) ? $_REQUEST['supervisor'] : '') . "',
-            supervisorId='".mysql_real_escape_string(isset($_REQUEST['supervisorid']) ? $_REQUEST['supervisorid'] : '') . "'
-            WHERE srd_reg_id= $_REQUEST[id];
-            ";
-      if($db->Execute($sql) === false)
+	        
+	        $sql="  UPDATE `forms_create` SET 
+	        user_id={$user_id},
+	        create_name='{$create_name}',
+           created='{$_REQUEST['created']}',
+           `modified` = NOW(),
+           `create_name` = '{$create_name}',
+           `supervisor_id`=$supervisor_id,
+		   `supervisor_last`='$supervisor_last',
+		   `supervisor_first`='$supervisor_first',
+		   timeslots='$timeslots',
+		   type=$type,
+		   course='".$course."',
+		   program='{$program}',
+		   department_id=$department_id,
+		   slam=$slam,
+		   nojudging=$nojudging,
+		   `summary` = '{$summary}',
+		   `iagree` = {$iagree},
+            reb_req = {$reb_req},
+            reb_status = {$reb_status}
+          
+           WHERE `form_create_id` = '{$_REQUEST['id']}'
+           ";
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	    if($db->Execute($sql) === false)
         $success= "<font color='red'>Error inserting: ".$db->ErrorMsg()."</font>";
       else $success="Saved";
       }
@@ -519,12 +555,15 @@ ABSTRACT: $descrip
                      switch($reg['status'])
                      {
                          case '0' :
-                             $regs[$key]['status'] = 'Submitted';
+                             $regs[$key]['status'] = 'Pre-submit';
                              break;
                          case '1' :
-                             $regs[$key]['status'] = 'Contacted';
+                             $regs[$key]['status'] = 'Submitted';
                             break;
                          case '2' :
+                             $regs[$key]['status'] = 'Contacted';
+                            break;
+                         case '3' :
                              $regs[$key]['status'] = 'Finalized';
                      }
                      
@@ -591,69 +630,92 @@ if($reg['pref']=='poster')
                        LEFT JOIN departments ON srd.departmentId = departments.department_id
                        LEFT JOIN users ON srd.supervisorId = users.user_id
                        WHERE srd_reg_id={$_REQUEST['id']}";
+                       
+                 $sql="SELECT fc.*
+			 		FROM forms_create as fc
+			 		WHERE form_create_id={$_REQUEST['id']}";
+			 		
                  $reg=$db->getRow($sql);
 
                  if($reg){
-
+				 		
+				 	//lead student
+				 	$sql="SELECT CONCAT(last_name,', ',first_name) as name,user_id FROM users WHERE emp_type='STUDENT' ORDER BY last_name,first_name";
+				 	$users=$db->Execute($sql);
+				 	if($users){
+					 	$reg['user_options']=$users->GetMenu2('user_id',$reg['user_id'],$blank1stItem="0:");
+					 	$users->MoveFirst();
+					 	$reg['coresearcher_add']=$users->GetMenu2('cores_add');
+				 	}	
+				 		
                      // build the list of coresearchers
                      
-                     $sql = sprintf("SELECT CONCAT(cores.first, ' ', cores.last) AS coresearcher, id
-                              FROM srd_researchers AS cores WHERE cores.srd_reg_id = %s", $reg['srd_reg_id']);
+                     $sql = "SELECT CONCAT(fcc.firstname, ' ', fcc.lastname) AS coresearcher, fcc.fcc_id, fcc.user_id,
+                     		  CONCAT (u.first_name,' ',u.last_name) AS coname
+                              FROM forms_create_coresearchers AS fcc
+                              LEFT JOIN users as u ON u.user_id=fcc.user_id
+                              WHERE fcc.fc_id={$reg['form_create_id']}";
                      $coresearchers=$db->getAll($sql);
                      
+                     $colist=array();
 					 if(count($coresearchers)>0) {
-						 $tmpl->AddRows("coresearchers",$coresearchers);
-						 $tmpl->setAttribute('coresearchers','visibility','visible');
-						}
+						 foreach($coresearchers as $coresearcher) {
+						 	if($coresearcher['user_id']==0) $name=$coresearcher['coresearcher'];
+						 	else $name=$coresearcher['coname'];
+						 	$colist[]=array('coresearcher'=>$name,'id'=>$coresearcher['fcc_id']);
+							}
+						$tmpl->setAttribute('coresearchers','visibility','visible');
+					}
+					//print_r($colist);
+					
+					$tmpl->AddRows("coresearchers",$colist);
+					$reg['created']= date($niceday,strtotime($reg['created']));
+                    $reg['modified']= date("$niceday G:i",strtotime($reg['modified']));
 					
 					$users=$db->Execute("SELECT CONCAT(users.last_name, ', ', users.first_name),user_id FROM users WHERE 1 ORDER BY last_name,first_name");
-					$reg['supervisor_options']=$users->getMenu2("supervisorid",$reg['user_id']);
-						
-                    $depts=$db->Execute("SELECT name,department_id from departments ORDER BY name");
-                    $reg['dept_options']=$depts->getMenu2("department",$reg['departmentId']);
-                    //echo($reg['dept_options']);
-                    
-                    $cats=$db->Execute("SELECT name,id from srd_categories ORDER BY sort_order");
-                    $reg['cat_options']=$cats->getMenu2("mode",$reg['mode']);
-                    echo($reg['cat_options']);
-                    
-                    $regtime=explode( ',', $reg['slots']);
-                    $targyear=GetSchoolYear(time());
-                    //echo($targyear);
-                    $times=$db->Execute("SELECT `desc`, `slot` from srd_reg_slots WHERE year='$targyear' ORDER BY `slot` ");
-                    
-                    $reg['time_options']=$times->getMenu2("time",$regtime,true,true,12);
-                    //echo($reg['cat_options']);
+					$reg['supervisor_options']=$users->getMenu2("supervisor_id",$reg['supervisor_id']);
+					
+					$thisyear=GetSchoolYear(time());
+		             $slots=explode(',',$reg['timeslots']);
+		             $timeslots=$db->Execute("SELECT CONCAT(type,': ',slot) as name,id FROM forms_create_timeslots WHERE year=$thisyear ORDER BY type,id");
+		             if($timeslots->RecordCount()>0){
+			             $reg['timeslots']=$timeslots->GetMenu2("timeslots",$slots,true,true,$timeslots->RecordCount()+1);
+			         }
+		             if($reg['slam']) $reg['slam']="checked"; else $reg['slam']='';
+		             if($reg['nojudging']) $reg['nojudging']="checked"; else $reg['nojudging']='';
+		             
+		             $depts=$db->Execute("SELECT name,department_id FROM departments ORDER BY name");
+					 $reg['dept_options']=$depts->GetMenu2("department_id",$reg['department_id']);
+					 
+					 $cats=$db->Execute("SELECT name,cat_id FROM forms_create_categories");
+					 $reg['cat_options']=$cats->GetMenu2("type",$reg['type']);
+					 
+					 $reg['course']=htmlentities($reg['course']);
+					 $reg['program']=htmlentities($reg['program']);
+					 
+					 if($reg['iagree']) $reg['checkagree']='checked';
                      
-                    $reg['year']= (isset($_REQUEST['year'])) ? $_REQUEST['year'] : GetSchoolYear(time());
-
-                    $reg['submit_date']=date('M j/y',strtotime($reg['submit_date']));
-                    $reg['pref1']=($reg['pref']=='poster') ? "checked='checked'" : '';
-                    $reg['pref2']=($reg['pref']=='multimedia' || $reg['pref']=='oral') ? "checked='checked'" : '';
-                  
-
-                    $reg['hrebneed1']=($reg['hreb']=='yes') ? "checked='checked'" : '';
-                    $reg['hrebneed2']=($reg['hreb']=='no') ? "checked='checked'" : '';
-                    $reg['hrebneed3']=($reg['hreb']=='notsure') ? "checked='checked'" : '';
-
-                    $reg['foipyes']=($reg['foip'] == 1) ? "checked='checked'" : '';
-                    $reg['foipno']=($reg['foip'] == 0) ? "checked='checked'" : '';
-
-                    $reg['hrebdone1']=($reg['hreb2']=='yes') ? "checked='checked'" : '';
-                    $reg['hrebdone2']=($reg['hreb2']=='no') ? "checked='checked'" : '';
-                    $reg['hrebdone3']=($reg['hreb2']=='notsure') ? "checked='checked'" : '';
+                     switch($reg['reb_req']){
+	                    case 1 :  $reg['REB_REQ_1']="checked=''";break;
+	                    case 2 :  $reg['REB_REQ_2']="checked=''";break;
+	                    case 3 :  $reg['REB_REQ_3']="checked=''";break;
+	                 }
+	                 switch($reg['reb_status']){
+	                    case 1 :  $reg['REB_STATUS_1']="checked=''";break;
+	                    case 2 :  $reg['REB_STATUS_2']="checked=''";break;
+	                    case 3 :  $reg['REB_STATUS_3']="checked=''";break;
+	                 }
+					
                     
-                    //if($reg['srd']) $reg['srd']="checked='checked'"; else $reg['srd']='';
-                    //if($reg['strd']) $reg['strd']="checked='checked'"; else $reg['strd']='';
                     
-                    $options_list=array('submitted','contacted','finalized');
+                    $options_list=array(0=>'pre-submit',1=>'submitted',2=>'contacted',3=>'finalized');
                     $opt=array();
                     foreach($options_list as $key=>$option){
-                        if($reg['status']==$key) $sel='selected'; else $sel='';
+                        if($reg['status']==$key) $sel="selected=''"; else $sel='';
                         $opt[]=array('value'=>$key, 'text'=>$option, 'sel'=>$sel);
                     }
                     $tmpl->addRows('status_options',$opt);
-                    //print_r($reg);
+                    
                     $tmpl->addVars('edit',$reg);
                     if(isset($success)) $tmpl->addVar('edit','success',$success);
                  }
