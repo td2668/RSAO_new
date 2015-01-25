@@ -1,5 +1,8 @@
 <patTemplate:tmpl name="PAGE" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <div id="mainpage">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 
 <patTemplate:tmpl name="view" visibility="hidden">
 <!--
@@ -72,7 +75,7 @@
 
                 <td>{POSTERS}</td>
                 <td>
-                <button type='button' onClick='window.location="srd.php?section=edit&id={SRD_REG_ID}&year={YEAR}";'>Edit</button>
+                <button type='button' onClick='window.location="srd.php?section=edit&id={FORM_CREATE_ID}&year={YEAR}";'>Edit</button>
                 </td>
                 <td>
                 <button type='button' {DIS} style="background-color:{MCOLOUR};" onClick='window.location="srd.php?move&id={SRD_REG_ID}&year={YEAR}";'>{MNAME}</button>
@@ -102,13 +105,13 @@
                         <td>{TYPE}</td>
                         <td>{POSTERS}</td>
                         <td>
-                        	<button type='button'  onClick='window.location="srd.php?section=edit&id={SRD_REG_ID}&year={YEAR}";'>Edit</button>
+                        	<button type='button'  onClick='window.location="srd.php?section=edit&id={FORM_CREATE_ID}&year={YEAR}";'>Edit</button>
                         </td>
                         <td>
-                			<button type='button' {DIS} style="background-color:{MCOLOUR};" onClick='window.location="srd.php?move&id={SRD_REG_ID}&year={YEAR}";'>{MNAME}</button>
+                			<button type='button' {DIS} style="background-color:{MCOLOUR};" onClick='window.location="srd.php?move&id={FORM_CREATE_ID}&year={YEAR}";'>{MNAME}</button>
                 		</td>
                 		<td>
-                <button type='button' onClick='window.location="srd.php?extract&id={SRD_REG_ID}&year={YEAR}";'>Extract</button>
+                <button type='button' onClick='window.location="srd.php?extract&id={FORM_CREATE_ID}&year={YEAR}";'>Extract</button>
                 </td>
                     </tr>
                 </patTemplate:sub>
@@ -118,35 +121,45 @@
 
     <patTemplate:tmpl name="edit" visibility="hidden">
         <form name="edit" action="srd.php?update">
-            <input type="hidden" name="id" value="{SRD_REG_ID}">
+            <input type="hidden" name="id" value="{FORM_CREATE_ID}">
             <input type="hidden" name="year" value="{YEAR}"/>
             <input type="hidden" name="deleteid" />
             <input type="hidden" name="addid" />
-            <fieldset >
-                <div class="users"><label class="users">Last Name</label>
-                    <input type="text" value="{LASTNAME}" size="60" name="lastName"
-                                           title="The name of the lead student" \>
+            <script language="JavaScript" type="text/javascript">
+
+            $(function() {
+        $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $( "#datepicker2" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+    });
+			</script>	
+            <fieldset  name="users">
+	            <legend>Info</legend>
+                <div class="users"><label class="users">Lead Student</label>
+                    {USER_OPTIONS}
                 </div>
                 
-                <div class="users"><label class="users">First Name</label>
-                    <input type="text" value="{FIRSTNAME}" size="60" name="firstName"
-                                           title="The name of the lead student" \>
-                </div>
                 <div class="users"><label class="users">Co-researchers</label>
 	                <table cellpadding="0" cellspacing="0">
                    <patTemplate:tmpl name="coresearchers" visibility="hidden">
-                   		<tr><td><input type="text" name="cores" value="{CORESEARCHER}"/> <button type="submit" onclick="document.edit.deleteid.value={ID}">Delete</button></td></tr>
+                   		<tr><td><input type="text" name="cores{ID}" value="{CORESEARCHER}"/> <button type="submit" onclick="document.edit.deleteid.value={ID}">Delete</button></td></tr>
                    </patTemplate:tmpl>
-                   	<tr><td><input type="text" name="newcores_first" title="First"  /><input type="text" name="newcores_last" title="Last"/>  <button type="submit" name="addcores">Add</button></td></tr>
+                   	<tr><td>{CORESEARCHER_ADD} <input type="text" name="co_first" title="First"  /><input type="text" name="co_last" title="Last"/>  <button type="submit" name="add_cores">Add</button></td></tr>
 	                </table>
                 </div>
-                <div class="users"><label class="users">Student ID#</label>
-                    <input type="text" size="10" value="{STUDENTID}" name="studentid"
-                                           title="We need at least one ID# if it's a group registering" \>
+                
+                <div class="users"><label class="users">Supervisor</label>
+	                <table cellpadding="0" cellspacing="0">
+                   
+                   	<tr><td class="users">{SUPERVISOR_OPTIONS} <input type="text" name="supervisor_first" title="First" value="{SUPERVISOR_FIRST}"  /><input type="text" name="supervisor_last" title="Last" value="{SUPERVISOR_LAST}"/> </td></tr>
+	                </table>
                 </div>
-                <div class="users"><label class="users">Contact Email</label>
-                    <input type="text" size="40" value="{EMAIL}" name="email"
-                                           title="This will be our main way of contacting you" \>
+
+                <div class="users"><label class="users">Created</label>
+                    <input type="text" id='datepicker' name="created" maxlength="20" value="{CREATED}">    
+                </div>
+                <div class="users"><label class="users">Modified</label>
+                    <input type="text" id='datepicker2' name="modified" maxlength="20" value="{MODIFIED}">                    
+
                 </div>
                 <div class="users"><label class="users">Program</label>
                     <input type="text" size="40" value="{PROGRAM}" name="program"
@@ -160,59 +173,50 @@
                                            title="If your project is part of or linked to a course, provide the course number"
                         \>
                 </div>
-                <div class="users"><label class="users">Faculty Supervisor (if any)</label>
-	                {SUPERVISOR_OPTIONS} or 
-                    <input type="text" size="40" name="supervisor" value="{SUPERVISOR}"/>
-                </div>
-                <div class="users"><label class="usersnobox">Presentation Preference:</label> 
+                
+                <div class="users"><label class="usersnobox">Type</label> 
 	                {CAT_OPTIONS}
 	                
                 </div>
-                <div class="users"><label class="users">URL</label>
-                    <input type="text" size="40" value="{URL}" name="url"
-                                           title="Multimedia URL option" \>
+                <div class="users"><label class="usersnobox">Timeslots</label> 
+	                {TIMESLOTS}
+	                
                 </div>
-                <div class="users"><label class="usersnobox">Which Times?: </label>
-                    {TIME_OPTIONS}
+                <div class="users"><label class="users">Scholarship Slam</label>
+                <input type="checkbox" name='slam' {SLAM} />
                 </div>
-                <div class="users"><label class="usersnobox">Human participants?</label>
-                                                    &nbsp;&nbsp;Yes<input type="radio" name="hreb" value="yes"
-                                                    {HREBNEED1} \>
-                                                    &nbsp;&nbsp;No<input type="radio" name="hreb" value="no" {HREBNEED2}
-                                                    \>
-                                                    &nbsp;&nbsp;Not Sure<input type="radio" name="hreb" value="notsure"
-                                                    {HREBNEED3} \>
+                
+                <div class="users"><label class="users">No Judging</label>
+	                <input type="checkbox" name='nojudging' {NOJUDGING} />
                 </div>
-                <div class="users"><label class="usersnobox">Ethics approval?</label>
-                                                                 &nbsp;&nbsp;Yes<input type="radio" name="hreb2"
-                                                                                       value="yes" {HREBDONE1} \>
-                                                                 &nbsp;&nbsp;No<input type="radio" name="hreb2"
-                                                                                      value="no" {HREBDONE2} \>
-                                                                 &nbsp;&nbsp;Not Sure<input type="radio" name="hreb2"
-                                                                                            value="notsure" {HREBDONE3}
-                                                                 \>
-                        <br><br>
+              
+                
+                <div class="users"><label class="usersnobox">Requires Ethics?</label>
+	                
+	                
+	                <input type="radio" name="reb_req" value="1" {REB_REQ_1} /> Yes &nbsp;<input type="radio" name="reb_req" value="3" {REB_REQ_3} /> No &nbsp;<input type="radio" name="reb_req" value="2" {REB_REQ_2} /> Don't Know 
+                                                    
                 </div>
-                <div class="users"><label class="usersnobox">Agree to FOIP?</label>
-                        &nbsp;&nbsp;Yes<input type="radio" name="foip"
-                                              value="1" {FOIPYES} \>
-                        &nbsp;&nbsp;No<input type="radio" name="foip"
-                                             value="0" {FOIPNO} \>
-                        <br><br>
+                <div class="users"><label class="usersnobox">Has Ethics?</label>
+                                                                 <input type="radio" name="reb_status" value="1" {REB_STATUS_1}/> Yes  &nbsp;<input type="radio" name="reb_status" value="3" {REB_STATUS_3} /> No  &nbsp;<input type="radio" name="reb_status" value="2" {REB_STATUS_2} /> Don't Know
+                        
+                </div>
+                <div class="users"><label class="usersnobox">Do Not Record Me</label>
+                        <input type="checkbox" name="iagree" {CHECKAGREE} />
+                        
                 </div>
                 <div class="users"><label class="users">Status:</label>
                     <select name='status'>
                         <patTemplate:tmpl name="status_options">
-                            <option value="{VALUE}"
-                            {SEL}>{TEXT}</option>
+                            <option value="{VALUE}" {SEL}>{TEXT}</option>
                         </patTemplate:tmpl>
                     </select>
                 </div>
-                <div class="users"><label class="users">Title of the presentation:</label>
-                        <textarea cols="70" rows="2" name="title">{TITLE}</textarea>
+                <div class="users"><label class="users">Title:</label>
+                        <textarea cols="70" rows="2" name="create_name">{CREATE_NAME}</textarea>
                 </div>
                 <div class="users"><label class="users">Project Description:</label>
-                        <textarea cols="70" rows="10" name="descrip">{DESCRIP}</textarea>
+                        <textarea cols="70" rows="10" name="summary">{SUMMARY}</textarea>
                 </div>
                 <br/>
                 <div style="text-align: center">
