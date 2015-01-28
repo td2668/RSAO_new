@@ -296,6 +296,7 @@ if (sessionLoggedin()) {
                         //Check to see if it has been submitted yet or not.
                         if($form['status'] ==0)  $form['delete']= "<button class='' title='Delete' type='button' name='delete' value='delete' onClick='javascript: if(confirm(\"Really delete?\")) window.location=\"/my_create.php?delete&form_create_id=$form[form_create_id]\";'><img src='/images/icon-sm-trash.gif'></button>";
                         else $form['delete']='';
+                        if($form['create_name']=='') $form['create_name']='<i>Untitled</i>';
                         
                         if ($form['status']==0) $form['status']='In Progress';
                         if ($form['status']==1) $form['status']='Submitted';

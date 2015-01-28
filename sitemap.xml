@@ -123,6 +123,10 @@ Funding</funding>-->
 <!--   <srdregform type="static">SRD Registration</srdregform>-->
     <!--<ugr_findajob type="dynamic">Find a Research Job</ugr_findajob>-->
 </ugr_intro>
+<fair type="static">Faculty Profile
+	<profile type="dynamic" url="myprofile.php">View</profile>
+	<fair_edit type="dynamic" url="fair/fair.php">Edit</fair_edit>
+</fair>
 
 <!--<handbook type="dynamic" url="handbook.php">Handbook
     <internal_funding type="section">Internal Funding
