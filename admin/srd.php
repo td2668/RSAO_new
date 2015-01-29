@@ -84,11 +84,12 @@
         
         if(isset($_REQUEST['id'])) {
             
-            $sql="DELETE from srd_reg WHERE srd_reg_id={$_REQUEST['id']}";
+            $sql="DELETE from forms_create WHERE form_create_id={$_REQUEST['id']}";
             //echo $sql;
-            $result=$db->Execute($sql);
-            //$arr = $db->ErrorMsg();
-            //print_r($arr);
+            if($db->Execute($sql) === false)
+			$success= "<font color='red'>Error deleting: ".$db->ErrorMsg()."</font>";
+			else $success="Deleted";
+			$db->Execute("DELETE FROM forms_create_coresearchers WHERE fc_id={$_REQUEST['id']}");
         }
         
     }
@@ -385,7 +386,7 @@ ABSTRACT: $descrip
 	$success="Email Sent";
     }
 
-    print_r($_REQUEST);
+    //print_r($_REQUEST);
     if(isset($_REQUEST['update']) || isset($_REQUEST['add_cores']) || isset($_REQUEST['deleteid'])){
         if(isset($_REQUEST['id'])){
 	       $user_id= (isset($_REQUEST['user_id']) ? $_REQUEST['user_id'] : 0);
@@ -509,9 +510,11 @@ ABSTRACT: $descrip
 			 	
              $sql = $sql . $orderBy;
          	 $regs=$db->getAll($sql);
-         	 echo("<pre>");
+         	 /*
+echo("<pre>");
          	 	print_r($regs);
          	 	echo("</pre>");
+*/
 			$prev=$srd_year-1;
 			$range= "June " . $prev . ' - May ' . $srd_year;
             $tmpl->addVar('view', "COUNT", count($regs));
