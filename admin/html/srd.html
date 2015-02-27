@@ -233,6 +233,18 @@
 
     </patTemplate:tmpl>
     
+    <patTemplate:tmpl name="timeslots" visibility="hidden">
+    	
+    	<patTemplate:tmpl name="oneslot">
+    		<hr>
+    		{SLOT} ({TYPE})<br>
+    		<patTemplate:tmpl name="participants">
+    		<a href="srd.php?section=edit&id={FORM_CREATE_ID}">{PI}</a><br>
+    		</patTemplate:tmpl>
+    	</patTemplate:tmpl>
+    
+    </patTemplate:tmpl>
+    
     </div>
 
 </patTemplate:tmpl>
