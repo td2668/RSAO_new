@@ -30,6 +30,7 @@
 	$menuitems=array();
 	$menuitems[]=array('title'=>'Add','url'=>'srd.php?add');
 	$menuitems[]=array('title'=>'List','url'=>'srd.php?section=view');
+	$menuitems[]=array('title'=>'Timeslots','url'=>'srd.php?section=timeslots');
 	$hdr->AddRows("list",$menuitems);
     
     $tmpl=loadPage("srd", 'CREATE Registration');
@@ -505,7 +506,10 @@ ABSTRACT: $descrip
 		    		(YEAR(submit_date)=$srd_year-1
 		    		AND MONTH(submit_date)>5 
 		    		AND MONTH(submit_date)<=12)
+		    	  OR
+		    	    submit_date='000-00-00'
 		    		)
+		    	  
 			 		";
 			 	
              $sql = $sql . $orderBy;
@@ -527,7 +531,7 @@ echo("<pre>");
                      $sql = sprintf("SELECT COUNT(*) AS numCoresearchers FROM forms_create_coresearchers WHERE fc_id = %s", $reg['form_create_id']);
                      $cores = $db->getRow($sql);
                      $regs[$key]['coresearchers'] = $cores['numCoresearchers'] == 0 ? '' : $cores['numCoresearchers'];
-         			 $regs[$key]['submit_date']=date('Y-m-d, H:m',strtotime($reg['submit_date']));
+         			 $regs[$key]['submit_date']= ($reg['submit_date']=='0000-00-00') ? '' :  date('Y-m-d, H:m',strtotime($reg['submit_date']));
                      switch($reg['reb_req'])
                      {
                          case '1' :
@@ -724,6 +728,54 @@ if($reg['pref']=='poster')
                  }
              }
              $hdr->AddVar("header","title","SRD: Add/Update");
+         break;
+         
+         case "timeslots":
+         	$tmpl->setAttribute('timeslots','visibility','visible');
+         	$srd_year=GetSchoolYear(time());
+         	$sql="SELECT fc.*, CONCAT(users.first_name, ' ', users.last_name) AS pi
+			 		FROM forms_create as fc
+			 		LEFT JOIN users ON fc.user_id = users.user_id
+			 		WHERE 1
+			 		AND (
+		    	    (YEAR(submit_date)=$srd_year 
+		    		AND MONTH(submit_date)>=1 
+		    		AND MONTH(submit_date)<6) 
+		    	  OR
+		    		(YEAR(submit_date)=$srd_year-1
+		    		AND MONTH(submit_date)>5 
+		    		AND MONTH(submit_date)<=12)
+		    		)
+			 		";
+			 	
+         	 $regs=$db->getAll($sql);
+         	 
+         	 $sql="SELECT * from forms_create_timeslots WHERE year=$srd_year";
+         	 $slots=$db->getAll($sql);
+         	 
+         	 if(count($slots)>0){
+	         	 foreach($slots as $slot){
+		         	//print_r($slot);
+		         	$tmpl->addVars('oneslot',$slot);
+		         	$namelist=array();
+		         	foreach($regs as $reg){
+			         	$regslots=explode(',',$reg['timeslots']);
+			         	//print_r($regslots);
+			         	//echo($slot['id']);
+			         	//echo("<br>");
+			         	if(in_array($slot['id'],$regslots)) {
+				         	$namelist[]=$reg;	
+				        }
+			        }
+			        $tmpl->addRows('participants',$namelist);
+		         	
+		         	$tmpl->parseTemplate('oneslot','a');
+		         	$tmpl->clearTemplate('participants');
+		         	
+		         }
+	         }
+	         $hdr->AddVar("header","title","SRD: Timeslots");
+         	
          break;
          
          
