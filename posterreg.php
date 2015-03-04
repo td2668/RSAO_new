@@ -1,5 +1,6 @@
 <?php
 require_once('includes/global.inc.php');
+ini_set("include_path", '/home/scholviu/php:' . ini_get("include_path")  );
 
 $tmpl=loadPage("posterform", 'Poster Submission');
 //showMenu("research_office");
