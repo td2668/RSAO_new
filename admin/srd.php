@@ -282,7 +282,7 @@ if(isset($_REQUEST['move'])){
 		            $recipient = $configInfo["debug_email"];
 		            $recipient_name = $configInfo["debug_email_name"];
 		      } else {
-		        $recipient = $_SERVER['PHP_AUTH_USER'].'@mtroyal.ca';
+		        $recipient = 'trevor.davis@viu.ca';
 		        $recipient_name = "$_SERVER[PHP_AUTH_USER]";
 		      }
 		      $from_params = empty( $from_name ) ? '<' . $from . '>' : '"' . $from_name . '" <' . $from . '>';
@@ -319,12 +319,15 @@ ABSTRACT: $descrip
     	//fire a message to the site admin to notify
     		//print_r($_SERVER);
     		$message='';
-      		 if(!isset($_SERVER['PHP_AUTH_USER'])) $success="EMAIL not set to send";
+    		
+      		 if(0);
       		 else {
       		 
       		 require_once "Mail/Queue.php";
-		      $mail_queue = new Mail_Queue( $configInfo['email_db_options'], $configInfo['email_options'] );
-		      $mime = new Mail_mime();
+      		 
+		     $mail_queue = new Mail_Queue( $configInfo['email_db_options'], $configInfo['email_options'] );
+		      
+		     $mime = new Mail_mime();
 		
 		      $from = 'research@viu.ca';
 		      $from_name = 'SRD Bot';
@@ -334,21 +337,25 @@ ABSTRACT: $descrip
 		            $recipient = $configInfo["debug_email"];
 		            $recipient_name = $configInfo["debug_email_name"];
 		      } else {
-		        $recipient = $_SERVER['PHP_AUTH_USER'].'@viu.ca';
-		        $recipient_name = "$_SERVER[PHP_AUTH_USER]";
+		        $recipient = 'kathryn.jepson@viu.ca';
+		        $recipient_name = "Kathryn";
 		      }
 		      $from_params = empty( $from_name ) ? '<' . $from . '>' : '"' . $from_name . '" <' . $from . '>';
 		      $recipient_params = empty( $recipient_name ) ? '<' . $recipient . '>' : '"' . $recipient_name . '" <' . $recipient . '>';
 		      $hdrs = array(
 		        'From' => $from_params,
 		        'To' => $recipient_params,
-		        'Subject' => "Full List of Abstracts",
+		        'Subject' => "Full List of Student Presentations",
 		        );
 
       		 $srd_year=GetSchoolYear(time());
-      		 $sql="SELECT * FROM srd_reg 
-      		 		WHERE 1
-      		 		AND (
+      		 $sql="SELECT fc.*, dep.name as departmentName, CONCAT(users.first_name, ' ', users.last_name) AS pi, profiles.email as email
+			 		FROM forms_create as fc
+			 		LEFT JOIN departments AS dep ON fc.department_id = dep.department_id
+			 		LEFT JOIN users ON fc.user_id = users.user_id
+			 		LEFT JOIN profiles ON users.user_id=profiles.user_id
+			 		WHERE 1
+			 		AND (
 		    	    (YEAR(submit_date)=$srd_year 
 		    		AND MONTH(submit_date)>=1 
 		    		AND MONTH(submit_date)<6) 
@@ -356,33 +363,60 @@ ABSTRACT: $descrip
 		    		(YEAR(submit_date)=$srd_year-1
 		    		AND MONTH(submit_date)>5 
 		    		AND MONTH(submit_date)<=12)
-		    		)";
+		    	  OR
+		    	    submit_date='000-00-00'
+		    		)
+		    	  
+			 		";
 
       		 $projs=$db->GetAll($sql);
+      		 $message="ID,PIName,Email,Modified,Title,Summary,DeptName,Course,Supervisor,Type,CoNames\r\n";
       		 foreach($projs as $proj){
 	      		 if($proj){
-	      		 	$title=$proj['title'];
-	      		 	$descrip=$proj['descrip'];
+		      		 if($proj['supervisor_id'] != 0) {
+			      		 $super=$db->getRow("SELECT CONCAT(users.first_name, ' ', users.last_name) as super FROM users where user_id=$proj[supervisor_id]");
+			      		 $supervisor=$super['super'];
+			  		 }
+			  		 else $supervisor=$proj['supervisor_first'].' '.$proj['supervisor_last'];
+	      		 	//build list of topics
+	      		 	$proj['create_name']=addslashes($proj['create_name']);
+	      		 	$proj['summary']=str_replace(array("\r", "\n"), '', addslashes($proj['summary']));
+	      		 	if($proj['type']>0){
+                     	$sql="SELECT name,cat_id FROM forms_create_categories WHERE cat_id=$proj[type]";
+					 	$cats=$db->GetRow($sql);
+					 	$proj['type']=$cats['name'];
+                     }
+                     $conames="";
+                     $cos=$db->getAll("SELECT fcc.*, CONCAT(users.first_name, ' ', users.last_name) as name 
+                                        FROM forms_create_coresearchers as fcc 
+                                        LEFT JOIN users on (fcc.user_id = users.user_id)
+                                        WHERE fcc.fc_id=$proj[form_create_id]");
+                     if(count($cos)>0){
+	                     foreach($cos as $co) {
+		                 	if($co['user_id'] != 0) $conames.=$co['name'].'; ';
+		                 	else $conames.="$co[firstname]  $co[lastname]; ";
+		                 }
+	                 }
+	      		 	
 	      		 }
-	      		 else {$title="Unknown"; $descrip="Unknown";}
 			      		    
-			      $message .= "
-			      
-NAME: $proj[firstName] $proj[lastName]
-TITLE: $title
-ABSTRACT: $descrip
-			        ";
+			      $message .= "\"$proj[form_create_id]\",\"$proj[pi]\",\"$proj[email]\",\"$proj[modified]\",\"$proj[create_name]\",\"$proj[summary]\",\"$proj[departmentName]\",\"$proj[course]\",\"$supervisor\",\"$proj[type]\",\"$conames\"\r\n";
 			}
+
 		    $mime->setTXTBody( $message );
-		
+			if(!$mime->addAttachment($message, 'text/plain','create.csv',false)) echo "ERROR ATTACHING";
 		    $body = $mime->get();
 		    $hdrs = $mime->headers( $hdrs );
+		    
 		
 		    $queueMailId = $mail_queue->put( $from, $recipient, $hdrs, $body );
+		    echo("Mail queue ID = $queueMailId <br>");
 		
 		    if ( $configInfo["email_send_now"] ) {
 		        $send_result = $mail_queue->sendMailById( $queueMailId );
 		    }
+		    //if(mail("trevor.davis@viu.ca",'CREATE CSV',"hi","From:trevor.davis@viu.ca")) $success="Email Sent";
+		    //else $success="Error sending mail";
 		   }  
 	$success="Email Sent";
     }
