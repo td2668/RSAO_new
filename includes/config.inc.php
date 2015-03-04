@@ -38,9 +38,10 @@ $configInfos["schol.viu.ca"]["dbdriver"] = "mysql";
 $configInfos["schol.viu.ca"]["dbname"] = "scholviu_research";
 $configInfos["schol.viu.ca"]["peardir"] = '/usr/share/pear';
 $configInfos["schol.viu.ca"]["debug"] = false;
+$configInfos["schol.viu.ca"]["authmethod"] = 'database,usertable';
 $configInfos["schol.viu.ca"]["url_root"] = 'http://schol.viu.ca/';
 $configInfos["schol.viu.ca"]["file_root"] = '/home/scholviu/public_html';
-$configInfos["schol.viu.ca"]["upload_root"] = '/var/www/research_htdocs/documents/shared/uploads/';
+$configInfos["schol.viu.ca"]["upload_root"] = '/home/scholviu/public_html/documents/uploads/';
 $configInfos["schol.viu.ca"]["tracking_docs"] = '/var/www/research_htdocs/documents/shared/tracking/';
 $configInfos["schol.viu.ca"]["picture_path"] = '/var/www/research_htdocs/documents/shared/pictures/';
 $configInfos["schol.viu.ca"]["picture_url"] = 'documents/shared/pictures/';
@@ -111,7 +112,7 @@ $configInfos["research-prep.mtroyal.ca"]["email_db_options"] =
         'dsn'         => 'mysql://ors:rilinc@orsadmin-prep.sm.mtroyal.ca/research',
         'mail_table'  => 'mail_queue',
     );
-
+/*\
 
 $configInfos["localhost"]["host"] = 'localhost';
 $configInfos["localhost"]["user"] = 'ors';
@@ -134,17 +135,17 @@ $configInfos["email_db_options"] =  array(
     'mail_table'  => 'mail_queue',
 );
 
-/*\
+*/
 $configInfos["localhost"]["host"] = 'localhost';
 $configInfos["localhost"]["user"] = 'ors';
 $configInfos["localhost"]["pass"] = 'rilinc';
 $configInfos["localhost"]["dbdriver"] = 'mysql';
 $configInfos["localhost"]["dbname"] = 'research';
 $configInfos["localhost"]["peardir"] = '/vagrant/vendor/conservatory/research-pear/';
-$configInfos["localhost"]["debug"] = true;
+$configInfos["localhost"]["debug"] = false;
 $configInfos["localhost"]["authmethod"] = 'database,usertable';
 $configInfos["localhost"]["url_root"] = 'http://localhost';
-$configInfos["localhost"]["file_root"] = '/Users/trevor/Documents/Sites/RSAO/';
+$configInfos["localhost"]["file_root"] = '/Users/trevor/Documents/Sites/RSAO_new/';
 $configInfos["localhost"]["upload_root"] = $configInfos["localhost"]["file_root"] . '/documents/uploads/';
 $configInfos["localhost"]["picture_path"] = $configInfos["localhost"]["file_root"] . '/documents/shared/pictures/';
 $configInfos["localhost"]["picture_url"] = '/pictures/';
@@ -157,7 +158,7 @@ $configInfos["email_db_options"] =  array(
 );
 
 
-*/
+
 
 
 // Global variable $configinfo will be filled with correct info depending on the server name
