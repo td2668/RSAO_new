@@ -84,6 +84,22 @@ $configInfos["admin.schol.viu.ca"]["tracking_docs"] = "/var/www/orsadmin-prep_ht
 $configInfos["admin.schol.viu.ca"]["admin"] = array('tdavis','cnakamoto');
 $configInfos["admin.schol.viu.ca"]["picture_path"] = "/home/scholviu/public_html/admin/documents/shared/pictures/";
 $configInfos["admin.schol.viu.ca"]["picture_url"] = "/admin/documents/shared/pictures/";
+$configInfos["admin.schol.viu.ca"]["email_send_now"] = true;
+$configInfos["admin.schol.viu.ca"]["debug_email"] = false;
+$configInfos["admin.schol.viu.ca"]["email_db_options"] =
+    array(
+        'type'        => 'db',
+        'dsn'         => 'mysql://scholviu_ors:rilinc@localhost/scholviu_research',
+        'mail_table'  => 'mail_queue',
+    );
+$configInfos["admin.schol.viu.ca"]['email_options'] = array(
+        'driver'   => 'smtp',
+        'host'     => 'localhost',
+        'port'     => 25,
+        'auth'     => false,
+        'username' => '',
+        'password' => '',
+    );
 
 
 
@@ -121,6 +137,22 @@ $configInfos["admin.localhost"]["irgf_docs"] = "/admin/documents/shared/irgf";
 $configInfos["admin.localhost"]["logpath"] = "/Users/tdavis/Sites/webrepo/research/tags/release-4.0/admin/";
 $configInfos["admin.localhost"]["picture_path"] = "/Users/tdavis/Sites/webrepo/tags/release-4.0/admin/documents/pictures/";
 $configInfos["admin.localhost"]["mail_file_path"] = '/Users/tdavis/Sites/webrepo/tags/release-4.0/admin/documents/mailfiles/';
+$configInfos["admin.localhost"]["email_send_now"] = false;
+$configInfos["admin.localhost"]["debug_email"] = false;
+$configInfos["admin.localhost"]["email_db_options"] =
+    array(
+        'type'        => 'db',
+        'dsn'         => 'mysql://ors:rilinc@localhost/research',
+        'mail_table'  => 'mail_queue',
+    );
+$configInfos["admin.localhost"]['email_options'] = array(
+        'driver'   => 'smtp',
+        'host'     => 'localhost',
+        'port'     => 25,
+        'auth'     => false,
+        'username' => '',
+        'password' => '',
+    );
 
 if (strpos($_SERVER['HTTP_HOST'],':') != 0) {
     list($server,$port)=explode(":",$_SERVER['HTTP_HOST']);
