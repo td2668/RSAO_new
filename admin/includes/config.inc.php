@@ -16,7 +16,7 @@ if (function_exists('date_default_timezone_set')) { // to avoid problems in php4
 
 $configInfos = array();
 
-//  PRODUCTION Mount Royal Research site:
+//  PRODUCTION VIU Research site:
 $configInfos["orsadmin.mtroyal.ca"]["server_name"] = "orsadmin/MRCResearch1";
 $configInfos["orsadmin.mtroyal.ca"]["host"] = "localhost";
 $configInfos["orsadmin.mtroyal.ca"]["user"] = "ors";
@@ -79,7 +79,8 @@ $configInfos["admin.schol.viu.ca"]["peardir"] = '/home/scholviu/php';
 $configInfos["admin.schol.viu.ca"]["debug"] = false;
 $configInfos["admin.schol.viu.ca"]["url_root"] = 'http://admin.schol.viu.ca/';
 $configInfos["admin.schol.viu.ca"]["file_root"] = '/home/scholviu/public_html/admin';
-$configInfos["admin.schol.viu.ca"]["upload_root"] = '/var/www/research-prep_htdocs/documents/uploads/';
+$configInfos["admin.schol.viu.ca"]["upload_root"] = '/home/scholviu/public_html/documents/uploads/';
+$configInfos["admin.schol.viu.ca"]["upload_webroot"] = '/documents/uploads/';
 $configInfos["admin.schol.viu.ca"]["tracking_docs"] = "/var/www/orsadmin-prep_htdocs/admin/documents/shared/tracking/";
 $configInfos["admin.schol.viu.ca"]["admin"] = array('tdavis','cnakamoto');
 $configInfos["admin.schol.viu.ca"]["picture_path"] = "/home/scholviu/public_html/admin/documents/shared/pictures/";
