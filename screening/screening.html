@@ -1,0 +1,1387 @@
+<html><head>
+<title>ARECCI Screening Tool</title>
+<link href="/arecci/screening/stylesheets/screen.css?1379532511" media="screen" rel="stylesheet" type="text/css">
+<link href="/arecci/screening/stylesheets/jquery-ui-1.8rc3.custom.css?1368148999" media="screen" rel="stylesheet" type="text/css">
+<link href="/arecci/screening/stylesheets/screen.css?1379532511" media="screen" rel="stylesheet" type="text/css">
+<link href="/arecci/screening/stylesheets/jquery.fancybox-1.3.1.css?1368148999" media="screen" rel="stylesheet" type="text/css">
+<link href="/arecci/screening/stylesheets/print.css?1368148999" media="print" rel="stylesheet" type="text/css">
+<!--[if lte IE 7]>
+<link href="/arecci/screening/stylesheets/main_ie.css?1368148999" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if lte IE 6]>
+<link href="/arecci/screening/stylesheets/ie6.css?1368148999" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script src="/arecci/screening/javascripts/jquery.js?1368148999" type="text/javascript"></script>
+<script src="/arecci/screening/javascripts/jquery-ui.js?1368148999" type="text/javascript"></script>
+<script src="/arecci/screening/javascripts/rails.js?1368148999" type="text/javascript"></script>
+<script src="/arecci/screening/javascripts/jquery.scrollfollow.js?1368148999" type="text/javascript"></script>
+<script src="/arecci/screening/javascripts/jquery.fancybox-1.3.1.js?1379068136" type="text/javascript"></script>
+<script src="/arecci/screening/javascripts/application.js?1381851851" type="text/javascript"></script>
+
+<meta content="authenticity_token" name="csrf-param">
+<meta content="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" name="csrf-token">
+</head>
+<body>
+<div id="top_header">
+<div class="container">
+<p>
+Alberta Innovates - Health Solutions
+</p>
+</div>
+</div>
+<div id="title">
+<div class="container">
+<div class="span-24">
+<h2><a href="http://www.aihealthsolutions.ca/arecci/screening" id="home_link">ARECCI Ethics Screening Tool</a></h2>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="span-20" id="content_container">
+<div id="content">
+<div id="intro">
+<h2>ARECCI Ethics Screening Tool</h2>
+<h2>Tool Background</h2>
+<p>Policy or legislative requirements often stipulate that research projects involving people or their health information must be reviewed by a Research Ethics Board (REB).  This raises a number of questions.  For example, what should be done with projects that are not considered research but involve people or their health information?  Should quality improvement (QI) or program evaluation projects also be assessed for their risk to people?  What are the characteristics of research versus quality improvement/evaluation projects? How do you decide what to review? How should ethics oversight of these “non-research” projects be approached? Some of these questions remain the subject of lengthy debate.</p>
+<p>A pRoject Ethics Community Consensus Initiative (ARECCI) (formerly The Alberta Research Ethics Community Consensus Initiative), an initiative of Alberta Innovates – Health Solutions (AIHS) (formerly the Alberta Heritage Foundation for Medical Research), developed this four-step, web-based ARECCI Ethics Screening Tool to provide practical “on the ground” decision-support assistance to project leaders and teams as they grapple with these very complex questions.  Content experts have developed the tool, and its context validity continues to be enhanced through focused implementation with experts and their projects.</p>
+<div class="feature_box">
+<div id="mobile_flowchart"><img alt="Flowchart" src="/arecci/screening/images/flowchart.png?1368148999"></div>
+<p><strong>Step 1: PRELIMINARY SCREEN:</strong> Helps identify those projects which clearly require REB review.</p>
+<p><strong>Step 2: PROJECT PRIMARY PURPOSE:</strong> A primary purpose screen sorts research from other types of projects to determine the appropriate review pathway (i.e., REB review or organization/context based oversight).</p>
+<p><strong>Step 3: RISK FILTERS:</strong> Based on the result in Step 2 (i.e., determination of project primary purpose), one of two risk filters automatically become available: one for research and one for QI/evaluation. These risk filters help the user identify ethical risks from the perspective of participants in the project.</p>
+<p><strong>Step 4: SCREENING RESULT:</strong> A summary score produces the category of risk for project participants. The category of risk is highlighted together with the corresponding recommended review action for the project. Specific items and their values that contribute to the total score are also listed.  This enables those responsible to plan appropriate risk-mitigating strategies before involving participants. Professional judgment is required in interpreting all screening results.</p>
+</div>
+<p>Email, Save, Print, and Notes functions have been incorporated throughout the tool to assist project team discussion and planning.</p>
+<p class="center">
+<button aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="intro_continue"><span class="ui-button-text">Continue »</span></button>
+</p>
+</div>
+<div id="reset">
+<a href="http://www.aihealthsolutions.ca/arecci/screening">Reset</a>
+</div>
+<div id="legend">
+<h2>Legend</h2>
+<p>
+<img alt="Information" src="/arecci/screening/images/information.png?1368148999">
+Provides more information about a question (if available).
+</p>
+<p>
+<img alt="Save" src="/arecci/screening/images/save.png?1368148999">
+<strong>Save the current state of the tool and retrieve a URL for bookmarking.</strong>
+<br>
+<em>Note: This is not the same as selecting File &gt; Save As in your browser. Please use this save function instead.</em>
+</p>
+<p>
+<img alt="Email" src="/arecci/screening/images/email.png?1368148999">
+E-mail the results of the tool.
+</p>
+<p>
+<img alt="Print" src="/arecci/screening/images/print.png?1368148999">
+Print the results of the tool.
+</p>
+<p>
+<img alt="Feedback" src="/arecci/screening/images/feedback.png?1368148999">
+Submit feedback regarding the tool.
+</p>
+</div>
+<div id="flowchart">
+<h2>Process</h2>
+<img alt="Flowchart" src="/arecci/screening/images/flowchart.png?1368148999">
+</div>
+<br style="clear:both;">
+<form accept-charset="UTF-8" action="/arecci/screening/response_sets/60854" class="edit_response_set" data-remote="true" id="edit_response_set_60854" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<label for="response_set_title">Project Title:</label>
+<h3 id="date">Date Completed: October 12, 2015</h3>
+<input id="response_set_title" name="response_set[title]" size="30" type="text">
+<input value="1" id="response_set_question_type_override_id" name="response_set[question_type_override_id]" type="hidden">
+</form>
+<div id="response_set_url">http://www.aihealthsolutions.ca/arecci/screening/60854/cb472ed36fce3d041c1e0521499e3f24</div>
+
+<div id="question_block_1">
+<h2>Step 1: Preliminary Questions</h2>
+<ul class="questions">
+<li>
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407250" class="edit_question_response" data-remote="true" id="edit_question_response_3407250" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="false" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" for="question_response_response_true_3407250"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407250" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right ui-state-active" aria-pressed="true" for="question_response_response_false_3407250"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407250" name="question_response[response]" value="false" type="radio">
+<input class="question_value " id="value_3407250" name="value_3407250[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+1. Is there an explicit requirement for review of this project by a Research Ethics Board as part of its funding arrangements?
+</p>
+<p style="display: block;" class="more_information">This item refers to projects where the funder requires ethics review by a REB. Examples of such funding agencies are: the Canadian Institutes of Health Research, the Canadian Health Services Research Foundation, the Natural Sciences and Engineering Research Council of Canada, the Social Sciences and Humanities Research Council, and Alberta Innovates – Health Solutions. Projects funded by these agencies are typically (but not always) considered research and all are required to undergo REB ethics review.</p>
+</li>
+<li>
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407251" class="edit_question_response" data-remote="true" id="edit_question_response_3407251" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="false" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" for="question_response_response_true_3407251"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407251" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right ui-state-active" aria-pressed="true" for="question_response_response_false_3407251"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407251" name="question_response[response]" value="false" type="radio">
+<input class="question_value " id="value_3407251" name="value_3407251[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+2. Are there any local policies that require this project to undergo review by a Research Ethics Board? 
+</p>
+<p style="display: block;" class="more_information">The intent of this item is to allow flexibility in the tool for different organizational local policies (where they exist) regarding requirements for research ethics board review.  For example, some jurisdictions require that all student projects must undergo ethics review by a designated REB, regardless of project classification.</p>
+</li>
+<li>
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407252" class="edit_question_response" data-remote="true" id="edit_question_response_3407252" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="false" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" for="question_response_response_true_3407252"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407252" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right ui-state-active" aria-pressed="true" for="question_response_response_false_3407252"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407252" name="question_response[response]" value="false" type="radio">
+<input class="question_value " id="value_3407252" name="value_3407252[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+3. Does the project involve use of a pharmaceutical device, drug or natural health product under Health Canada Food and Drug Act regulations or guidelines?
+</p>
+<p style="display: block;" class="more_information">Under the Health Canada Food and Drug Act regulations or guidelines, REB review is required. For more information please see: &lt;a href="http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php"&gt;http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php&lt;/a&gt;  NOTE: This applies to the development of a new device, drug, or natural health product or the testing of any of these for a use different from the original approval by Health Canada. This item does not apply to understanding or improving the use of an approved product in the local context.</p>
+</li>
+
+</ul>
+<h3>Notes:</h3>
+<form accept-charset="UTF-8" action="/arecci/screening/notes/182521" class="edit_note" data-remote="true" id="edit_note_182521" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<textarea cols="40" id="note_text_182521" name="note[text]" rows="20"></textarea>
+</form>
+
+<button aria-disabled="false" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Next »</span></button>
+<br>
+<div style="display: none;" class="results red" id="question_block_results_1">This project should be submitted to a Research Ethics Board.</div>
+</div>
+<div style="display: block;" id="question_block_2">
+<h2>Step 2: About Your Project</h2>
+<ul class="questions">
+<li class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407253" class="edit_question_response" data-remote="true" id="edit_question_response_3407253" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407253"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407253" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407253"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407253" name="question_response[response]" value="false" type="radio">
+<input class="question_value research" id="value_3407253" name="value_3407253[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+4. Is the project designed to test a specific hypothesis or answer a specific quantitative or qualitative question?
+</p>
+<p style="display: block;" class="more_information">This question helps assess whether your project fits in one of the two broad research approaches: quantitative and qualitative. A key component in this item is assessing whether or not there is a clearly stated research question. Qualitative research projects are guided by specifically formulated research questions. These types of research projects apply explicit qualitative theory which underlie and direct the methodology used in the design of the specific study, including the analysis plan. Quantitative research projects are directed by specific hypotheses or research questions that guide the selection of the scientific design of the specific study, including the analysis methods. In general, qualitative research develops theory through rigor in interpretation of observations. In general, quantitative research tests theory through the measurement of key variables.</p>
+</li>
+<li class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407254" class="edit_question_response" data-remote="true" id="edit_question_response_3407254" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407254"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407254" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407254"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407254" name="question_response[response]" value="false" type="radio">
+<input class="question_value research" id="value_3407254" name="value_3407254[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+5. Does the project involve a comparison of control groups?
+</p>
+<p style="display: block;" class="more_information">This question helps determine if your project fits a research design that uses multiple groups or sites to “control” for unrelated factors in the study. "Control" is considered important for rigor (precision) in studying the key variables of focus in this type of project. Projects designed to include such scientific control follow internationally accepted standards related to how they are going to be conducted with features such as precise power calculations and other techniques.</p>
+</li>
+<li class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407255" class="edit_question_response" data-remote="true" id="edit_question_response_3407255" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407255"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407255" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407255"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407255" name="question_response[response]" value="false" type="radio">
+<input class="question_value research" id="value_3407255" name="value_3407255[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+6. Is the project designed to support generalizations that go beyond the particular population the sample is being drawn from?
+</p>
+<p style="display: block;" class="more_information">This question assesses whether the design of your project fits with research that is specifically designed to produce results that can be assumed to be true (generalized) beyond the individual participants in the specific study.  In other words, with the clear intent of following internationally accepted scientific standards for "generalizability", your project design includes precise sample size calculations and other techniques related to how it is going to be conducted. Research designed for “generalizability” implies some future application of findings to the population of focus, although sometimes subjects do directly benefit from participation in a research project. Note: Producing and sharing learnings from a project for potential adaptation to other contexts is not the same thing as producing results that are considered scientifically generalizable because of specific features included in the design of the study such as precise power calculations.</p>
+</li>
+<li class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407256" class="edit_question_response" data-remote="true" id="edit_question_response_3407256" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407256"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407256" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407256"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407256" name="question_response[response]" value="false" type="radio">
+<input class="question_value research" id="value_3407256" name="value_3407256[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+7. Does the project impose any additional burdens on participants beyond what would be normally expected or normally experienced during the course of care, program participation or role expectations? 
+</p>
+<p style="display: block;" class="more_information">This question helps determine your project's fit with research in that participation is voluntary and that those participating will be involved in activities which are in addition to routine care, program provision, or other routine actions or duties on the part of the participant.</p>
+</li>
+<li class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407257" class="edit_question_response" data-remote="true" id="edit_question_response_3407257" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407257"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407257" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407257"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407257" name="question_response[response]" value="false" type="radio">
+<input class="question_value research" id="value_3407257" name="value_3407257[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+8. Is the primary purpose of the project to produce the kind of results that could be published in a research journal?
+</p>
+<p style="display: block;" class="more_information">This question clarifies whether the main goal of your project is to obtain results that CAN be published in a research type of journal. In other words, the most important reason you are doing this study is to contribute to the general body of knowledge on the topic through achieving scientific publication. By contrast, the main goal in quality improvement and evaluation is to provide information for decisions about a specific program or aspect of service delivery. Sharing by publication is a secondary goal in these non-research projects.</p>
+</li>
+<li class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407258" class="edit_question_response" data-remote="true" id="edit_question_response_3407258" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407258"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407258" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407258"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407258" name="question_response[response]" value="false" type="radio">
+<input class="question_value quality" id="value_3407258" name="value_3407258[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+9. Will project participants also likely be among those who might potentially benefit from the result of the project as it proceeds?
+</p>
+<p style="display: block;" class="more_information">This question helps determine your projects fit with quality improvement or evaluation. &nbsp;Quality improvement and evaluation projects provide timely and specific feedback on a program or process in a particular organization, setting, program or service. Thus, participants are more likely to benefit from findings produced in these projects than are subjects in research projects.</p>
+</li>
+<li class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407259" class="edit_question_response" data-remote="true" id="edit_question_response_3407259" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407259"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407259" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407259"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407259" name="question_response[response]" value="false" type="radio">
+<input class="question_value quality" id="value_3407259" name="value_3407259[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+10. Is the project intended to develop a better practice within your organization or setting? 
+</p>
+<p style="display: block;" class="more_information">This question clarifies if the main goal of your project is to produce findings that can be used to improve practice, program or service delivery within your organization or setting. &nbsp;In other words, the most important reason you are doing this study is to contribute in a timely manner to improving how some aspect of care or service is delivered in a particular location.</p>
+</li>
+<li class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407260" class="edit_question_response" data-remote="true" id="edit_question_response_3407260" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407260"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407260" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407260"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407260" name="question_response[response]" value="false" type="radio">
+<input class="question_value quality" id="value_3407260" name="value_3407260[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+11. Would this project still be done at your site even if the results might not be applicable anywhere else?  
+</p>
+<p style="display: block;" class="more_information">This question helps assess if your project fits with the usual focus of quality improvement and evaluation on site-specific programs, services or processes. &nbsp;By contrast, in research the specific site does not matter except in more general terms such as urban or rural. Please note, in the due course of time you may choose to share (through presentation at conferences or publication in an Evaluation or QI journal) the process and results of your project with others for adaptation to new contexts. However, sharing project results for potential benefit elsewhere is not the main reason you are doing the project.</p>
+</li>
+<li class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407261" class="edit_question_response" data-remote="true" id="edit_question_response_3407261" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407261"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407261" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407261"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407261" name="question_response[response]" value="false" type="radio">
+<input class="question_value quality" id="value_3407261" name="value_3407261[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+12. Does the language used in the project description refer specifically to features of a particular program, organization, or locale, rather than using more general terminology such as rural vs. urban populations?
+</p>
+<p style="display: block;" class="more_information">The language used in your project can help determine if it is quality improvement/ evaluation or research. Quality improvement and evaluation projects use terminology that specifically name a particular program or process, or a particular organization, setting, or service.  By contrast, research projects often describe location by more general characteristics such as rural versus urban, which reflects their intent to be "generalizable" across settings.</p>
+</li>
+<li class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407262" class="edit_question_response" data-remote="true" id="edit_question_response_3407262" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407262"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407262" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407262"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407262" name="question_response[response]" value="false" type="radio">
+<input class="question_value quality" id="value_3407262" name="value_3407262[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+13. Is the current project part of a continuous process of gathering or monitoring data within an organization?
+</p>
+<p style="display: block;" class="more_information">This question helps to assess the fit of your project with the primary focus of quality improvement. The focus of QI is on time-limited projects that target service, program, or process improvements. QI projects are often initiated in response to issues and trends identified through ongoing quality assurance monitoring of care and service provision.</p>
+</li>
+
+</ul>
+<h3>Notes:</h3>
+<form accept-charset="UTF-8" action="/arecci/screening/notes/182522" class="edit_note" data-remote="true" id="edit_note_182522" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<textarea cols="40" id="note_text_182522" name="note[text]" rows="20"></textarea>
+</form>
+
+<button aria-disabled="false" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Next »</span></button>
+<br>
+<div style="display: block;" class="results both" id="question_block_results_2">Your score indicates that the purpose of your project has not been determined.  To continue, please use your professional judgment to decide if your project is research or Quality Improvement or Program Evaluation.  If you are still unsure, consult with someone who understands the context of your project and is familiar with project ethics.<br><div class="ui-buttonset" id="choose"><input class="ui-helper-hidden-accessible" id="button_quality" name="choose" type="radio"><label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left" aria-pressed="false" for="button_quality"><span class="ui-button-text">Quality</span></label><input class="ui-helper-hidden-accessible" id="button_research" name="choose" type="radio"><label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right ui-state-active" aria-pressed="true" for="button_research"><span class="ui-button-text">Research</span></label></div> </div>
+</div>
+<div style="display: block;" id="question_block_3">
+<h2>Does your project involve...</h2>
+<ul class="questions">
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407263" class="edit_question_response" data-remote="true" id="edit_question_response_3407263" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407263"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407263" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407263"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407263" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407263" name="value_3407263[13]" value="13" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+14. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability, or reputation?
+</p>
+<p class="more_information">There is widespread agreement about the rights of individuals to privacy and the corresponding duty of investigators to treat private information in a respectful and confidential manner. This item assesses whether the current project is higher risk in terms of the probability that serious consequences could occur should there be any breach of confidentially of the private information being collected. Informed consent ought to be sought from all participants if this risk applies.
+The best protection of the confidentiality of personal information and records is through anonymity.  When that is not possible project leaders should indicate the extent of the confidentiality that can be promised to participants. Strategies or countermeasures to mitigate (ease the response should it occur) this risk should be clearly described in the plan and to the participants.  There should also be a plan to limit access to and provide secure storage of the private information for a specified period of time and with a specific plan for its destruction at the end of that timeframe.  These should be clearly outlined on the consent form and during the consent process.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example: Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407264" class="edit_question_response" data-remote="true" id="edit_question_response_3407264" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407264"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407264" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407264"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407264" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407264" name="value_3407264[10]" value="10" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+15. A real or potential conflict of interest between an investigator and the sponsor of the investigation?
+</p>
+<p class="more_information">"Sponsor" means the funder or benefactor or champion of the investigation or project.  A conflict of interest between an investigator and a sponsor may exist in any part of the project where decisions are made, including during data collection, data analysis and reporting of findings. 
+Biases may easily influence decisions at any stage of QI or evaluation projects since they are integral to an organization’s accountability to the public to demonstrate service quality.  
+Recommended Actions: The conflict of interest needs to be disclosed upfront. Further, measures should be included upfront in the project plan to counteract any undue influence from a conflict of interest on any aspect of the project; for example, dealing with negative findings.  Countermeasures can include removal of the influence through recusal in the decision-making process or use of a third party in elements of the project to protect confidentiality of personally identifying information.  
+Notes on COI: A conflict of interest (COI) occurs when an individual or organization is involved in multiple interests, one of which could possibly corrupt the motivation for an act in the other.  One way to understand this is to use the term "conflict of roles".  A person with two roles—an individual who is providing programs or services and is also the leader of a project, for example—may experience situations where those two roles conflict.  The conflict can be mitigated but it still exists.  Ways to mitigate conflicts of interests include removal, disclosure, recusal, third party evaluations and codes of ethics.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407265" class="edit_question_response" data-remote="true" id="edit_question_response_3407265" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407265"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407265" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407265"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407265" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407265" name="value_3407265[13]" value="13" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+16. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, service provider/recipient, teacher/student)?
+</p>
+<p class="more_information">If undue influence is present in the context in which the project will be carried out by virtue of the trust and dependency that exists in a power relationship, participants may feel restricted in how free they are to choose to participate in or withdraw from the project.  Relationships such as manager/ employee, health provider/patient, service provider/ recipient and teacher/student are particularly fraught with power imbalances.  The potential for any exertion of undue influence by an existing power relationship has to be carefully considered in the design of the project.  Consideration should be given to any potential perceptions of the participants that may affect their responses.  The design ought to include ways to reduce any form of coercion over participants.
+Informed consent should be considered for all participants if this risk applies.
+Include measures in the project plan to protect private information to ensure participants are shielded from potential retribution and feel free to share their ideas or information.  Suggestions in the case of the manager/employee situation:  Have someone else as project lead and data collector.  Anonymize all data to the respective manager of the employees.  Clearly outline in the informed consent process all risks and the plan to counter them.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407266" class="edit_question_response" data-remote="true" id="edit_question_response_3407266" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407266"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407266" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407266"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407266" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407266" name="value_3407266[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+17. Questions that collect information about sensitive issues, illegal behaviour, stigmatizing conditions or behaviours, or religious or cultural beliefs or practices?
+</p>
+<p class="more_information">Questions that touch on these and other sensitive issues may be anticipated to cause participants to be cautious in how they respond. This private information once collected may have consequences beyond the project that need to be anticipated in advance. 
+Countermeasures to protect privacy and confidentiality which minimize (reduce or curtail the magnitude of the potential response) or mitigate (ease the response should it occur) any potential negative impacts on participants should be built into the plan. Examples of countermeasures include appropriately trained personnel collecting the information and linkage to appropriate support resources. The need for obtaining informed consent ought to be carefully thought out in the context of the specific project.
+Examples of such sensitive issues include sexual orientation and practices. Examples of stigmatizing conditions or behaviours include physical, learning, or another type of disability; mental illness, gender identity, and age.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407267" class="edit_question_response" data-remote="true" id="edit_question_response_3407267" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407267"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407267" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407267"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407267" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407267" name="value_3407267[10]" value="10" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+18. Inexperienced project leads?
+</p>
+<p class="more_information">There may be potential for greater risk to participants in projects where inexperienced project leads are involved. They may lack the experience or skills needed to carry out projects or may, in some cases, not have the supervision needed to compensate for their inexperience.
+Inexperienced project leads may include but are not limited to students, staff, trainees, interns, research assistants, or post-doctoral fellows.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407268" class="edit_question_response" data-remote="true" id="edit_question_response_3407268" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407268"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407268" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407268"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407268" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407268" name="value_3407268[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+19. Collection of data through technical procedures or diagnostic tools routinely employed in the setting?
+</p>
+<p class="more_information">This item refers to standard practices in the setting used to collect data as part of the QI or evaluation project at hand. Examples of such technical procedures include BP, Ht, Wt, TPR, ECG readings, and IQ. Another example is assessment to determine accommodation requirements for disabilities or health conditions, and literacy testing.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407269" class="edit_question_response" data-remote="true" id="edit_question_response_3407269" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407269"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407269" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407269"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407269" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407269" name="value_3407269[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+20. The use of tests, surveys, interviews, oral history, focus groups, or observation of public behaviour where the participants can be directly or indirectly identified through the information recorded?
+</p>
+<p class="more_information">Tests can include but are not limited to cognitive, diagnostic, achievement, and aptitude. The risk here is that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personal information. Beware that small numbers in a group can lead to identification of a person or persons even if all individually identifying features have been removed from the data.  
+Consider the need for informed consent to be transparent with participants about the risks of their involvement and to inform them how you will be protecting their privacy. Have appropriately trained personnel collect the information.  Include in the project plan appropriate strategies regarding access to and secure storage of the private data.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407270" class="edit_question_response" data-remote="true" id="edit_question_response_3407270" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407270"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407270" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407270"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407270" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407270" name="value_3407270[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+21. Collection of data from voice, video, digital or image recordings?
+</p>
+<p class="more_information">The risk here is that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personally identifying information. Consider the need for informed consent to be transparent about the risks involved and to inform participants how you will be protecting the privacy of their information. Who has access and secure storage of the private data are also important considerations in the project plan.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407271" class="edit_question_response" data-remote="true" id="edit_question_response_3407271" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407271"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407271" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407271"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407271" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407271" name="value_3407271[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+22. Personally identifiable data, documents, records or specimens originally collected solely for purposes not related to the current study?
+</p>
+<p class="more_information">Personally identifiable information that was originally collected for the purpose of providing care or service is now proposed to be used for another purpose (i.e., a secondary use).  In other words, the information was originally collected for person-centric purposes (i.e., just for the care or service of one person) and now the proposal is to use it for a purpose other than care or service of that specific person.
+Projects that propose to use data originally collected for other purposes (e.g. chart reviews, academic transcripts) need to include safeguards to protect against any breach of the privacy and confidentiality of these individuals. As well, there may be consent issues with respect to the individuals from whom the data was originally collected and to be respectful, informed consent ought to be part of the project plan. 
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407272" class="edit_question_response" data-remote="true" id="edit_question_response_3407272" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407272"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407272" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407272"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407272" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407272" name="value_3407272[3]" value="3" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+23. Special populations or any individuals or groups in a socially vulnerable position?
+</p>
+<p class="more_information">Special populations include but are not limited to pregnant women, children, frail elderly, prisoners, refugee claimants, students, staff, persons with disabilities, sexual minorities, Aboriginal people, and visible minority groups. The Canadian Human Rights Act identifies the prohibited grounds of discrimination are race, national or ethnic origin, colour, religion, age, sex, sexual orientation, marital status, family status, disability and conviction for an offence for which a pardon has been granted or in respect of which a record suspension has been ordered. Examples of individual behaviours that may contribute to vulnerability include but are not limited to perception, cognition, motivation, identity, language, communication, social behaviour and cultural beliefs or practices. Ethical obligations to vulnerable individuals and populations often require special policies or procedures to protect their interests. Anyone can experience feeling vulnerable depending on the context of a specific project; for example, a senior executive who is a patient participant for the purposes of a QI project. Although asking questions to a person may create feelings of anxiety and concern, under the Canadian Human Rights legislation, the collection of data related to race, disability, sexual orientation and any other provincial Human Rights grounds are allowed. The important point to consider is how the data is collected, maintained, used and destroyed within the organization. By not managing data in alignment with standards set by the provincial Human Rights Code, Protection of Privacy Act and PIPEDA (Personal Information Protection and Electronic Documents Act), organizations can be deemed non-compliant. Similar legislation may exist in other countries. </p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407273" class="edit_question_response" data-remote="true" id="edit_question_response_3407273" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407273"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407273" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407273"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407273" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407273" name="value_3407273[10]" value="10" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+24. An original or novel process for which it would be difficult to estimate a balance of risk and benefit in advance?
+</p>
+<p class="more_information">This item refers to the use of a new or innovative approach to a QI or evaluation project where little is known about the risks and benefits to participants in its use.  For example, in the recent past the use of digital story telling was once a novel method because it had never been used in the process of collecting data in an evaluation project.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407274" class="edit_question_response" data-remote="true" id="edit_question_response_3407274" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407274"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407274" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407274"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407274" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407274" name="value_3407274[11]" value="11" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+25. Risks of breaching the confidentiality of any individual's personal information beyond that experienced in the provision of routine service or day-to-day life?
+</p>
+<p class="more_information">For example, a letter, fax or e-mail to a participant that includes sensitive information. The risk here is that using these methods to transmit private information about participants may have the potential to breach their confidentiality. Consider the need for informed consent to be transparent about the risks involved and to inform participants how you will safeguard the privacy of their information.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407275" class="edit_question_response" data-remote="true" id="edit_question_response_3407275" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407275"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407275" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407275"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407275" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407275" name="value_3407275[11]" value="11" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+26. A person who does not normally have access to participant records and whose use of records is for a secondary purpose?
+</p>
+<p class="more_information">This item assesses the current project in relation to the following higher risk situation: someone outside of the usual providers of programming, care or service has access to personally identifying information. Plus, this individual(s) is collecting this data for purposes other than the original intent of its collection during routine care, programming or service.  
+In other words, the information was originally collected for person-centric purposes (i.e., just for the care or service of one person) and now an individual who does NOT normally have access to the data is collecting the information for a purpose other than care or service of that specific person. 
+It is important to ensure that safeguards are in place to protect against any breach of the privacy and confidentiality of personal information. Consult the appropriate articles in the Health Information Act or other legislation in your province regarding access and other provisions. Consider doing a privacy impact assessment or other consultation to ensure appropriate protections.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407276" class="edit_question_response" data-remote="true" id="edit_question_response_3407276" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407276"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407276" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407276"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407276" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407276" name="value_3407276[13]" value="13" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+27. Any significant departure from the routine care, program, or service provided to participants or the gathering of information about participants beyond that normally collected?
+</p>
+<p class="more_information">This item assesses the use in the current QI or evaluation project of a clinical technique or procedure that is a significant deviation from usual care or data collected from the participant. This means the technique or procedure is invasive and different or more than that used in routine care. For example, the collection of additional blood samples for purposes of the QI or evaluation project at hand, administering additional or extended testing (cognitive, psychological), requesting additional assignments or feedback from participants in a pilot program, or observation of participants. Examples of information that is beyond what is normally collected may include demographic information, medical history, or previous experiences (educational). </p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407277" class="edit_question_response" data-remote="true" id="edit_question_response_3407277" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407277"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407277" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407277"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407277" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407277" name="value_3407277[12]" value="12" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+28. Risks or burdens for participants which are beyond what would be experienced in routine care or beyond what a reasonable person might expect in day-to-day interactions?
+</p>
+<p class="more_information">Examples of potential risks for participants include physical, psychological, spiritual, and social harm or distress as a result of an element of a QI or evaluation project. Examples of burdens over and above routine care or expectations in day to day interactions may include feelings of intrusiveness, discomfort, or embarrassment arising from an element of a QI or evaluation project.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407278" class="edit_question_response" data-remote="true" id="edit_question_response_3407278" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407278"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407278" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407278"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407278" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407278" name="value_3407278[12]" value="12" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+29. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day to day interactions?
+</p>
+<p class="more_information">For example, questions that raise painful memories or unresolved emotional issues or procedures that involve manipulation in some manner may be anticipated to potentially cause discomfort, anxiety or distress in participants. Project leaders should anticipate all potential reactions that may be triggered by these types of questions or procedures. Countermeasures designed to minimize (reduce the potential for a distress, discomfort or anxiety response) or mitigate (ease the response should it occur) ought to be included in the project plan. 
+Informed consent should be obtained and potential risks identified to all participants with a description of how these risks will be minimized (reduced) or mitigated (eased).
+Some countermeasures: Have appropriately trained personnel administer the questions or procedures. Provide appropriate support and resource contact information.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407279" class="edit_question_response" data-remote="true" id="edit_question_response_3407279" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407279"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407279" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407279"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407279" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407279" name="value_3407279[13]" value="13" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+30. Intended deception or intended incomplete disclosure of the nature of the investigation?
+</p>
+<p class="more_information">This item assesses whether the project has been intentionally designed to deceive or to not completely disclose aspects of the project to the participants. The focus is whether the design is intended to make the participants believe something that is not true. Clear justification ought to be provided for the need for the deception or incomplete disclosure to accomplish project objectives. There should be clear description about how the benefits outweigh the risks of the deception or incomplete disclosure. All associated risks have to be identified and mitigation strategies built into the project design. Note: Projects with this risk should be considered for the highest level of recognized review within the organization or setting.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407280" class="edit_question_response" data-remote="true" id="edit_question_response_3407280" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407280"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407280" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407280"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407280" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407280" name="value_3407280[47]" value="47" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+31. Evaluation of the safety and effectiveness of a mechanical device, drug or natural health product?
+</p>
+<p class="more_information">This item applies to understanding or improving the use of an approved product (under the Health Canada Food and Drug Act regulations or guidelines) in the local context.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407281" class="edit_question_response" data-remote="true" id="edit_question_response_3407281" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407281"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407281" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407281"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407281" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407281" name="value_3407281[10]" value="10" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+32. Clinical studies on a device, drug or natural health product where Health Canada review and approval is not required?
+</p>
+<p class="more_information">The study involves a product already approved for its intended use in the specific project or it involves a product that does not fall under Health Canada regulations and guidelines. For more information please see: http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407282" class="edit_question_response" data-remote="true" id="edit_question_response_3407282" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407282"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407282" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407282"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407282" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407282" name="value_3407282[47]" value="47" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+33. Therapeutic procedures that are themselves known to pose considerable risks of harm? 
+</p>
+<p class="more_information">Examples of such considerable risks of harm include surgery, chemotherapy, radiation therapy.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407283" class="edit_question_response" data-remote="true" id="edit_question_response_3407283" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407283"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407283" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407283"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407283" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407283" name="value_3407283[47]" value="47" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+34. Any procedures related to anesthetics, sedation, or any alteration of medication that is not normally part of participant care or health?
+</p>
+<p class="more_information">Examples of alteration of medication includes asking participants to increase, decrease, or refrain from taking medication for anxiety or ADHD.</p>
+</li>
+<li style="display: none;" class="quality">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407284" class="edit_question_response" data-remote="true" id="edit_question_response_3407284" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407284"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407284" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407284"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407284" name="question_response[response]" value="false" type="radio">
+<input style="display: none;" class="question_value quality" id="value_3407284" name="value_3407284[47]" value="47" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+35. Non-invasive procedures beyond what is normally required for participant care?
+</p>
+<p class="more_information">Examples of such non-invasive procedures include imaging or microwaves.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407285" class="edit_question_response" data-remote="true" id="edit_question_response_3407285" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407285"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407285" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407285"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407285" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407285" name="value_3407285[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+14. Collection of data through physically or clinically invasive procedures?
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407286" class="edit_question_response" data-remote="true" id="edit_question_response_3407286" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407286"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407286" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407286"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407286" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407286" name="value_3407286[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+15. Collection of data through non-invasive procedures involving imaging or microwaves? 
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407287" class="edit_question_response" data-remote="true" id="edit_question_response_3407287" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407287"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407287" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407287"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407287" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407287" name="value_3407287[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+16. Collection, use, or disclosure of health information, biological samples, or other personal or private information where the researcher is requesting that the requirement for informed consent be waived?
+</p>
+<p class="more_information">Informed consent is a requirement for all human subject research; however, there are circumstances where such consent may be difficult to obtain.  The TCPS addresses such circumstances in Article 2.1 and requires that the investigator apply to a REB for approval to waive the requirement for informed consent prior to implementation of any aspect of the project. </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407288" class="edit_question_response" data-remote="true" id="edit_question_response_3407288" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407288"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407288" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407288"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407288" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407288" name="value_3407288[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+17. Procedures related to anaesthetics or sedation not normally required for participant care? 
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407289" class="edit_question_response" data-remote="true" id="edit_question_response_3407289" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407289"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407289" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407289"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407289" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407289" name="value_3407289[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+18. Deception or intended incomplete disclosure of the nature of the study?
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407290" class="edit_question_response" data-remote="true" id="edit_question_response_3407290" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407290"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407290" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407290"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407290" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407290" name="value_3407290[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+19. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability or reputation?
+</p>
+<p class="more_information">There is widespread agreement about the rights of research participants to privacy and the corresponding duty of investigators to treat private information in a respectful and confidential manner (TCPS p. 3.1).  This item assesses whether the current project is higher risk with respect to the protection of privacy and the consequences for the participant should confidentiality of that private information be breached.     &lt;br/&gt;While the best protection of the confidentiality of personal information and records is through anonymity, when that is not possible project leaders should indicate the extent of the confidentiality that can be promised to participants and the countermeasures that are put in place to mitigate (ease the response should it occur) this risk. These should be clearly outlined on the consent form and during the consent process, including a plan to limit access to and provide secure storage of the private information for a specified period of time and with a specific plan for its destruction at the end of that timeframe as appropriate.     </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407291" class="edit_question_response" data-remote="true" id="edit_question_response_3407291" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407291"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407291" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407291"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407291" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407291" name="value_3407291[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+20. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day-to-day interactions?
+</p>
+<p class="more_information">For example, questions that raise painful memories or unresolved emotional issues or procedures that involve manipulation is some manner may be anticipated to potentially cause discomfort, anxiety or distress in participants.  Project leaders should anticipate all potential reactions that may be triggered by such questions or procedures, and include counter measures designed to minimize (reduce or curtail the magnitude of the potential response) or mitigate (ease the response should it occur) these reactions in project participants.  Appropriately trained personnel administering the questions or procedures and providing support and resource contact information, are but a few of such countermeasures. The consent form needs to include any potential risks that participants may be exposed to and describe how these will be minimized or mitigated.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407292" class="edit_question_response" data-remote="true" id="edit_question_response_3407292" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407292"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407292" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407292"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407292" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407292" name="value_3407292[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+21. Questions that involve sensitive issues such as sexual orientation or practices, illegal behaviour, stigmatizing conditions or diagnoses, religious or cultural beliefs or practices?
+</p>
+<p class="more_information">Questions that touch on these and other sensitive issues may be anticipated to potentially cause participants to be cautious in how they respond. This private information once collected may have consequences beyond the project that need to be anticipated in advance.  Countermeasures to protect privacy and confidentiality which minimize or mitigate any potential negative impacts on participants should be built into the plan.  The consent form needs to include any potential risk that participants may be exposed to as well as outline the planned countermeasures.  Countermeasures can include: appropriately trained personnel to collect the information, linkage to appropriate support resources, and a solid plan for access to and secure transmission / storage of personally identifiable data.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407293" class="edit_question_response" data-remote="true" id="edit_question_response_3407293" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407293"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407293" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407293"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407293" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407293" name="value_3407293[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+22. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, teacher/student)? 
+</p>
+<p class="more_information">This risk has to do with the requirement in a research project for informed consent to be freely given with the ability to freely withdraw at any time. The TCPS states that the element of voluntariness has important implications for how freely and informed consent may given or withdrawn by participants if undue influence is present by virtue of existing relationships in the institutional context in which the project will be carried out (see Article 2.2). This undue influence may restrict participants in how freely they can give consent or withdraw consent. This arises when the elements of trust and dependency are present in relationships such as manager/ employee, health provider/patient and teacher/student. In projects where this risk may arise its design has to include countermeasures that reduce any "form of inducement, deprivation or exercise of control or authority over prospective subjects".  In the case of the manager/employee situation, suggestions include having someone else as project lead and data collector with all data collected anonymized to the respective manager of the employees.  All risks and counter measures should be clearly outlined in the consent form. </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407294" class="edit_question_response" data-remote="true" id="edit_question_response_3407294" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407294"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407294" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407294"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407294" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407294" name="value_3407294[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+23. A real or potential conflict of interest between an investigator and the sponsor of the investigation?
+</p>
+<p class="more_information">Any conflict of interest of this nature needs to be declared upfront and measures put in place to counteract any real or potential undue influence on any aspect of the project including data collection, analysis and reporting of findings. </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407295" class="edit_question_response" data-remote="true" id="edit_question_response_3407295" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407295"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407295" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407295"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407295" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407295" name="value_3407295[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+24. Blood and tissue samples for genetic/DNA testing or storage for future research purposes?
+</p>
+<p class="more_information">This risk has to do with the requirement in a research project that the use of tissue depends on the individual&amp;#x27;s altruism in donating with the expectation that social good will be advanced. The TCPS Section 10 provides guidance that continuing consent and/or free and informed consent concerning new research projects have to be clearly addressed. In the case of genetic research an added dimension is that the tissue may reveal information about one&amp;#x27;s current or future health and that of biological relatives (Section 10.1).  It is essential to ensure protection of the privacy of the individual, confidentiality of their information and appropriate informed consent through ethics review by a REB.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407296" class="edit_question_response" data-remote="true" id="edit_question_response_3407296" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407296"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407296" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407296"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407296" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407296" name="value_3407296[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+25. Collection of blood sample volumes exceeding (i) and (ii) below?     healthy, non-pregnant adults weighing at least 50 kg (amounts drawn may not exceed 550 ml in an eight week period, and collection cannot occur more often than twice per week);     from other adults and children if the amount drawn does not exceed the lesser of 50 ml or 3 ml per kg in an eight week period (collection cannot occur more often than twice per week);
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407297" class="edit_question_response" data-remote="true" id="edit_question_response_3407297" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407297"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407297" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407297"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407297" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407297" name="value_3407297[15]" value="15" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+26. Therapeutic procedures in clinical trials that are themselves known to pose considerable risks of harm (e.g., surgery, chemotherapy, radiation therapy)? 
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407298" class="edit_question_response" data-remote="true" id="edit_question_response_3407298" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407298"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407298" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407298"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407298" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407298" name="value_3407298[6]" value="6" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+27. Clinical studies on drugs and medical devices when an investigational device exemption application or investigational new drug application is not required (e.g., if it is a non-invasive diagnostic device) or if the medical device, drug or natural health product has been cleared or approved for marketing for that purpose/indication?
+</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407299" class="edit_question_response" data-remote="true" id="edit_question_response_3407299" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407299"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407299" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407299"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407299" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407299" name="value_3407299[3]" value="3" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+28. Special populations or any individuals or groups in a socially vulnerable position?
+</p>
+<p class="more_information">Special populations include but are not limited to pregnant women, children, frail elderly, prisoners, refugee claimants, students, and staff.  Examples of individual behaviours that may contribute to vulnerability include but are not limited to perception, cognition, motivation, identity, language, communication, social behaviour and cultural beliefs or practices. The TCPS states that ethical obligations to vulnerable individuals and populations often require special procedures to protect their interests (p i.5). </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407300" class="edit_question_response" data-remote="true" id="edit_question_response_3407300" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407300"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407300" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407300"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407300" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407300" name="value_3407300[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+29. Use of personally identifiable data, documents, records or specimens originally collected for therapeutic purposes?
+</p>
+<p class="more_information">Data on individuals originally collected as part of routine care, program participation or role expectations and which is identifiable cannot then just be used for research purposes. Clinicians or other providers who have ready access to such data by virtue of their role and who propose to do such research first require ethics approval by a REB before implementing any aspect of their project.  Projects which propose to use such identifiable data (e.g., chart reviews) must adhere to the secondary use of data guidelines outlined in the TCPS in Articles 3.4 to 3.5, and the appropriate articles in the respective Health Information Act of their province, if the information collected is health related. </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407301" class="edit_question_response" data-remote="true" id="edit_question_response_3407301" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407301"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407301" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407301"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407301" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407301" name="value_3407301[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+30. Collection of data from voice, video, digital or image recordings? 
+</p>
+<p class="more_information">There is risk that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personally identifying information.  The consent form should include this risk and outline countermeasures to protect the privacy of individuals and their information.  To mitigate and minimize this risk, a well thought out plan needs to be in place regarding the secure storage of this private data and who has access to it.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407302" class="edit_question_response" data-remote="true" id="edit_question_response_3407302" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407302"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407302" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407302"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407302" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407302" name="value_3407302[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+31. The use of tests, survey procedures, interview procedures, oral history, focus groups or observation of public behaviour where the participants can be identified directly or indirectly through the information recorded?
+</p>
+<p class="more_information">Tests can include but are not limited to cognitive, diagnostic, achievement, and aptitude.  The risk here is that using these methods to collect private information from research participants may have the potential to breach their confidentiality by revealing personal information. The consent form needs to include any potential risks that participants may be exposed to and outline the planned counter measures.  Appropriately trained personnel to collect the information and appropriate plans for access and secure storage of the private data are also important components of the plan.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407303" class="edit_question_response" data-remote="true" id="edit_question_response_3407303" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407303"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407303" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407303"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407303" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407303" name="value_3407303[2]" value="2" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+32. Prospective collection of biological specimens for research purposes by non-invasive means (e.g., hair and nail clippings, mucosal and skin cells collected by buccal swab, skin swab or mouth washings)?
+</p>
+<p class="more_information">Prospective refers to data which will be collected in the future compared to retrospective which refers to data which has been collected in the past.</p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407304" class="edit_question_response" data-remote="true" id="edit_question_response_3407304" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407304"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407304" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407304"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407304" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407304" name="value_3407304[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+33. Collection of data through non-invasive procedures routinely employed in clinical settings? 
+</p>
+<p class="more_information">Examples of non-invasive procedures routinely used in clinical care include In BP, Ht, Wt, and TPR readings. </p>
+</li>
+<li style="display: list-item;" class="research">
+<form accept-charset="UTF-8" action="/arecci/screening/question_responses/3407305" class="edit_question_response" data-remote="true" id="edit_question_response_3407305" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<div class="radioset_container">
+<div class="radioset ui-buttonset">
+<label aria-disabled="false" role="button" aria-pressed="true" class="true ui-button ui-widget ui-state-default ui-button-text-only ui-corner-left ui-state-active" for="question_response_response_true_3407305"><span class="ui-button-text">Yes</span></label>
+<input class="question_response question_response_response_true ui-helper-hidden-accessible" id="question_response_response_true_3407305" name="question_response[response]" value="true" type="radio">
+<label aria-disabled="false" role="button" class="ui-button ui-widget ui-state-default ui-button-text-only ui-corner-right" aria-pressed="false" for="question_response_response_false_3407305"><span class="ui-button-text">No</span></label>
+<input class="question_response ui-helper-hidden-accessible" id="question_response_response_false_3407305" name="question_response[response]" value="false" type="radio">
+<input style="display: inline;" class="question_value research" id="value_3407305" name="value_3407305[1]" value="1" type="hidden">
+</div>
+</div>
+</form>
+<p class="title">
+<a href="javascript:void(0);" class="more_information_link"><img alt="Information" src="/arecci/screening/images/information.png?1368148999"></a>
+34. Student research projects?
+</p>
+<p class="more_information">There may be potential for greater risk in projects where students are involved because students can sometimes lack the experience or skills needed to carry out research projects and may potentially in some cases not have the supervision needed to overcome these lacks which can increase the risk to participants.</p>
+</li>
+
+</ul>
+<h3>Notes:</h3>
+<form accept-charset="UTF-8" action="/arecci/screening/notes/182523" class="edit_note" data-remote="true" id="edit_note_182523" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="_method" value="put" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<textarea cols="40" id="note_text_182523" name="note[text]" rows="20"></textarea>
+</form>
+
+<button aria-disabled="false" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Next »</span></button>
+<br>
+<div class="results red" id="question_block_results_3"><strong>Your score is 214</strong>. The project involves Definitely Greater Than Minimal Risk and should receive full review consistent with local policies.</div>
+</div>
+<div id="final_results_wrapper">
+<div id="final_results"></div>
+<div id="affected_questions"><h2>Questions that affected your final score:</h2><ul id="affected"><li><p>
+14. Collection of data through physically or clinically invasive procedures?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+15. Collection of data through non-invasive procedures involving imaging or microwaves? 
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+16. Collection, use, or disclosure of health information, biological samples, or other personal or private information where the researcher is requesting that the requirement for informed consent be waived?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+17. Procedures related to anaesthetics or sedation not normally required for participant care? 
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+18. Deception or intended incomplete disclosure of the nature of the study?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+19. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability or reputation?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+20. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day-to-day interactions?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+21. Questions that involve sensitive issues such as sexual orientation or practices, illegal behaviour, stigmatizing conditions or diagnoses, religious or cultural beliefs or practices?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+22. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, teacher/student)? 
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+23. A real or potential conflict of interest between an investigator and the sponsor of the investigation?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+
+24. Blood and tissue samples for genetic/DNA testing or storage for future research purposes?
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+25. Collection of blood sample volumes exceeding (i) and (ii) below?     healthy, non-pregnant adults weighing at least 50 kg (amounts drawn may not exceed 550 ml in an eight week period, and collection cannot occur more often than twice per week);     from other adults and children if the amount drawn does not exceed the lesser of 50 ml or 3 ml per kg in an eight week period (collection cannot occur more often than twice per week);
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+26. Therapeutic procedures in clinical trials that are themselves known to pose considerable risks of harm (e.g., surgery, chemotherapy, radiation therapy)? 
+</p><div class="ribbon">15<br><small> pts</small></div></li><li><p>
+27. Clinical studies on drugs and medical devices when an investigational device exemption application or investigational new drug application is not required (e.g., if it is a non-invasive diagnostic device) or if the medical device, drug or natural health product has been cleared or approved for marketing for that purpose/indication?
+</p><div class="ribbon">6<br><small> pts</small></div></li><li><p>
+
+28. Special populations or any individuals or groups in a socially vulnerable position?
+</p><div class="ribbon">3<br><small> pts</small></div></li><li><p>
+
+29. Use of personally identifiable data, documents, records or specimens originally collected for therapeutic purposes?
+</p><div class="ribbon">2<br><small> pts</small></div></li><li><p>
+
+30. Collection of data from voice, video, digital or image recordings? 
+</p><div class="ribbon">2<br><small> pts</small></div></li><li><p>
+
+31. The use of tests, survey procedures, interview procedures, oral history, focus groups or observation of public behaviour where the participants can be identified directly or indirectly through the information recorded?
+</p><div class="ribbon">2<br><small> pts</small></div></li><li><p>
+
+32. Prospective collection of biological specimens for research purposes by non-invasive means (e.g., hair and nail clippings, mucosal and skin cells collected by buccal swab, skin swab or mouth washings)?
+</p><div class="ribbon">2<br><small> pts</small></div></li><li><p>
+
+33. Collection of data through non-invasive procedures routinely employed in clinical settings? 
+</p><div class="ribbon">1<br><small> pts</small></div></li><li><p>
+
+34. Student research projects?
+</p><div class="ribbon">1<br><small> pts</small></div></li></ul></div>
+<!-- Extra tool stuff- sidebar and other modal windows -->
+<div style="display: block;" id="score_cutoff">
+<h2>Ethics Screening Score Cutoff Points</h2>
+<table style="display: table;" id="research_cutoff">
+<tbody><tr>
+<th>Score Result</th>
+<th>Level (Category) of Risk</th>
+<th>Recommended Ethics Review</th>
+</tr>
+<tr class="red">
+<td>15 or greater</td>
+<td>Definitely greater than minimal</td>
+<td>Full review* consistent with local policies</td>
+</tr>
+<tr class="orange">
+<td>8 - 14</td>
+<td>Somewhat more than minimal</td>
+<td>Seek a second opinion regarding screening result to further explore review requirements</td>
+</tr>
+<tr class="yellow">
+<td>
+<sup>+</sup>
+0 - 7
+</td>
+<td>Minimal</td>
+<td>Delegated* review consistent with local policies</td>
+</tr>
+</tbody><tfoot>
+<tr>
+<td colspan="3">
+<p>
+<strong>
+<sup>+</sup>
+There is always potential for ethical risk in projects that involve people or their personal information.
+</strong>
+</p>
+<p>*The term "delegated" replaces "expedited" according to the Tri-Council Policy Statement (TCPS) [Canadian Institutes of Health Research, National Sciences and Engineering Research Council of Canada and the Social Sciences and Research Council of Canada. 2005. Tri-Council Policy Statement on Research Involving Human Subjects. Ottawa, ON: Interagency Secretariat on Research Ethics.]</p>
+</td>
+</tr>
+</tfoot>
+</table>
+<table style="display: none;" id="quality_cutoff">
+<tbody><tr>
+<th>Score Result</th>
+<th>Category of Risk</th>
+<th>Recommended Ethics Review</th>
+</tr>
+<tr class="red">
+<td>47 or greater</td>
+<td>Definitely greater than minimal</td>
+<td>Organization's recognized review process* using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+<tr class="orange">
+<td>8 - 46</td>
+<td>Somewhat more than minimal</td>
+<td>Second Opinion Review** using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+<tr class="yellow">
+<td>
+<sup>+</sup>
+0 - 7
+</td>
+<td>Minimal</td>
+<td>Project leader uses <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+</tbody><tfoot>
+<tr>
+<td colspan="3">
+<p>*Review by a duly constituted group independent of the project team, that is trained to do project ethics reviews and whose decisions are recognized by the organization.</p>
+<p>**Review by an individual trained to do project ethics reviews who has no vested interest in the outcome of the project.</p>
+<p><strong>If you require access to a Second Opinion Review, please email <a href="mailto:ARECCI.health@albertainnovates.ca">ARECCI.health@albertainnovates.ca</a></strong></p>
+<p>
+<strong>
+<sup>+</sup>
+There is always potential for ethical risk in projects that involve people or their personal information.
+</strong>
+</p>
+</td>
+</tr>
+</tfoot>
+</table>
+<div class="feature_box">
+<h2 class="center">If you are unsure about any of the above, please consult a knowledgeable source about your project.</h2>
+<br>
+<h3 class="center">Feedback is welcomed on this tool- please use the feedback link to the right.</h3>
+</div>
+<p>
+<strong></strong>
+For more information, please feel free to contact:<br>
+Alberta Innovates - Health Solutions<br>
+Suite 1500, 10104 - 103 ave<br>
+Edmonton AB T5J 4A7<br>
+Email: <a href="mailto:ARECCI.health@albertainnovates.ca">ARECCI.health@albertainnovates.ca</a> Tel: 780.429.9341
+</p>
+</div>
+<div id="notice">
+<h2>Notice and Terms of Use</h2>
+<p>The ARECCI Ethics Screening Tool was developed through the efforts of the Alberta Research Ethics Community Consensus Initiative (ARECCI) Network, with support from the Alberta Innovates - Health Solutions. The ARECCI Ethics Screening Tool is the copyright of its respective authors and may be used in accordance with the following terms of use. The Screening Tool is the subject of ongoing development, and members of the ARECCI Network assume no liability arising from its use. The Screening Tool may not be modified or adapted without the express written consent of the ARECCI Network. The Screening Tool may be reproduced and disseminated for non-commercial purposes, but only in its entirety without abridgement, and such reproductions must contain this notice.</p>
+</div>
+<div id="citation">
+<h2>Scholarly Citations</h2>
+<p>Scholarly citations of the work should follow the following format: "<em>ARECCI Ethics Screening Tool</em> developed by the Alberta Research Ethics Community Consensus Initiative (ARECCI) Network (2005, revised 2010)"</p>
+</div>
+</div>
+
+</div>
+</div>
+<div style="top: 3172px;" id="sidebar_container">
+<div id="sidebar_content">
+<ul>
+<li id="save"><a href="javascript:void(0)"><img alt="Save" src="/arecci/screening/images/save.png?1368148999"> Save</a></li>
+<li id="print"><a href="javascript:print()"><img alt="Print" src="/arecci/screening/images/print.png?1368148999"> Print</a></li>
+<li id="email"><a href="javascript:void(0)"><img alt="Email" src="/arecci/screening/images/email.png?1368148999"> E-mail</a></li>
+<li id="feedback"><a href="javascript:void(0)"><img alt="Feedback" src="/arecci/screening/images/feedback.png?1368148999"> Feedback</a></li>
+<li id="mobile_reset"><a href="http://www.aihealthsolutions.ca/arecci/screening"><img alt="Reset" src="/arecci/screening/images/reset.png?1368148999"> Reset</a></li>
+</ul>
+<div id="save_box">
+<h2>Your current survey results have been saved.</h2>
+<p>The results can be accessed at this URL:</p>
+<p><a href="/arecci/screening/60854/cb472ed36fce3d041c1e0521499e3f24">http://www.aihealthsolutions.ca/arecci/screening/60854/cb472ed36fce3d041c1e0521499e3f24</a></p>
+<p>Please retain this URL for future access.</p>
+</div>
+<div id="feedback_box">
+<h2>Feedback welcomed on the ARECCI online ethics screening tool</h2>
+<p>The ARECCI Network developed this tool for ethics decision support with projects involving people or their health information.</p>
+<p>It has been pilot tested by a variety of stakeholders, but remains the subject of ongoing development.</p>
+<p>To assist with refinements to improve its usefulness, feedback on your experience using this tool with your project(s) would be much appreciated.</p>
+<p>Kindly insert your comments and suggestions in the text box below.</p>
+<form accept-charset="UTF-8" action="/arecci/screening/feedback" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<textarea id="feedback_text" name="feedback_text"></textarea>
+<p>
+<input id="feedback_submit" name="commit" value="Send" type="submit">
+</p>
+</form>
+
+</div>
+<div id="email_box">
+<h2 style="width:400px;">Share your results</h2>
+<form accept-charset="UTF-8" action="/arecci/screening/email" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<input id="secure_url" name="secure_url" value="http://www.aihealthsolutions.ca/arecci/screening/60854/cb472ed36fce3d041c1e0521499e3f24" type="hidden">
+<p>
+<label for="from_name">From name</label>
+<input id="from_name" name="from_name" type="text">
+</p>
+<p>
+<label for="from_email">From email</label>
+<input id="from_email" name="from_email" type="text">
+</p>
+<p>
+<label for="to_name">To name</label>
+<input id="to_name" name="to_name" type="text">
+</p>
+<p>
+<label for="to_email">To email</label>
+<input id="to_email" name="to_email" type="text">
+</p>
+<p>
+<input id="email_submit" name="commit" value="Send" type="submit">
+</p>
+</form>
+
+</div>
+
+</div>
+</div>
+<div id="footer">
+<a href="javascript:void(0)" id="notice_link">Notice and Terms of Use</a>
+&nbsp;|
+<a href="javascript:void(0)" id="citation_link">Scholarly Citations</a>
+</div>
+</div>
+
+
+<div style="padding: 40px;" id="fancybox-tmp"></div><div style="display: none;" id="fancybox-loading"><div></div></div><div style="background-color: rgb(51, 51, 51); opacity: 0.8; cursor: pointer; height: 1325px; display: none;" id="fancybox-overlay"></div><div style="width: 840px; height: auto; top: 0px; left: 280px; display: none;" id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content" style="padding: 20px; border-width: 20px; width: 800px; height: 883px;"></div><a style="display: none;" id="fancybox-close"></a><div style="display: none;" id="fancybox-title"></div><a style="display: none;" href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a style="display: none;" href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

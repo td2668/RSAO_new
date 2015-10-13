@@ -1,0 +1,1854 @@
+<html><head>
+<title>ARECCI Screening Tool</title>
+<link href="/screening/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/screening/stylesheets/jquery-ui-1.8rc3.custom.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/screening/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/screening/stylesheets/jquery.fancybox-1.3.1.css" media="screen" rel="stylesheet" type="text/css">
+<link href="/screening/stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+<!--[if lte IE 7]>
+<link href="/screening/stylesheets/main_ie.css?1368148999" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if lte IE 6]>
+<link href="/screening/stylesheets/ie6.css?1368148999" media="screen" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--
+<script src="/screening/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/screening/javascripts/jquery-ui.js" type="text/javascript"></script>
+<script src="/screening/javascripts/rails.js" type="text/javascript"></script>
+<script src="/screening/javascripts/jquery.scrollfollow.js" type="text/javascript"></script>
+<script src="/screening/javascripts/jquery.fancybox-1.3.1.js" type="text/javascript"></script>
+<script src="/screening/javascripts/application.js" type="text/javascript"></script>
+-->
+
+
+</head>
+<body>
+
+<div class="container">
+<div class="span-20" id="content_container">
+<div id="content">
+
+
+<div id="question_block_1">
+<h2>Step 1: Preliminary Questions</h2>
+<ul class="questions">
+<li>
+<form accept-charset="UTF-8" action="" method="post">
+	
+
+<div >
+<span class='radiobox1'>
+Yes<input  name="q1" id='q1true' value="true" type="radio">
+No<input  name="q1" id='q1false' value="false" type="radio">
+</span>
+</div>
+
+<p class="title">
+<a onclick="javascript: toggle_visibility('q1info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png"></a>
+1. Is there an explicit requirement for review of this project by a Research Ethics Board as part of its funding arrangements?
+</p>
+<p style="display: none;" class="more_information" id="q1info">This item refers to projects where the funder requires ethics review by a REB. Examples of such funding agencies are: the Canadian Institutes of Health Research, the Canadian Health Services Research Foundation, the Natural Sciences and Engineering Research Council of Canada, the Social Sciences and Humanities Research Council. Projects funded by these agencies are typically (but not always) considered research and all are required to undergo REB ethics review.</p>
+</li>
+
+
+<li>
+<div>
+<span class='radiobox1'>
+Yes<input id="q2true" name="q2" value="true" type="radio">
+No<input id="q2false" name="q2" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q2info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png"></a>
+2. Are there any local policies that require this project to undergo review by a Research Ethics Board? 
+</p>
+<p style="display: none;" class="more_information" id="q2info">The intent of this item is to allow flexibility in the tool for different organizational local policies (where they exist) regarding requirements for research ethics board review.  For example, some jurisdictions require that all student projects must undergo ethics review by a designated REB, regardless of project classification.</p>
+</li>
+
+
+
+<li>
+<div>
+<span class='radiobox1'>
+Yes<input id="q3true" name="q3" value="true" type="radio">
+No<input id="q3false" name="q3" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q3info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png"></a>
+3. Does the project involve use of a pharmaceutical device, drug or natural health product under Health Canada Food and Drug Act regulations or guidelines?
+</p>
+<p style="display: none;" class="more_information" id="q3info">Under the Health Canada Food and Drug Act regulations or guidelines, REB review is required. For more information please see: <a href="http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php">http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php</a>  NOTE: This applies to the development of a new device, drug, or natural health product or the testing of any of these for a use different from the original approval by Health Canada. This item does not apply to understanding or improving the use of an approved product in the local context.</p>
+</li>
+
+</ul>
+
+</form>
+
+<button onclick="javascript: scoresection1();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+<br>
+<div style="display: none;" class="results red" id="question_block_results_1">This project should be submitted to a Research Ethics Board.</div>
+</div>
+
+
+
+
+<div style="display: none;" id="question_block_2">
+<h2>Step 2: Research or QA?</h2>
+<ul class="questions">
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q4true" name="q4" value="true" type="radio">
+No<input id="q4false" name="q4" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q4info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+4. Is the project designed to test a specific hypothesis or answer a specific quantitative or qualitative question?
+</p>
+<p style="display: none;" id="q4info" class="more_information">This question helps assess whether your project fits in one of the two broad research approaches: quantitative and qualitative. A key component in this item is assessing whether or not there is a clearly stated research question. Qualitative research projects are guided by specifically formulated research questions. These types of research projects apply explicit qualitative theory which underlie and direct the methodology used in the design of the specific study, including the analysis plan. Quantitative research projects are directed by specific hypotheses or research questions that guide the selection of the scientific design of the specific study, including the analysis methods. In general, qualitative research develops theory through rigor in interpretation of observations. In general, quantitative research tests theory through the measurement of key variables.</p>
+</li>
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q5true" name="q5" value="true" type="radio">
+No<input id="q5false" name="q5" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q5info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+5. Does the project involve a comparison of control groups?
+</p>
+<p style="display: none;" id="q5info" class="more_information">This question helps determine if your project fits a research design that uses multiple groups or sites to “control” for unrelated factors in the study. "Control" is considered important for rigor (precision) in studying the key variables of focus in this type of project. Projects designed to include such scientific control follow internationally accepted standards related to how they are going to be conducted with features such as precise power calculations and other techniques.</p>
+</li>
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q6true" name="q6" value="true" type="radio">
+No<input id="q6false" name="q6" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q6info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+6. Is the project designed to support generalizations that go beyond the particular population the sample is being drawn from?
+</p>
+<p style="display: none;" id="q6info" class="more_information">This question assesses whether the design of your project fits with research that is specifically designed to produce results that can be assumed to be true (generalized) beyond the individual participants in the specific study.  In other words, with the clear intent of following internationally accepted scientific standards for "generalizability", your project design includes precise sample size calculations and other techniques related to how it is going to be conducted. Research designed for “generalizability” implies some future application of findings to the population of focus, although sometimes subjects do directly benefit from participation in a research project. Note: Producing and sharing learnings from a project for potential adaptation to other contexts is not the same thing as producing results that are considered scientifically generalizable because of specific features included in the design of the study such as precise power calculations.</p>
+</li>
+
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q7true" name="q7" value="true" type="radio">
+No<input id="q7false" name="q7" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q7info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+7. Does the project impose any additional burdens on participants beyond what would be normally expected or normally experienced during the course of care, program participation or role expectations? 
+</p>
+<p style="display: none;" id="q7info" class="more_information">This question helps determine your project's fit with research in that participation is voluntary and that those participating will be involved in activities which are in addition to routine care, program provision, or other routine actions or duties on the part of the participant.</p>
+</li>
+
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q8true" name="q8" value="true" type="radio">
+No<input id="q8false" name="q8" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q8info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+8. Is the primary purpose of the project to produce the kind of results that could be published in a research journal?
+</p>
+<p style="display: none;" id="q8info" class="more_information">This question clarifies whether the main goal of your project is to obtain results that CAN be published in a research type of journal. In other words, the most important reason you are doing this study is to contribute to the general body of knowledge on the topic through achieving scientific publication. By contrast, the main goal in quality improvement and evaluation is to provide information for decisions about a specific program or aspect of service delivery. Sharing by publication is a secondary goal in these non-research projects.</p>
+</li>
+
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q9true" name="q9" value="true" type="radio">
+No<input id="q9false" name="q9" value="false" type="radio">
+</span>
+</div><p class="title">
+<a onclick="javascript: toggle_visibility('q9info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+9. Will project participants also likely be among those who might potentially benefit from the result of the project as it proceeds?
+</p>
+<p style="display: none;" id="q9info" class="more_information">This question helps determine your projects fit with quality improvement or evaluation. &nbsp;Quality improvement and evaluation projects provide timely and specific feedback on a program or process in a particular organization, setting, program or service. Thus, participants are more likely to benefit from findings produced in these projects than are subjects in research projects.</p>
+</li>
+
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q10true" name="q10" value="true" type="radio">
+No<input id="q10false" name="q10" value="false" type="radio">
+</span>
+</div>
+
+<p class="title">
+<a onclick="javascript: toggle_visibility('q10info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+10. Is the project intended to develop a better practice within your organization or setting? 
+</p>
+<p style="display: none;" id="q10info" class="more_information">This question clarifies if the main goal of your project is to produce findings that can be used to improve practice, program or service delivery within your organization or setting. &nbsp;In other words, the most important reason you are doing this study is to contribute in a timely manner to improving how some aspect of care or service is delivered in a particular location.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q11true" name="q11" value="true" type="radio">
+No<input id="q11false" name="q11" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q11info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+11. Would this project still be done at your site even if the results might not be applicable anywhere else?  
+</p>
+<p style="display: none;" id="q11info" class="more_information">This question helps assess if your project fits with the usual focus of quality improvement and evaluation on site-specific programs, services or processes. &nbsp;By contrast, in research the specific site does not matter except in more general terms such as urban or rural. Please note, in the due course of time you may choose to share (through presentation at conferences or publication in an Evaluation or QI journal) the process and results of your project with others for adaptation to new contexts. However, sharing project results for potential benefit elsewhere is not the main reason you are doing the project.</p>
+</li>
+
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q12true" name="q12" value="true" type="radio">
+No<input id="q12false" name="q12" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q12info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+12. Does the language used in the project description refer specifically to features of a particular program, organization, or locale, rather than using more general terminology such as rural vs. urban populations?
+</p>
+<p style="display: none;" id="q12info" class="more_information">The language used in your project can help determine if it is quality improvement/ evaluation or research. Quality improvement and evaluation projects use terminology that specifically name a particular program or process, or a particular organization, setting, or service.  By contrast, research projects often describe location by more general characteristics such as rural versus urban, which reflects their intent to be "generalizable" across settings.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q13true" name="q13" value="true" type="radio">
+No<input id="q13false" name="q13" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q13info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+13. Is the current project part of a continuous process of gathering or monitoring data within an organization?
+</p>
+<p style="display: none;" id="q13info" class="more_information">This question helps to assess the fit of your project with the primary focus of quality improvement. The focus of QI is on time-limited projects that target service, program, or process improvements. QI projects are often initiated in response to issues and trends identified through ongoing quality assurance monitoring of care and service provision.</p>
+</li>
+
+</ul>
+
+<button onclick="javascript: scoresection2();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+
+
+<br>
+<div style="display: none;" class="results both" id="question_block_results_2">Your score indicates that the purpose of your project has not been determined.  To continue, please use your professional judgment to decide if your project is research or Quality Improvement or Program Evaluation.  If you are still unsure, consult with someone who understands the context of your project and is familiar with project ethics.<br>Choose One:<br>
+	<div class="ui-buttonset" id="choose">
+		<button onclick="javascript: document.getElementById('question_block_3').style.display='block';document.getElementById('question_block_4').style.display='none';" id="button_quality" name="choose"><span style='font-size:14px;'>Quality</span></button>
+		<button onclick="javascript: document.getElementById('question_block_3').style.display='none';document.getElementById('question_block_4').style.display='block';" id="button_research" name="choose" ><span style='font-size:14px;'>Research</span></button>
+	</div>
+</div>
+
+
+
+
+<div style="display: none;" id="question_block_3">
+<h2>Does your project involve...</h2>
+<ul class="questions">
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q14atrue" name="q14a" value="true" type="radio">
+No<input id="q14afalse" name="q14a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q14info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+14. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability, or reputation?
+</p>
+<p style="display: none;" class="more_information" id="q14info1">There is widespread agreement about the rights of individuals to privacy and the corresponding duty of investigators to treat private information in a respectful and confidential manner. This item assesses whether the current project is higher risk in terms of the probability that serious consequences could occur should there be any breach of confidentially of the private information being collected. Informed consent ought to be sought from all participants if this risk applies.
+The best protection of the confidentiality of personal information and records is through anonymity.  When that is not possible project leaders should indicate the extent of the confidentiality that can be promised to participants. Strategies or countermeasures to mitigate (ease the response should it occur) this risk should be clearly described in the plan and to the participants.  There should also be a plan to limit access to and provide secure storage of the private information for a specified period of time and with a specific plan for its destruction at the end of that timeframe.  These should be clearly outlined on the consent form and during the consent process.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example: Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q15atrue" name="q15a" value="true" type="radio">
+No<input id="q15afalse" name="q15a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q15info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+15. A real or potential conflict of interest between an investigator and the sponsor of the investigation?
+</p>
+<p style="display: none;" id="q15info1" class="more_information">"Sponsor" means the funder or benefactor or champion of the investigation or project.  A conflict of interest between an investigator and a sponsor may exist in any part of the project where decisions are made, including during data collection, data analysis and reporting of findings. 
+Biases may easily influence decisions at any stage of QI or evaluation projects since they are integral to an organization’s accountability to the public to demonstrate service quality.  
+Recommended Actions: The conflict of interest needs to be disclosed upfront. Further, measures should be included upfront in the project plan to counteract any undue influence from a conflict of interest on any aspect of the project; for example, dealing with negative findings.  Countermeasures can include removal of the influence through recusal in the decision-making process or use of a third party in elements of the project to protect confidentiality of personally identifying information.  
+Notes on COI: A conflict of interest (COI) occurs when an individual or organization is involved in multiple interests, one of which could possibly corrupt the motivation for an act in the other.  One way to understand this is to use the term "conflict of roles".  A person with two roles—an individual who is providing programs or services and is also the leader of a project, for example—may experience situations where those two roles conflict.  The conflict can be mitigated but it still exists.  Ways to mitigate conflicts of interests include removal, disclosure, recusal, third party evaluations and codes of ethics.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q16atrue" name="q16a" value="true" type="radio">
+No<input id="q16afalse" name="q16a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q16info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+16. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, service provider/recipient, teacher/student)?
+</p>
+<p style="display: none;" id="q16info1" class="more_information">If undue influence is present in the context in which the project will be carried out by virtue of the trust and dependency that exists in a power relationship, participants may feel restricted in how free they are to choose to participate in or withdraw from the project.  Relationships such as manager/ employee, health provider/patient, service provider/ recipient and teacher/student are particularly fraught with power imbalances.  The potential for any exertion of undue influence by an existing power relationship has to be carefully considered in the design of the project.  Consideration should be given to any potential perceptions of the participants that may affect their responses.  The design ought to include ways to reduce any form of coercion over participants.
+Informed consent should be considered for all participants if this risk applies.
+Include measures in the project plan to protect private information to ensure participants are shielded from potential retribution and feel free to share their ideas or information.  Suggestions in the case of the manager/employee situation:  Have someone else as project lead and data collector.  Anonymize all data to the respective manager of the employees.  Clearly outline in the informed consent process all risks and the plan to counter them.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q17atrue" name="q17a" value="true" type="radio">
+No<input id="q17afalse" name="q17a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q17info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+17. Questions that collect information about sensitive issues, illegal behaviour, stigmatizing conditions or behaviours, or religious or cultural beliefs or practices?
+</p>
+<p style="display: none;" id="q17info1"  class="more_information">Questions that touch on these and other sensitive issues may be anticipated to cause participants to be cautious in how they respond. This private information once collected may have consequences beyond the project that need to be anticipated in advance. 
+Countermeasures to protect privacy and confidentiality which minimize (reduce or curtail the magnitude of the potential response) or mitigate (ease the response should it occur) any potential negative impacts on participants should be built into the plan. Examples of countermeasures include appropriately trained personnel collecting the information and linkage to appropriate support resources. The need for obtaining informed consent ought to be carefully thought out in the context of the specific project.
+Examples of such sensitive issues include sexual orientation and practices. Examples of stigmatizing conditions or behaviours include physical, learning, or another type of disability; mental illness, gender identity, and age.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q18atrue" name="q18a" value="true" type="radio">
+No<input id="q18afalse" name="q18a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q18info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+18. Inexperienced project leads?
+</p>
+<p  style="display: none;" id="q18info1" class="more_information">There may be potential for greater risk to participants in projects where inexperienced project leads are involved. They may lack the experience or skills needed to carry out projects or may, in some cases, not have the supervision needed to compensate for their inexperience.
+Inexperienced project leads may include but are not limited to students, staff, trainees, interns, research assistants, or post-doctoral fellows.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q19atrue" name="q19a" value="true" type="radio">
+No<input id="q19afalse" name="q19a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q19info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+19. Collection of data through technical procedures or diagnostic tools routinely employed in the setting?
+</p>
+<p  style="display: none;" id="q19info1" class="more_information">This item refers to standard practices in the setting used to collect data as part of the QI or evaluation project at hand. Examples of such technical procedures include BP, Ht, Wt, TPR, ECG readings, and IQ. Another example is assessment to determine accommodation requirements for disabilities or health conditions, and literacy testing.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q20atrue" name="q20a" value="true" type="radio">
+No<input id="q20afalse" name="q20a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q20info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+20. The use of tests, surveys, interviews, oral history, focus groups, or observation of public behaviour where the participants can be directly or indirectly identified through the information recorded?
+</p>
+<p  style="display: none;" id="q20info1" class="more_information">Tests can include but are not limited to cognitive, diagnostic, achievement, and aptitude. The risk here is that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personal information. Beware that small numbers in a group can lead to identification of a person or persons even if all individually identifying features have been removed from the data.  
+Consider the need for informed consent to be transparent with participants about the risks of their involvement and to inform them how you will be protecting their privacy. Have appropriately trained personnel collect the information.  Include in the project plan appropriate strategies regarding access to and secure storage of the private data.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q21atrue" name="q21a" value="true" type="radio">
+No<input id="q21afalse" name="q21a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q21info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+21. Collection of data from voice, video, digital or image recordings?
+</p>
+<p  style="display: none;" id="q21info1" class="more_information">The risk here is that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personally identifying information. Consider the need for informed consent to be transparent about the risks involved and to inform participants how you will be protecting the privacy of their information. Who has access and secure storage of the private data are also important considerations in the project plan.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q22atrue" name="q22a" value="true" type="radio">
+No<input id="q22afalse" name="q22a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q22info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+22. Personally identifiable data, documents, records or specimens originally collected solely for purposes not related to the current study?
+</p>
+<p  style="display: none;" id="q22info1" class="more_information">Personally identifiable information that was originally collected for the purpose of providing care or service is now proposed to be used for another purpose (i.e., a secondary use).  In other words, the information was originally collected for person-centric purposes (i.e., just for the care or service of one person) and now the proposal is to use it for a purpose other than care or service of that specific person.
+Projects that propose to use data originally collected for other purposes (e.g. chart reviews, academic transcripts) need to include safeguards to protect against any breach of the privacy and confidentiality of these individuals. As well, there may be consent issues with respect to the individuals from whom the data was originally collected and to be respectful, informed consent ought to be part of the project plan. 
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q23atrue" name="q23a" value="true" type="radio">
+No<input id="q23afalse" name="q23a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q23info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+23. Special populations or any individuals or groups in a socially vulnerable position?
+</p>
+<p  style="display: none;" id="q23info1" class="more_information">Special populations include but are not limited to pregnant women, children, frail elderly, prisoners, refugee claimants, students, staff, persons with disabilities, sexual minorities, Aboriginal people, and visible minority groups. The Canadian Human Rights Act identifies the prohibited grounds of discrimination are race, national or ethnic origin, colour, religion, age, sex, sexual orientation, marital status, family status, disability and conviction for an offence for which a pardon has been granted or in respect of which a record suspension has been ordered. Examples of individual behaviours that may contribute to vulnerability include but are not limited to perception, cognition, motivation, identity, language, communication, social behaviour and cultural beliefs or practices. Ethical obligations to vulnerable individuals and populations often require special policies or procedures to protect their interests. Anyone can experience feeling vulnerable depending on the context of a specific project; for example, a senior executive who is a patient participant for the purposes of a QI project. Although asking questions to a person may create feelings of anxiety and concern, under the Canadian Human Rights legislation, the collection of data related to race, disability, sexual orientation and any other provincial Human Rights grounds are allowed. The important point to consider is how the data is collected, maintained, used and destroyed within the organization. By not managing data in alignment with standards set by the provincial Human Rights Code, Protection of Privacy Act and PIPEDA (Personal Information Protection and Electronic Documents Act), organizations can be deemed non-compliant. Similar legislation may exist in other countries. </p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q24atrue" name="q24a" value="true" type="radio">
+No<input id="q24afalse" name="q24a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q24info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+24. An original or novel process for which it would be difficult to estimate a balance of risk and benefit in advance?
+</p>
+<p  style="display: none;" id="q24info1" class="more_information">This item refers to the use of a new or innovative approach to a QI or evaluation project where little is known about the risks and benefits to participants in its use.  For example, in the recent past the use of digital story telling was once a novel method because it had never been used in the process of collecting data in an evaluation project.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q25atrue" name="q25a" value="true" type="radio">
+No<input id="q25afalse" name="q25a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q25info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+25. Risks of breaching the confidentiality of any individual's personal information beyond that experienced in the provision of routine service or day-to-day life?
+</p>
+<p  style="display: none;" id="q25info1" class="more_information">For example, a letter, fax or e-mail to a participant that includes sensitive information. The risk here is that using these methods to transmit private information about participants may have the potential to breach their confidentiality. Consider the need for informed consent to be transparent about the risks involved and to inform participants how you will safeguard the privacy of their information.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q26atrue" name="q26a" value="true" type="radio">
+No<input id="q26afalse" name="q26a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q26info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+26. A person who does not normally have access to participant records and whose use of records is for a secondary purpose?
+</p>
+<p  style="display: none;" id="q26info1" class="more_information">This item assesses the current project in relation to the following higher risk situation: someone outside of the usual providers of programming, care or service has access to personally identifying information. Plus, this individual(s) is collecting this data for purposes other than the original intent of its collection during routine care, programming or service.  
+In other words, the information was originally collected for person-centric purposes (i.e., just for the care or service of one person) and now an individual who does NOT normally have access to the data is collecting the information for a purpose other than care or service of that specific person. 
+It is important to ensure that safeguards are in place to protect against any breach of the privacy and confidentiality of personal information. Consult the appropriate articles in the Health Information Act or other legislation in your province regarding access and other provisions. Consider doing a privacy impact assessment or other consultation to ensure appropriate protections.
+Please refer to the Privacy and Information Security Legislation and Regulations in your jurisdiction. For example:  Alberta – Freedom of Information and Protection of Privacy Act (FOIPP), Health Information Act (HIA); British Columbia – Freedom of  Information and Privacy Association (FIPA); Ontario – Health Information Protection Act (HIPA).</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q27atrue" name="q27a" value="true" type="radio">
+No<input id="q27afalse" name="q27a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q27info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+27. Any significant departure from the routine care, program, or service provided to participants or the gathering of information about participants beyond that normally collected?
+</p>
+<p  style="display: none;" id="q27info1" class="more_information">This item assesses the use in the current QI or evaluation project of a clinical technique or procedure that is a significant deviation from usual care or data collected from the participant. This means the technique or procedure is invasive and different or more than that used in routine care. For example, the collection of additional blood samples for purposes of the QI or evaluation project at hand, administering additional or extended testing (cognitive, psychological), requesting additional assignments or feedback from participants in a pilot program, or observation of participants. Examples of information that is beyond what is normally collected may include demographic information, medical history, or previous experiences (educational). </p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q28atrue" name="q28a" value="true" type="radio">
+No<input id="q28afalse" name="q28a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q28info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+28. Risks or burdens for participants which are beyond what would be experienced in routine care or beyond what a reasonable person might expect in day-to-day interactions?
+</p>
+<p  style="display: none;" id="q28info1" class="more_information">Examples of potential risks for participants include physical, psychological, spiritual, and social harm or distress as a result of an element of a QI or evaluation project. Examples of burdens over and above routine care or expectations in day to day interactions may include feelings of intrusiveness, discomfort, or embarrassment arising from an element of a QI or evaluation project.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q29atrue" name="q29a" value="true" type="radio">
+No<input id="q29afalse" name="q29a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q29info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+29. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day to day interactions?
+</p>
+<p  style="display: none;" id="q29info1" class="more_information">For example, questions that raise painful memories or unresolved emotional issues or procedures that involve manipulation in some manner may be anticipated to potentially cause discomfort, anxiety or distress in participants. Project leaders should anticipate all potential reactions that may be triggered by these types of questions or procedures. Countermeasures designed to minimize (reduce the potential for a distress, discomfort or anxiety response) or mitigate (ease the response should it occur) ought to be included in the project plan. 
+Informed consent should be obtained and potential risks identified to all participants with a description of how these risks will be minimized (reduced) or mitigated (eased).
+Some countermeasures: Have appropriately trained personnel administer the questions or procedures. Provide appropriate support and resource contact information.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q30atrue" name="q30a" value="true" type="radio">
+No<input id="q30afalse" name="q30a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q30info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+30. Intended deception or intended incomplete disclosure of the nature of the investigation?
+</p>
+<p  style="display: none;" id="q30info1" class="more_information">This item assesses whether the project has been intentionally designed to deceive or to not completely disclose aspects of the project to the participants. The focus is whether the design is intended to make the participants believe something that is not true. Clear justification ought to be provided for the need for the deception or incomplete disclosure to accomplish project objectives. There should be clear description about how the benefits outweigh the risks of the deception or incomplete disclosure. All associated risks have to be identified and mitigation strategies built into the project design. Note: Projects with this risk should be considered for the highest level of recognized review within the organization or setting.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q31atrue" name="q31a" value="true" type="radio">
+No<input id="q31afalse" name="q31a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q31info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+31. Evaluation of the safety and effectiveness of a mechanical device, drug or natural health product?
+</p>
+<p  style="display: none;" id="q31info1" class="more_information">This item applies to understanding or improving the use of an approved product (under the Health Canada Food and Drug Act regulations or guidelines) in the local context.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q32atrue" name="q32a" value="true" type="radio">
+No<input id="q32afalse" name="q32a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q32info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+32. Clinical studies on a device, drug or natural health product where Health Canada review and approval is not required?
+</p>
+<p  style="display: none;" id="q32info1" class="more_information">The study involves a product already approved for its intended use in the specific project or it involves a product that does not fall under Health Canada regulations and guidelines. For more information please see: http://www.hc-sc.gc.ca/dhp-mps/legislation/index-eng.php</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q33atrue" name="q33a" value="true" type="radio">
+No<input id="q33afalse" name="q33a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q33info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+33. Therapeutic procedures that are themselves known to pose considerable risks of harm? 
+</p>
+<p  style="display: none;" id="q33info1" class="more_information">Examples of such considerable risks of harm include surgery, chemotherapy, radiation therapy.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q34atrue" name="q34a" value="true" type="radio">
+No<input id="q34afalse" name="q34a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q34info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+34. Any procedures related to anesthetics, sedation, or any alteration of medication that is not normally part of participant care or health?
+</p>
+<p  style="display: none;" id="q34info1" class="more_information">Examples of alteration of medication includes asking participants to increase, decrease, or refrain from taking medication for anxiety or ADHD.</p>
+</li>
+
+
+<li class="quality">
+<div>
+<span class='radiobox1'>
+Yes<input id="q35atrue" name="q35a" value="true" type="radio">
+No<input id="q35afalse" name="q35a" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q35info1');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+35. Non-invasive procedures beyond what is normally required for participant care?
+</p>
+<p  style="display: none;" id="q35info1" class="more_information">Examples of such non-invasive procedures include imaging or microwaves.</p>
+</li>
+</ul>
+
+
+<button onclick="javascript: scoresection3();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+
+</div>
+
+<div style="display: none" id='affected_block_3'>
+	
+</div>
+
+
+<!-- -------------------------------------------------------------- -->
+
+<div style="display:none" id="question_block_4">
+	<h2>Does your project involve...</h2>
+<ul class="questions">
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q14true" name="q14" value="true" type="radio">
+No<input id="q14false" name="q14" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+14. Collection of data through physically or clinically invasive procedures?
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q15true" name="q15" value="true" type="radio">
+No<input id="q15false" name="q15" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+15. Collection of data through non-invasive procedures involving imaging or microwaves? 
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q16true" name="q16" value="true" type="radio">
+No<input id="q16false" name="q16" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q16info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+16. Collection, use, or disclosure of health information, biological samples, or other personal or private information where the researcher is requesting that the requirement for informed consent be waived?
+</p>
+<p  style="display: none;" id="q16info" class="more_information">Informed consent is a requirement for all human subject research; however, there are circumstances where such consent may be difficult to obtain.  The TCPS addresses such circumstances in Article 2.1 and requires that the investigator apply to a REB for approval to waive the requirement for informed consent prior to implementation of any aspect of the project. </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q17true" name="q17" value="true" type="radio">
+No<input id="q17false" name="q17" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+17. Procedures related to anaesthetics or sedation not normally required for participant care? 
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q18true" name="q18" value="true" type="radio">
+No<input id="q18false" name="q18" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+18. Deception or intended incomplete disclosure of the nature of the study?
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q19true" name="q19" value="true" type="radio">
+No<input id="q19false" name="q19" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q19info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+19. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability or reputation?
+</p>
+<p  style="display: none;" id="q19info" class="more_information">There is widespread agreement about the rights of research participants to privacy and the corresponding duty of investigators to treat private information in a respectful and confidential manner (TCPS p. 3.1).  This item assesses whether the current project is higher risk with respect to the protection of privacy and the consequences for the participant should confidentiality of that private information be breached.     &lt;br/&gt;While the best protection of the confidentiality of personal information and records is through anonymity, when that is not possible project leaders should indicate the extent of the confidentiality that can be promised to participants and the countermeasures that are put in place to mitigate (ease the response should it occur) this risk. These should be clearly outlined on the consent form and during the consent process, including a plan to limit access to and provide secure storage of the private information for a specified period of time and with a specific plan for its destruction at the end of that timeframe as appropriate.     </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q20true" name="q20" value="true" type="radio">
+No<input id="q20false" name="q20" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q20info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+20. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day-to-day interactions?
+</p>
+<p  style="display: none;" id="q20info" class="more_information">For example, questions that raise painful memories or unresolved emotional issues or procedures that involve manipulation is some manner may be anticipated to potentially cause discomfort, anxiety or distress in participants.  Project leaders should anticipate all potential reactions that may be triggered by such questions or procedures, and include counter measures designed to minimize (reduce or curtail the magnitude of the potential response) or mitigate (ease the response should it occur) these reactions in project participants.  Appropriately trained personnel administering the questions or procedures and providing support and resource contact information, are but a few of such countermeasures. The consent form needs to include any potential risks that participants may be exposed to and describe how these will be minimized or mitigated.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q21true" name="q21" value="true" type="radio">
+No<input id="q21false" name="q21" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q21info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+21. Questions that involve sensitive issues such as sexual orientation or practices, illegal behaviour, stigmatizing conditions or diagnoses, religious or cultural beliefs or practices?
+</p>
+<p  style="display: none;" id="q21info" class="more_information">Questions that touch on these and other sensitive issues may be anticipated to potentially cause participants to be cautious in how they respond. This private information once collected may have consequences beyond the project that need to be anticipated in advance.  Countermeasures to protect privacy and confidentiality which minimize or mitigate any potential negative impacts on participants should be built into the plan.  The consent form needs to include any potential risk that participants may be exposed to as well as outline the planned countermeasures.  Countermeasures can include: appropriately trained personnel to collect the information, linkage to appropriate support resources, and a solid plan for access to and secure transmission / storage of personally identifiable data.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q22true" name="q22" value="true" type="radio">
+No<input id="q22false" name="q22" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q22info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+22. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, teacher/student)? 
+</p>
+<p  style="display: none;" id="q22info" class="more_information">This risk has to do with the requirement in a research project for informed consent to be freely given with the ability to freely withdraw at any time. The TCPS states that the element of voluntariness has important implications for how freely and informed consent may given or withdrawn by participants if undue influence is present by virtue of existing relationships in the institutional context in which the project will be carried out (see Article 2.2). This undue influence may restrict participants in how freely they can give consent or withdraw consent. This arises when the elements of trust and dependency are present in relationships such as manager/ employee, health provider/patient and teacher/student. In projects where this risk may arise its design has to include countermeasures that reduce any "form of inducement, deprivation or exercise of control or authority over prospective subjects".  In the case of the manager/employee situation, suggestions include having someone else as project lead and data collector with all data collected anonymized to the respective manager of the employees.  All risks and counter measures should be clearly outlined in the consent form. </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q23true" name="q23" value="true" type="radio">
+No<input id="q23false" name="q23" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q23info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+23. A real or potential conflict of interest between an investigator and the sponsor of the investigation?
+</p>
+<p  style="display: none;" id="q23info" class="more_information">Any conflict of interest of this nature needs to be declared upfront and measures put in place to counteract any real or potential undue influence on any aspect of the project including data collection, analysis and reporting of findings. </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q24true" name="q24" value="true" type="radio">
+No<input id="q24false" name="q24" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q24info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+24. Blood and tissue samples for genetic/DNA testing or storage for future research purposes?
+</p>
+<p  style="display: none;" id="q24info" class="more_information">This risk has to do with the requirement in a research project that the use of tissue depends on the individual&amp;#x27;s altruism in donating with the expectation that social good will be advanced. The TCPS Section 10 provides guidance that continuing consent and/or free and informed consent concerning new research projects have to be clearly addressed. In the case of genetic research an added dimension is that the tissue may reveal information about one&amp;#x27;s current or future health and that of biological relatives (Section 10.1).  It is essential to ensure protection of the privacy of the individual, confidentiality of their information and appropriate informed consent through ethics review by a REB.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q25true" name="q25" value="true" type="radio">
+No<input id="q25false" name="q25" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+25. Collection of blood sample volumes exceeding (i) and (ii) below?     healthy, non-pregnant adults weighing at least 50 kg (amounts drawn may not exceed 550 ml in an eight week period, and collection cannot occur more often than twice per week);     from other adults and children if the amount drawn does not exceed the lesser of 50 ml or 3 ml per kg in an eight week period (collection cannot occur more often than twice per week);
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q26true" name="q26" value="true" type="radio">
+No<input id="q26false" name="q26" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+26. Therapeutic procedures in clinical trials that are themselves known to pose considerable risks of harm (e.g., surgery, chemotherapy, radiation therapy)? 
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q27true" name="q27" value="true" type="radio">
+No<input id="q27false" name="q27" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+27. Clinical studies on drugs and medical devices when an investigational device exemption application or investigational new drug application is not required (e.g., if it is a non-invasive diagnostic device) or if the medical device, drug or natural health product has been cleared or approved for marketing for that purpose/indication?
+</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q28true" name="q28" value="true" type="radio">
+No<input id="q28false" name="q28" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q28info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+28. Special populations or any individuals or groups in a socially vulnerable position?
+</p>
+<p  style="display: none;" id="q28info" class="more_information">Special populations include but are not limited to pregnant women, children, frail elderly, prisoners, refugee claimants, students, and staff.  Examples of individual behaviours that may contribute to vulnerability include but are not limited to perception, cognition, motivation, identity, language, communication, social behaviour and cultural beliefs or practices. The TCPS states that ethical obligations to vulnerable individuals and populations often require special procedures to protect their interests (p i.5). </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q29true" name="q29" value="true" type="radio">
+No<input id="q29false" name="q29" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q29info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+29. Use of personally identifiable data, documents, records or specimens originally collected for therapeutic purposes?
+</p>
+<p  style="display: none;" id="q29info" class="more_information">Data on individuals originally collected as part of routine care, program participation or role expectations and which is identifiable cannot then just be used for research purposes. Clinicians or other providers who have ready access to such data by virtue of their role and who propose to do such research first require ethics approval by a REB before implementing any aspect of their project.  Projects which propose to use such identifiable data (e.g., chart reviews) must adhere to the secondary use of data guidelines outlined in the TCPS in Articles 3.4 to 3.5, and the appropriate articles in the respective Health Information Act of their province, if the information collected is health related. </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q30true" name="q30" value="true" type="radio">
+No<input id="q30false" name="q30" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q30info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+30. Collection of data from voice, video, digital or image recordings? 
+</p>
+<p  style="display: none;" id="q30info" class="more_information">There is risk that using these methods to collect private information from participants may have the potential to breach their confidentiality by revealing personally identifying information.  The consent form should include this risk and outline countermeasures to protect the privacy of individuals and their information.  To mitigate and minimize this risk, a well thought out plan needs to be in place regarding the secure storage of this private data and who has access to it.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q31true" name="q31" value="true" type="radio">
+No<input id="q31false" name="q31" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q31info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+31. The use of tests, survey procedures, interview procedures, oral history, focus groups or observation of public behaviour where the participants can be identified directly or indirectly through the information recorded?
+</p>
+<p  style="display: none;" id="q31info" class="more_information">Tests can include but are not limited to cognitive, diagnostic, achievement, and aptitude.  The risk here is that using these methods to collect private information from research participants may have the potential to breach their confidentiality by revealing personal information. The consent form needs to include any potential risks that participants may be exposed to and outline the planned counter measures.  Appropriately trained personnel to collect the information and appropriate plans for access and secure storage of the private data are also important components of the plan.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q32true" name="q32" value="true" type="radio">
+No<input id="q32false" name="q32" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q32info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+32. Prospective collection of biological specimens for research purposes by non-invasive means (e.g., hair and nail clippings, mucosal and skin cells collected by buccal swab, skin swab or mouth washings)?
+</p>
+<p  style="display: none;" id="q32info" class="more_information">Prospective refers to data which will be collected in the future compared to retrospective which refers to data which has been collected in the past.</p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q33true" name="q33" value="true" type="radio">
+No<input id="q33false" name="q33" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q33info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+33. Collection of data through non-invasive procedures routinely employed in clinical settings? 
+</p>
+<p  style="display: none;" id="q33info" class="more_information">Examples of non-invasive procedures routinely used in clinical care include In BP, Ht, Wt, and TPR readings. </p>
+</li>
+
+
+<li class="research">
+<div>
+<span class='radiobox1'>
+Yes<input id="q34true" name="q34" value="true" type="radio">
+No<input id="q34false" name="q34" value="false" type="radio">
+</span>
+</div>
+<p class="title">
+<a onclick="javascript: toggle_visibility('q34info');" class="more_information_link"><img alt="Information" src="/screening/images/information.png?1368148999"></a>
+34. Student research projects?
+</p>
+<p  style="display: none;" id="q34info" class="more_information">There may be potential for greater risk in projects where students are involved because students can sometimes lack the experience or skills needed to carry out research projects and may potentially in some cases not have the supervision needed to overcome these lacks which can increase the risk to participants.</p>
+</li>
+
+</ul>
+
+<button onclick="javascript: scoresection4();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+</div>
+
+<!-- -------------------------------------------------------------------------------------------------- -->
+
+
+
+
+<div style="display: none" class="results red" id="results_definite"></div>
+
+
+
+<div style="display: none" id="affected_title"><h2>Questions that affected your final score:</h2></div>
+<div id="affected_questions">
+	
+<ul id="affected">
+	<div id="q14aff" style="display: none">
+		<li><p>14. Collection of data through physically or clinically invasive procedures?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q15aff" style="display: none">
+		<li><p>15. Collection of data through non-invasive procedures involving imaging or microwaves?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q16aff" style="display: none">
+		<li><p>16. Collection, use, or disclosure of health information, biological samples, or other personal or private information where the researcher is requesting that the requirement for informed consent be waived?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q17aff" style="display: none">
+		<li><p>17. Procedures related to anaesthetics or sedation not normally required for participant care? </p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q18aff" style="display: none">
+		<li><p>18. Deception or intended incomplete disclosure of the nature of the study?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q19aff" style="display: none">
+		<li><p>19. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability or reputation?
+</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q20aff" style="display: none">
+		<li><p>20. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day-to-day interactions?
+</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q21aff" style="display: none">
+		<li><p>21. Questions that involve sensitive issues such as sexual orientation or practices, illegal behaviour, stigmatizing conditions or diagnoses, religious or cultural beliefs or practices?
+</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q22aff" style="display: none">
+		<li><p>22. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, teacher/student)? 
+</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q23aff" style="display: none">
+		<li><p>23. A real or potential conflict of interest between an investigator and the sponsor of the investigation?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q24aff" style="display: none">
+		<li><p>24. Blood and tissue samples for genetic/DNA testing or storage for future research purposes?</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q25aff" style="display: none">
+		<li><p>25. Collection of blood sample volumes exceeding (i) and (ii) below? Healthy, non-pregnant adults weighing at least 50 kg (amounts drawn may not exceed 550 ml in an eight week period, and collection cannot occur more often than twice per week); From other adults and children if the amount drawn does not exceed the lesser of 50 ml or 3 ml per kg in an eight week period (collection cannot occur more often than twice per week);</p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q26aff" style="display: none">
+		<li><p>26. Therapeutic procedures in clinical trials that are themselves known to pose considerable risks of harm (e.g., surgery, chemotherapy, radiation therapy)? </p><div class="ribbon">15<br><small> pts</small></div></li>
+	</div>
+	<div id="q27aff" style="display: none">
+		<li><p>27. Clinical studies on drugs and medical devices when an investigational device exemption application or investigational new drug application is not required (e.g., if it is a non-invasive diagnostic device) or if the medical device, drug or natural health product has been cleared or approved for marketing for that purpose/indication?</p><div class="ribbon">6<br><small> pts</small></div></li>
+	</div>
+	<div id="q28aff" style="display: none">
+		<li><p>28. Special populations or any individuals or groups in a socially vulnerable position?</p><div class="ribbon">3<br><small> pts</small></div></li>
+	</div>
+	<div id="q29aff" style="display: none">
+		<li><p>29. Use of personally identifiable data, documents, records or specimens originally collected for therapeutic purposes?</p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q30aff" style="display: none">
+		<li><p>30. Collection of data from voice, video, digital or image recordings? </p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q31aff" style="display: none">
+		<li><p>31. The use of tests, survey procedures, interview procedures, oral history, focus groups or observation of public behaviour where the participants can be identified directly or indirectly through the information recorded?</p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q32aff" style="display: none">
+		<li><p>32. Prospective collection of biological specimens for research purposes by non-invasive means (e.g., hair and nail clippings, mucosal and skin cells collected by buccal swab, skin swab or mouth washings)?</p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q33aff" style="display: none">
+		<li><p>33. Collection of data through non-invasive procedures routinely employed in clinical settings? </p><div class="ribbon">1<br><small> pts</small></div></li>
+	</div>
+	<div id="q34aff" style="display: none">
+		<li><p>34. Student research projects?</p><div class="ribbon">1<br><small> pts</small></div></li>
+	</div>
+	
+	<div id="q14aaff" style="display: none">
+		<li><p>14. Likelihood that a breach of confidentiality could place participants at risk of legal liability, denial of insurance or other damage to financial standing, employability, or reputation?</p><div class="ribbon">13<br><small> pts</small></div></li>
+	</div>
+	<div id="q15aaff" style="display: none">
+		<li><p>15. A real or potential conflict of interest between an investigator and the sponsor of the investigation?</p><div class="ribbon">10<br><small> pts</small></div></li>
+	</div>
+	<div id="q16aaff" style="display: none">
+		<li><p>16. A power relationship between the investigator and participants (e.g., manager/employee, therapist/client, service provider/recipient, teacher/student)?</p><div class="ribbon">13<br><small> pts</small></div></li>
+	</div>
+	<div id="q17aaff" style="display: none">
+		<li><p>17. Questions that collect information about sensitive issues, illegal behaviour, stigmatizing conditions or behaviours, or religious or cultural beliefs or practices?</p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q18aaff" style="display: none">
+		<li><p>18. Inexperienced project leads?</p><div class="ribbon">10<br><small> pts</small></div></li>
+	</div>
+	<div id="q19aaff" style="display: none">
+		<li><p>19. Collection of data through technical procedures or diagnostic tools routinely employed in the setting? </p><div class="ribbon">1<br><small> pts</small></div></li>
+	</div>
+	<div id="q20aaff" style="display: none">
+		<li><p>20. The use of tests, surveys, interviews, oral history, focus groups, or observation of public behaviour where the participants can be directly or indirectly identified through the information recorded? </p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q21aaff" style="display: none">
+		<li><p>21. Collection of data from voice, video, digital or image recordings?</p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q22aaff" style="display: none">
+		<li><p>22. Personally identifiable data, documents, records or specimens originally collected solely for purposes not related to the current study? </p><div class="ribbon">2<br><small> pts</small></div></li>
+	</div>
+	<div id="q23aaff" style="display: none">
+		<li><p>23. Special populations or any individuals or groups in a socially vulnerable position?</p><div class="ribbon">3<br><small> pts</small></div></li>
+	</div>
+	<div id="q24aaff" style="display: none">
+		<li><p>24. An original or novel process for which it would be difficult to estimate a balance of risk and benefit in advance?</p><div class="ribbon">10<br><small> pts</small></div></li>
+	</div>
+	<div id="q25aaff" style="display: none">
+		<li><p>25. Risks of breaching the confidentiality of any individual's personal information beyond that experienced in the provision of routine service or day-to-day life?</p><div class="ribbon">11<br><small> pts</small></div></li>
+	</div>
+	<div id="q26aaff" style="display: none">
+		<li><p>26. A person who does not normally have access to participant records and whose use of records is for a secondary purpose?</p><div class="ribbon">11<br><small> pts</small></div></li>
+	</div>
+	<div id="q27aaff" style="display: none">
+		<li><p>27. Any significant departure from the routine care, program, or service provided to participants or the gathering of information about participants beyond that normally collected?</p><div class="ribbon">13<br><small> pts</small></div></li>
+	</div>
+	<div id="q28aaff" style="display: none">
+		<li><p>28. Risks or burdens for participants which are beyond what would be experienced in routine care or beyond what a reasonable person might expect in day-to-day interactions?</p><div class="ribbon">12<br><small> pts</small></div></li>
+	</div>
+	<div id="q29aaff" style="display: none">
+		<li><p>29. Questions or procedures that might cause participants psychological distress, discomfort or anxiety beyond what a reasonable person might expect in day to day interactions?</p><div class="ribbon">12<br><small> pts</small></div></li>
+	</div>
+	<div id="q30aaff" style="display: none">
+		<li><p>30. Intended deception or intended incomplete disclosure of the nature of the investigation?</p><div class="ribbon">13<br><small> pts</small></div></li>
+	</div>
+	<div id="q31aaff" style="display: none">
+		<li><p>31. Evaluation of the safety and effectiveness of a mechanical device, drug or natural health product?</p><div class="ribbon">47<br><small> pts</small></div></li>
+	</div>
+	<div id="q32aaff" style="display: none">
+		<li><p>32. Clinical studies on a device, drug or natural health product where Health Canada review and approval is not required?</p><div class="ribbon">10<br><small> pts</small></div></li>
+	</div>
+	<div id="q33aaff" style="display: none">
+		<li><p>33. Therapeutic procedures that are themselves known to pose considerable risks of harm?</p><div class="ribbon">47<br><small> pts</small></div></li>
+	</div>
+	<div id="q34aaff" style="display: none">
+		<li><p>34. Any procedures related to anesthetics, sedation, or any alteration of medication that is not normally part of participant care or health?</p><div class="ribbon">47<br><small> pts</small></div></li>
+	</div>
+	<div id="q35aaff" style="display: none">
+		<li><p>35. Non-invasive procedures beyond what is normally required for participant care?</p><div class="ribbon">47<br><small> pts</small></div></li>
+	</div>
+	
+	
+</ul>
+</div>
+
+
+<!-- Extra tool stuff- sidebar and other modal windows -->
+<div style="display: none;" id="score_cutoff">
+<h2>Ethics Screening Score Cutoff Points</h2>
+<table style="display: none;" id="research_cutoff">
+<tbody><tr>
+<th>Score Result</th>
+<th>Level (Category) of Risk</th>
+<th>Recommended Ethics Review</th>
+</tr>
+<tr class="red">
+<td>15 or greater</td>
+<td>Definitely greater than minimal</td>
+<td>Full review* consistent with local policies</td>
+</tr>
+<tr class="orange">
+<td>8 - 14</td>
+<td>Somewhat more than minimal</td>
+<td>Seek a second opinion regarding screening result to further explore review requirements</td>
+</tr>
+<tr class="yellow">
+<td>
+<sup>+</sup>
+0 - 7
+</td>
+<td>Minimal</td>
+<td>Delegated* review consistent with local policies</td>
+</tr>
+</tbody><tfoot>
+<tr>
+<td colspan="3">
+<p>
+<strong>
+<sup>+</sup>
+There is always potential for ethical risk in projects that involve people or their personal information.
+</strong>
+</p>
+<p>*The term "delegated" replaces "expedited" according to the Tri-Council Policy Statement (TCPS) [Canadian Institutes of Health Research, National Sciences and Engineering Research Council of Canada and the Social Sciences and Research Council of Canada. 2005. Tri-Council Policy Statement on Research Involving Human Subjects. Ottawa, ON: Interagency Secretariat on Research Ethics.]</p>
+</td>
+</tr>
+</tfoot>
+</table>
+<table style="display: none;" id="quality_cutoff">
+<tbody><tr>
+<th>Score Result</th>
+<th>Category of Risk</th>
+<th>Recommended Ethics Review</th>
+</tr>
+<tr class="red">
+<td>47 or greater</td>
+<td>Definitely greater than minimal</td>
+<td>Organization's recognized review process* using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+<tr class="orange">
+<td>8 - 46</td>
+<td>Somewhat more than minimal</td>
+<td>Second Opinion Review** using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+<tr class="yellow">
+<td>
+<sup>+</sup>
+0 - 7
+</td>
+<td>Minimal</td>
+<td>Project leader uses <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+</tr>
+</tbody><tfoot>
+<tr>
+<td colspan="3">
+<p>*Review by a duly constituted group independent of the project team, that is trained to do project ethics reviews and whose decisions are recognized by the organization.</p>
+<p>**Review by an individual trained to do project ethics reviews who has no vested interest in the outcome of the project.</p>
+<p><strong>If you require access to a Second Opinion Review, please email <a href="mailto:ARECCI.health@albertainnovates.ca">ARECCI.health@albertainnovates.ca</a></strong></p>
+<p>
+<strong>
+<sup>+</sup>
+There is always potential for ethical risk in projects that involve people or their personal information.
+</strong>
+</p>
+</td>
+</tr>
+</tfoot>
+</table>
+
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+<div id="feedback_box">
+<h2>Feedback welcomed on the ARECCI online ethics screening tool</h2>
+<p>The ARECCI Network developed this tool for ethics decision support with projects involving people or their health information.</p>
+<p>It has been pilot tested by a variety of stakeholders, but remains the subject of ongoing development.</p>
+<p>To assist with refinements to improve its usefulness, feedback on your experience using this tool with your project(s) would be much appreciated.</p>
+<p>Kindly insert your comments and suggestions in the text box below.</p>
+<form accept-charset="UTF-8" action="/screening/feedback" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<textarea id="feedback_text" name="feedback_text"></textarea>
+<p>
+<input id="feedback_submit" name="commit" value="Send" type="submit">
+</p>
+</form>
+
+</div>
+<div id="email_box">
+<h2 style="width:400px;">Share your results</h2>
+<form accept-charset="UTF-8" action="/screening/email" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
+<input id="secure_url" name="secure_url" value="http://www.aihealthsolutions.ca/screening/60854/cb472ed36fce3d041c1e0521499e3f24" type="hidden">
+<p>
+<label for="from_name">From name</label>
+<input id="from_name" name="from_name" type="text">
+</p>
+<p>
+<label for="from_email">From email</label>
+<input id="from_email" name="from_email" type="text">
+</p>
+<p>
+<label for="to_name">To name</label>
+<input id="to_name" name="to_name" type="text">
+</p>
+<p>
+<label for="to_email">To email</label>
+<input id="to_email" name="to_email" type="text">
+</p>
+<p>
+<input id="email_submit" name="commit" value="Send" type="submit">
+</p>
+</form>
+
+</div>
+
+</div>
+</div>
+<div id="footer">
+<a href="javascript:void(0)" id="notice_link">Notice and Terms of Use</a>
+&nbsp;|
+<a href="javascript:void(0)" id="citation_link">Scholarly Citations</a>
+</div>
+</div>
+
+
+<div style="padding: 40px;" id="fancybox-tmp"></div><div style="display: none;" id="fancybox-loading"><div></div></div><div style="background-color: rgb(51, 51, 51); opacity: 0.8; cursor: pointer; height: 1325px; display: none;" id="fancybox-overlay"></div><div style="width: 840px; height: auto; top: 0px; left: 280px; display: none;" id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content" style="padding: 20px; border-width: 20px; width: 800px; height: 883px;"></div><a style="display: none;" id="fancybox-close"></a><div style="display: none;" id="fancybox-title"></div><a style="display: none;" href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a style="display: none;" href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div>
+
+</body>
+<script type="text/javascript">
+<!--
+    function toggle_visibility(id) {
+	    
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+    
+    function scoresection1() {
+	    var total=0;
+		var count=0;
+	    if(document.getElementById("q1true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q1false").checked == true)
+	    	count=count+1;
+	    	
+	    if(document.getElementById("q2true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q2false").checked == true)
+	    	count=count+1;
+	    if(document.getElementById("q3true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q3false").checked == true)
+	    	count=count+1;
+	    
+	    if(count < 3) 
+	    	alert('Please complete all questions in the section before proceeding');
+	    else {
+		    document.getElementById("question_block_2").style.display='block';
+		    
+		    e=document.getElementById("question_block_results_1");
+		    if(total > 0)    
+			    e.style.display='block';
+			else 
+				e.style.display='none';
+
+		    
+	    }
+	    
+	    
+    }
+    
+    function scoresection2() {
+	    var total=0;
+		var count=0;
+	    if(document.getElementById("q4true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q4false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q5true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q5false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q6true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q6false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q7true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q7false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q8true").checked == true) {
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q8false").checked == true)
+	    	count=count+1;
+	    	
+		if(document.getElementById("q9true").checked == true) {
+	    	total=total-1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q9false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q10true").checked == true) {
+	    	total=total-1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q10false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q11true").checked == true) {
+	    	total=total-1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q11false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q12true").checked == true) {
+	    	total=total-1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q12false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q13true").checked == true) {
+	    	total=total-1; 
+	    	count=count+1;
+	    }
+	    if(document.getElementById("q13false").checked == true)
+	    	count=count+1;
+	    
+	    if(count < 10) 
+	    	alert('Please complete all questions in the section before proceeding');
+	    else {
+		    document.getElementById("question_block_2").style.display='block';
+		    
+		   
+		    if(total == 0)    
+			    document.getElementById("question_block_results_2").style.display='block';
+			else 
+				document.getElementById("question_block_results_2").style.display='none';
+
+		    
+	    }
+    }
+    
+    function scoresection3(){
+	    var total=0;
+		var count=0;
+	    if(document.getElementById("q14atrue").checked == true) {
+		    document.getElementById("q14aaff").style.display='block';
+	    	total=total+13; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q14aaff").style.display='none';
+	    if(document.getElementById("q14afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q15atrue").checked == true) {
+		    document.getElementById("q15aaff").style.display='block';
+	    	total=total+10; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q15aaff").style.display='none';
+	    if(document.getElementById("q15afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q16atrue").checked == true) {
+		    document.getElementById("q16aaff").style.display='block';
+	    	total=total+13; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q16aaff").style.display='none';
+	    if(document.getElementById("q16afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q17atrue").checked == true) {
+		    document.getElementById("q17aaff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q17aaff").style.display='none';
+	    if(document.getElementById("q17afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q18atrue").checked == true) {
+		    document.getElementById("q18aaff").style.display='block';
+	    	total=total+10; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q18aaff").style.display='none';
+	    if(document.getElementById("q18afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q19atrue").checked == true) {
+		    document.getElementById("q19aaff").style.display='block';
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q19aaff").style.display='none';
+	    if(document.getElementById("q19afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q20atrue").checked == true) {
+		    document.getElementById("q20aaff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q20aaff").style.display='none';
+	    if(document.getElementById("q20afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q21atrue").checked == true) {
+		    document.getElementById("q21aaff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q21aaff").style.display='none';
+	    if(document.getElementById("q21afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q22atrue").checked == true) {
+		    document.getElementById("q22aaff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q22aaff").style.display='none';
+	    if(document.getElementById("q22afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q23atrue").checked == true) {
+		    document.getElementById("q23aaff").style.display='block';
+	    	total=total+3; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q23aaff").style.display='none';
+	    if(document.getElementById("q23afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q24atrue").checked == true) {
+		    document.getElementById("q24aaff").style.display='block';
+	    	total=total+10; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q24aaff").style.display='none';
+	    if(document.getElementById("q24afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q25atrue").checked == true) {
+		    document.getElementById("q25aaff").style.display='block';
+	    	total=total+11; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q25aaff").style.display='none';
+	    if(document.getElementById("q25afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q26atrue").checked == true) {
+		    document.getElementById("q26aaff").style.display='block';
+	    	total=total+11; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q26aaff").style.display='none';
+	    if(document.getElementById("q26afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q27atrue").checked == true) {
+		    document.getElementById("q27aaff").style.display='block';
+	    	total=total+13; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q27aaff").style.display='none';
+	    if(document.getElementById("q27afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q28atrue").checked == true) {
+		    document.getElementById("q28aaff").style.display='block';
+	    	total=total+12; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q28aaff").style.display='none';
+	    if(document.getElementById("q28afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q29atrue").checked == true) {
+		    document.getElementById("q29aaff").style.display='block';
+	    	total=total+12; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q29aaff").style.display='none';
+	    if(document.getElementById("q29afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q30atrue").checked == true) {
+		    document.getElementById("q30aaff").style.display='block';
+	    	total=total+13; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q30aaff").style.display='none';
+	    if(document.getElementById("q30afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q31atrue").checked == true) {
+		    document.getElementById("q31aaff").style.display='block';
+	    	total=total+47; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q31aaff").style.display='none';
+	    if(document.getElementById("q31afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q32atrue").checked == true) {
+		    document.getElementById("q32aaff").style.display='block';
+	    	total=total+10; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q32aaff").style.display='none';
+	    if(document.getElementById("q32afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q33atrue").checked == true) {
+		    document.getElementById("q33aaff").style.display='block';
+	    	total=total+47; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q33aaff").style.display='none';
+	    if(document.getElementById("q33afalse").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q34atrue").checked == true) {
+		    document.getElementById("q34aaff").style.display='block';
+	    	total=total+47; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q34aaff").style.display='none';
+	    if(document.getElementById("q34afalse").checked == true)
+	    	count=count+1;
+	    	
+	    if(document.getElementById("q35atrue").checked == true) {
+		    document.getElementById("q35aaff").style.display='block';
+	    	total=total+47; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q35aaff").style.display='none';
+	    if(document.getElementById("q35afalse").checked == true)
+	    	count=count+1;
+	    
+	    
+	    if(count < 22) 
+	    	alert('Please complete all questions in the section before proceeding');
+	    else {
+		    document.getElementById("score_cutoff").style.display="block";
+		    document.getElementById("quality_cutoff").style.display="block";
+		    document.getElementById("research_cutoff").style.display="none";
+		    		   
+		    if(total >= 0 && total <=7) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Minimal Risk. Be sure to identify and manage risk consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results yellow";
+			}
+			if(total >= 8 && total <=46) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Somewhat More Than Minimal Risk and should receive a second opinion review consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results orange";
+			}
+			if(total >= 47 ) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Definitely Greater Than Minimal Risk and should receive a full QA/Evaluation review consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results red";
+			}
+	    }
+    }
+    
+    function scoresection4(){
+	    var total=0;
+		var count=0;
+	    if(document.getElementById("q14true").checked == true) {
+		    document.getElementById("q14aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q14aff").style.display='none';
+	    if(document.getElementById("q14false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q15true").checked == true) {
+		    document.getElementById("q15aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q15aff").style.display='none';
+
+	    if(document.getElementById("q15false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q16true").checked == true) {
+		    document.getElementById("q16aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q16aff").style.display='none';
+	    if(document.getElementById("q16false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q17true").checked == true) {
+		    document.getElementById("q17aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q17aff").style.display='none';
+	    if(document.getElementById("q17false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q18true").checked == true) {
+		    document.getElementById("q18aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q18aff").style.display='none';
+	    if(document.getElementById("q18false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q19true").checked == true) {
+		    document.getElementById("q19aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q19aff").style.display='none';
+	    if(document.getElementById("q19false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q20true").checked == true) {
+		    document.getElementById("q20aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q20aff").style.display='none';
+	    if(document.getElementById("q20false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q21true").checked == true) {
+		    document.getElementById("q21aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q21aff").style.display='none';
+	    if(document.getElementById("q21false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q22true").checked == true) {
+		    document.getElementById("q22aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q22aff").style.display='none';
+	    if(document.getElementById("q22false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q23true").checked == true) {
+		    document.getElementById("q23aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q23aff").style.display='none';
+	    if(document.getElementById("q23false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q24true").checked == true) {
+		    document.getElementById("q24aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q24aff").style.display='none';
+	    if(document.getElementById("q24false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q25true").checked == true) {
+		    document.getElementById("q25aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q25aff").style.display='none';
+	    if(document.getElementById("q25false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q26true").checked == true) {
+		    document.getElementById("q26aff").style.display='block';
+	    	total=total+15; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q26aff").style.display='none';
+	    if(document.getElementById("q26false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q27true").checked == true) {
+		    document.getElementById("q27aff").style.display='block';
+	    	total=total+6; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q27aff").style.display='none';
+	    if(document.getElementById("q27false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q28true").checked == true) {
+		    document.getElementById("q28aff").style.display='block';
+	    	total=total+3; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q28aff").style.display='none';
+	    if(document.getElementById("q28false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q29true").checked == true) {
+		    document.getElementById("q29aff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q29aff").style.display='none';
+	    if(document.getElementById("q29false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q30true").checked == true) {
+		    document.getElementById("q30aff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q30aff").style.display='none';
+	    if(document.getElementById("q30false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q31true").checked == true) {
+		    document.getElementById("q31aff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q31aff").style.display='none';
+	    if(document.getElementById("q31false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q32true").checked == true) {
+		    document.getElementById("q32aff").style.display='block';
+	    	total=total+2; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q32aff").style.display='none';
+	    if(document.getElementById("q32false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q33true").checked == true) {
+		    document.getElementById("q33aff").style.display='block';
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q33aff").style.display='none';
+	    if(document.getElementById("q33false").checked == true)
+	    	count=count+1;
+	    
+	    if(document.getElementById("q34true").checked == true) {
+		    document.getElementById("q34aff").style.display='block';
+	    	total=total+1; 
+	    	count=count+1;
+	    }
+	    else document.getElementById("q34aff").style.display='none';
+	    if(document.getElementById("q34false").checked == true)
+	    	count=count+1;
+	    	
+	    
+
+	    
+	    if(count < 21) 
+	    	alert('Please complete all questions in the section before proceeding');
+	    else {
+		    document.getElementById("score_cutoff").style.display="block";
+		    document.getElementById("research_cutoff").style.display="block";
+		    document.getElementById("quality_cutoff").style.display="none";
+		    
+		    if(total >= 0 && total <=7) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Minimal Risk. Be sure to identify and manage risk consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results yellow";
+			}
+			if(total >= 8 && total <=14) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Somewhat More Than Minimal Risk and should receive expedited review consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results orange";
+			}
+			if(total >= 15 ) {   
+			    document.getElementById("results_definite").style.display='block';
+
+			    document.getElementById("results_definite").textContent='';
+				var st=document.createElement("strong");
+				var t=document.createTextNode("Your score is " + total + ". The project involves Definitely Greater Than Minimal Risk and should receive full review consistent with local policies.");
+				st.appendChild(t);
+				document.getElementById("results_definite").appendChild(st);
+				document.getElementById("results_definite").className="results red";
+			}
+	    }
+    }
+
+//-->
+</script>
+
+</html>
