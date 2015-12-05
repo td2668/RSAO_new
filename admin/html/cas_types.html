@@ -1,10 +1,19 @@
 <patTemplate:tmpl name="PAGE">
 <patTemplate:tmpl src="header.html" />
 <tr><td>
-{COUNTER}</td></tr><tr><td>
+</td></tr><tr><td>
 <table border="1" cellpadding="3" style="border-collapse: collapse" bordercolor="#FFFFFF" cellspacing="1">
+	<tr><td colspan=3>Viewing: Order # {ORDERSETNUM} 
+		<form name="form2" action="cas_types.php">
+		<select name="orderset" onchange="document.form2.submit()">
+			<option value="0"> </option>
+			{SELECTORDER}
+		</select>
+	</form> </td></tr>
+	
 <patTemplate:tmpl name="chooser" visibility="hidden">
-    <tr><td  bgcolor='#000000'><b><font color='#FFFFFF'>{HEADING_NAME}</font></b></td><td  bgcolor='#000000'><a href='cas_types.php?heading_up&id={CAS_HEADING_ID}'><img src='images/arrow_up_grey.jpg' border='0'/></a></td><td  bgcolor='#000000'><a href='cas_types.php?heading_down&id={CAS_HEADING_ID}'><img src='images/arrow_down_grey.jpg' border='0'/></a></td></tr>
+   
+    <tr><td  bgcolor='#000000'><b><font color='#FFFFFF'>{HEADING_NAME}</font></b></td><td  bgcolor='#000000'><a href='cas_types.php?heading_up&id={CAS_HEADING_ID}&orderset={ORDERSETNUM}'><img src='images/arrow_up_grey.jpg' border='0'/></a></td><td  bgcolor='#000000'><a href='cas_types.php?heading_down&id={CAS_HEADING_ID}&orderset={ORDERSETNUM}'><img src='images/arrow_down_grey.jpg' border='0'/></a></td></tr>
     
     {ITEMS}
 </patTemplate:tmpl>
@@ -12,6 +21,7 @@
 <patTemplate:tmpl name="edit" visibility="hidden">
     <form name='form1'>
     <input type="hidden" name="cas_type_id" value="{CAS_TYPE_ID}">
+    <input type="hidden" name="orderset" value="{ORDERSETNUM}"
     
     <tr>
         <td colspan="9" class="successhead">Editing: {TYPENAME}</td>
@@ -44,7 +54,7 @@
         <td class="listbody">{LIST_ADD}</td>
         <td class="listbody">{HELP_TEXT}</td></tr>
     </patTemplate:tmpl>
-    <tr><td colspan="8" align="center"><button type="submit" name="saveme" value="saveme">Save</button> <button type="button" onCLick="window.location='cas_types.php?section=view';">Back to List</button></td></tr>
+    <tr><td colspan="8" align="center"><button type="submit" name="saveme" value="saveme">Save</button> <button type="button" onCLick="window.location='cas_types.php?section=view&orderset={ORDERSETNUM}';">Back to List</button></td></tr>
     
  </form>   
 </patTemplate:tmpl>
