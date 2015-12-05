@@ -22,7 +22,7 @@
         <div {NAMESORTCLASS} style='display:inline-block'>&nbsp;</div>
     </td>
     <td><b style="color:#E1E1E1;font-size:10px">ID#</b></td>
-    <td><b style="color:#E1E1E1;font-size:10px">Department</b></td>
+    <td><b style="color:#E1E1E1;font-size:10px">Course</b></td>
     <td><b style="color:#E1E1E1;font-size:10px">Title</b></td>
     <td><b style="color:#E1E1E1;font-size:10px">
         <a href='srd_posters.php?sort=date' title='sort by date' style='color:white'>Date In</a></b>
@@ -37,9 +37,9 @@
         <patTemplate:sub condition="odd">
             <tr bgcolor='#CCCCCC'>
              <td>{POSTER_REG_ID}</td>
-                <td>{LASTNAME}, {FIRSTNAME}</td>
+                <td>{PINAME}</td>
                 <td>{STUDENTID}</td>
-                <td>{DEPARTMENTNAME}</td>
+                <td>{COURSE}</td>
                 <td>{TITLE}</td>
                 <td>{SUBMIT_DATE}</td>
                 <td>{ORI}</td>
@@ -52,9 +52,9 @@
                 <patTemplate:sub condition="even">
                     <tr bgcolor="#CCFFFF">
                     <td>{POSTER_REG_ID}</td>
-                        <td>{LASTNAME}, {FIRSTNAME}</td>
+                        <td>{PINAME}</td>
                         <td>{STUDENTID}</td>
-                        <td>{DEPARTMENTNAME}</td>
+                        <td>{COURSE}</td>
                         <td>{TITLE}</td>
                         <td>{SUBMIT_DATE}</td>
                         <td>{ORI}</td>
