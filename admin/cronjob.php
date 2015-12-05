@@ -6,78 +6,48 @@
 
 //$filepath = "/opt/lampp/htdocs/";
 
-define("NEWS", 0);
-define("DEADLINE", 1);
-define("SRD", 2);
-define("OTHER", 3);
-
 //Set up for the various servers
 $configInfos = array();
 
-//  PRODUCTION Mount Royal Research site:
-$configInfos["orsadmin.mtroyal.ca"]["server_name"] = "orsadmin/MRCResearch1";
-$configInfos["orsadmin.mtroyal.ca"]["host"] = "localhost";
-$configInfos["orsadmin.mtroyal.ca"]["user"] = "ors";
-$configInfos["orsadmin.mtroyal.ca"]["pass"] = "rilinc";
-$configInfos["orsadmin.mtroyal.ca"]["dbdriver"] = "mysql";
-$configInfos["orsadmin.mtroyal.ca"]["dbname"] = "research";
-$configInfos["orsadmin.mtroyal.ca"]["peardir"] = '';
-$configInfos["orsadmin.mtroyal.ca"]["debug"] = false;
-$configInfos["orsadmin.mtroyal.ca"]["url_root"] = 'http://orsadmin.mtroyal.ca/';
-$configInfos["orsadmin.mtroyal.ca"]["file_root"] = '/var/www/orsadmin_htdocs/';
-$configInfos["orsadmin.mtroyal.ca"]["picture_path"] = "/var/www/orsadmin_htdocs/admin/documents/shared/pictures/";
-$configInfos["orsadmin.mtroyal.ca"]["picture_url"] = "/admin/documents/shared/pictures/";
-
-//PREP Mount Royal
-$configInfos["orsadmin-prep.mtroyal.ca"]["server_name"] = "orsadmin-prep/MRCResearch1";
-$configInfos["orsadmin-prep.mtroyal.ca"]["host"] = "localhost";
-$configInfos["orsadmin-prep.mtroyal.ca"]["user"] = "ors";
-$configInfos["orsadmin-prep.mtroyal.ca"]["pass"] = "rilinc";
-$configInfos["orsadmin-prep.mtroyal.ca"]["dbdriver"] = "mysql";
-$configInfos["orsadmin-prep.mtroyal.ca"]["dbname"] = "research";
-$configInfos["orsadmin-prep.mtroyal.ca"]["peardir"] = '';
-$configInfos["orsadmin-prep.mtroyal.ca"]["debug"] = false;
-$configInfos["orsadmin-prep.mtroyal.ca"]["url_root"] = 'http://orsadmin-prep.mtroyal.ca/';
-$configInfos["orsadmin-prep.mtroyal.ca"]["file_root"] = '/var/www/orsadmin-prep_htdocs/';
-$configInfos["orsadmin-prep.mtroyal.ca"]["admin"] = array('tdavis','cnakamoto');
-$configInfos["orsadmin-prep.mtroyal.ca"]["picture_path"] = "/var/www/orsadmin-prep_htdocs/admin/documents/shared/pictures/";
-$configInfos["orsadmin-prep.mtroyal.ca"]["picture_url"] = "/admin/documents/shared/pictures/";
-
-// CLAERO LOCAL DEVELOPMENT
-// 20090224 CSN added configuration for Claero Systems local development
-$configInfos["localhost"]["server_name"] = 'localhost';
-$configInfos["localhost"]["host"] = 'localhost';
-$configInfos["localhost"]["user"] = 'ors';
-$configInfos["localhost"]["pass"] = 'rilinc';
-$configInfos["localhost"]["dbdriver"] = 'mysql';
-$configInfos["localhost"]["dbname"] = 'research';
-//$configInfos["localhost"]["peardir"] = '/usr/lib/php/';
-$configInfos["localhost"]["peardir"] = '/usr/share/php/PEAR/';
-$configInfos["localhost"]["debug"] = false;
-//$configInfos["localhost"]["authmethod"] = 'usertable';
-$configInfos["localhost"]["url_root"] = 'http://localhost';
-//$configInfos["localhost"]["file_root"] = '/Applications/XAMPP/htdocs';
-$configInfos["localhost"]["file_root"] = "/var/www/research-htdocs/adminrepo/trunk/";
-//$configInfos["localhost"]["adodb_root"] = 
-
-/*if (strpos($_SERVER['HTTP_HOST'],':') != 0) {
-    list($server,$port)=explode(":",$_SERVER['HTTP_HOST']);
-} else {
-    $server = $_SERVER['HTTP_HOST'];
-    $port = 80;
-}
-if (strstr($server,"www.")) {
-    $server = substr($server,4);
-}
-if (isset($configInfos[$server])) {
-    $configInfo = $configInfos[$server];
-} else {
-    $configInfo = $configInfos["localhost"];
-}*/
+$configInfos["admin.localhost"]["server_name"] = 'localhost';
+$configInfos["admin.localhost"]["host"] = 'localhost';
+$configInfos["admin.localhost"]["user"] = 'ors';
+$configInfos["admin.localhost"]["pass"] = 'rilinc';
+$configInfos["admin.localhost"]["dbdriver"] = 'mysql';
+$configInfos["admin.localhost"]["dbname"] = 'research';
+$configInfos["admin.localhost"]["peardir"] = '/vagrant/vendor/conservatory/research-pear/';
+$configInfos["admin.localhost"]["debug"] = true	;
+$configInfos["admin.localhost"]["authmethod"] = 'usertable';
+$configInfos["admin.localhost"]["url_root"] = 'http://local.orsadmin';
+$configInfos["admin.localhost"]["upload_root"] = '/Users/tdavis/Sites/webrepo/research/tags/release-4.0/admin/documents/';
+$configInfos["admin.localhost"]["upload_webroot"] = '/documents/';
+$configInfos["admin.localhost"]["file_root"] = '/Users/tdavis/Sites/webrepo/research/tags/release-4.0/admin/';
+$configInfos["admin.localhost"]["admin"] = array('tdavis','cnakamoto');
+$configInfos["admin.localhost"]["irgf_docs"] = "/admin/documents/shared/irgf";
+$configInfos["admin.localhost"]["logpath"] = "/Users/tdavis/Sites/webrepo/research/tags/release-4.0/admin/";
+$configInfos["admin.localhost"]["picture_path"] = "/Users/tdavis/Sites/webrepo/tags/release-4.0/admin/documents/pictures/";
+$configInfos["admin.localhost"]["mail_file_path"] = '/Users/tdavis/Sites/webrepo/tags/release-4.0/admin/documents/mailfiles/';
+$configInfos["admin.localhost"]["email_send_now"] = false;
+$configInfos["admin.localhost"]["debug_email"] = false;
+$configInfos["admin.localhost"]["email_db_options"] =
+    array(
+        'type'        => 'db',
+        'dsn'         => 'mysql://ors:rilinc@localhost/research',
+        'mail_table'  => 'mail_queue',
+    );
+$configInfos["admin.localhost"]['email_options'] = array(
+        'driver'   => 'smtp',
+        'host'     => 'localhost',
+        'port'     => 25,
+        'auth'     => false,
+        'username' => '',
+        'password' => '',
+    );
 
 
 
-$configInfo = $configInfos["orsadmin.mtroyal.ca"];
+
+$configInfo = $configInfos["admin.localhost"];
 //$configInfo = $configInfos["localhost"];
 
 error_reporting(E_ALL);
@@ -85,7 +55,8 @@ set_time_limit(120);
 
 //$filepath = "/var/www/orsadmin-prep_htdocs/";
 //$mail_file_path="/var/www/orsadmin-prep_htdocs/admin/mail_upload/";
-$hr_extract_path="/var/www/secure-store/hr_extract/";
+//$hr_extract_path="/var/www/secure-store/hr_extract/";
+$hr_extract_path="/Users/trevor/Documents/Sites/extracts";
 
 //include("{$filepath}admin/includes/config.inc.php"); 
 //Due to changes - replaced by following
@@ -122,9 +93,9 @@ $db->Connect(
 
 $todays_date = mktime();
 $tomorrow = strtotime("+1 day");
-$deadline_change_email='tdavis@mtroyal.ca, jcameron@mtroyal.ca, project-1876272-666b25425609eb8bd6c83d7e@basecamp.com';
-$hr_extract_email="tdavis@mtroyal.ca";
-$logmail_recipient='tdavis@mtroyal.ca, jcameron@mtroyal.ca';
+$deadline_change_email='trevor.davis@viu.ca';
+$hr_extract_email="trevor.davis@viu.ca";
+$logmail_recipient='trevor.davis@viu.ca';
 
 //standard file locations
 $picture_path = "../pictures/";
@@ -192,6 +163,8 @@ if(is_array($values)) {
 
 // 2. Check Mail for delayed messages & send - flag sent
 
+/*
+
 $mailitems = mysqlFetchRows("mail", "s_date <= $todays_date AND !sent");
 if(is_array($mailitems)) {
     foreach($mailitems as $mailitem) {
@@ -229,13 +202,13 @@ if(is_array($mailitems)) {
             $result = mysqlUpdate("mail", $values, "mail_id=$mailitem[mail_id]"); 
                
             array_walk($users,'mailout',$mailitem);
-          /*
-            foreach($users as $key=>$user) {
-                echo "mailing $user[email] - $user[user_id]\n";
-                if($users[$key]['visits']==1)
-                    mailout($user,$key,$mailitem);
+          
+            //foreach($users as $key=>$user) {
+            //    echo "mailing $user[email] - $user[user_id]\n";
+            //    if($users[$key]['visits']==1)
+            //        mailout($user,$key,$mailitem);
             }
-            */
+            
             //Add new mail_history item 
             echo "Adding history item\n";
             $groups=$people=$topics='';
@@ -279,7 +252,7 @@ else {
 	$logmail.="No delayed mail to send today.\n";
 }
 
-
+*/
 
 /*
 //Commented out until dates are updated nd confirmed.Tdavis July 5/12
@@ -366,7 +339,7 @@ if(is_array($values)) {
             $topiclist=explode(",",$topics_research);
 
             if(is_array($users)) {
-/*                foreach($users as $key=>$user){
+              foreach($users as $key=>$user){
                     $users[$key]['visits']=0; //flag for mail/nomail
 
                     //check if there is a topic match
@@ -417,6 +390,8 @@ else fwrite($logfile,"No deadlines or warning to send today.\n");
 
 //4.
 //    If deadline date is past, and no expiry date, move all dates up one year -- then check for messages as above and remove associated ID so that a new message will be generated next year.
+
+/*
 
 $values=mysqlFetchRows("deadlines as d left join deadline_dates as dd on d.deadline_id=dd.deadline_id","expiry_date=0 AND d_date < $todays_date AND no_deadline=0");
 
@@ -630,7 +605,7 @@ foreach($lists as $curr_list){
 	
 }//foreach list
 
-/*** Manage Tracking Form Notifications ****/
+//*** Manage Tracking Form Notifications ****
 
 $numSent = notifyDeans();
 fwrite($logfile,"Dean Notifications [today]: sent " . $numSent['emails'] . " notifications with " . $numSent['errors'] . " errors. \n\n");
@@ -640,7 +615,7 @@ $numSent = notifyORS();
 fwrite($logfile,"ORS Notifications [today]: sent " . $numSent['emails'] . " notifications with " . $numSent['errors'] . " errors. \n\n");
 $logmail.= "ORS Notifications [today]: sent " . $numSent['emails'] . " notifications with " . $numSent['errors'] . " errors. \n\n";
 
-/******** Manage Expired HREB *************/
+//******** Manage Expired HREB *************
 
 $numUpdated = updateExpiredHREB();
 fwrite($logfile,"Set expired status on $numUpdated HREB reports.\n\n");
@@ -674,18 +649,11 @@ fclose($logfile);
 mail ($logmail_recipient,"ORS Cron Log",$logmail,"From:research@mtroyal.ca");
 
 
-/**
- * Backup defined SQL tables
- *
- * backups go to ../secure-store/backups
- * log file : ../secure-store/backups/backup.log
- */
-/*include "includes/backup.php";
-$tables = array('cv_items', 'ar_profiles');  // tables to backup
-$backup = new Backup($tables);
-$backup->doBackup();*/
+
 
 //rebuildSiteIndex();
+
+*/
 
 function formatCVTable($rows, $type='') {
 	$result = "";
