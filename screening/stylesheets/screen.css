@@ -1505,6 +1505,18 @@ button.next.ui-state-active .ui-button-text {
 	color:#fff;
 }
 
+.green {
+	background:#08c400;
+	border:5px solid #005b12;
+	color:#fff;
+}
+
+.blue {
+	background:#00b6e3;
+	border:5px solid #000689;
+	color:#fff;
+}
+
 .orange {
 	background:#ff8b00;
 	border:5px solid #dc8b2b;

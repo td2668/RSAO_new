@@ -40,7 +40,7 @@ else {
  * Show the form
  */
 function show_form() {
-    global $tmpl;
+    global $tmpl,$db;
     
     //Recover the data already submitted
     if(isset($_POST['primaryNameFirst'])) $tmpl->addVar("FORM", 'primaryNameFirst', $_POST['primaryNameFirst']);
@@ -54,7 +54,7 @@ function show_form() {
     if(is_uploaded_file($_FILES['filename']['tmp_name'])) $tmpl->addVar("FORM", 'filename', $_FILES['filename']['name']);
    
 
-
+	
     $tmpl->addVar("FORM", 'FORM', "block");
     $tmpl->addVar("FORM", 'SUCCESS', "none");
     $tmpl->addVar("FORM", 'SRD', "none");
@@ -67,6 +67,11 @@ function show_form() {
     
     $registrations= getRegistrations($_POST['registration']);
     $tmpl->addVar('FORM','REGISTRATIONS',$registrations);
+    
+    $username = sessionLoggedUser();
+    $sql = "SELECT * FROM users WHERE username = \"$username\"";
+    $user = $db->GetRow($sql);
+    $tmpl->addVar('FORM','FORM_CREATE_ID',$user['user_id']);
 
     $tmpl->displayParsedTemplate('page');
 }
@@ -116,32 +121,42 @@ function process_form() {
     //$hreb2 = $_POST['hreb2'];
     $title = mysql_escape_string($_POST['title']);
     //$foip = $_POST['foip'] == 'yes' ? 1 : 0;
+    if(!isset($_POST['form_create_id'])) $id=0;
+    else $id=$_POST['form_create_id'];
     
     //file processing
 	if(is_uploaded_file($_FILES['filename']['tmp_name'])){
+		//print_r($_FILES['filename']);
+		$filesize=$_FILES['filename']['size'];
 		$ext=explode(".",$_FILES['filename']['name']);
 		$ext_el=sizeof($ext)-1;  //in case theres another . in the filename
 		$filename_noext="printfile".mktime();
 		$filename=$filename_noext.".".$ext[$ext_el];
 		
 		copy ($_FILES['filename']['tmp_name'],$configInfo['upload_root'].'posters/'.$filename);
-		echo("Copying ".$_FILES['filename']['tmp_name']." to ".$configInfo['upload_root'].'posters/'.$filename);
+		//echo("Copying ".$_FILES['filename']['tmp_name']." to ".$configInfo['upload_root'].'posters/'.$filename);
 		unlink($_FILES['filename']['tmp_name']);
 	}
+	
+	if($filesize>1000000) $filesize=round($filesize/1000000) . 'Mb';
+	elseif($filesize>1000) $filesize=round($filesize/1000) . 'kb';
+	else $filesize = $filesize . 'bytes';
 
     $query = "INSERT INTO poster_reg
-                    (departmentId, course, supervisorId,
-                      title, submit_date, filename)
-                     VALUES ('$department', '$course',
-                             '$supervisor', '$title', NOW(), '$filename')";
+                    (
+                      title, submit_date, filename, form_create_id)
+                     VALUES ( '$title', NOW(), '$filename',$_POST[registration])";
 
     $db->Execute($query);
     $srdRegId = mysql_insert_id();
 	
-	
+	//get the person info
+	$username = sessionLoggedUser();
+    $sql = "SELECT * FROM users WHERE username = \"$username\"";
+    $user = $db->GetRow($sql);
 
     // send an email to notify ORS
-    notifyORS(array('first' => $first,'last' => $last,'title' => $title,'format' => $pref));
+    notifyORS(array('first' => $user['first_name'],'last' => $user['last_name'],'title' => $title,'format' => $pref,'filesize'=>$filesize));
 
 
     $tmpl->addVar("FORM", 'FORM', "none");
@@ -225,8 +240,18 @@ function getRegistrations($existing) {
  * @param $details - the details of the submission
  */
 function notifyORS($details) {
-    require_once('classes/Mail/MailQueue.php');
-    require_once('classes/Mail/Email.php');
+    //require_once('classes/Mail/MailQueue.php');
+    //require_once('classes/Mail/Email.php');
+    global $configInfo;
+    ini_set("include_path", '/home/scholviu/php:' . ini_get("include_path")  );
+    //print_r( $configInfo['email_db_options']);
+    require_once "Mail/Queue.php";
+    
+    $mail_queue = new Mail_Queue( $configInfo['email_db_options'], $configInfo['email_options'] );
+	//$mime = new Mail_mime();
+	
+	$from = 'trevor.davis@viu.ca';
+	$from_name = 'SRD Bot';
 
     $recipient1 = 'kathryn.jepson@viu.ca';
     $recipientName1 = 'Kathryn J';
@@ -238,8 +263,48 @@ function notifyORS($details) {
                           First Name : %s
                           Last Name: %s
                           Title: %s
+                          Size: %s
                           
-                 ', $details['first'], $details['last'], $details['title']);
+                 ', $details['first'], $details['last'], $details['title'], $details['filesize']);
+
+	$from_params = empty( $from_name ) ? '<' . $from . '>' : '"' . $from_name . '" <' . $from . '>';
+	$recipient_params = empty( $recipientName1 ) ? '<' . $recipient1 . '>' : '"' . $recipientName1 . '" <' . $recipient1 . '>';
+	
+	$recipient_list=array('Kathryn J <kathryn.jepson@viu.ca>', 'Trevor D <trevor.davis@viu.ca>');
+	foreach($recipient_list as $recipient){
+		$mime = new Mail_mime();
+		$hdrs = array(
+			        'From' => $from_params,
+			        'To' => $recipient,
+			        'Subject' => $subject,
+					);
+		
+		
+		
+		
+		$mime->setTXTBody( $emailBody );
+		$body = $mime->get();
+		$hdrs = $mime->headers( $hdrs );
+			    
+			
+		$queueMailId = $mail_queue->put( $from, $recipient, $hdrs, $body );
+			    //echo("Mail queue ID = $queueMailId <br>");
+			
+		if ( $configInfo["email_send_now"] ) {
+			$send_result = $mail_queue->sendMailById( $queueMailId );
+		}
+	}//recipient loop
+	
+	if($send_result != 1){
+		echo $send_result;
+		echo("<br>");
+	}
+
+
+
+
+
+/*
 
     $email1 = new Email(
         $recipient1,
@@ -257,5 +322,6 @@ function notifyORS($details) {
 
     $mailQueue = new MailQueue($emails);
     $mailQueue->queueAllMail();
+*/
 }
 

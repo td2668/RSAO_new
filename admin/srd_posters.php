@@ -32,7 +32,12 @@
     if(isset($_REQUEST['delete'])){
         
         if(isset($_REQUEST['id'])) {
-            
+            $poster=$db->getRow("SELECT * FROM poster_reg WHERE poster_reg_id=$_REQUEST[id]");
+            if($poster){
+	            if(!unlink($configInfo['upload_root'].'posters/'.$poster['filename']))
+	            	echo("Error deleting $configInfo[upload_root].'posters/'.$poster[filename]<br>");
+	            
+	            }
             $sql="DELETE from poster_reg WHERE poster_reg_id={$_REQUEST['id']}";
             //echo $sql;
             $result=$db->Execute($sql);
@@ -50,7 +55,7 @@
             $sql="Select * FROM poster_reg WHERE poster_reg_id=$_REQUEST[id]";
             $old=$db->getRow($sql);
             if(is_uploaded_file($_FILES['filename2']['tmp_name'])){
-                echo"found a file";
+                //echo"found a file";
                 $ext=explode(".",$_FILES['filename2']['name']);
                 $ext_el=sizeof($ext)-1;  //in case theres another . in the filename
                 $filename_noext="printfile".time();
@@ -159,22 +164,28 @@ Your poster or multimedia presentation entitled \"$_REQUEST[title]\" has been pr
 	             
 
 
-             $sql="SELECT poster.*, dep.name AS departmentName, CONCAT(users.first_name, ' ', users.last_name) AS supervisor
+             $sql="SELECT poster.*, fc.course, CONCAT(pi.first_name, ' ', pi.last_name) AS piname, CONCAT(super.first_name, ' ', super.last_name) AS supervisor
                   FROM poster_reg AS poster
-		          LEFT JOIN departments AS dep ON poster.departmentId = dep.department_id
-		          LEFT JOIN users ON poster.supervisorId = users.user_id 
+                  LEFT JOIN forms_create as fc ON poster.form_create_id=fc.form_create_id                  
+		        
+		          LEFT JOIN users as pi ON fc.user_id = pi.user_id 
+		          LEFT JOIN departments AS dep ON pi.department_id = dep.department_id
+		          LEFT JOIN users as super ON fc.user_id = super.user_id 
 		          WHERE 1 
 		    	  AND (
-		    	    (YEAR(submit_date)=$srd_year 
-		    		AND MONTH(submit_date)>=1 
-		    		AND MONTH(submit_date)<6) 
+		    	    (YEAR(poster.submit_date)=$srd_year 
+		    		AND MONTH(poster.submit_date)>=1 
+		    		AND MONTH(poster.submit_date)<6) 
 		    	  OR
-		    		(YEAR(submit_date)=$srd_year-1
-		    		AND MONTH(submit_date)>5 
-		    		AND MONTH(submit_date)<=12)
+		    		(YEAR(poster.submit_date)=$srd_year-1
+		    		AND MONTH(poster.submit_date)>5 
+		    		AND MONTH(poster.submit_date)<=12)
 		    		)";
              $sql = $sql . $orderBy;
          	 $regs=$db->getAll($sql);
+         	 
+
+         	 	
 			$prev=$srd_year-1;
 			$range= "June " . $prev . ' - May ' . $srd_year;
             $tmpl->addVar('view', "COUNT", count($regs));

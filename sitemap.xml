@@ -126,6 +126,7 @@ Funding</funding>-->
 <fair type="static">Faculty Profile
 	<profile type="dynamic" url="myprofile.php">View</profile>
 	<fair_edit type="dynamic" url="fair/fair.php">Edit</fair_edit>
+	<my_projects type="dynamic" url="myactivities.php?section=my_projects" >My Projects</my_projects>
 </fair>
 
 <!--<handbook type="dynamic" url="handbook.php">Handbook

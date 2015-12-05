@@ -91,6 +91,8 @@
 			$success= "<font color='red'>Error deleting: ".$db->ErrorMsg()."</font>";
 			else $success="Deleted";
 			$db->Execute("DELETE FROM forms_create_coresearchers WHERE fc_id={$_REQUEST['id']}");
+			//DElete File
+			
         }
         
     }
@@ -548,11 +550,9 @@ ABSTRACT: $descrip
 			 	
              $sql = $sql . $orderBy;
          	 $regs=$db->getAll($sql);
-         	 /*
-echo("<pre>");
-         	 	print_r($regs);
-         	 	echo("</pre>");
-*/
+         	 
+		 	 
+
 			$prev=$srd_year-1;
 			$range= "June " . $prev . ' - May ' . $srd_year;
             $tmpl->addVar('view', "COUNT", count($regs));

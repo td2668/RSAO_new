@@ -432,7 +432,7 @@ switch($_REQUEST['section']){
 			$values=$db->GetAll($sql);
         }
 		else $letter='';
-
+		
 		$viewlist=array();
 		if(is_array($values)) {
 			$count=1;

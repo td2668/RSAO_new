@@ -1,5 +1,6 @@
 <html><head>
-<title>ARECCI Screening Tool</title>
+<title>Ethics Screening Tool</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <link href="/screening/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
 <link href="/screening/stylesheets/jquery-ui-1.8rc3.custom.css" media="screen" rel="stylesheet" type="text/css">
 <link href="/screening/stylesheets/screen.css" media="screen" rel="stylesheet" type="text/css">
@@ -28,6 +29,15 @@
 <div class="span-20" id="content_container">
 <div id="content">
 
+<div id='intro_block'><h1>Ethics Screening Tool</h1>
+	<p><b>Step 1: PRELIMINARY SCREEN:</b> Helps identify those projects which clearly require REB review.</p>
+
+<p><b>Step 2: PROJECT PRIMARY PURPOSE: </b>A primary purpose screen sorts research from other types of projects to determine the appropriate review pathway (i.e., REB review or organization/context based oversight).</p>
+
+<p><b>Step 3: RISK FILTERS:</b> Based on the result in Step 2 (i.e., determination of project primary purpose), one of two risk filters automatically become available: one for research and one for QI/evaluation. These risk filters help the user identify ethical risks from the perspective of participants in the project.</p>
+
+<p><b>Step 4: SCREENING RESULT:</b> A summary score produces the category of risk for project participants. The category of risk is highlighted together with the corresponding recommended review action for the project. Specific items and their values that contribute to the total score are also listed. This enables those responsible to plan appropriate risk-mitigating strategies before involving participants. Professional judgment is required in interpreting all screening results.</p>
+</div>
 
 <div id="question_block_1">
 <h2>Step 1: Preliminary Questions</h2>
@@ -87,7 +97,8 @@ No<input id="q3false" name="q3" value="false" type="radio">
 
 <button onclick="javascript: scoresection1();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
 <br>
-<div style="display: none;" class="results red" id="question_block_results_1">This project should be submitted to a Research Ethics Board.</div>
+<div style="display: none;" class="results red" id="question_block_results_1a">This project should be submitted to a Research Ethics Board.</div>
+<div style="display: none;" class="results green" id="question_block_results_1b">Please answer the questions below.</div>
 </div>
 
 
@@ -248,9 +259,9 @@ No<input id="q13false" name="q13" value="false" type="radio">
 
 </ul>
 
-<button onclick="javascript: scoresection2();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+<button onclick="javascript: scoresection2();    $('html, body').animate({scrollTop: $('#block2').offset().top}, 1000);" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
 
-
+<a href='#block2' id='block2'></a>
 <br>
 <div style="display: none;" class="results both" id="question_block_results_2">Your score indicates that the purpose of your project has not been determined.  To continue, please use your professional judgment to decide if your project is research or Quality Improvement or Program Evaluation.  If you are still unsure, consult with someone who understands the context of your project and is familiar with project ethics.<br>Choose One:<br>
 	<div class="ui-buttonset" id="choose">
@@ -260,10 +271,18 @@ No<input id="q13false" name="q13" value="false" type="radio">
 </div>
 
 
+<div style="display: none;" class="results blue" id="question_block_results_4">Your score indicates that the most probable purpose of your project is Research.
+Please proceed to determine the category of risk to your participants.
+</div>
+<div style="display: none;" class="results green" id="question_block_results_3">Your score indicates that the most probable purpose of your project is Quality Improvement or Program Evaluation.
+Please proceed to determine the category of risk to your participants.
+</div>
+
+
 
 
 <div style="display: none;" id="question_block_3">
-<h2>Does your project involve...</h2>
+<h2>Step 3: Risk Filters. Does your project involve...</h2>
 <ul class="questions">
 <li class="quality">
 <div>
@@ -615,7 +634,7 @@ No<input id="q35afalse" name="q35a" value="false" type="radio">
 </ul>
 
 
-<button onclick="javascript: scoresection3();" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
+<button onclick="javascript: scoresection3(); $('html, body').animate({scrollTop: $('#block34').offset().top}, 1000);" role="button" class="next ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Score Section</span></button>
 
 </div>
 
@@ -936,7 +955,7 @@ No<input id="q34false" name="q34" value="false" type="radio">
 
 <!-- -------------------------------------------------------------------------------------------------- -->
 
-
+<a href="#block34" id='block34'></a>
 
 
 <div style="display: none" class="results red" id="results_definite"></div>
@@ -944,7 +963,7 @@ No<input id="q34false" name="q34" value="false" type="radio">
 
 
 <div style="display: none" id="affected_title"><h2>Questions that affected your final score:</h2></div>
-<div id="affected_questions">
+<div id="affected_questions" style="display: none">
 	
 <ul id="affected">
 	<div id="q14aff" style="display: none">
@@ -1137,12 +1156,12 @@ There is always potential for ethical risk in projects that involve people or th
 <tr class="red">
 <td>47 or greater</td>
 <td>Definitely greater than minimal</td>
-<td>Organization's recognized review process* using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+<td>Internal review* based on Ethics Guidelines for Quality Improvement and Evaluation Projects</td>
 </tr>
 <tr class="orange">
 <td>8 - 46</td>
 <td>Somewhat more than minimal</td>
-<td>Second Opinion Review** using <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+<td>Second Opinion Review using  Ethics Guidelines for Quality Improvement and Evaluation Projects</td>
 </tr>
 <tr class="yellow">
 <td>
@@ -1150,14 +1169,13 @@ There is always potential for ethical risk in projects that involve people or th
 0 - 7
 </td>
 <td>Minimal</td>
-<td>Project leader uses <em>ARECCI Ethics Guidelines for Quality Improvement and Evaluation Projects</em></td>
+<td>Project leader uses Ethics Guidelines for Quality Improvement and Evaluation Projects</td>
 </tr>
 </tbody><tfoot>
 <tr>
 <td colspan="3">
 <p>*Review by a duly constituted group independent of the project team, that is trained to do project ethics reviews and whose decisions are recognized by the organization.</p>
 <p>**Review by an individual trained to do project ethics reviews who has no vested interest in the outcome of the project.</p>
-<p><strong>If you require access to a Second Opinion Review, please email <a href="mailto:ARECCI.health@albertainnovates.ca">ARECCI.health@albertainnovates.ca</a></strong></p>
 <p>
 <strong>
 <sup>+</sup>
@@ -1174,63 +1192,17 @@ There is always potential for ethical risk in projects that involve people or th
 
 </div>
 
-</div>
-</div>
 
-<div id="feedback_box">
-<h2>Feedback welcomed on the ARECCI online ethics screening tool</h2>
-<p>The ARECCI Network developed this tool for ethics decision support with projects involving people or their health information.</p>
-<p>It has been pilot tested by a variety of stakeholders, but remains the subject of ongoing development.</p>
-<p>To assist with refinements to improve its usefulness, feedback on your experience using this tool with your project(s) would be much appreciated.</p>
-<p>Kindly insert your comments and suggestions in the text box below.</p>
-<form accept-charset="UTF-8" action="/screening/feedback" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
-<textarea id="feedback_text" name="feedback_text"></textarea>
-<p>
-<input id="feedback_submit" name="commit" value="Send" type="submit">
-</p>
-</form>
-
-</div>
-<div id="email_box">
-<h2 style="width:400px;">Share your results</h2>
-<form accept-charset="UTF-8" action="/screening/email" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="c8QbQgSTINQTJX3BizUjWqPRPrKXjKakcjQ06DTp2Po=" type="hidden"></div>
-<input id="secure_url" name="secure_url" value="http://www.aihealthsolutions.ca/screening/60854/cb472ed36fce3d041c1e0521499e3f24" type="hidden">
-<p>
-<label for="from_name">From name</label>
-<input id="from_name" name="from_name" type="text">
-</p>
-<p>
-<label for="from_email">From email</label>
-<input id="from_email" name="from_email" type="text">
-</p>
-<p>
-<label for="to_name">To name</label>
-<input id="to_name" name="to_name" type="text">
-</p>
-<p>
-<label for="to_email">To email</label>
-<input id="to_email" name="to_email" type="text">
-</p>
-<p>
-<input id="email_submit" name="commit" value="Send" type="submit">
-</p>
-</form>
-
-</div>
-
-</div>
-</div>
 <div id="footer">
-<a href="javascript:void(0)" id="notice_link">Notice and Terms of Use</a>
-&nbsp;|
-<a href="javascript:void(0)" id="citation_link">Scholarly Citations</a>
-</div>
-</div>
+
+
+
 
 
 <div style="padding: 40px;" id="fancybox-tmp"></div><div style="display: none;" id="fancybox-loading"><div></div></div><div style="background-color: rgb(51, 51, 51); opacity: 0.8; cursor: pointer; height: 1325px; display: none;" id="fancybox-overlay"></div><div style="width: 840px; height: auto; top: 0px; left: 280px; display: none;" id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content" style="padding: 20px; border-width: 20px; width: 800px; height: 883px;"></div><a style="display: none;" id="fancybox-close"></a><div style="display: none;" id="fancybox-title"></div><a style="display: none;" href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a style="display: none;" href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div>
 
 </body>
+
 <script type="text/javascript">
 <!--
     function toggle_visibility(id) {
@@ -1270,7 +1242,7 @@ There is always potential for ethical risk in projects that involve people or th
 	    else {
 		    document.getElementById("question_block_2").style.display='block';
 		    
-		    e=document.getElementById("question_block_results_1");
+		    e=document.getElementById("question_block_results_1a");
 		    if(total > 0)    
 			    e.style.display='block';
 			else 
@@ -1285,6 +1257,7 @@ There is always potential for ethical risk in projects that involve people or th
     function scoresection2() {
 	    var total=0;
 		var count=0;
+		
 	    if(document.getElementById("q4true").checked == true) {
 	    	total=total+1; 
 	    	count=count+1;
@@ -1354,6 +1327,14 @@ There is always potential for ethical risk in projects that involve people or th
 	    }
 	    if(document.getElementById("q13false").checked == true)
 	    	count=count+1;
+	    	
+	    document.getElementById("question_block_results_2").style.display='none';
+	    document.getElementById("question_block_results_4").style.display='none';
+	    document.getElementById("question_block_results_3").style.display='none';
+	    document.getElementById("results_definite").style.display='none';
+	    document.getElementById("affected_title").style.display='none';
+	    document.getElementById("affected_questions").style.display='none';
+	    
 	    
 	    if(count < 10) 
 	    	alert('Please complete all questions in the section before proceeding');
@@ -1361,12 +1342,27 @@ There is always potential for ethical risk in projects that involve people or th
 		    document.getElementById("question_block_2").style.display='block';
 		    
 		   
-		    if(total == 0)    
+		    if(total == 0)    {
+
 			    document.getElementById("question_block_results_2").style.display='block';
+			    document.getElementById('question_block_4').style.display='none';
+			    document.getElementById('question_block_3').style.display='none';
+			    }
 			else 
 				document.getElementById("question_block_results_2").style.display='none';
 
-		    
+		    if(total < 0){
+		    	 document.getElementById('question_block_3').style.display='block';
+		    	 document.getElementById('question_block_4').style.display='none';
+		    	 document.getElementById('question_block_results_3').style.display='block';
+		    	 document.getElementById('question_block_results_4').style.display='none';
+		    }
+		    if(total > 0){
+		    	 document.getElementById('question_block_3').style.display='none';
+		    	 document.getElementById('question_block_4').style.display='block';
+		    	 document.getElementById('question_block_results_3').style.display='none';
+		    	 document.getElementById('question_block_results_4').style.display='block';
+		    }	
 	    }
     }
     
@@ -1578,6 +1574,10 @@ There is always potential for ethical risk in projects that involve people or th
 		    document.getElementById("score_cutoff").style.display="block";
 		    document.getElementById("quality_cutoff").style.display="block";
 		    document.getElementById("research_cutoff").style.display="none";
+		    if(total > 0)
+		    	document.getElementById("affected_title").style.display="block";
+		    document.getElementById("affected_questions").style.display="block";
+		    
 		    		   
 		    if(total >= 0 && total <=7) {   
 			    document.getElementById("results_definite").style.display='block';
@@ -1847,6 +1847,7 @@ There is always potential for ethical risk in projects that involve people or th
 			}
 	    }
     }
+
 
 //-->
 </script>
