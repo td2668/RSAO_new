@@ -11,7 +11,7 @@ $configInfos["scholviu.v3client.com"]["pass"] = "rilinc";
 $configInfos["scholviu.v3client.com"]["dbdriver"] = "mysql";
 $configInfos["scholviu.v3client.com"]["dbname"] = "scholviu_research";
 $configInfos["scholviu.v3client.com"]["peardir"] = '/usr/share/pear';
-$configInfos["scholviu.v3client.com"]["debug"] = false;
+$configInfos["scholviu.v3client.com"]["debug"] = true;
 $configInfos["scholviu.v3client.com"]["url_root"] = 'http://scholviu.v3client.com/';
 $configInfos["scholviu.v3client.com"]["file_root"] = '/home/scholviu/public_html';
 $configInfos["scholviu.v3client.com"]["upload_root"] = '/var/www/research_htdocs/documents/shared/uploads/';
@@ -29,6 +29,28 @@ $configInfos["scholviu.v3client.com"]["email_db_options"] =
         'dsn'         => 'mysql://ors:rilinc@bckup-sigyn.mtroyal.ca/research',
         'mail_table'  => 'mail_queue',
     );
+    
+$configInfos["localhost"]["host"] = 'localhost';
+$configInfos["localhost"]["user"] = 'ors';
+$configInfos["localhost"]["pass"] = 'rilinc';
+$configInfos["localhost"]["dbdriver"] = 'mysql';
+$configInfos["localhost"]["dbname"] = 'research';
+$configInfos["localhost"]["peardir"] = '/vagrant/vendor/conservatory/research-pear/';
+$configInfos["localhost"]["debug"] = true;
+$configInfos["localhost"]["authmethod"] = 'database,usertable';
+$configInfos["localhost"]["url_root"] = 'http://localhost';
+$configInfos["localhost"]["file_root"] = '/Users/trevor/Documents/Sites/RSAO_new/';
+$configInfos["localhost"]["upload_root"] = $configInfos["localhost"]["file_root"] . '/documents/uploads/';
+$configInfos["localhost"]["picture_path"] = $configInfos["localhost"]["file_root"] . '/documents/shared/pictures/';
+$configInfos["localhost"]["picture_url"] = '/pictures/';
+$configInfos["localhost"]["admin"] = array('tdavis','cnakamoto');
+$configInfos["localhost"]["irgf_docs"] = "/documents/shared/irgf";
+$configInfos["email_db_options"] =  array(
+    'type'        => 'db',
+    'dsn'         => 'mysql://ors:rilinc@localhost/research',
+    'mail_table'  => 'mail_queue',
+);
+
 
 $configInfos["schol.viu.ca"]["server_name"] = "schol.viu.ca";
 $configInfos["schol.viu.ca"]["host"] = "localhost";
@@ -146,26 +168,7 @@ $configInfos["email_db_options"] =  array(
 );
 
 */
-$configInfos["localhost"]["host"] = 'localhost';
-$configInfos["localhost"]["user"] = 'ors';
-$configInfos["localhost"]["pass"] = 'rilinc';
-$configInfos["localhost"]["dbdriver"] = 'mysql';
-$configInfos["localhost"]["dbname"] = 'research';
-$configInfos["localhost"]["peardir"] = '/vagrant/vendor/conservatory/research-pear/';
-$configInfos["localhost"]["debug"] = false;
-$configInfos["localhost"]["authmethod"] = 'database,usertable';
-$configInfos["localhost"]["url_root"] = 'http://localhost';
-$configInfos["localhost"]["file_root"] = '/Users/trevor/Documents/Sites/RSAO_new/';
-$configInfos["localhost"]["upload_root"] = $configInfos["localhost"]["file_root"] . '/documents/uploads/';
-$configInfos["localhost"]["picture_path"] = $configInfos["localhost"]["file_root"] . '/documents/shared/pictures/';
-$configInfos["localhost"]["picture_url"] = '/pictures/';
-$configInfos["localhost"]["admin"] = array('tdavis','cnakamoto');
-$configInfos["localhost"]["irgf_docs"] = "/documents/shared/irgf";
-$configInfos["email_db_options"] =  array(
-    'type'        => 'db',
-    'dsn'         => 'mysql://ors:rilinc@localhost/research',
-    'mail_table'  => 'mail_queue',
-);
+
 
 $configInfos["admin.localhost"]["host"] = 'localhost';
 $configInfos["admin.localhost"]["user"] = 'ors';

@@ -10,8 +10,6 @@ require_once('includes/global.inc.php');
 require_once('includes/securimage/securimage.php');
 
 
-
-
 /* * *********************************
  * MAIN
  * ********************************** */
@@ -36,6 +34,13 @@ if ( sessionLoggedin() == false ) {
 			) $errmsg.="Malformed request<br>";
 	    else {
 		 	$image = new Securimage();
+		 	echo(('<pre>'));
+		 	print_r($image);
+		 	echo('<br>');
+		 	echo($_REQUEST['ct_captcha'].'<br>');
+		 	echo('Response: ' . $image->check($_REQUEST['ct_captcha']));
+		 	echo('</pre>');
+		 	
 		 	if ($image->check($_REQUEST['ct_captcha']) != true) $errmsg.="Wrong Captcha Code<br>";
 		 	if(strlen($_REQUEST['first_name']) < 2) $errmsg.="First name?<br>";
 		 	if(strlen($_REQUEST['last_name']) < 2) $errmsg.="Last name?<br>";
